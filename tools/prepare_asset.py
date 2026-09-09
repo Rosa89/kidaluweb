@@ -86,3 +86,44 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
+
+
+def prepare_band(src: Path, dst: Path, width: int, quality: int = 82) -> dict:
+    """Wariant dla szerokich warstw tła.
+
+    `rembg` wykrywa obiekt wyróżniający się, więc na pasie z wieloma drobnymi
+    elementami potrafi uznać część roślinności za tło i ją skasować. Tutaj
+    zamiast tego wypełniamy biel od krawędzi kadru: co jest białe i połączone
+    z brzegiem, jest tłem; biel wewnątrz kształtu zostaje.
+    """
+    import numpy as np
+    from scipy import ndimage
+
+    im = Image.open(src).convert("RGB")
+    a = np.asarray(im)
+
+    near_white = a.min(axis=2) > 238
+    lab, _ = ndimage.label(near_white)
+    brzeg = set(lab[0, :]) | set(lab[-1, :]) | set(lab[:, 0]) | set(lab[:, -1])
+    brzeg.discard(0)
+
+    # Zamknięte białe obszary też bywają tłem: przerwy między koronami drzew.
+    # Drobne białe punkty zostawiamy — to kwiatki na polanie, nie dziury.
+    rozmiary = ndimage.sum(near_white, lab, range(1, lab.max() + 1))
+    duze = {i + 1 for i, r in enumerate(rozmiary) if r > 400}
+    tlo = np.isin(lab, list(brzeg | duze))
+
+    alpha = np.where(tlo, 0, 255).astype("uint8")
+    out = Image.fromarray(np.dstack([a, alpha]), "RGBA")
+    out.putalpha(Image.fromarray(alpha).filter(ImageFilter.GaussianBlur(0.8)))
+
+    bbox = out.getchannel("A").getbbox()
+    if bbox:
+        out = out.crop(bbox)
+    if out.width != width:
+        out = out.resize((width, round(out.height * width / out.width)), Image.LANCZOS)
+
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    out.save(dst, format="WEBP", quality=quality, method=6)
+    lo, hi = out.getchannel("A").getextrema()
+    return {"size": out.size, "bytes": dst.stat().st_size, "alpha": lo == 0 and hi == 255}
