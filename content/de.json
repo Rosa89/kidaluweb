@@ -1,0 +1,20 @@
+{
+  "lang": "de",
+  "site": {
+    "brand": "Kidalu",
+    "title": "Kidalu — Apps, die spielerisch lehren",
+    "description": "Lern-Apps für Kinder von 4 bis 8 Jahren. Keine Werbung, kein Profiling, kein Tracking."
+  },
+  "slugs": {
+    "czytanie": "lesen-nach-silben",
+    "literki": "buchstaben-und-zahlen",
+    "kontakt": "kontakt",
+    "docs": "dokumente"
+  },
+  "nav": { "home": "Wald", "contact": "Kontakt" },
+  "home": {
+    "headline": "Schau in den Kidalu-Wald",
+    "intro": "An jedem Häuschen wartet eine Eule mit einer anderen App. Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
+  },
+  "footer": { "rights": "Kidalu" }
+}

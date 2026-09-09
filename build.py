@@ -32,7 +32,28 @@ def page_urls(c: dict, lang: str) -> dict[str, str]:
     """Mapa klucz strony -> adres URL, dla jednego języka."""
     s = c["slugs"]
     p = prefix(lang)
-    return {"home": f"{p}/"}
+    return {
+        "home": f"{p}/",
+        "czytanie": f"{p}/{s['czytanie']}/",
+        "czytanie_docs": f"{p}/{s['czytanie']}/{s['docs']}/",
+        "literki": f"{p}/{s['literki']}/",
+        "literki_docs": f"{p}/{s['literki']}/{s['docs']}/",
+        "kontakt": f"{p}/{s['kontakt']}/",
+    }
+
+
+def available_langs() -> list[str]:
+    return [l for l in LANGS if (CONTENT / f"{l}.json").exists()]
+
+
+def alternates(key: str) -> dict[str, str]:
+    """Adresy tej samej strony w pozostałych językach — tylko te, które istnieją."""
+    out: dict[str, str] = {}
+    for l in available_langs():
+        urls = page_urls(load_lang(l), l)
+        if key in urls:
+            out[l] = urls[key]
+    return out
 
 
 def _env() -> Environment:
@@ -72,6 +93,10 @@ def build() -> list[Path]:
             "c": c,
             "url": lambda key, u=urls: u[key],
             "asset": lambda rel: f"/assets/{rel}",
+            "page_key": "home",
+            "alternates": alternates("home"),
+            "langs": available_langs(),
+            "site_host": SITE_HOST,
         }
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
 

@@ -1,0 +1,20 @@
+{
+  "lang": "en",
+  "site": {
+    "brand": "Kidalu",
+    "title": "Kidalu — apps that teach through play",
+    "description": "Learning apps for children aged 4 to 8. No ads, no profiling, no tracking."
+  },
+  "slugs": {
+    "czytanie": "reading-by-syllables",
+    "literki": "letters-and-numbers",
+    "kontakt": "contact",
+    "docs": "legal"
+  },
+  "nav": { "home": "Forest", "contact": "Contact" },
+  "home": {
+    "headline": "Step into the Kidalu forest",
+    "intro": "An owl waits at every little house, each with a different app. No ads, no profiling, no tracking outside the app."
+  },
+  "footer": { "rights": "Kidalu" }
+}

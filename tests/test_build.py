@@ -39,3 +39,32 @@ def test_build_czysci_katalog_wyjsciowy():
     # Sprawdź że nowa strona została wygenerowana
     index = build.OUT / "index.html"
     assert index.exists(), "docs/index.html powinien istnieć"
+
+
+def test_generuje_trzy_wersje_jezykowe():
+    build.build()
+    assert (build.OUT / "index.html").exists()
+    assert (build.OUT / "de" / "index.html").exists()
+    assert (build.OUT / "en" / "index.html").exists()
+
+
+def test_slugi_roznia_sie_miedzy_jezykami():
+    pl = build.page_urls(build.load_lang("pl"), "pl")
+    de = build.page_urls(build.load_lang("de"), "de")
+    en = build.page_urls(build.load_lang("en"), "en")
+    assert pl["czytanie"] == "/czytanie-sylabami/"
+    assert de["czytanie"] == "/de/lesen-nach-silben/"
+    assert en["czytanie"] == "/en/reading-by-syllables/"
+    assert pl["literki_docs"] == "/literki-i-cyferki/dokumenty/"
+    assert de["literki_docs"] == "/de/buchstaben-und-zahlen/dokumente/"
+    assert en["literki_docs"] == "/en/letters-and-numbers/legal/"
+
+
+def test_hreflang_wskazuje_istniejace_strony():
+    build.build()
+    html = (build.OUT / "index.html").read_text("utf-8")
+    for lang, url in build.alternates("home").items():
+        assert f'hreflang="{lang}"' in html
+        target = build.OUT / url.strip("/") / "index.html" if url.strip("/") else build.OUT / "index.html"
+        assert target.exists(), f"hreflang {lang} wskazuje na nieistniejący {target}"
+    assert 'hreflang="x-default"' in html

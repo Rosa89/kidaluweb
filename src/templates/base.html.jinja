@@ -7,10 +7,19 @@
 <meta name="description" content="{% block description %}{{ c.site.description }}{% endblock %}">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+{% for l, u in alternates.items() %}
+<link rel="alternate" hreflang="{{ l }}" href="{{ site_host }}{{ u }}">
+{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ site_host }}{{ alternates['pl'] }}">
 </head>
 <body>
 <header class="site-head">
   <a class="brand" href="{{ url('home') }}">{{ c.site.brand }}</a>
+  <nav class="langs" aria-label="Język">
+    {% for l, u in alternates.items() %}
+    <a href="{{ u }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>
+    {% endfor %}
+  </nav>
 </header>
 <main>{% block content %}{% endblock %}</main>
 <footer class="site-foot">
