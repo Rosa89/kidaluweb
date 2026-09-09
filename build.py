@@ -7,6 +7,7 @@ import shutil
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
+from markupsafe import Markup
 
 ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
@@ -55,10 +56,22 @@ def available_langs() -> list[str]:
     return [l for l in LANGS if (CONTENT / f"{l}.json").exists()]
 
 
+def doc_path(app_key: str, lang: str) -> Path:
+    return CONTENT / "docs" / f"{app_key}.{lang}.html"
+
+
+def doc_langs(app_key: str) -> list[str]:
+    return [l for l in available_langs() if doc_path(app_key, l).exists()]
+
+
 def alternates(key: str) -> dict[str, str]:
     """Adresy tej samej strony w pozostałych językach — tylko te, które istnieją."""
     out: dict[str, str] = {}
     for l in available_langs():
+        if key.endswith("_docs"):
+            app_key = key[: -len("_docs")]
+            if not doc_path(app_key, l).exists():
+                continue
         urls = page_urls(load_lang(l), l)
         if key in urls:
             out[l] = urls[key]
@@ -110,14 +123,26 @@ def build() -> list[Path]:
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
 
         for app_key in APPS:
+            docs_key = f"{app_key}_docs"
+            docs_url = urls[docs_key] if lang in doc_langs(app_key) else None
+
             written.append(_write(urls[app_key], env.get_template("app.html.jinja").render(
                 **{**ctx,
                    "page_key": app_key,
                    "alternates": alternates(app_key),
                    "app": c["apps"][app_key],
                    "play_url": play_url(app_key),
-                   "docs_url": None},
+                   "docs_url": docs_url},
             )))
+
+            if lang in doc_langs(app_key):
+                written.append(_write(urls[docs_key], env.get_template("docs.html.jinja").render(
+                    **{**ctx,
+                       "page_key": docs_key,
+                       "alternates": alternates(docs_key),
+                       "app": c["apps"][app_key],
+                       "doc_html": Markup(doc_path(app_key, lang).read_text("utf-8"))},
+                )))
 
     return written
 

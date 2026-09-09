@@ -125,3 +125,38 @@ def test_podstrona_linkuje_do_wlasciwej_aplikacji_w_play():
 
         assert LITERKI_ID in literki, f"{literki_target} nie linkuje do właściwej aplikacji"
         assert CZYTANIE_ID not in literki, f"{literki_target} linkuje też do drugiej aplikacji"
+
+
+PLAY_URLS = [
+    "czytanie-sylabami/dokumenty",
+    "literki-i-cyferki/dokumenty",
+]
+
+
+def test_adresy_wymagane_przez_play_istnieja():
+    build.build()
+    for rel in PLAY_URLS:
+        target = build.OUT / rel / "index.html"
+        assert target.exists(), f"{rel} to adres podany w Play Console"
+
+
+def test_dokument_zawiera_polityke_prywatnosci():
+    build.build()
+    html = (build.OUT / "czytanie-sylabami" / "dokumenty" / "index.html").read_text("utf-8")
+    assert "Polityka prywatności" in html
+    assert "Administrator danych" in html
+
+
+def test_niemiecka_wersja_literek_zachowana():
+    build.build()
+    target = build.OUT / "de" / "buchstaben-und-zahlen" / "dokumente" / "index.html"
+    assert target.exists()
+    assert "Datenschutzerklärung" in target.read_text("utf-8")
+
+
+def test_brakujace_tlumaczenie_nie_generuje_strony_ani_hreflang():
+    build.build()
+    # czytanie nie ma wersji DE — strona nie powstaje
+    assert not (build.OUT / "de" / "lesen-nach-silben" / "dokumente" / "index.html").exists()
+    # i nie pojawia się w alternatywach
+    assert "de" not in build.alternates("czytanie_docs")

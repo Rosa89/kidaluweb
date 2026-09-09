@@ -31,3 +31,18 @@ main{max-width:960px; margin:0 auto; padding:0 1.5rem}
   text-decoration:none; font-weight:700; padding:.7rem 1.4rem; border-radius:999px;
 }
 .play:hover{background:var(--wood-dark)}
+.docs{max-width:70ch}
+.doc-toc{
+  display:flex; flex-wrap:wrap; gap:.5rem;
+  margin:0 0 2.5rem; padding:0 0 1.25rem;
+  border-bottom:1px solid var(--cream-2);
+}
+.doc-toc a{
+  color:var(--wood-dark); text-decoration:none; font-weight:700; font-size:.9rem;
+  padding:.35rem .8rem; border:1px solid var(--wood-light); border-radius:999px;
+}
+.doc-toc a:hover{background:var(--wood); color:var(--paper); border-color:var(--wood)}
+.doc-section{margin:0 0 3.5rem; scroll-margin-top:1.5rem}
+.doc-section h1,.doc-section h2{margin-top:0}
+.docs table{border-collapse:collapse; width:100%}
+.docs th,.docs td{text-align:left; padding:.5rem .7rem; border-bottom:1px solid var(--cream-2)}

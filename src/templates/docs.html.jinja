@@ -1,0 +1,9 @@
+{# src/templates/docs.html.jinja #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ app.name }} — {{ app.docs_label }}{% endblock %}
+{% block description %}{{ app.docs_label }} — {{ app.name }}{% endblock %}
+{% block content %}
+<article class="docs">
+{{ doc_html }}
+</article>
+{% endblock %}
