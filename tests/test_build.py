@@ -61,22 +61,33 @@ def test_slugi_roznia_sie_miedzy_jezykami():
 
 
 def test_hreflang_wskazuje_istniejace_strony():
-    import re
+    # Docelowa domena produkcyjna, zahardkodowana tutaj celowo — NIE brać jej
+    # z build.SITE_HOST. Ten test ma wykryć pomyłkę w samej stałej, więc nie
+    # może porównywać wyniku z tą samą wartością, która go wyprodukowała.
+    EXPECTED_SITE_HOST = "https://kidalu.com"
+
+    # Osobna, krótka asercja pinująca stałą produkcyjną — jeśli ktoś ją
+    # zmieni (przez pomyłkę albo świadomie), to pęknie tutaj, w oczywistym
+    # miejscu, zamiast dopiero w postaci błędnych adresów w wynikach wyszukiwania.
+    assert build.SITE_HOST == EXPECTED_SITE_HOST
+
     build.build()
     html = (build.OUT / "index.html").read_text("utf-8")
 
+    alternates = build.alternates("home")
+
     # Sprawdzenie każdego języka z alternates
-    for lang, url in build.alternates("home").items():
-        expected_href = f"{build.SITE_HOST}{url}"
+    for lang, url in alternates.items():
+        expected_href = f"{EXPECTED_SITE_HOST}{url}"
         expected_tag = f'<link rel="alternate" hreflang="{lang}" href="{expected_href}">'
         assert expected_tag in html, f"Brak znacznika hreflang dla {lang} z adresem {expected_href}"
         target = build.OUT / url.strip("/") / "index.html" if url.strip("/") else build.OUT / "index.html"
         assert target.exists(), f"hreflang {lang} wskazuje na nieistniejący {target}"
 
     # Sprawdzenie x-default — musi być obecny tylko jeśli 'pl' istnieje
-    if 'pl' in build.alternates("home"):
-        pl_url = build.alternates("home")['pl']
-        expected_xdef_href = f"{build.SITE_HOST}{pl_url}"
+    if 'pl' in alternates:
+        pl_url = alternates['pl']
+        expected_xdef_href = f"{EXPECTED_SITE_HOST}{pl_url}"
         expected_xdef_tag = f'<link rel="alternate" hreflang="x-default" href="{expected_xdef_href}">'
         assert expected_xdef_tag in html, f"Brak poprawnego znacznika x-default z adresem {expected_xdef_href}"
     else:
