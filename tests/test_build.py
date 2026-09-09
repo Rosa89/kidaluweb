@@ -61,10 +61,24 @@ def test_slugi_roznia_sie_miedzy_jezykami():
 
 
 def test_hreflang_wskazuje_istniejace_strony():
+    import re
     build.build()
     html = (build.OUT / "index.html").read_text("utf-8")
+
+    # Sprawdzenie każdego języka z alternates
     for lang, url in build.alternates("home").items():
-        assert f'hreflang="{lang}"' in html
+        expected_href = f"{build.SITE_HOST}{url}"
+        expected_tag = f'<link rel="alternate" hreflang="{lang}" href="{expected_href}">'
+        assert expected_tag in html, f"Brak znacznika hreflang dla {lang} z adresem {expected_href}"
         target = build.OUT / url.strip("/") / "index.html" if url.strip("/") else build.OUT / "index.html"
         assert target.exists(), f"hreflang {lang} wskazuje na nieistniejący {target}"
-    assert 'hreflang="x-default"' in html
+
+    # Sprawdzenie x-default — musi być obecny tylko jeśli 'pl' istnieje
+    if 'pl' in build.alternates("home"):
+        pl_url = build.alternates("home")['pl']
+        expected_xdef_href = f"{build.SITE_HOST}{pl_url}"
+        expected_xdef_tag = f'<link rel="alternate" hreflang="x-default" href="{expected_xdef_href}">'
+        assert expected_xdef_tag in html, f"Brak poprawnego znacznika x-default z adresem {expected_xdef_href}"
+    else:
+        # x-default nie powinien być renderowany jeśli polskiej wersji nie ma
+        assert 'hreflang="x-default"' not in html, "x-default powinien być renderowany tylko gdy 'pl' istnieje w alternates"

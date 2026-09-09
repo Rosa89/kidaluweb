@@ -10,7 +10,9 @@
 {% for l, u in alternates.items() %}
 <link rel="alternate" hreflang="{{ l }}" href="{{ site_host }}{{ u }}">
 {% endfor %}
+{% if 'pl' in alternates %}
 <link rel="alternate" hreflang="x-default" href="{{ site_host }}{{ alternates['pl'] }}">
+{% endif %}
 </head>
 <body>
 <header class="site-head">
