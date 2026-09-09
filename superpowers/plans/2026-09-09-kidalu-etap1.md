@@ -779,31 +779,110 @@ Expected: FAIL — brak `docs/czytanie-sylabami/dokumenty/index.html`
 
 - [ ] **Step 3: Wyodrębnij treść z istniejących stron**
 
-Stare strony mają treść wewnątrz `<main>`. Wyciągnij ją do partiali, zachowując strukturę nagłówków:
+Stare strony **nie mają** `<main>`. Treść zaczyna się od `<nav class="doc-nav">`
+i kończy przed `<footer>`. Panele dokumentów mają `class="page"` i `role="tabpanel"` —
+są ukrywane przez `forest.css` i przełączane przez `assets/site.js`, a żadne z tych
+dwóch nie wchodzi do nowej witryny. Dlatego zakładki spłaszczamy do widocznych
+sekcji ze spisem kotwic. Zmieniamy wyłącznie atrybuty, znaczników zamykających
+nie ruszamy.
 
 ```bash
-mkdir -p content/docs
+cd /Users/srosinski/Desktop/test/kidalu
 python3 - <<'EOF'
 import re
 from pathlib import Path
 
-src = {
-    "czytanie.pl": "nauka-czytania-sylabami/index.html",
-    "literki.pl": "literki-i-cyferki/index.html",
-    "literki.de": "literki-i-cyferki/de/index.html",
+ZRODLA = {
+    "czytanie.pl": ("nauka-czytania-sylabami/index.html", {}),
+    "literki.pl": ("literki-i-cyferki/index.html", {
+        "../kontakt.html": "/kontakt/",
+        "../nauka-czytania-sylabami/": "/czytanie-sylabami/",
+    }),
+    "literki.de": ("literki-i-cyferki/de/index.html", {
+        "../../kontakt.html": "/de/kontakt/",
+        "../../nauka-czytania-sylabami/": "/de/lesen-nach-silben/",
+    }),
 }
-for name, path in src.items():
+
+NAV = re.compile(r'<nav class="doc-nav".*?</nav>', re.S)
+BTN = re.compile(r'<button[^>]*data-page="([^"]+)"[^>]*>(.*?)</button>', re.S)
+WZGLEDNY = re.compile(r'(?:href|src)="\.\./')
+
+Path("content/docs").mkdir(parents=True, exist_ok=True)
+
+for name, (path, linki) in ZRODLA.items():
     html = Path(path).read_text("utf-8")
-    m = re.search(r"<main[^>]*>(.*?)</main>", html, re.S)
-    body = m.group(1) if m else html
-    # stara marka nie może przejść do nowej witryny
+    start = html.find('<nav class="doc-nav"')
+    end = html.find("<footer>")
+    assert start != -1 and end > start, f"{path}: nie znaleziono granic tresci"
+    body = html[start:end]
+
+    # spis kotwic zamiast przyciskow zakladek
+    nav_html = NAV.search(body).group(0)
+    pozycje = [
+        '    <a href="#%s">%s</a>' % (pid, " ".join(label.split()))
+        for pid, label in BTN.findall(nav_html)
+    ]
+    assert pozycje, f"{path}: nie odczytano zakladek"
+    body = body.replace(nav_html, '<nav class="doc-toc">\n' + "\n".join(pozycje) + "\n  </nav>")
+
+    # panele przestaja byc ukrywane
+    body = body.replace('class="page active"', 'class="doc-section"')
+    body = body.replace('class="page"', 'class="doc-section"')
+    body = body.replace(' role="tabpanel"', "")
+
+    for stary, nowy in linki.items():
+        body = body.replace('href="%s"' % stary, 'href="%s"' % nowy)
+
     body = body.replace("Mądre Dzieciaki", "Kidalu").replace("codedriven.pl", "kidalu.com")
-    Path(f"content/docs/{name}.html").write_text(body.strip() + "\n", "utf-8")
-    print(f"{name}: {len(body)} znaków")
+
+    assert 'role="tabpanel"' not in body, f"{name}: zostal tabpanel"
+    assert not WZGLEDNY.search(body), f"{name}: zostal odnosnik wzgledny"
+    liczba = body.count('class="doc-section"')
+    Path("content/docs/%s.html" % name).write_text(body.strip() + "\n", "utf-8")
+    print("%-14s %6d znakow, sekcji: %d" % (name, len(body), liczba))
 EOF
 ```
 
-Otwórz każdy z trzech plików i sprawdź, że zaczyna się od nagłówka dokumentu, nie od fragmentu nawigacji. Jeśli `<main>` nie istniał w źródle, wytnij ręcznie zakres od pierwszego `<h1>` do końca treści.
+Expected: trzy linie, każda z liczbą sekcji równą 4.
+
+- [ ] **Step 3b: Style spłaszczonych dokumentów**
+
+Do `src/assets/css/site.css` dopisz:
+
+```css
+.docs{max-width:70ch}
+.doc-toc{
+  display:flex; flex-wrap:wrap; gap:.5rem;
+  margin:0 0 2.5rem; padding:0 0 1.25rem;
+  border-bottom:1px solid var(--cream-2);
+}
+.doc-toc a{
+  color:var(--wood-dark); text-decoration:none; font-weight:700; font-size:.9rem;
+  padding:.35rem .8rem; border:1px solid var(--wood-light); border-radius:999px;
+}
+.doc-toc a:hover{background:var(--wood); color:var(--paper); border-color:var(--wood)}
+.doc-section{margin:0 0 3.5rem; scroll-margin-top:1.5rem}
+.doc-section h1,.doc-section h2{margin-top:0}
+.docs table{border-collapse:collapse; width:100%}
+.docs th,.docs td{text-align:left; padding:.5rem .7rem; border-bottom:1px solid var(--cream-2)}
+```
+
+- [ ] **Step 3c: Obejrzyj wynik**
+
+Otwórz każdy z trzech plików w `content/docs/` i potwierdź, że:
+
+1. zaczyna się od `<nav class="doc-toc">`, nie od fragmentu nagłówka strony
+2. zawiera cztery sekcje `class="doc-section"`, każda ze swoim `id`
+3. nie ma w nim ciągu `Mądre Dzieciaki` ani `codedriven.pl`
+4. kończy się na treści dokumentu, bez stopki
+
+```bash
+grep -c 'class="doc-section"' content/docs/*.html
+grep -l 'Mądre Dzieciaki\|codedriven.pl' content/docs/*.html || echo "brak starej marki — OK"
+```
+
+Expected: po `4` dla każdego pliku, oraz komunikat o braku starej marki.
 
 - [ ] **Step 4: Szablon i generator**
 
