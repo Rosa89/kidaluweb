@@ -1,0 +1,19 @@
+/* src/assets/css/site.css */
+:root{
+  --paper:#FDF6E0; --cream-2:#FCE8C7;
+  --wood:#994E21; --wood-light:#CB8550; --wood-dark:#6E3410;
+  --ink:#54240A; --pine:#205740; --pine-2:#2F7056; --sky:#6FCCF3;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-size:17px; line-height:1.7;
+}
+h1,h2,h3,.brand{font-family:Fredoka,system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
+.site-head{padding:1.25rem 1.5rem}
+.brand{font-size:1.5rem; color:var(--wood-dark); text-decoration:none}
+main{max-width:960px; margin:0 auto; padding:0 1.5rem}
+.hero h1{font-size:clamp(2rem,5vw,3rem); margin:0 0 .75rem; text-wrap:balance}
+.site-foot{max-width:960px; margin:4rem auto 0; padding:1.5rem; color:var(--wood-dark); font-size:.9rem}
+:focus-visible{outline:2px solid var(--pine); outline-offset:3px}

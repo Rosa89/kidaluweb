@@ -1,0 +1,20 @@
+{
+  "lang": "pl",
+  "site": {
+    "brand": "Kidalu",
+    "title": "Kidalu — aplikacje, które uczą bawiąc",
+    "description": "Aplikacje edukacyjne dla dzieci 4–8 lat. Bez reklam, bez profilowania, bez śledzenia."
+  },
+  "slugs": {
+    "czytanie": "czytanie-sylabami",
+    "literki": "literki-i-cyferki",
+    "kontakt": "kontakt",
+    "docs": "dokumenty"
+  },
+  "nav": { "home": "Las", "contact": "Kontakt" },
+  "home": {
+    "headline": "Zajrzyj do lasu Kidalu",
+    "intro": "Przy każdym domku czeka sowa z inną aplikacją. Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
+  },
+  "footer": { "rights": "Kidalu" }
+}

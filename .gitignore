@@ -4,3 +4,7 @@
 
 # Materiał roboczy — makiety i eksperymenty nie trafiają na produkcję
 _mockups*/
+
+# Artefakty Pythona
+__pycache__/
+.pytest_cache/
