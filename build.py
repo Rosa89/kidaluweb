@@ -95,6 +95,30 @@ def _write(url: str, html: str) -> Path:
     return target
 
 
+def write_meta(written: list[Path]) -> None:
+    (OUT / "CNAME").write_text("kidalu.com\n", "utf-8")
+    (OUT / ".nojekyll").write_text("", "utf-8")
+    (OUT / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\nSitemap: {SITE_HOST}/sitemap.xml\n", "utf-8"
+    )
+
+    locs = []
+    for p in sorted(written):
+        if p.name != "index.html":
+            continue
+        rel = p.parent.relative_to(OUT).as_posix()
+        url = SITE_HOST + ("/" if rel == "." else f"/{rel}/")
+        locs.append(f"  <url><loc>{url}</loc></url>")
+
+    (OUT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        + "\n".join(locs)
+        + "\n</urlset>\n",
+        "utf-8",
+    )
+
+
 def build() -> list[Path]:
     if OUT.exists():
         shutil.rmtree(OUT)
@@ -144,6 +168,11 @@ def build() -> list[Path]:
                        "doc_html": Markup(doc_path(app_key, lang).read_text("utf-8"))},
                 )))
 
+        written.append(_write(urls["kontakt"], env.get_template("contact.html.jinja").render(
+            **{**ctx, "page_key": "kontakt", "alternates": alternates("kontakt")},
+        )))
+
+    write_meta(written)
     return written
 
 

@@ -17,6 +17,11 @@
     "intro": "Przy każdym domku czeka sowa z inną aplikacją. Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
   },
   "footer": { "rights": "Kidalu" },
+  "contact": {
+    "headline": "Napisz do nas",
+    "body": "Pytania o prywatność, dane dziecka albo współpracę? Odpowiadamy na wiadomości.",
+    "email": "sebastian.rosinski.1989@gmail.com"
+  },
   "apps": {
     "czytanie": {
       "name": "Nauka czytania sylabami",

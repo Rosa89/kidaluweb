@@ -160,3 +160,27 @@ def test_brakujace_tlumaczenie_nie_generuje_strony_ani_hreflang():
     assert not (build.OUT / "de" / "lesen-nach-silben" / "dokumente" / "index.html").exists()
     # i nie pojawia się w alternatywach
     assert "de" not in build.alternates("czytanie_docs")
+
+
+def test_kontakt_we_wszystkich_jezykach():
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        assert (build.OUT / urls["kontakt"].strip("/") / "index.html").exists()
+
+
+def test_cname_i_nojekyll():
+    build.build()
+    assert (build.OUT / "CNAME").read_text("utf-8").strip() == "kidalu.com"
+    assert (build.OUT / ".nojekyll").exists()
+
+
+def test_sitemap_wymienia_kazda_wygenerowana_strone():
+    written = build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    strony = [p for p in written if p.name == "index.html"]
+    assert len(strony) > 0
+    for p in strony:
+        rel = p.parent.relative_to(build.OUT).as_posix()
+        url = build.SITE_HOST + ("/" if rel == "." else f"/{rel}/")
+        assert f"<loc>{url}</loc>" in sitemap, url

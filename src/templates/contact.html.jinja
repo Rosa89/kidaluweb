@@ -1,0 +1,11 @@
+{# src/templates/contact.html.jinja #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ c.contact.headline }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ c.contact.body }}{% endblock %}
+{% block content %}
+<article class="contact">
+  <h1>{{ c.contact.headline }}</h1>
+  <p>{{ c.contact.body }}</p>
+  <p><a class="play" href="mailto:{{ c.contact.email }}">{{ c.contact.email }}</a></p>
+</article>
+{% endblock %}

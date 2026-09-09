@@ -17,6 +17,11 @@
     "intro": "An owl waits at every little house, each with a different app. No ads, no profiling, no tracking outside the app."
   },
   "footer": { "rights": "Kidalu" },
+  "contact": {
+    "headline": "Get in touch",
+    "body": "Questions about privacy, your child's data, or working together? We answer every message.",
+    "email": "sebastian.rosinski.1989@gmail.com"
+  },
   "apps": {
     "czytanie": {
       "name": "Reading by Syllables",

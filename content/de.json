@@ -17,6 +17,11 @@
     "intro": "An jedem Häuschen wartet eine Eule mit einer anderen App. Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
   },
   "footer": { "rights": "Kidalu" },
+  "contact": {
+    "headline": "Schreiben Sie uns",
+    "body": "Fragen zum Datenschutz, zu den Daten Ihres Kindes oder zur Zusammenarbeit? Wir antworten auf jede Nachricht.",
+    "email": "sebastian.rosinski.1989@gmail.com"
+  },
   "apps": {
     "czytanie": {
       "name": "Lesen nach Silben",
