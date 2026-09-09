@@ -274,6 +274,32 @@ Dostarczam gotowe wartości do wklejenia.
 `docs/CNAME` = `kidalu.com`, `docs/.nojekyll`, źródło Pages przestawione na
 `main` `/docs`, wymuszony HTTPS po wystawieniu certyfikatu.
 
+## 8a. Scena na pełny ekran — wymóg właściciela
+
+Na desktopie i tablecie scena wypełnia **cały ekran: 100% szerokości i 100% wysokości**.
+Odwiedzający ma zobaczyć las od razu, bez przewijania, i mieć wszystkie domki w zasięgu
+wzroku. Na telefonie obowiązuje układ pionowy ze ścieżką i przewijaniem.
+
+Z tego wymogu wynikają trzy rzeczy, które trzeba obsłużyć w etapie 2:
+
+**Proporcje kadru.** Wypełnienie obu wymiarów naraz oznacza, że przy panoramicznym monitorze
+i przy tablecie w pionie potrzebna jest zupełnie inna część obrazu. Warstwy skalujemy metodą
+pokrycia z zakotwiczeniem: niebo do góry, polana i pierwszy plan do dołu. Warstwy muszą mieć
+zapas treści na docięcie — jeśli okaże się go za mało przy tablecie w pionie, polana
+i paprocie idą do przegenerowania z większą wysokością.
+
+**Pozycje domków.** Stacje pozycjonujemy procentowo względem sceny, nie w pikselach, żeby
+wędrowały razem z kadrem. Każda ma minimalną i maksymalną wielkość, więc na panoramicznym
+ekranie nie urosną absurdalnie, a na niskim laptopie nie znikną.
+
+**Niskie okna.** Laptop 1440×720 po odjęciu paska przeglądarki daje bardzo płaski kadr.
+Logo, domki i szyldy muszą się w nim zmieścić bez przycięcia — to jest twarde kryterium
+odbioru etapu 2, nie życzenie.
+
+Układ musi też znieść **więcej niż dwie aplikacje**. Dziś domki są dwa i mieszczą się
+wygodnie; przy czterech i więcej ścieżka musi je rozłożyć bez ścisku, a w ostateczności
+scena zyskuje drugi plan w głębi.
+
 ## 9a. Etapy
 
 Zakres jest spory, a jego części mają różną pilność. Dwa etapy w jednym planie —
