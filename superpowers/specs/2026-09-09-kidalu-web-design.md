@@ -339,3 +339,38 @@ CMS, blog, newsletter, wyszukiwarka, tryb ciemny (nasłoneczniony las go nie
 potrzebuje), analityka i baner cookie (brak śledzenia = brak banera),
 lightbox do zrzutów (w wersji 1 statyczna siatka), mruganie sowy klatkami
 (wymagałoby osobnego assetu powieki — ewentualne rozszerzenie).
+
+## 12. Realizacja strony głównej — odstępstwa od sekcji 6 i 8
+
+Data: 2026-09-09, po odbiorze makiety od właściciela.
+
+**Jedna scena zamiast pięciu warstw.** Warstwy z sekcji 6 były renderowane
+w różnych stylistykach (płaskie świerki, bryły 3D, malowana łąka, fotorealistyczne
+paprocie) i złożone razem wyglądały jak kolaż. Zastąpione jednym spójnym kadrem
+`scene-forest.webp` (1672×941) zamówionym w ChatGPT z makietą jako wzorcem.
+Parallaksa z sekcji 6 odpada razem z warstwami.
+
+**Kadr o stałych proporcjach zamiast pozycji procentowych na sztywno.** Wymóg
+właściciela: „aplikacje powinny się skalować z tłem, mają być w tym samym
+miejscu". Realizacja: `.stage` i `.frame` mają identyczny rozmiar liczony metodą
+pokrycia (`--stage-w`/`--stage-h`), więc stacje nie wędrują względem ścieżek.
+Jednostka `--u` to 1,1% szerokości kadru — cała typografia sceny skaluje się
+razem z grafiką.
+
+**Nagłówek i motto zakotwiczone w oknie, nie w kadrze.** Przy proporcjach 2:1
+(np. 1440×720) pokrycie obcina kadr w pionie o ~5,5% z każdej strony i tytuł
+wjeżdżał pod belkę nawigacji. Nagłówek dostaje własną jednostkę `--hu` liczoną
+z realnie wolnej przestrzeni między belką a górą polany, więc kurczy się zamiast
+kolidować z domkami.
+
+**Dwie stacje zamiast pięciu z makiety.** Makieta pokazywała pięć aplikacji;
+istnieją dwie. Plakietka „wkrótce" została wycofana na życzenie właściciela,
+ale deska trzyma na nią zapas szerokości (`.tile-soon` zostaje w arkuszu).
+
+**Budżet wagi.** Limit 180 KB na warstwę pełnej szerokości nie ma już
+zastosowania przy jednej scenie — `scene-forest.webp` waży 238 KB przy q=76.
+Wiążące pozostaje kryterium z sekcji 10: ładunek początkowy **609 KB** < 900 KB.
+
+**Assety.** Sowy i domki zamawiane w ChatGPT z istniejącym assetem jako
+wzorcem stylu (jeden obraz z kilkoma wariantami daje spójność, której osobne
+prompty nie dają). Domki celowo różnią się bryłą i ustawieniem.

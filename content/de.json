@@ -11,16 +11,66 @@
     "kontakt": "kontakt",
     "docs": "dokumente"
   },
-  "nav": { "home": "Wald", "contact": "Kontakt" },
-  "home": {
-    "headline": "Schau in den Kidalu-Wald",
-    "intro": "An jedem Häuschen wartet eine Eule mit einer anderen App. Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
+  "nav": {
+    "home": "Wald",
+    "contact": "Kontakt",
+    "lang": "Sprache",
+    "menu": "Menü",
+    "skip": "Zum Inhalt springen"
   },
-  "footer": { "rights": "Kidalu" },
+  "home": {
+    "headline": "Komm in den Kidalu-Wald",
+    "intro": "Wähle die App, die zum Lernstand deines Kindes passt",
+    "badges": [
+      "Lernen durch Spielen",
+      "Keine Werbung, kein Tracking",
+      "Mit Liebe gemacht"
+    ],
+    "motto": "Kluge Kinder, eine fröhlichere Welt",
+    "soon": "Bald verfügbar",
+    "apps_heading": "Unsere Apps",
+    "tiles": [
+      {
+        "key": "czytanie",
+        "url": "czytanie",
+        "sign": "Ich lese",
+        "tagline": "Entdecke die Welt der Buchstaben"
+      },
+      {
+        "key": "literki",
+        "url": "literki",
+        "sign": "Ich schreibe",
+        "tagline": "Übe Buchstaben, entdecke Wörter"
+      }
+    ],
+    "sign_left": "Kleine Schritte, große Möglichkeiten",
+    "sign_right": "Hier beginnt das große Abenteuer"
+  },
+  "footer": {
+    "rights": "Kidalu",
+    "docs": "Dokumente",
+    "note": "Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
+  },
   "contact": {
     "headline": "Schreiben Sie uns",
     "body": "Fragen zum Datenschutz, zu den Daten Ihres Kindes oder zur Zusammenarbeit? Wir antworten auf jede Nachricht.",
-    "email": "sebastian.rosinski.1989@gmail.com"
+    "role": "Autor · gemeinsam Verantwortlicher",
+    "people_heading": "Wer dahintersteht",
+    "data_heading": "Wer für Ihre Daten verantwortlich ist",
+    "data_body": "Sebastian Rosiński und Dawid Adamczyk sind gemeinsam Verantwortliche für die in den Kidalu-Apps verarbeiteten Daten, mit gleichem Anteil am Projekt. Eine Anfrage auf Auskunft, Berichtigung oder Löschung können Sie an eine der beiden Adressen richten — es antwortet, wer die Nachricht zuerst liest. Meldungen über Datenschutzverletzungen bearbeiten wir gemeinsam.",
+    "docs_heading": "App-Dokumente",
+    "people": [
+      {
+        "name": "Sebastian Rosiński",
+        "email": "sebastian.rosinski.1989@gmail.com",
+        "role": "Autor · gemeinsam Verantwortlicher"
+      },
+      {
+        "name": "Dawid Adamczyk",
+        "email": "phantom0492@gmail.com",
+        "role": "Autor · gemeinsam Verantwortlicher"
+      }
+    ]
   },
   "apps": {
     "czytanie": {
@@ -28,22 +78,136 @@
       "sign": "Ich lese",
       "tagline": "Das Kind liest selbst, Silbe für Silbe.",
       "features": [
-        "Farbige Silben führen den Blick durch das Wort",
-        "Über hundert Texte zum Lesen",
-        "Elternbereich mit dem Lernfortschritt"
+        {
+          "icon": "palette",
+          "title": "Farbige Silben",
+          "body": "Der Text wird automatisch nach polnischen Trennregeln zerlegt, benachbarte Silben bekommen verschiedene Farben. Das Kind sieht, wo eine endet und die nächste beginnt."
+        },
+        {
+          "icon": "book",
+          "title": "Textbibliothek",
+          "body": "Märchen, Gedichte und Geschichten zum Lesen, darunter Klassiker der polnischen Kinderliteratur aus Wolne Lektury."
+        },
+        {
+          "icon": "keyboard",
+          "title": "Eigener Text",
+          "body": "Tippe irgendetwas ein: eine Karte von der Oma, den Einkaufszettel, das Lieblingslied — und sieh es in farbigen Silben."
+        },
+        {
+          "icon": "sliders",
+          "title": "Auf das Kind abgestimmt",
+          "body": "Silbenfarben, Schriftgröße und Hintergrundmotiv stellst du so ein, wie dein Kind am liebsten liest."
+        },
+        {
+          "icon": "print",
+          "title": "Druck und PDF",
+          "body": "Jeden Text kannst du exportieren und ausdrucken, um ohne Bildschirm zu üben."
+        },
+        {
+          "icon": "chart",
+          "title": "Lesefortschritt",
+          "body": "Die App merkt sich, was das Kind gelesen hat, und zeigt, wie weit es in jedem Text gekommen ist."
+        }
       ],
-      "docs_label": "Datenschutz und Nutzungsbedingungen"
+      "docs_label": "Datenschutz und Nutzungsbedingungen",
+      "lead": "Die App zerlegt jeden Text in Silben und färbt sie abwechselnd ein. Der Blick des Kindes verliert sich nicht mehr mitten im Wort, und Lesen wird vom Raten zum Zusammensetzen.",
+      "facts": [
+        "Kinder von 4 bis 8",
+        "Nur auf Polnisch",
+        "Keine Werbung"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Kinder von 4 bis 8, die gerade lesen lernen"
+        },
+        {
+          "icon": "users",
+          "text": "Eltern, die das Lesen zu Hause begleiten"
+        },
+        {
+          "icon": "check",
+          "text": "Lehrkräfte, die Material für den Unterricht suchen"
+        }
+      ],
+      "privacy": [
+        "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
+        "Wir erstellen keine Verhaltensprofile und verknüpfen keine Daten zwischen Apps",
+        "Das Konto legt ein Elternteil an und kann es jederzeit mitsamt allen Daten dauerhaft löschen"
+      ]
     },
     "literki": {
       "name": "Buchstaben und Zahlen",
       "sign": "Ich schreibe",
       "tagline": "Buchstaben und Zahlen mit dem Finger auf dem Bildschirm schreiben.",
       "features": [
-        "Jede Buchstabenform Schritt für Schritt gezeigt",
-        "Übungen passend zum Alter des Kindes",
-        "Elternbereich mit dem Lernfortschritt"
+        {
+          "icon": "hand",
+          "title": "Nachspuren statt Malen",
+          "body": "Das Kind folgt der Vorlage und zeichnet nicht frei — die App prüft, ob die Hand auf der Linie bleibt."
+        },
+        {
+          "icon": "pencil",
+          "title": "Feste Strichreihenfolge",
+          "body": "Jedes Zeichen hat eine festgelegte Reihenfolge und Richtung der Striche, passend zur Schulschrift des gewählten Landes. Die App widerspricht dem Schulheft nicht."
+        },
+        {
+          "icon": "globe",
+          "title": "Polen, Deutschland, Österreich",
+          "body": "Für Polen 35 Groß- und 35 Kleinbuchstaben samt ą, ć, ę, ł, ń, ó, ś, ź, ż. Für Deutschland und Österreich das Alphabet mit ä, ö, ü, ß. Überall die Ziffern 0 bis 9."
+        },
+        {
+          "icon": "sliders",
+          "title": "Schrift und Schwierigkeit",
+          "body": "In Deutschland stehen sechs Schulschriften zur Wahl, in Polen und Österreich je zwei. Die erlaubte Abweichung von der Spur stellst du im Elternbereich ein."
+        },
+        {
+          "icon": "star",
+          "title": "Kein Zeitdruck",
+          "body": "Keine Stoppuhr, kein Versuchslimit. Es zählt die Genauigkeit, nicht das Tempo."
+        },
+        {
+          "icon": "offline",
+          "title": "Funktioniert offline",
+          "body": "Nötig ist nur ein Gerät mit Touchscreen. Kein Konto, keine Anmeldung."
+        }
       ],
-      "docs_label": "Datenschutz und Informationen"
+      "docs_label": "Datenschutz und Informationen",
+      "lead": "Das Kind schreibt der Vorlage nach, während die App auf Reihenfolge und Richtung jedes Strichs achtet. Das Land wählst du zu Beginn — es bestimmt Alphabet, Schrift und die Tiere zum Sammeln.",
+      "facts": [
+        "Kinder von 4 bis 7",
+        "Polen, Deutschland, Österreich",
+        "Funktioniert offline",
+        "Ohne Konto und ohne Werbung"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Kinder von 4 bis 7, die sich aufs Schreiben vorbereiten"
+        },
+        {
+          "icon": "users",
+          "text": "Eltern, die zu Hause mit dem Kind üben möchten"
+        },
+        {
+          "icon": "check",
+          "text": "Kindergärten, Vorschulen und Horte — auch für therapeutische Arbeit"
+        }
+      ],
+      "privacy": [
+        "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
+        "Die App braucht weder Konto noch Anmeldung",
+        "Der Lernfortschritt bleibt ausschließlich im Speicher des Geräts"
+      ]
     }
+  },
+  "app_page": {
+    "play": "Bei Google Play laden",
+    "features_heading": "Was drin ist",
+    "who_heading": "Für wen",
+    "privacy_heading": "Datenschutz",
+    "compliance": "Konform mit COPPA, Art. 8 DSGVO und den Google-Play-Families-Richtlinien.",
+    "docs_link": "Dokumente lesen",
+    "back": "Zurück in den Wald"
   }
 }

@@ -3,7 +3,15 @@
 {% block title %}{{ app.name }} — {{ app.docs_label }}{% endblock %}
 {% block description %}{{ app.docs_label }} — {{ app.name }}{% endblock %}
 {% block content %}
-<article class="docs">
+<article class="page">
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <h1>{{ app.name }}</h1>
+      <p class="lead">{{ app.docs_label }}</p>
+    </div>
+  </header>
+  <div class="wrap docs">
 {{ doc_html }}
+  </div>
 </article>
 {% endblock %}

@@ -1,3 +1,4 @@
+{% import "icons.html.jinja" as ico %}
 <!DOCTYPE html>
 <html lang="{{ lang }}">
 <head>
@@ -5,8 +6,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ c.site.title }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ c.site.description }}{% endblock %}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="canonical" href="{{ site_host }}{{ alternates[lang] }}">
+<meta name="theme-color" content="#FDF6E0">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ c.site.brand }}">
+<meta property="og:locale" content="{{ lang }}">
+<meta property="og:url" content="{{ site_host }}{{ alternates[lang] }}">
+<meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
+<meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
+<meta property="og:image" content="{{ site_host }}{{ asset('img/og.jpg') }}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+{% block head_extra %}{% endblock %}
 {% for l, u in alternates.items() %}
 <link rel="alternate" hreflang="{{ l }}" href="{{ site_host }}{{ u }}">
 {% endfor %}
@@ -14,20 +29,41 @@
 <link rel="alternate" hreflang="x-default" href="{{ site_host }}{{ alternates['pl'] }}">
 {% endif %}
 </head>
-<body>
-<header class="site-head">
-  <a class="brand" href="{{ url('home') }}">
-    <img src="{{ asset('img/logo-kidalu.webp') }}" alt="{{ c.site.brand }}" width="320" height="311">
-  </a>
-  <nav class="langs" aria-label="Język">
-    {% for l, u in alternates.items() %}
-    <a href="{{ u }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>
-    {% endfor %}
-  </nav>
+<body{% block body_class %}{% endblock %}>
+<a class="skip" href="#main">{{ c.nav.skip }}</a>
+<header class="topbar">
+  <div class="bar">
+    <a class="brand" href="{{ url('home') }}">
+      <img src="{{ asset('img/logo-kidalu.webp') }}" alt="{{ c.site.brand }}" width="320" height="311">
+    </a>
+    {# Wordmark zamiast pustki między logo a menu — widoczny tylko wtedy,
+       gdy nawigacja jest zwinięta pod hamburger. #}
+    <span class="brand-word" aria-hidden="true">{{ c.site.brand }}</span>
+    <input class="menu-switch" type="checkbox" id="menu" aria-label="{{ c.nav.menu }}">
+    <div class="menu-body">
+      <nav class="topnav" aria-label="{{ c.site.brand }}">
+        <a href="{{ url('home') }}"{% if page_key == 'home' %} aria-current="page"{% endif %}>{{ c.nav.home }}</a>
+        <a href="{{ url('kontakt') }}"{% if page_key == 'kontakt' %} aria-current="page"{% endif %}>{{ c.nav.contact }}</a>
+      </nav>
+    </div>
+    <nav class="langs" aria-label="{{ c.nav.lang }}">
+      {% for l, u in alternates.items() %}
+      <a href="{{ u }}" hreflang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>
+      {% endfor %}
+    </nav>
+    <label class="burger" for="menu"><span aria-hidden="true"></span></label>
+  </div>
 </header>
-<main>{% block content %}{% endblock %}</main>
+<main id="main">{% block content %}{% endblock %}</main>
 <footer class="site-foot">
-  <span>© 2026 {{ c.footer.rights }}</span>
+  <nav class="foot-links" aria-label="{{ c.footer.docs }}">
+    {% for d in legal %}
+    <a href="{{ d.url }}">{{ d.name }} — {{ c.footer.docs|lower }}</a>
+    {% endfor %}
+    <a href="{{ url('kontakt') }}">{{ c.nav.contact }}</a>
+  </nav>
+  <p class="foot-note">{{ c.footer.note }}</p>
+  <p class="foot-copy">© 2026 {{ c.footer.rights }}</p>
 </footer>
 </body>
 </html>

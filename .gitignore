@@ -8,3 +8,9 @@ _mockups*/
 # Artefakty Pythona
 __pycache__/
 .pytest_cache/
+
+# Artefakty narzędzi przeglądarkowych
+.playwright-mcp/
+
+# Luźne zrzuty ekranu w korzeniu — grafiki mieszkają w assets*/
+/*.png

@@ -1,11 +1,46 @@
 {# src/templates/contact.html.jinja #}
 {% extends "base.html.jinja" %}
+{% import "icons.html.jinja" as ico %}
 {% block title %}{{ c.contact.headline }} — {{ c.site.brand }}{% endblock %}
 {% block description %}{{ c.contact.body }}{% endblock %}
 {% block content %}
-<article class="contact">
-  <h1>{{ c.contact.headline }}</h1>
-  <p>{{ c.contact.body }}</p>
-  <p><a class="play" href="mailto:{{ c.contact.email }}">{{ c.contact.email }}</a></p>
+<article class="page">
+
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <h1>{{ c.contact.headline }}</h1>
+      <p class="lead">{{ c.contact.body }}</p>
+    </div>
+  </header>
+
+  <section class="wrap section">
+    <h2>{{ c.contact.people_heading }}</h2>
+    <ul class="cards cards--people">
+      {% for p in c.contact.people %}
+      <li class="card">
+        <h3>{{ p.name }}</h3>
+        <p class="role">{{ p.role }}</p>
+        <p><a class="mail" href="mailto:{{ p.email }}">{{ p.email }}</a></p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="wrap section">
+    <h2>{{ c.contact.data_heading }}</h2>
+    <p class="prose">{{ c.contact.data_body }}</p>
+  </section>
+
+  {% if legal %}
+  <section class="wrap section">
+    <h2>{{ c.contact.docs_heading }}</h2>
+    <ul class="ticks">
+      {% for d in legal %}
+      <li><span class="tick tick--shield">{{ ico.icon('shield') }}</span><a href="{{ d.url }}">{{ d.name }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+
 </article>
 {% endblock %}

@@ -11,16 +11,66 @@
     "kontakt": "kontakt",
     "docs": "dokumenty"
   },
-  "nav": { "home": "Las", "contact": "Kontakt" },
+  "nav": {
+    "home": "Las",
+    "contact": "Kontakt",
+    "lang": "Język",
+    "menu": "Menu",
+    "skip": "Przejdź do treści"
+  },
   "home": {
     "headline": "Zajrzyj do lasu Kidalu",
-    "intro": "Przy każdym domku czeka sowa z inną aplikacją. Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
+    "intro": "Wybierz aplikację dopasowaną do etapu nauki Twojego dziecka",
+    "badges": [
+      "Nauka przez zabawę",
+      "Bez reklam i śledzenia",
+      "Tworzone z miłością"
+    ],
+    "motto": "Mądre dzieci, szczęśliwszy świat",
+    "soon": "Wkrótce",
+    "apps_heading": "Nasze aplikacje",
+    "tiles": [
+      {
+        "key": "czytanie",
+        "url": "czytanie",
+        "sign": "Czytam",
+        "tagline": "Odkrywaj świat liter z Kidalu"
+      },
+      {
+        "key": "literki",
+        "url": "literki",
+        "sign": "Piszę",
+        "tagline": "Ćwicz litery i poznawaj słowa"
+      }
+    ],
+    "sign_left": "Małe kroki, wielkie możliwości",
+    "sign_right": "Tu zaczyna się wielka przygoda"
   },
-  "footer": { "rights": "Kidalu" },
+  "footer": {
+    "rights": "Kidalu",
+    "docs": "Dokumenty",
+    "note": "Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
+  },
   "contact": {
     "headline": "Napisz do nas",
     "body": "Pytania o prywatność, dane dziecka albo współpracę? Odpowiadamy na wiadomości.",
-    "email": "sebastian.rosinski.1989@gmail.com"
+    "role": "Autor · współadministrator danych",
+    "people_heading": "Kto za tym stoi",
+    "data_heading": "Kto odpowiada za Twoje dane",
+    "data_body": "Sebastian Rosiński i Dawid Adamczyk są współadministratorami danych przetwarzanych w aplikacjach Kidalu, z równym udziałem w projekcie. Żądanie dostępu do danych, ich sprostowania lub usunięcia możesz zgłosić na dowolny z powyższych adresów — odpowie ten z nas, który pierwszy odbierze wiadomość. Zgłoszenia dotyczące naruszeń ochrony danych obsługujemy wspólnie.",
+    "docs_heading": "Dokumenty aplikacji",
+    "people": [
+      {
+        "name": "Sebastian Rosiński",
+        "email": "sebastian.rosinski.1989@gmail.com",
+        "role": "Autor · współadministrator danych"
+      },
+      {
+        "name": "Dawid Adamczyk",
+        "email": "phantom0492@gmail.com",
+        "role": "Autor · współadministrator danych"
+      }
+    ]
   },
   "apps": {
     "czytanie": {
@@ -28,22 +78,136 @@
       "sign": "Czytam",
       "tagline": "Dziecko czyta samo, sylaba po sylabie.",
       "features": [
-        "Kolorowanie sylab, które prowadzi wzrok przez wyraz",
-        "Ponad sto tekstów, w tym lektury z Wolnych Lektur",
-        "Panel rodzica z postępami dziecka"
+        {
+          "icon": "palette",
+          "title": "Kolorowe sylaby",
+          "body": "Tekst dzieli się automatycznie według polskich reguł, a sąsiednie sylaby dostają różne kolory. Dziecko widzi, gdzie kończy się jedna, a zaczyna druga."
+        },
+        {
+          "icon": "book",
+          "title": "Biblioteka tekstów",
+          "body": "Bajki, wiersze i baśnie gotowe do czytania, w tym klasyka polskiej literatury dziecięcej z Wolnych Lektur."
+        },
+        {
+          "icon": "keyboard",
+          "title": "Własny tekst",
+          "body": "Wpisz cokolwiek: kartkę od babci, listę zakupów, ulubioną piosenkę — i zobacz to w kolorowych sylabach."
+        },
+        {
+          "icon": "sliders",
+          "title": "Dopasowanie do dziecka",
+          "body": "Kolory sylab, rozmiar czcionki i motyw tła ustawiasz tak, jak dziecku czyta się najwygodniej."
+        },
+        {
+          "icon": "print",
+          "title": "Druk i PDF",
+          "body": "Każdy tekst możesz wyeksportować i wydrukować, żeby poćwiczyć bez ekranu."
+        },
+        {
+          "icon": "chart",
+          "title": "Postępy w czytaniu",
+          "body": "Aplikacja pamięta, co dziecko już przeczytało, i pokazuje, jak daleko zaszło w każdym tekście."
+        }
       ],
-      "docs_label": "Polityka prywatności i regulamin"
+      "docs_label": "Polityka prywatności i regulamin",
+      "lead": "Aplikacja dzieli każdy tekst na sylaby i koloruje je naprzemiennie. Wzrok dziecka przestaje gubić się w środku wyrazu, a czytanie zamienia się z odgadywania w składanie.",
+      "facts": [
+        "Dzieci 4–8 lat",
+        "Aplikacja po polsku",
+        "Bez reklam"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Dzieci 4–8 lat, które właśnie uczą się czytać"
+        },
+        {
+          "icon": "users",
+          "text": "Rodziców wspierających naukę czytania w domu"
+        },
+        {
+          "icon": "check",
+          "text": "Nauczycieli szukających materiałów do pracy w klasie"
+        }
+      ],
+      "privacy": [
+        "Bez reklam i treści promocyjnych kierowanych do dziecka",
+        "Nie tworzymy profili behawioralnych i nie łączymy danych między aplikacjami",
+        "Konto zakłada rodzic i może je w każdej chwili trwale usunąć razem z danymi"
+      ]
     },
     "literki": {
       "name": "Literki i Cyferki",
       "sign": "Piszę",
       "tagline": "Nauka pisania liter i cyfr palcem po ekranie.",
       "features": [
-        "Kształt każdej litery pokazany krok po kroku",
-        "Ćwiczenia liter i cyfr dopasowane do wieku",
-        "Panel rodzica z postępami dziecka"
+        {
+          "icon": "hand",
+          "title": "Pisanie po śladzie",
+          "body": "Dziecko odwzorowuje wzór, a nie rysuje dowolnie — aplikacja sprawdza, czy ręka trzyma się linii."
+        },
+        {
+          "icon": "pencil",
+          "title": "Ustalona kolejność kresek",
+          "body": "Każdy znak ma zdefiniowaną kolejność i kierunek prowadzenia ręki, zgodne z pismem szkolnym wybranego kraju. Aplikacja nie kłóci się z zeszytem."
+        },
+        {
+          "icon": "globe",
+          "title": "Polska, Niemcy, Austria",
+          "body": "Dla Polski 35 wielkich i 35 małych liter razem z ą, ć, ę, ł, ń, ó, ś, ź, ż. Dla Niemiec i Austrii alfabet z ä, ö, ü, ß. Wszędzie cyfry od 0 do 9."
+        },
+        {
+          "icon": "sliders",
+          "title": "Krój pisma i trudność",
+          "body": "W Niemczech sześć krojów szkolnych do wyboru, w Polsce i Austrii po dwa. Dopuszczalne odchylenie od śladu ustawiasz w panelu rodzica."
+        },
+        {
+          "icon": "star",
+          "title": "Bez presji czasu",
+          "body": "Nie ma stopera ani limitu prób. Liczy się dokładność, nie tempo."
+        },
+        {
+          "icon": "offline",
+          "title": "Działa bez internetu",
+          "body": "Potrzebne jest tylko urządzenie z ekranem dotykowym. Bez konta i bez logowania."
+        }
       ],
-      "docs_label": "Polityka prywatności i informacje"
+      "docs_label": "Polityka prywatności i informacje",
+      "lead": "Dziecko pisze po śladzie, a aplikacja pilnuje kolejności i kierunku kresek. Kraj wybierasz na starcie — to on ustala alfabet, krój pisma i zwierzaki do zebrania.",
+      "facts": [
+        "Dzieci 4–7 lat",
+        "Polska, Niemcy, Austria",
+        "Działa bez internetu",
+        "Bez konta i bez reklam"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Dzieci 4–7 lat przygotowujących się do pisania"
+        },
+        {
+          "icon": "users",
+          "text": "Rodziców, którzy chcą ćwiczyć z dzieckiem w domu"
+        },
+        {
+          "icon": "check",
+          "text": "Przedszkoli, zerówek i świetlic — także do pracy terapeutycznej"
+        }
+      ],
+      "privacy": [
+        "Bez reklam i treści promocyjnych kierowanych do dziecka",
+        "Aplikacja nie wymaga konta ani logowania",
+        "Postęp nauki zostaje wyłącznie w pamięci urządzenia"
+      ]
     }
+  },
+  "app_page": {
+    "play": "Pobierz z Google Play",
+    "features_heading": "Co jest w środku",
+    "who_heading": "Dla kogo",
+    "privacy_heading": "Prywatność",
+    "compliance": "Zgodne z COPPA, art. 8 RODO i zasadami Google Play Families.",
+    "docs_link": "Przeczytaj dokumenty",
+    "back": "Wróć do lasu"
   }
 }

@@ -11,16 +11,66 @@
     "kontakt": "contact",
     "docs": "legal"
   },
-  "nav": { "home": "Forest", "contact": "Contact" },
+  "nav": {
+    "home": "Forest",
+    "contact": "Contact",
+    "lang": "Language",
+    "menu": "Menu",
+    "skip": "Skip to content"
+  },
   "home": {
     "headline": "Step into the Kidalu forest",
-    "intro": "An owl waits at every little house, each with a different app. No ads, no profiling, no tracking outside the app."
+    "intro": "Pick the app that fits where your child is right now",
+    "badges": [
+      "Learning through play",
+      "No ads, no tracking",
+      "Made with love"
+    ],
+    "motto": "Bright kids, a happier world",
+    "soon": "Coming soon",
+    "apps_heading": "Our apps",
+    "tiles": [
+      {
+        "key": "czytanie",
+        "url": "czytanie",
+        "sign": "I read",
+        "tagline": "Discover the world of letters"
+      },
+      {
+        "key": "literki",
+        "url": "literki",
+        "sign": "I write",
+        "tagline": "Practise letters, discover words"
+      }
+    ],
+    "sign_left": "Small steps, big possibilities",
+    "sign_right": "The great adventure starts here"
   },
-  "footer": { "rights": "Kidalu" },
+  "footer": {
+    "rights": "Kidalu",
+    "docs": "Legal",
+    "note": "No ads, no profiling, no tracking outside the app."
+  },
   "contact": {
     "headline": "Get in touch",
     "body": "Questions about privacy, your child's data, or working together? We answer every message.",
-    "email": "sebastian.rosinski.1989@gmail.com"
+    "role": "Author · joint data controller",
+    "people_heading": "Who is behind this",
+    "data_heading": "Who is responsible for your data",
+    "data_body": "Sebastian Rosiński and Dawid Adamczyk are joint controllers of the data processed in the Kidalu apps, with an equal share in the project. You can send a request for access, correction or deletion to either address above — whichever of us reads it first will answer. Data breach reports we handle together.",
+    "docs_heading": "App documents",
+    "people": [
+      {
+        "name": "Sebastian Rosiński",
+        "email": "sebastian.rosinski.1989@gmail.com",
+        "role": "Author · joint data controller"
+      },
+      {
+        "name": "Dawid Adamczyk",
+        "email": "phantom0492@gmail.com",
+        "role": "Author · joint data controller"
+      }
+    ]
   },
   "apps": {
     "czytanie": {
@@ -28,22 +78,136 @@
       "sign": "I read",
       "tagline": "Your child reads on their own, one syllable at a time.",
       "features": [
-        "Coloured syllables guide the eye through each word",
-        "More than a hundred texts to read",
-        "A parent panel showing progress"
+        {
+          "icon": "palette",
+          "title": "Coloured syllables",
+          "body": "Text is split automatically by Polish syllable rules and neighbouring syllables get different colours. The child sees where one ends and the next begins."
+        },
+        {
+          "icon": "book",
+          "title": "A library of texts",
+          "body": "Fairy tales, poems and stories ready to read, including classics of Polish children's literature from Wolne Lektury."
+        },
+        {
+          "icon": "keyboard",
+          "title": "Your own text",
+          "body": "Type anything: a postcard from grandma, a shopping list, a favourite song — and see it in coloured syllables."
+        },
+        {
+          "icon": "sliders",
+          "title": "Tuned to your child",
+          "body": "Set syllable colours, font size and background theme to whatever your child reads most comfortably."
+        },
+        {
+          "icon": "print",
+          "title": "Print and PDF",
+          "body": "Export any text and print it to practise away from the screen."
+        },
+        {
+          "icon": "chart",
+          "title": "Reading progress",
+          "body": "The app remembers what your child has read and shows how far they got in each text."
+        }
       ],
-      "docs_label": "Privacy policy and terms"
+      "docs_label": "Privacy policy and terms",
+      "lead": "The app splits every text into syllables and colours them alternately. Your child's eye stops getting lost mid-word, and reading turns from guessing into assembling.",
+      "facts": [
+        "Children aged 4–8",
+        "Polish only",
+        "No ads"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Children aged 4–8 who are learning to read"
+        },
+        {
+          "icon": "users",
+          "text": "Parents supporting reading at home"
+        },
+        {
+          "icon": "check",
+          "text": "Teachers looking for classroom material"
+        }
+      ],
+      "privacy": [
+        "No ads or promotional content aimed at children",
+        "We build no behavioural profiles and never link data between apps",
+        "A parent creates the account and can delete it permanently, with all its data, at any time"
+      ]
     },
     "literki": {
       "name": "Letters and Numbers",
       "sign": "I write",
       "tagline": "Writing letters and numbers with a finger on the screen.",
       "features": [
-        "Every letter shape shown stroke by stroke",
-        "Exercises matched to the child's age",
-        "A parent panel showing progress"
+        {
+          "icon": "hand",
+          "title": "Tracing, not drawing",
+          "body": "The child follows the model rather than drawing freely — the app checks whether the hand stays on the line."
+        },
+        {
+          "icon": "pencil",
+          "title": "Fixed stroke order",
+          "body": "Every character has a defined stroke order and direction, matching the school handwriting of the chosen country. The app never contradicts the exercise book."
+        },
+        {
+          "icon": "globe",
+          "title": "Poland, Germany, Austria",
+          "body": "For Poland, 35 upper and 35 lower case letters including ą, ć, ę, ł, ń, ó, ś, ź, ż. For Germany and Austria, the alphabet with ä, ö, ü, ß. Digits 0 to 9 everywhere."
+        },
+        {
+          "icon": "sliders",
+          "title": "Handwriting style and difficulty",
+          "body": "Six school scripts to choose from in Germany, two each in Poland and Austria. The tolerated deviation from the trace is set in the parent panel."
+        },
+        {
+          "icon": "star",
+          "title": "No time pressure",
+          "body": "No timer, no attempt limit. Accuracy counts, not speed."
+        },
+        {
+          "icon": "offline",
+          "title": "Works offline",
+          "body": "All you need is a touchscreen. No account, no sign-in."
+        }
       ],
-      "docs_label": "Privacy policy and information"
+      "docs_label": "Privacy policy and information",
+      "lead": "The child traces the shape while the app watches the order and direction of every stroke. You pick the country at the start — it sets the alphabet, the handwriting style and the animals to collect.",
+      "facts": [
+        "Children aged 4–7",
+        "Poland, Germany, Austria",
+        "Works offline",
+        "No account, no ads"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Children aged 4–7 getting ready to write"
+        },
+        {
+          "icon": "users",
+          "text": "Parents who want to practise at home"
+        },
+        {
+          "icon": "check",
+          "text": "Nurseries, reception classes and after-school clubs — including therapy work"
+        }
+      ],
+      "privacy": [
+        "No ads or promotional content aimed at children",
+        "The app needs no account and no sign-in",
+        "Learning progress stays in the device's memory only"
+      ]
     }
+  },
+  "app_page": {
+    "play": "Get it on Google Play",
+    "features_heading": "What's inside",
+    "who_heading": "Who it's for",
+    "privacy_heading": "Privacy",
+    "compliance": "Compliant with COPPA, GDPR art. 8 and the Google Play Families policy.",
+    "docs_link": "Read the documents",
+    "back": "Back to the forest"
   }
 }

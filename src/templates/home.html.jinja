@@ -1,7 +1,66 @@
 {% extends "base.html.jinja" %}
+{% import "icons.html.jinja" as ico %}
+{% block body_class %} class="home"{% endblock %}
+{# Tło sceny siedzi w CSS, więc przeglądarka odkrywa je dopiero po sparsowaniu
+   arkusza — a to największy obrazek strony i element decydujący o LCP. #}
+{% block head_extra %}
+<link rel="preload" as="image" href="{{ asset('img/scene-forest.webp') }}" fetchpriority="high">
+{% endblock %}
 {% block content %}
-<section class="hero">
-  <h1>{{ c.home.headline }}</h1>
-  <p>{{ c.home.intro }}</p>
-</section>
+{# Wymiary grafik trzymamy przy szablonie, żeby każdy <img> miał jawne width/height
+   i nie przesuwał układu w trakcie ładowania. #}
+{% set art = {
+  'czytanie': {'icon':'book',   'house':[900,770],  'owl':[900,939]},
+  'literki':  {'icon':'pencil', 'house':[900,1066], 'owl':[1024,1036]}
+} %}
+<div class="scene">
+  <div class="stage" aria-hidden="true"></div>
+  <div class="flutter" aria-hidden="true">
+    <img class="deco-butterfly deco-butterfly--1" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
+    <img class="deco-butterfly deco-butterfly--2" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
+    <img class="deco-butterfly deco-butterfly--3" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
+  </div>
+  <div class="scene-signs" aria-hidden="true">
+    <span class="hangsign hangsign--l"><img src="{{ asset('img/sign-hang.webp') }}" alt="" width="600" height="341" loading="lazy"><span>{{ c.home.sign_left }}</span></span>
+    <span class="hangsign hangsign--r"><img src="{{ asset('img/sign-hang.webp') }}" alt="" width="600" height="341" loading="lazy"><span>{{ c.home.sign_right }}</span></span>
+  </div>
+
+  <div class="hero">
+    <h1>{{ c.home.headline }}</h1>
+    <p class="hero-sub">{{ c.home.intro }}</p>
+    <ul class="badges">
+      {% for b in c.home.badges %}
+      <li><span class="badge-ico badge-ico--{{ loop.index }}">{{ ico.icon(['book','leaf','star'][loop.index0]) }}</span>{{ b }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="frame">
+  <h2 class="skip-only" id="aplikacje">{{ c.home.apps_heading }}</h2>
+  <ul class="grove">
+    {% for t in c.home.tiles %}
+    {% set a = art[t.key] %}
+    <li class="grove-slot">
+      <{% if t.url %}a href="{{ url(t.url) }}"{% else %}div{% endif %} class="tile tile--{{ t.key }}{% if not t.url %} tile--soon{% endif %}">
+        <span class="tile-art">
+          <img class="tile-house" src="{{ asset('img/house-' ~ t.key ~ '.webp') }}" alt="" width="{{ a.house[0] }}" height="{{ a.house[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
+          <img class="tile-owl" src="{{ asset('img/owl-' ~ t.key ~ '.webp') }}" alt="" width="{{ a.owl[0] }}" height="{{ a.owl[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
+        </span>
+        <span class="tile-board">
+          <span class="tile-ico">{{ ico.icon(a.icon) }}</span>
+          <span class="tile-copy">
+            <span class="tile-name">{{ t.sign }}</span>
+            <span class="tile-tag">{{ t.tagline }}</span>
+          </span>
+          {# Deska trzyma zapas szerokości na plakietkę „wkrótce” — patrz .tile-soon. #}
+          <span class="tile-go">{{ ico.icon('arrow') }}</span>
+        </span>
+      </{% if t.url %}a{% else %}div{% endif %}>
+    </li>
+    {% endfor %}
+  </ul>
+  </div>
+
+  <p class="motto">{{ c.home.motto }}<span class="motto-heart">{{ ico.icon('heart') }}</span></p>
+</div>
 {% endblock %}

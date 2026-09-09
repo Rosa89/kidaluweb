@@ -2,7 +2,9 @@
 """Generator witryny kidalu.com. Wejście: content/ + src/. Wyjście: docs/."""
 from __future__ import annotations
 
+import hashlib
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -27,6 +29,30 @@ APPS = {
 
 def play_url(app_key: str) -> str:
     return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
+
+
+def asset_url(rel: str) -> str:
+    """Adres assetu z odciskiem treści.
+
+    Nazwy plików nie zmieniają się między wdrożeniami, więc bez tego przeglądarka
+    potrafi trzymać starą grafikę po podmianie — zdarzyło się to przy wymianie
+    sowy od czytania.
+    """
+    path = ASSETS / rel
+    if not path.exists():
+        return f"/assets/{rel}"
+    digest = hashlib.md5(path.read_bytes()).hexdigest()[:8]
+    return f"/assets/{rel}?v={digest}"
+
+
+def stamp_css(css: Path) -> None:
+    """Dokleja te same odciski do url(../img/...) w arkuszu, bo tamtych adresów
+    szablon nie widzi."""
+    def stamp(m: re.Match) -> str:
+        return "url(../" + asset_url("img/" + m.group(1)).removeprefix("/assets/") + ")"
+
+    text = re.sub(r"url\(\.\./img/([A-Za-z0-9._-]+)\)", stamp, css.read_text("utf-8"))
+    css.write_text(text, "utf-8")
 
 
 def load_lang(lang: str) -> dict:
@@ -78,6 +104,19 @@ def alternates(key: str) -> dict[str, str]:
     return out
 
 
+def legal_links(c: dict, urls: dict[str, str], lang: str) -> list[dict]:
+    """Odnośniki do dokumentów prawnych istniejących w tym języku — do stopki.
+
+    Google Play wymaga stabilnych adresów polityk, więc mają być osiągalne
+    z każdej strony, nie tylko z podstrony aplikacji.
+    """
+    return [
+        {"name": c["apps"][app_key]["name"], "url": urls[f"{app_key}_docs"]}
+        for app_key in APPS
+        if lang in doc_langs(app_key)
+    ]
+
+
 def _env() -> Environment:
     return Environment(
         loader=FileSystemLoader(TEMPLATES),
@@ -124,6 +163,7 @@ def build() -> list[Path]:
         shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
     shutil.copytree(ASSETS, OUT / "assets")
+    stamp_css(OUT / "assets" / "css" / "site.css")
 
     env = _env()
     written: list[Path] = []
@@ -138,11 +178,12 @@ def build() -> list[Path]:
             "lang": lang,
             "c": c,
             "url": lambda key, u=urls: u[key],
-            "asset": lambda rel: f"/assets/{rel}",
+            "asset": asset_url,
             "page_key": "home",
             "alternates": alternates("home"),
             "langs": available_langs(),
             "site_host": SITE_HOST,
+            "legal": legal_links(c, urls, lang),
         }
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
 

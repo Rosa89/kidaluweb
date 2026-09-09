@@ -1,21 +1,76 @@
 {# src/templates/app.html.jinja #}
 {% extends "base.html.jinja" %}
+{% import "icons.html.jinja" as ico %}
 {% block title %}{{ app.name }} — {{ c.site.brand }}{% endblock %}
 {% block description %}{{ app.tagline }}{% endblock %}
 {% block content %}
-<article class="app">
-  <h1>{{ app.name }}</h1>
-  <p class="tagline">{{ app.tagline }}</p>
-  <ul class="features">
-    {% for f in app.features %}
-    <li>{{ f }}</li>
-    {% endfor %}
-  </ul>
-  <p class="cta">
-    <a class="play" href="{{ play_url }}" aria-label="{{ app.name }} — Google Play">Google Play</a>
-  </p>
-{% if docs_url %}
-  <p><a href="{{ docs_url }}">{{ app.docs_label }}</a></p>
-{% endif %}
+{% set art = {
+  'czytanie': {'house':[900,770],  'owl':[900,939]},
+  'literki':  {'house':[900,1066], 'owl':[1024,1036]}
+}[page_key] %}
+<article class="page">
+
+  <header class="band band--head">
+    <div class="wrap band-head">
+      <p class="band-art" aria-hidden="true">
+        <img class="ph-house" src="{{ asset('img/house-' ~ page_key ~ '.webp') }}" alt=""
+             width="{{ art.house[0] }}" height="{{ art.house[1] }}">
+        <img class="ph-owl" src="{{ asset('img/owl-' ~ page_key ~ '.webp') }}" alt=""
+             width="{{ art.owl[0] }}" height="{{ art.owl[1] }}">
+      </p>
+      <div class="band-copy">
+        <h1>{{ app.name }}</h1>
+        <p class="lead">{{ app.lead }}</p>
+        <ul class="facts">
+          {% for f in app.facts %}
+          <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+        <p class="actions">
+          <a class="play" href="{{ play_url }}">{{ c.app_page.play }}</a>
+          {% if docs_url %}
+          <a class="ghost" href="{{ docs_url }}">{{ c.app_page.docs_link }}</a>
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <section class="wrap section">
+    <h2>{{ c.app_page.features_heading }}</h2>
+    <ul class="cards">
+      {% for f in app.features %}
+      <li class="card card--{{ page_key }}">
+        <span class="card-ico">{{ ico.icon(f.icon) }}</span>
+        <h3>{{ f.title }}</h3>
+        <p>{{ f.body }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="wrap section split">
+    <div>
+      <h2>{{ c.app_page.who_heading }}</h2>
+      <ul class="ticks">
+        {% for w in app.who %}
+        <li><span class="tick tick--{{ page_key }}">{{ ico.icon(w.icon) }}</span>{{ w.text }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2>{{ c.app_page.privacy_heading }}</h2>
+      <ul class="ticks">
+        {% for p in app.privacy %}
+        <li><span class="tick tick--shield">{{ ico.icon('shield') }}</span>{{ p }}</li>
+        {% endfor %}
+      </ul>
+      <p class="fine">{{ c.app_page.compliance }}</p>
+      {% if docs_url %}
+      <p><a class="ghost" href="{{ docs_url }}">{{ app.docs_label }}</a></p>
+      {% endif %}
+    </div>
+  </section>
+
 </article>
 {% endblock %}
