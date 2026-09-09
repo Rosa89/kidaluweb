@@ -105,9 +105,23 @@ def test_podstrony_aplikacji_we_wszystkich_jezykach():
 
 
 def test_podstrona_linkuje_do_wlasciwej_aplikacji_w_play():
+    # Identyfikatory pakietów są wpisane tutaj dosłownie (nie przez build.APPS
+    # ani build.play_url) — inaczej test porównywałby wynik sam ze sobą i nie
+    # wykryłby zamiany kluczy miejscami w APPS.
+    CZYTANIE_ID = "id=com.readbysyllables.app"
+    LITERKI_ID = "id=com.literkiicyferki.app"
+
     build.build()
-    czytanie = (build.OUT / "czytanie-sylabami" / "index.html").read_text("utf-8")
-    literki = (build.OUT / "literki-i-cyferki" / "index.html").read_text("utf-8")
-    assert "id=com.readbysyllables.app" in czytanie
-    assert "id=com.literkiicyferki.app" in literki
-    assert "id=com.literkiicyferki.app" not in czytanie
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+
+        czytanie_target = build.OUT / urls["czytanie"].strip("/") / "index.html"
+        literki_target = build.OUT / urls["literki"].strip("/") / "index.html"
+        czytanie = czytanie_target.read_text("utf-8")
+        literki = literki_target.read_text("utf-8")
+
+        assert CZYTANIE_ID in czytanie, f"{czytanie_target} nie linkuje do właściwej aplikacji"
+        assert LITERKI_ID not in czytanie, f"{czytanie_target} linkuje też do drugiej aplikacji"
+
+        assert LITERKI_ID in literki, f"{literki_target} nie linkuje do właściwej aplikacji"
+        assert CZYTANIE_ID not in literki, f"{literki_target} linkuje też do drugiej aplikacji"

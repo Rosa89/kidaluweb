@@ -12,7 +12,7 @@
     {% endfor %}
   </ul>
   <p class="cta">
-    <a class="play" href="{{ play_url }}" rel="noopener">Google Play</a>
+    <a class="play" href="{{ play_url }}" aria-label="{{ app.name }} — Google Play">Google Play</a>
   </p>
 {% if docs_url %}
   <p><a href="{{ docs_url }}">{{ app.docs_label }}</a></p>
