@@ -46,7 +46,8 @@ Aplikacje:
 ## 4. Architektura informacji
 
 Język jako prefiks ścieżki. Slugi definiowane per język (angielski adres nie ma
-zawierać polskiego slugu). 6 stron na język, 18 łącznie.
+zawierać polskiego slugu). Cztery strony na język — las, dwie aplikacje,
+kontakt — plus strona dokumentów dla każdego istniejącego przekładu.
 
 ```
 /                                     las (PL)
@@ -90,7 +91,7 @@ zmiana adresu to ponowna aktualizacja obu listingów w Play.
 
 ## 5. System budowania
 
-18 stron utrzymywanych ręcznie w trzech językach rozjedzie się gwarantowanie.
+Kilkanaście stron utrzymywanych ręcznie w trzech językach rozjedzie się gwarantowanie.
 Generator: **Python + Jinja2**, wynik commitowany, Pages serwuje `/docs`.
 Bez CI, bez `node_modules`.
 
@@ -293,7 +294,11 @@ nie czeka.
 
 ## 10. Kryteria akceptacji
 
-- `python3 build.py` kończy się kodem 0 i produkuje 18 stron
+- `python3 build.py` kończy się kodem 0 i produkuje komplet stron: 4 na język
+  (las, dwie aplikacje, kontakt) plus po jednej stronie dokumentów na każdy
+  istniejący przekład. Dziś daje to **15 stron** — dokumenty istnieją w PL dla
+  obu aplikacji i w DE dla Literek. Komplet 18 stron pojawi się, gdy dojdą
+  brakujące przekłady dokumentów
 - zero martwych linków wewnętrznych; każdy `hreflang` się rozwiązuje
 - brak poziomego przewijania przy 320 px
 - każda stacja osiągalna z klawiatury, widoczny fokus
