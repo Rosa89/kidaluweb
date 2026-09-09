@@ -93,14 +93,29 @@ def _ulamek_powierzchni_dziur(src_path: Path) -> tuple[float, int]:
 
 
 def test_prog_dziury_niezmienniczy_wzgledem_skali(tmp_path):
-    """Sedno błędu krytycznego (Ruling 38): próg powierzchni dziury musi być
-    względny wobec pola kadru, inaczej po przeskalowaniu tej samej sceny do
-    połowy rozdzielczości przerwy między koronami (420-1449 px przy 3392 px
-    szerokości, 105-362 px przy połowie) przestają być klasyfikowane jako tło.
+    """Sedno błędu krytycznego (Ruling 38), zaadaptowane w rundzie 2 (Ruling 46).
 
-    Przetwarzamy TO SAMO źródło w dwóch rozdzielczościach (pełnej i połowie) i
-    porównujemy ułamek powierzchni kadru zajęty przez zamknięte dziury — przy
-    niezmienniczym progu powinien być niemal identyczny w obu skalach.
+    Runda 1 wprowadziła próg powierzchni WZGLĘDNY wobec pola kadru
+    (`UDZIAL_DZIURY=8e-5`) — sam w sobie faktycznie niezmienniczy względem
+    skali, ale niezmienniczo trafiający w ZŁĄ wartość: przy natywnej
+    rozdzielczości `far.jpg` (3392×1248) łapał tylko 15 z 52 realnych,
+    zamkniętych prześwitów między koronami/gałęziami (próg ≈339 px, a
+    prześwity mają w tym materiale 80–388 px w zależności od miejsca
+    pomiaru) — reszta zostawała błędnie potraktowana jako treść. Ten sam
+    test w swojej pierwotnej postaci PRZECHODZIŁ na tamtym kodzie (bo mierzył
+    tylko niezmienniczość skali, nie kompletność wykrywania), więc recenzja
+    (Ruling 46) słusznie nie uznała go za dowód poprawności.
+
+    Runda 2 usuwa próg powierzchni w ogóle dla warstw bez zamierzonej bieli
+    (`zamierzona_biel_px=0` domyślnie w `_wypelnij_od_krawedzi`) — KAŻDY
+    zamknięty biały obszar jest tłem, więc wynik jest niezmienniczy względem
+    skali TRYWIALNIE (nie ma już współczynnika, względem którego coś mogłoby
+    przestać być niezmiennicze) i jednocześnie kompletny. Test poniżej
+    sprawdza obie rzeczy na `far.jpg` w pełnej i połowie rozdzielczości:
+    liczbę wykrytych zamkniętych prześwitów (musi być wysoka — konkretnie
+    dużo wyższa niż 15, żeby odróżnić od dawnego, niekompletnego progu
+    względnego) ORAZ że ułamek powierzchni kadru zajęty przez te prześwity
+    jest spójny między skalami.
     """
     if not FAR.exists():
         pytest.skip(f"materiał testowy niedostępny na tej maszynie: {FAR}")
@@ -112,44 +127,126 @@ def test_prog_dziury_niezmienniczy_wzgledem_skali(tmp_path):
     im.resize((im.width // 2, im.height // 2), Image.LANCZOS).save(polowa_src, quality=95)
     frac_half, n_half = _ulamek_powierzchni_dziur(polowa_src)
 
-    assert n_full > 5, "test wymaga realnych przerw między koronami w źródle"
-    assert n_half > 5, (
-        f"przy połowie rozdzielczości zniknęły niemal wszystkie dziury "
-        f"({n_half} vs {n_full} przy pełnej) — próg nie jest niezmienniczy względem skali"
+    # Zmierzone: nowy kod (bez progu powierzchni) znajduje 52/55 zamkniętych
+    # prześwitów (pełna/połowa); dawny próg względny (8e-5 pola kadru) —
+    # tylko 15/16. Próg 40 jest wyraźnie powyżej dawnego zachowania i
+    # wyraźnie poniżej nowego — regresja do progu powierzchni (jakiejkolwiek
+    # wartości UDZIAL_DZIURY) sprowadzającego liczbę wykrytych prześwitów
+    # poniżej pełnego zbioru komponentów zamkniętych musi tu paść.
+    assert n_full > 40, (
+        f"za mało wykrytych zamkniętych prześwitów przy pełnej rozdzielczości "
+        f"({n_full}) — sugeruje, że jakiś próg powierzchni znów odcina realne "
+        "prześwity zamiast usuwać każdy zamknięty biały obszar"
+    )
+    assert n_half > 40, (
+        f"przy połowie rozdzielczości zniknęła większość prześwitów "
+        f"({n_half} vs {n_full} przy pełnej) — wykrywanie nie jest niezmiennicze "
+        "względem skali"
     )
     roznica = abs(frac_full - frac_half)
     assert roznica < 0.15 * frac_full, (
         f"ułamek powierzchni dziur różni się między skalami: pełna={frac_full:.5f} "
         f"(n={n_full}), połowa={frac_half:.5f} (n={n_half}), różnica={roznica:.5f} "
-        "— próg powierzchni dziury nie jest niezmienniczy względem skali"
+        "— wykrywanie prześwitów nie jest niezmiennicze względem skali"
     )
 
 
-def test_duzy_zamkniety_biale_obszar_znika_a_maly_zostaje(tmp_path):
-    """Zamknięty biały obszar większy niż próg powierzchni staje się
-    przezroczysty (dziura), a mały biały punkt (np. kwiatek) zostaje
-    nieprzezroczysty — to jest kryterium poprawności progu z Ruling 38/40."""
+def test_bez_deklaracji_kazdy_zamkniety_biale_obszar_znika(tmp_path):
+    """Runda 2 (Ruling 46): bez jawnej deklaracji zamierzonej bieli
+    (`zamierzona_biel_px` domyślnie 0) warstwa nie ma żadnej zamierzonej
+    bieli, więc KAŻDY zamknięty biały obszar znika — zarówno duży (dawna
+    "dziura"), jak i mały (dawny "kwiatek"). Zgadywanie klasyfikacji z samej
+    powierzchni komponentu (Ruling 38/40) zastąpione jawną deklaracją
+    wywołującego — patrz `test_zadeklarowana_biel_zachowuje_male_a_duze_nadal_znikaja`
+    niżej dla warstwy, która taką biel ma."""
     w, h = 300, 300
     a = np.full((h, w, 3), (40, 110, 50), dtype="uint8")  # zielone tło "treści"
 
-    # duży zamknięty biały kwadrat (nie dotyka krawędzi kadru) — powinien zniknąć
-    a[100:180, 100:180] = 255  # 80x80 = 6400 px, dużo powyżej progu
+    # duży zamknięty biały kwadrat (nie dotyka krawędzi kadru)
+    a[100:180, 100:180] = 255  # 80x80 = 6400 px
 
-    # mały biały punkt (nie dotyka krawędzi kadru) — powinien zostać
+    # mały biały punkt (nie dotyka krawędzi kadru)
     a[250:253, 250:253] = 255  # 3x3 = 9 px
 
     src = tmp_path / "synth.png"
     Image.fromarray(a, "RGB").save(src)
 
     out = tmp_path / "synth.webp"
-    prepare_band(src, out, width=w)
+    prepare_band(src, out, width=w)  # bez deklaracji -> zamierzona_biel_px=0
 
     im = Image.open(out)
     assert im.size == (w, h), "brak białych pikseli na krawędzi -> bbox = cały obraz"
     alpha = np.asarray(im.getchannel("A"))
 
     assert alpha[140, 140] == 0, "duży zamknięty biały obszar powinien być przezroczysty"
-    assert alpha[251, 251] > 200, "mały biały punkt powinien zostać nieprzezroczysty"
+    assert alpha[251, 251] == 0, "bez deklaracji mały biały punkt też powinien zniknąć"
+
+
+def test_zadeklarowana_biel_zachowuje_male_a_duze_nadal_znikaja(tmp_path):
+    """Gdy wywołujący jawnie deklaruje próg zamierzonej bieli (np. dla warstwy
+    z kwiatkami na murawie), mały zamknięty biały obszar mieszczący się w
+    progu zostaje nieprzezroczysty, a duży (powyżej progu) nadal znika —
+    dokładnie mechanizm użyty dla `ground` (`GROUND_ZAMIERZONA_BIEL_PX`)."""
+    w, h = 300, 300
+    a = np.full((h, w, 3), (40, 110, 50), dtype="uint8")  # zielone tło "treści"
+
+    a[100:180, 100:180] = 255  # 80x80 = 6400 px — nadal powinien zniknąć
+    a[250:253, 250:253] = 255  # 3x3 = 9 px — poniżej progu, powinien zostać
+
+    src = tmp_path / "synth.png"
+    Image.fromarray(a, "RGB").save(src)
+
+    out = tmp_path / "synth.webp"
+    prepare_band(src, out, width=w, zamierzona_biel_px=50)
+
+    im = Image.open(out)
+    assert im.size == (w, h)
+    alpha = np.asarray(im.getchannel("A"))
+
+    assert alpha[140, 140] == 0, "duży zamknięty biały obszar powinien nadal być przezroczysty"
+    assert alpha[251, 251] > 200, "zadeklarowana zamierzona biel powinna zostać nieprzezroczysta"
+
+
+def test_bez_zamierzonej_bieli_dziura_rzedu_100px_znika(tmp_path):
+    """Sedno poprawki rundy 2 (Ruling 46): w warstwie BEZ zamierzonej bieli
+    (domyślne wywołanie `prepare_band`, dokładnie jak dla far/mid/fg) zamknięty
+    biały obszar o powierzchni rzędu stu pikseli MUSI zniknąć.
+
+    Kanwa 2000×1200 (pole 2 400 000 px) dobrana tak, żeby dawny próg WZGLĘDNY
+    wobec pola kadru z rundy 1 (`UDZIAL_DZIURY=8e-5` → próg = 2 400 000 × 8e-5
+    = 192 px) był WYŻSZY niż powierzchnia tej dziury (11×11 = 121 px) — czyli
+    ten test odtwarza dokładnie defekt, który recenzja wykryła piksel w piksel
+    w `far`/`fg`: bboxy rzędu 9–18 px, powierzchnia 80–194 px, próg rzędu
+    339 px przy natywnej rozdzielczości `far.jpg`. Ten test PADA na kodzie
+    rundy 1 (próg względny) — sprawdzone i zapisane w raporcie."""
+    w, h = 2000, 1200
+    a = np.full((h, w, 3), (40, 110, 50), dtype="uint8")  # zielone tło "treści"
+
+    # mały biały narożnik dotykający krawędzi (jak skrawek nieba w far.jpg) —
+    # zapewnia, że kanał alfa realnie istnieje w zapisie (bez tego, przy
+    # starym kodzie, cały obraz wychodzi w pełni nieprzezroczysty i webp w
+    # ogóle traci kanał A, co maskowałoby błąd wyjątkiem zamiast asercją).
+    # Wystarczająco mały, żeby nie ruszyć bbox przycinania do zawartości.
+    a[0:3, 0:3] = 255
+
+    y0, x0 = h // 2, w // 2
+    a[y0 : y0 + 11, x0 : x0 + 11] = 255  # 11x11 = 121 px, zamknięty, rzędu 100 px
+
+    src = tmp_path / "synth_no_intent.png"
+    Image.fromarray(a, "RGB").save(src)
+
+    out = tmp_path / "synth_no_intent.webp"
+    prepare_band(src, out, width=w)  # bez deklaracji -> zamierzona_biel_px=0
+
+    im = Image.open(out)
+    assert im.size == (w, h), "opaque tło na krawędziach -> crop to bbox = cały kadr"
+    alpha = np.asarray(im.getchannel("A"))
+
+    assert alpha[y0 + 5, x0 + 5] == 0, (
+        "zamknięty biały obszar rzędu 100 px w warstwie bez zamierzonej bieli "
+        "musi stać się przezroczysty — pod starym progiem względnym "
+        "(8e-5 pola kadru = 192 px na tej kanwie) zostawał błędnie nieprzezroczysty"
+    )
 
 
 def test_obraz_bez_bialego_piksela_na_krawedzi_kadru(tmp_path):

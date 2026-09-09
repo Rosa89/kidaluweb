@@ -71,29 +71,43 @@ def prepare(src: Path, dst: Path, width: int | None = None, quality: int = 82) -
 # (patrz UDZIAL_DZIURY: separacja tekstury/dziur sprawdzona też przy tym progu).
 PROG_BIELI = 240
 
-# Próg powierzchni zamkniętego białego obszaru: ułamek pola całego kadru, a nie
-# liczba bezwzględna pikseli. Bezwzględny próg (dawniej 400 px) klasyfikował
-# poprawnie przy 3392×1248 (przerwy między koronami: 420–1449 px), ale po
-# przeskalowaniu tej samej sceny do połowy rozdzielczości te same przerwy mają
-# już tylko 105–362 px i żadna nie przekraczała 400 — defekt, który miał
-# naprawić prepare_band, wracał. 8e-5 pola kadru (czyli próg = pole / 12500)
-# zweryfikowane na far/mid/ground/fg z assets-source/ w pełnej rozdzielczości
-# i przy połowie: w obu skalach oddziela drobną teksturę/kwiatki (zostają) od
-# realnych przerw (znikają) z wyraźnym marginesem.
-UDZIAL_DZIURY = 8e-5
+# Runda 2 (Ruling 46): próg powierzchni WZGLĘDNY wobec pola kadru (dawne
+# UDZIAL_DZIURY=8e-5) został odrzucony jako podejście. Był niezmienniczy
+# względem skali (to co miał naprawić — i naprawił), ale przy natywnej
+# rozdzielczości far.jpg (3392×1248, próg ≈339 px) prześwity między gałęziami
+# świerków i listkami paproci mają w tym materiale 80–194 px w gotowym
+# assecie, czyli ok. 160–388 px w źródle — konkretnie poniżej progu, więc
+# dalej były uznawane za treść. Podkręcanie współczynnika w dół jest kruche:
+# trafia między najmniejszą zamierzoną bielą (kwiatki na `ground`, do ok.
+# 75 px w źródle) a najmniejszym realnym prześwitem w innym materiale, ale ten
+# przedział przesuwa się z każdą nową grafiką i nie ma go jak zweryfikować raz
+# a dobrze — sam rozkład rozmiarów w `far.jpg` jest ciągły (patrz commit),
+# bez czystej luki do wycelowania.
+#
+# Zamiast zgadywać z rozkładu rozmiarów: wywołujący jawnie deklaruje, czy
+# warstwa ma jakąkolwiek zamierzoną białą treść (patrz `zamierzona_biel_px`
+# niżej). Domyślnie nie ma — więc każdy zamknięty biały obszar, niezależnie od
+# rozmiaru, jest prześwitem tła i znika. To odróżnia „ta warstwa nie ma
+# zamierzonej bieli" (far/mid/fg) od „ta warstwa ma drobne białe elementy do
+# zachowania, oto jak duże" (ground) — i jest odporne na to, że przyszły
+# materiał przesunie rozkład rozmiarów: nowy materiał bez zamierzonej bieli
+# dalej dostaje 0, a każda warstwa z zamierzoną bielą dostaje próg zmierzony
+# na tym konkretnym źródle w momencie jego przygotowania, a nie odziedziczony
+# po innym pliku.
 
-# Dolna granica w pikselach, żeby przy bardzo małych obrazach (mała powierzchnia
-# kadru) próg względny nie zszedł praktycznie do zera.
-MIN_DZIURA_PX = 25
 
-
-def _wypelnij_od_krawedzi(im: Image.Image) -> Image.Image:
+def _wypelnij_od_krawedzi(im: Image.Image, *, zamierzona_biel_px: int = 0) -> Image.Image:
     """Wypełnia biel od krawędzi kadru: co jest białe i połączone z brzegiem,
-    jest tłem; biel wewnątrz kształtu zostaje. Zamknięte białe obszary większe
-    niż `UDZIAL_DZIURY` pola kadru też liczą się jako tło (np. przerwy między
-    koronami drzew) — próg jest względny, więc klasyfikacja jest niezmiennicza
-    względem skali obrazu. Drobne białe punkty (np. kwiatki na polanie)
-    zostają nieprzezroczyste niezależnie od rozdzielczości.
+    jest tłem. Każdy ZAMKNIĘTY biały obszar (niedotykający brzegu kadru) też
+    jest tłem — chyba że wywołujący jawnie zadeklarował `zamierzona_biel_px`:
+    górną granicę powierzchni (w pikselach źródła), poniżej której zamknięty
+    biały obszar ma zostać uznany za zamierzoną treść, a nie za prześwit tła
+    (np. drobne kwiatki na murawie w `ground`).
+
+    Domyślnie `zamierzona_biel_px=0`: warstwa nie ma żadnej zamierzonej
+    bieli, więc KAŻDY zamknięty biały obszar — bez względu na rozmiar —
+    staje się przezroczysty. Komponenty dotykające brzegu kadru są tłem
+    zawsze, niezależnie od tego progu.
     """
     import numpy as np
     from scipy import ndimage
@@ -105,16 +119,30 @@ def _wypelnij_od_krawedzi(im: Image.Image) -> Image.Image:
     brzeg = set(lab[0, :]) | set(lab[-1, :]) | set(lab[:, 0]) | set(lab[:, -1])
     brzeg.discard(0)
 
-    prog = max(a.shape[0] * a.shape[1] * UDZIAL_DZIURY, MIN_DZIURA_PX)
     rozmiary = ndimage.sum(near_white, lab, range(1, n + 1)) if n else []
-    duze = {i + 1 for i, r in enumerate(rozmiary) if r > prog}
-    tlo = np.isin(lab, list(brzeg | duze))
+    zamkniete_tlo = {
+        i + 1 for i, r in enumerate(rozmiary)
+        if (i + 1) not in brzeg and r > zamierzona_biel_px
+    }
+    tlo = np.isin(lab, list(brzeg | zamkniete_tlo))
 
     alpha = np.where(tlo, 0, 255).astype("uint8")
     return Image.fromarray(np.dstack([a, alpha]), "RGBA")
 
 
-def prepare_band(src: Path, dst: Path, width: int, quality: int = 82) -> dict:
+# `ground.jpg` to jedyna warstwa z zamierzoną bielą: drobne kwiatki na
+# murawie. Zmierzone na assets-source/ground.jpg (3584×1184): WSZYSTKIE 63
+# zamknięte białe obszary w tym źródle to kwiatki — rozkład rozmiarów zaczyna
+# się od 75 px (bbox 12×8) i opada (71, 43, 22, 14, ...); murawa to ciągła
+# tekstura bez luk, więc nie ma w tym źródle żadnego realnego prześwitu tła
+# do pomylenia z kwiatkiem. Próg ustawiony z ok. 2× marginesem nad zmierzonym
+# maksimum.
+GROUND_ZAMIERZONA_BIEL_PX = 150
+
+
+def prepare_band(
+    src: Path, dst: Path, width: int, quality: int = 82, *, zamierzona_biel_px: int = 0
+) -> dict:
     """Wariant dla szerokich warstw tła.
 
     `rembg` wykrywa obiekt wyróżniający się, więc na pasie z wieloma drobnymi
@@ -122,9 +150,15 @@ def prepare_band(src: Path, dst: Path, width: int, quality: int = 82) -> dict:
     zamiast tego wypełniamy biel od krawędzi kadru (`_wypelnij_od_krawedzi`),
     a krawędź czyścimy tym samym zabiegiem co w `prepare()`, żeby obie ścieżki
     nie rozjeżdżały się w traktowaniu obwódki.
+
+    `zamierzona_biel_px`: deklaracja wywołującego, czy ta konkretna warstwa ma
+    zamierzoną białą treść (patrz `_wypelnij_od_krawedzi`). Domyślnie 0 — brak
+    zamierzonej bieli, każdy zamknięty biały obszar (prześwit tła) znika,
+    niezależnie od jego rozmiaru. Jednostka to piksele ŹRÓDŁA, przed
+    skalowaniem do `width`.
     """
     im = Image.open(src).convert("RGB")
-    out = _clean_edge(_wypelnij_od_krawedzi(im))
+    out = _clean_edge(_wypelnij_od_krawedzi(im, zamierzona_biel_px=zamierzona_biel_px))
     return _finish(out, dst, width, quality)
 
 
