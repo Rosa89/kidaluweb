@@ -10,7 +10,7 @@ body{
   font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   font-size:17px; line-height:1.7;
 }
-h1,h2,h3,.brand{font-family:Fredoka,system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
+h1,h2,h3{font-family:Fredoka,system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
 .site-head{padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
 .brand{display:inline-flex; align-items:center; line-height:0}
 .brand img{width:clamp(72px,9vw,104px); height:auto}

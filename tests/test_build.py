@@ -1,3 +1,4 @@
+import re
 import sys
 from pathlib import Path
 
@@ -14,6 +15,24 @@ def test_buduje_strone_glowna_pl():
     html = index.read_text("utf-8")
     assert "Kidalu" in html
     assert '<html lang="pl"' in html
+
+
+def test_logo_naglowka_ma_alt_z_marka():
+    """Znak marki w nagłówku jest obrazkiem — jedynym nośnikiem nazwy marki dla
+    czytnika ekranu jest atrybut alt na <img>, nie sam fakt wystąpienia słowa
+    "Kidalu" gdziekolwiek w HTML (np. w <title>)."""
+    build.build()
+    index = build.OUT / "index.html"
+    html = index.read_text("utf-8")
+
+    m = re.search(r'<a class="brand"[^>]*>.*?<img([^>]*)>', html, re.S)
+    assert m, "nie znaleziono obrazka logo w bloku .brand nagłówka"
+
+    img_attrs = m.group(1)
+    alt_m = re.search(r'alt="([^"]*)"', img_attrs)
+    assert alt_m, "obrazek logo nie ma w ogóle atrybutu alt"
+    assert alt_m.group(1).strip(), "atrybut alt obrazka logo jest pusty"
+    assert "Kidalu" in alt_m.group(1), "atrybut alt obrazka logo nie zawiera nazwy marki"
 
 
 def test_nie_zostawia_starej_marki():

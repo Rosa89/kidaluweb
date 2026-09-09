@@ -2,6 +2,7 @@
 wycina tło, czyści krawędź, przycina do zawartości, skaluje i zapisuje webp."""
 from __future__ import annotations
 
+import argparse
 import io
 import sys
 from pathlib import Path
@@ -26,7 +27,7 @@ def _clean_edge(im: Image.Image) -> Image.Image:
     return im
 
 
-def prepare(src: Path, dst: Path, width: int | None = None, quality: int = 75) -> dict:
+def prepare(src: Path, dst: Path, width: int | None = None, quality: int = 82) -> dict:
     im = Image.open(src).convert("RGBA")
     im = _clean_edge(_cutout(im))
 
@@ -45,8 +46,43 @@ def prepare(src: Path, dst: Path, width: int | None = None, quality: int = 75) -
     return {"size": im.size, "bytes": dst.stat().st_size, "alpha": lo == 0 and hi == 255}
 
 
+def _parse_args(argv: list[str] | None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("src", type=Path, help="źródłowa grafika (np. z Gemini)")
+    parser.add_argument("dst", type=Path, help="ścieżka docelowa .webp")
+    parser.add_argument("width", type=int, nargs="?", default=None, help="docelowa szerokość w px")
+    parser.add_argument(
+        "--quality", type=int, default=82,
+        help="jakość zapisu WEBP, 0-100 (domyślnie 82)",
+    )
+    parser.add_argument(
+        "--budget-kb", type=float, default=None,
+        help="maksymalna dopuszczalna waga pliku w KB; przekroczenie kończy się kodem != 0",
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = _parse_args(argv)
+    info = prepare(args.src, args.dst, width=args.width, quality=args.quality)
+    print(
+        f"{args.dst}: {info['size'][0]}×{info['size'][1]}, "
+        f"{info['bytes'] / 1024:.1f} KB, alpha={info['alpha']}"
+    )
+
+    if args.budget_kb is not None:
+        budget_bytes = args.budget_kb * 1024
+        if info["bytes"] > budget_bytes:
+            over_kb = (info["bytes"] - budget_bytes) / 1024
+            print(
+                f"BŁĄD: {args.dst} przekracza budżet {args.budget_kb:.0f} KB "
+                f"o {over_kb:.1f} KB ({info['bytes'] / 1024:.1f} KB > {args.budget_kb:.0f} KB)",
+                file=sys.stderr,
+            )
+            return 1
+
+    return 0
+
+
 if __name__ == "__main__":
-    src, dst = Path(sys.argv[1]), Path(sys.argv[2])
-    w = int(sys.argv[3]) if len(sys.argv) > 3 else None
-    info = prepare(src, dst, width=w)
-    print(f"{dst}: {info['size'][0]}×{info['size'][1]}, {info['bytes'] / 1024:.0f} KB, alpha={info['alpha']}")
+    sys.exit(main())
