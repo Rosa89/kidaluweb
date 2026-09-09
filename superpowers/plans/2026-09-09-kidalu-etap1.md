@@ -23,7 +23,9 @@
 - Identyfikatory aplikacji: `com.readbysyllables.app`, `com.literkiicyferki.app`.
 - Marka na witrynie to wyłącznie „Kidalu". Ciąg „Mądre Dzieciaki" nie może wystąpić w żadnym wygenerowanym pliku.
 - Paleta (tokeny CSS): `--paper:#FDF6E0` `--cream-2:#FCE8C7` `--wood:#994E21` `--wood-light:#CB8550` `--wood-dark:#6E3410` `--ink:#54240A` `--pine:#205740` `--pine-2:#2F7056` `--sky:#6FCCF3`.
-- Kroje: Fredoka (nagłówki, szyldy), Nunito (tekst). Jeśli Task 1 wykaże brak `ąćęłńóśźż` lub `äöüß` — zamiana obu na Baloo 2.
+- Kroje: Fredoka (nagłówki, szyldy), Nunito (tekst). Oba serwują subset `latin-ext`,
+  czyli komplet `ąćęłńóśźż`; `äöüß` pokrywa `latin`. Sprawdzone w API Google Fonts,
+  decyzja zamknięta — nie podmieniać krojów.
 - Budżet: warstwa pełnej szerokości ≤180 KB, obiekt ≤80 KB, ładunek początkowy <900 KB.
 - Do panelu OVH i Google Play Console nie logujemy się. Wartości do wklejenia dostarczamy użytkownikowi.
 
@@ -69,7 +71,7 @@ Zakłada instalację zależności, konfigurację testów i najcieńszy możliwy 
 - Consumes: nic (pierwsze zadanie)
 - Produces: `build.build() -> list[Path]` zwraca listę zapisanych plików; `build.load_lang(lang: str) -> dict`; `build.prefix(lang: str) -> str`; stałe `build.LANGS: list[str]`, `build.DEFAULT_LANG: str`, `build.OUT: Path`, `build.SITE_HOST: str`
 
-- [ ] **Step 1: Zależności i sprawdzenie krojów**
+- [ ] **Step 1: Zależności**
 
 ```bash
 cd /Users/srosinski/Desktop/test/kidalu
@@ -81,8 +83,6 @@ python3 -m pip install -r requirements.txt
 
 printf '\n# Artefakty Pythona\n__pycache__/\n.pytest_cache/\n' >> .gitignore
 ```
-
-Otwórz https://fonts.google.com/specimen/Fredoka i https://fonts.google.com/specimen/Nunito, w polu podglądu wpisz `ąćęłńóśźż ĄĆĘŁŃÓŚŹŻ äöüß ÄÖÜ`. Jeśli którykolwiek znak renderuje się zastępczo — w `site.css` i w tym planie zamień `Fredoka` na `Baloo 2` (adres rodziny: `Baloo+2`), resztę zostaw.
 
 - [ ] **Step 2: Napisz test, który ma się wywalić**
 
