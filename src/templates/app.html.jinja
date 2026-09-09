@@ -1,0 +1,21 @@
+{# src/templates/app.html.jinja #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ app.name }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ app.tagline }}{% endblock %}
+{% block content %}
+<article class="app">
+  <h1>{{ app.name }}</h1>
+  <p class="tagline">{{ app.tagline }}</p>
+  <ul class="features">
+    {% for f in app.features %}
+    <li>{{ f }}</li>
+    {% endfor %}
+  </ul>
+  <p class="cta">
+    <a class="play" href="{{ play_url }}" rel="noopener">Google Play</a>
+  </p>
+{% if docs_url %}
+  <p><a href="{{ docs_url }}">{{ app.docs_label }}</a></p>
+{% endif %}
+</article>
+{% endblock %}

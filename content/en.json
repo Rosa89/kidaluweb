@@ -16,5 +16,29 @@
     "headline": "Step into the Kidalu forest",
     "intro": "An owl waits at every little house, each with a different app. No ads, no profiling, no tracking outside the app."
   },
-  "footer": { "rights": "Kidalu" }
+  "footer": { "rights": "Kidalu" },
+  "apps": {
+    "czytanie": {
+      "name": "Reading by Syllables",
+      "sign": "I read",
+      "tagline": "Your child reads on their own, one syllable at a time.",
+      "features": [
+        "Coloured syllables guide the eye through each word",
+        "More than a hundred texts to read",
+        "A parent panel showing progress"
+      ],
+      "docs_label": "Privacy policy and terms"
+    },
+    "literki": {
+      "name": "Letters and Numbers",
+      "sign": "I write",
+      "tagline": "Writing letters and numbers with a finger on the screen.",
+      "features": [
+        "Every letter shape shown stroke by stroke",
+        "Exercises matched to the child's age",
+        "A parent panel showing progress"
+      ],
+      "docs_label": "Privacy policy and information"
+    }
+  }
 }

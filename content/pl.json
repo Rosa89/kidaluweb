@@ -16,5 +16,29 @@
     "headline": "Zajrzyj do lasu Kidalu",
     "intro": "Przy każdym domku czeka sowa z inną aplikacją. Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
   },
-  "footer": { "rights": "Kidalu" }
+  "footer": { "rights": "Kidalu" },
+  "apps": {
+    "czytanie": {
+      "name": "Nauka czytania sylabami",
+      "sign": "Czytam",
+      "tagline": "Dziecko czyta samo, sylaba po sylabie.",
+      "features": [
+        "Kolorowanie sylab, które prowadzi wzrok przez wyraz",
+        "Ponad sto tekstów, w tym lektury z Wolnych Lektur",
+        "Panel rodzica z postępami dziecka"
+      ],
+      "docs_label": "Polityka prywatności i regulamin"
+    },
+    "literki": {
+      "name": "Literki i Cyferki",
+      "sign": "Piszę",
+      "tagline": "Nauka pisania liter i cyfr palcem po ekranie.",
+      "features": [
+        "Kształt każdej litery pokazany krok po kroku",
+        "Ćwiczenia liter i cyfr dopasowane do wieku",
+        "Panel rodzica z postępami dziecka"
+      ],
+      "docs_label": "Polityka prywatności i informacje"
+    }
+  }
 }

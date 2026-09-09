@@ -16,5 +16,29 @@
     "headline": "Schau in den Kidalu-Wald",
     "intro": "An jedem Häuschen wartet eine Eule mit einer anderen App. Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
   },
-  "footer": { "rights": "Kidalu" }
+  "footer": { "rights": "Kidalu" },
+  "apps": {
+    "czytanie": {
+      "name": "Lesen nach Silben",
+      "sign": "Ich lese",
+      "tagline": "Das Kind liest selbst, Silbe für Silbe.",
+      "features": [
+        "Farbige Silben führen den Blick durch das Wort",
+        "Über hundert Texte zum Lesen",
+        "Elternbereich mit dem Lernfortschritt"
+      ],
+      "docs_label": "Datenschutz und Nutzungsbedingungen"
+    },
+    "literki": {
+      "name": "Buchstaben und Zahlen",
+      "sign": "Ich schreibe",
+      "tagline": "Buchstaben und Zahlen mit dem Finger auf dem Bildschirm schreiben.",
+      "features": [
+        "Jede Buchstabenform Schritt für Schritt gezeigt",
+        "Übungen passend zum Alter des Kindes",
+        "Elternbereich mit dem Lernfortschritt"
+      ],
+      "docs_label": "Datenschutz und Informationen"
+    }
+  }
 }

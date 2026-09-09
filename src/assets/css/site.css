@@ -23,3 +23,11 @@ main{max-width:960px; margin:0 auto; padding:0 1.5rem}
 .hero h1{font-size:clamp(2rem,5vw,3rem); margin:0 0 .75rem; text-wrap:balance}
 .site-foot{max-width:960px; margin:4rem auto 0; padding:1.5rem; color:var(--wood-dark); font-size:.9rem}
 :focus-visible{outline:2px solid var(--pine); outline-offset:3px}
+.app .tagline{font-size:1.15rem; color:var(--wood-dark); margin:0 0 1.5rem}
+.features{padding-left:1.2rem; margin:0 0 1.75rem}
+.features li{margin:.4rem 0}
+.play{
+  display:inline-block; background:var(--wood); color:var(--paper);
+  text-decoration:none; font-weight:700; padding:.7rem 1.4rem; border-radius:999px;
+}
+.play:hover{background:var(--wood-dark)}

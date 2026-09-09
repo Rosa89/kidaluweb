@@ -18,6 +18,15 @@ LANGS = ["pl", "de", "en"]
 DEFAULT_LANG = "pl"
 SITE_HOST = "https://kidalu.com"
 
+APPS = {
+    "czytanie": "com.readbysyllables.app",
+    "literki": "com.literkiicyferki.app",
+}
+
+
+def play_url(app_key: str) -> str:
+    return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
+
 
 def load_lang(lang: str) -> dict:
     return json.loads((CONTENT / f"{lang}.json").read_text("utf-8"))
@@ -99,6 +108,16 @@ def build() -> list[Path]:
             "site_host": SITE_HOST,
         }
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
+
+        for app_key in APPS:
+            written.append(_write(urls[app_key], env.get_template("app.html.jinja").render(
+                **{**ctx,
+                   "page_key": app_key,
+                   "alternates": alternates(app_key),
+                   "app": c["apps"][app_key],
+                   "play_url": play_url(app_key),
+                   "docs_url": None},
+            )))
 
     return written
 

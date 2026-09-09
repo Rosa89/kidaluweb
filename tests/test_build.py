@@ -93,3 +93,21 @@ def test_hreflang_wskazuje_istniejace_strony():
     else:
         # x-default nie powinien być renderowany jeśli polskiej wersji nie ma
         assert 'hreflang="x-default"' not in html, "x-default powinien być renderowany tylko gdy 'pl' istnieje w alternates"
+
+
+def test_podstrony_aplikacji_we_wszystkich_jezykach():
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        for key in ("czytanie", "literki"):
+            target = build.OUT / urls[key].strip("/") / "index.html"
+            assert target.exists(), target
+
+
+def test_podstrona_linkuje_do_wlasciwej_aplikacji_w_play():
+    build.build()
+    czytanie = (build.OUT / "czytanie-sylabami" / "index.html").read_text("utf-8")
+    literki = (build.OUT / "literki-i-cyferki" / "index.html").read_text("utf-8")
+    assert "id=com.readbysyllables.app" in czytanie
+    assert "id=com.literkiicyferki.app" in literki
+    assert "id=com.literkiicyferki.app" not in czytanie
