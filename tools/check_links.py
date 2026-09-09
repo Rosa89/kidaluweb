@@ -6,16 +6,35 @@ import re
 import sys
 from pathlib import Path
 
-HREF = re.compile(r'(?:href|src)="([^"]+)"')
+HREF = re.compile(r'''(?:href|src)=(["'])(.*?)\1''')
 
 
-def _resolve(root: Path, url: str) -> Path | None:
-    """Zamienia adres na plik na dysku. None oznacza adres, którego nie sprawdzamy."""
+class Skip(Exception):
+    """Adres świadomie poza zakresem walidatora (zewnętrzny albo sam fragment)."""
+
+
+class Relative(Exception):
+    """Odnośnik względny — w tym generatorze nie powinien nigdy powstać.
+
+    asset() i url() zawsze zwracają ścieżkę od korzenia; jedyną drogą, którą
+    względny odnośnik może się przemycić, jest surowa treść dokumentów
+    prawnych wklejana z content/docs/*.html bez przepisania adresów przy
+    przenoszeniu. To błąd, nie coś do pominięcia.
+    """
+
+
+def _resolve(root: Path, url: str) -> Path:
+    """Zamienia adres wewnętrzny (od korzenia) na plik na dysku.
+
+    Zgłasza Skip dla adresu świadomie poza zakresem (zewnętrzny, mailto,
+    data, sam fragment) i Relative dla odnośnika względnego — to jest błąd,
+    a nie coś do pominięcia.
+    """
     if url.startswith(("http://", "https://", "mailto:", "#", "data:")):
-        return None
+        raise Skip(url)
     path = url.split("#")[0].split("?")[0]
     if not path.startswith("/"):
-        return None
+        raise Relative(url)
     target = root / path.lstrip("/")
     return target / "index.html" if path.endswith("/") else target
 
@@ -24,9 +43,19 @@ def check(root: Path) -> list[str]:
     problems: list[str] = []
     for page in sorted(root.rglob("*.html")):
         html = page.read_text("utf-8")
-        for url in HREF.findall(html):
-            target = _resolve(root, url)
-            if target is not None and not target.exists():
+        for _quote, url in HREF.findall(html):
+            try:
+                target = _resolve(root, url)
+            except Skip:
+                continue
+            except Relative:
+                problems.append(
+                    f"{page.relative_to(root)} → {url} "
+                    "(odnośnik względny — w tej witrynie nie powinien wystąpić, "
+                    "wskazuje na treść przeniesioną bez przepisania adresów)"
+                )
+                continue
+            if not target.exists():
                 problems.append(f"{page.relative_to(root)} → {url} (brak {target})")
     return problems
 

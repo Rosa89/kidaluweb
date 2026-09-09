@@ -16,6 +16,48 @@ def test_wykrywa_zepsuty_link(tmp_path):
     assert any("/nie-ma-mnie/" in p for p in problems)
 
 
+def test_odnosnik_wzgledny_jest_zglaszany_jako_problem(tmp_path):
+    (tmp_path / "index.html").write_text(
+        '<a href="../kontakt.html">x</a>', "utf-8"
+    )
+    problems = check(tmp_path)
+    assert len(problems) == 1
+    assert "../kontakt.html" in problems[0]
+    assert "wzgl" in problems[0].lower(), (
+        "komunikat ma jasno mówić, że to odnośnik względny, a nie martwy plik"
+    )
+
+
+def test_odnosnik_zewnetrzny_nie_jest_zglaszany(tmp_path):
+    (tmp_path / "index.html").write_text(
+        '<a href="https://example.com/">x</a>'
+        '<a href="mailto:ktos@example.com">y</a>',
+        "utf-8",
+    )
+    problems = check(tmp_path)
+    assert problems == []
+
+
+def test_pojedynczy_cudzyslow_jest_sprawdzany(tmp_path):
+    (tmp_path / "index.html").write_text(
+        "<a href='/nie-ma-mnie/'>x</a>", "utf-8"
+    )
+    problems = check(tmp_path)
+    assert any("/nie-ma-mnie/" in p for p in problems)
+
+
+def test_adres_od_korzenia_z_kotwica_i_parametrem_dziala_jak_dotychczas(tmp_path):
+    (tmp_path / "kontakt").mkdir()
+    (tmp_path / "kontakt" / "index.html").write_text("x", "utf-8")
+    (tmp_path / "index.html").write_text(
+        '<a href="/kontakt/#privacy">a</a>'
+        '<a href="/kontakt/?ref=x">b</a>',
+        "utf-8",
+    )
+    problems = check(tmp_path)
+    assert problems == []
+
+
 def test_zbudowana_witryna_nie_ma_zepsutych_linkow():
     build.build()
     problems = check(build.OUT)
