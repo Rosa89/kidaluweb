@@ -46,7 +46,7 @@ def _env() -> Environment:
 
 
 def _write(url: str, html: str) -> Path:
-    target = OUT / url.strip("/") / "index.html" if url.strip("/") else OUT / "index.html"
+    target = (OUT / url.strip("/") / "index.html") if url.strip("/") else (OUT / "index.html")
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(html, "utf-8")
     return target
