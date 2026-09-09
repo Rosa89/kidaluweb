@@ -16,7 +16,9 @@
 </head>
 <body>
 <header class="site-head">
-  <a class="brand" href="{{ url('home') }}">{{ c.site.brand }}</a>
+  <a class="brand" href="{{ url('home') }}">
+    <img src="{{ asset('img/logo-kidalu.webp') }}" alt="{{ c.site.brand }}" width="160" height="160">
+  </a>
   <nav class="langs" aria-label="Język">
     {% for l, u in alternates.items() %}
     <a href="{{ u }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>

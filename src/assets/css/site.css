@@ -12,7 +12,8 @@ body{
 }
 h1,h2,h3,.brand{font-family:Fredoka,system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
 .site-head{padding:1.25rem 1.5rem; display:flex; align-items:center; justify-content:space-between; gap:1rem}
-.brand{font-size:1.5rem; color:var(--wood-dark); text-decoration:none}
+.brand{display:inline-flex; align-items:center; line-height:0}
+.brand img{width:clamp(72px,9vw,104px); height:auto}
 .langs{display:flex; gap:.4rem; font-size:.82rem; font-weight:700}
 .langs a{
   color:var(--wood-dark); text-decoration:none; padding:.2rem .5rem;

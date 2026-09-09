@@ -1,2 +1,5 @@
 jinja2==3.1.4
 pytest==8.3.3
+rembg==2.0.59
+onnxruntime==1.19.2
+Pillow==12.2.0
