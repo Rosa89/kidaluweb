@@ -267,11 +267,23 @@ def _write(url: str, html: str) -> Path:
     return target
 
 
-def sitemap_xml(pages: list[Page]) -> str:
-    """Sitemapa z lastmod i alternatywami językowymi (xhtml:link).
+def _url_entry(page: Page) -> list[str]:
+    alts = page.alts if page.alts is not None else alternates(page.key)
+    lines = ["  <url>", f"    <loc>{SITE_HOST}{page.url}</loc>",
+             f"    <lastmod>{lastmod(page.sources)}</lastmod>"]
+    for l, u in alts.items():
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE_HOST}{u}"/>')
+    if DEFAULT_LANG in alts:
+        lines.append(f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE_HOST}{alts[DEFAULT_LANG]}"/>')
+    lines.append("  </url>")
+    return lines
 
-    Google zaleca podawanie wersji językowych w sitemapie dla każdej strony
-    z grupy — także wpis wskazujący na samego siebie.
+
+def sitemap_xml(pages: list[Page]) -> str:
+    """Sitemapa jednego języka z lastmod i alternatywami (xhtml:link).
+
+    Google zaleca podawanie wersji językowych dla każdej strony z grupy —
+    także wpis wskazujący na samego siebie.
     """
     lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
@@ -279,20 +291,26 @@ def sitemap_xml(pages: list[Page]) -> str:
         '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ]
     for page in sorted(pages, key=lambda p: p.url):
-        alts = page.alts if page.alts is not None else alternates(page.key)
-        lines.append("  <url>")
-        lines.append(f"    <loc>{SITE_HOST}{page.url}</loc>")
-        lines.append(f"    <lastmod>{lastmod(page.sources)}</lastmod>")
-        for l, u in alts.items():
-            lines.append(
-                f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE_HOST}{u}"/>'
-            )
-        if DEFAULT_LANG in alts:
-            lines.append(
-                f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE_HOST}{alts[DEFAULT_LANG]}"/>'
-            )
-        lines.append("  </url>")
+        lines += _url_entry(page)
     lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+def sitemap_name(lang: str) -> str:
+    return f"sitemap-{lang}.xml"
+
+
+def sitemap_index_xml(langs: list[str], pages: list[Page]) -> str:
+    """Indeks sitemap: jeden plik na język. Nie zmienia to nic w rankingu,
+    ale Search Console i Bing raportują wtedy indeksowanie osobno dla każdej
+    wersji językowej, więc widać, która kuleje."""
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for lang in langs:
+        newest = max(lastmod(p.sources) for p in pages if p.lang == lang)
+        lines += ["  <sitemap>", f"    <loc>{SITE_HOST}/{sitemap_name(lang)}</loc>",
+                  f"    <lastmod>{newest}</lastmod>", "  </sitemap>"]
+    lines.append("</sitemapindex>")
     return "\n".join(lines) + "\n"
 
 
@@ -302,7 +320,11 @@ def write_meta(pages: list[Page]) -> None:
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_HOST}/sitemap.xml\n", "utf-8"
     )
-    (OUT / "sitemap.xml").write_text(sitemap_xml(pages), "utf-8")
+    langs = [l for l in LANGS if any(p.lang == l for p in pages)]
+    for lang in langs:
+        (OUT / sitemap_name(lang)).write_text(
+            sitemap_xml([p for p in pages if p.lang == lang]), "utf-8")
+    (OUT / "sitemap.xml").write_text(sitemap_index_xml(langs, pages), "utf-8")
 
 
 def build() -> list[Path]:

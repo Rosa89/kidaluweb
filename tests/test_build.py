@@ -201,7 +201,7 @@ def test_cname_i_nojekyll():
 
 def test_sitemap_wymienia_kazda_wygenerowana_strone():
     written = build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     strony = [p for p in written if p.name == "index.html"]
     assert len(strony) > 0
     for p in strony:
@@ -215,6 +215,11 @@ def test_sitemap_wymienia_kazda_wygenerowana_strone():
 import json
 
 
+def _sitemaps() -> str:
+    """Złączona treść sitemap wszystkich języków (sitemap.xml to indeks)."""
+    return "".join((build.OUT / f).read_text("utf-8") for f in ("sitemap-pl.xml", "sitemap-de.xml", "sitemap-en.xml") if (build.OUT / f).exists())
+
+
 def _sitemap_entry(sitemap: str, url: str) -> str:
     """Wycinek <url>…</url> dla danego adresu."""
     m = re.search(rf"<url>\s*<loc>{re.escape(url)}</loc>(.*?)</url>", sitemap, re.S)
@@ -224,7 +229,7 @@ def _sitemap_entry(sitemap: str, url: str) -> str:
 
 def test_sitemap_ma_lastmod_w_formacie_daty():
     build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     entries = re.findall(r"<url>.*?</url>", sitemap, re.S)
     assert entries
     for e in entries:
@@ -233,7 +238,7 @@ def test_sitemap_ma_lastmod_w_formacie_daty():
 
 def test_sitemap_wymienia_alternatywy_jezykowe():
     build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     assert 'xmlns:xhtml="http://www.w3.org/1999/xhtml"' in sitemap
 
     home = _sitemap_entry(sitemap, "https://kidalu.com/")
@@ -253,7 +258,7 @@ def test_sitemap_wymienia_alternatywy_jezykowe():
 
 def test_sitemap_nie_wymysla_alternatyw_dla_brakujacych_tlumaczen():
     build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     for app_key in build.APPS:
         pl_url = build.page_urls(build.load_lang("pl"), "pl")[f"{app_key}_docs"]
         entry = _sitemap_entry(sitemap, f"https://kidalu.com{pl_url}")
@@ -316,7 +321,7 @@ PLAY_DEV_URL = "https://play.google.com/store/apps/developer?id=Kidalu"
 
 def test_o_kidalu_we_wszystkich_jezykach_i_w_sitemapie():
     build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     expected = {
         "pl": "/o-kidalu/",
         "de": "/ueber-kidalu/",
@@ -366,7 +371,7 @@ def test_strona_404_istnieje_i_nie_jest_indeksowana():
     assert 'rel="alternate"' not in html
     assert 'href="/"' in html and 'href="/de/"' in html and 'href="/en/"' in html
     # 404 nie trafia do sitemapy
-    assert "404" not in (build.OUT / "sitemap.xml").read_text("utf-8")
+    assert "404" not in _sitemaps()
 
 
 # --- poradnik (blog) ---
@@ -410,7 +415,7 @@ def test_artykul_ma_dane_strukturalne_article():
 
 def test_artykuly_i_indeks_poradnika_sa_w_sitemapie():
     build.build()
-    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    sitemap = _sitemaps()
     assert "<loc>https://kidalu.com/poradnik/</loc>" in sitemap
     for a in build.articles("pl"):
         entry = _sitemap_entry(sitemap, f"https://kidalu.com{a.url}")
@@ -470,3 +475,21 @@ def test_font_naglowkow_ma_polskie_znaki():
     css = (build.OUT / "assets" / "css" / "site.css").read_text("utf-8")
     assert "Fredoka" not in html and "Fredoka" not in css
     assert "family=Baloo+2" in html and "'Baloo 2'" in css
+
+
+def test_sitemap_xml_jest_indeksem_z_plikiem_na_jezyk():
+    build.build()
+    index = (build.OUT / "sitemap.xml").read_text("utf-8")
+    assert "<sitemapindex" in index
+    for lang in ("pl", "de", "en"):
+        assert f"<loc>https://kidalu.com/sitemap-{lang}.xml</loc>" in index
+        child = (build.OUT / f"sitemap-{lang}.xml").read_text("utf-8")
+        assert "<urlset" in child
+        prefix = "https://kidalu.com/" if lang == "pl" else f"https://kidalu.com/{lang}/"
+        for loc in re.findall(r"<loc>(.*?)</loc>", child):
+            assert loc.startswith(prefix), (lang, loc)
+            if lang == "pl":
+                assert not loc.startswith(("https://kidalu.com/de/", "https://kidalu.com/en/")), loc
+    assert re.search(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", index)
+    # 404 nie trafia do żadnej sitemapy
+    assert "404" not in _sitemaps()
