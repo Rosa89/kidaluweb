@@ -435,3 +435,9 @@ def test_artykul_linkuje_do_aplikacji_i_ma_date():
         html = (build.OUT / a.url.strip("/") / "index.html").read_text("utf-8")
         assert re.search(r'href="/(czytanie-sylabami|literki-i-cyferki)/"', html), a.url
         assert re.search(r'<time datetime="\d{4}-\d{2}-\d{2}"', html), a.url
+
+
+def test_tag_weryfikacyjny_bing_na_stronie_glownej():
+    build.build()
+    html = (build.OUT / "index.html").read_text("utf-8")
+    assert '<meta name="msvalidate.01" content="284E4F1B23AF02D0B0517E29AAC31E74">' in html

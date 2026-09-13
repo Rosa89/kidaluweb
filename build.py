@@ -34,6 +34,10 @@ OG_LOCALES = {"pl": "pl_PL", "de": "de_DE", "en": "en_US"}
 # łączy nazwę Kidalu z tą stroną; stąd sameAs w danych strukturalnych.
 PLAY_DEV_URL = "https://play.google.com/store/apps/developer?id=Kidalu"
 
+# Weryfikacja własności witryny w Bing Webmaster Tools — tag ma zostać na
+# stałe, Bing sprawdza go okresowo.
+BING_SITE_VERIFICATION = "284E4F1B23AF02D0B0517E29AAC31E74"
+
 APPS = {
     "czytanie": "com.readbysyllables.app",
     "literki": "com.literkiicyferki.app",
@@ -327,6 +331,7 @@ def build() -> list[Path]:
             "app": None,
             "play_url": None,
             "play_dev_url": PLAY_DEV_URL,
+            "bing_verification": BING_SITE_VERIFICATION,
             "noindex": False,
             "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},
             "load_lang": load_lang,
