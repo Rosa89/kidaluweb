@@ -1,0 +1,42 @@
+{# src/templates/about.html.jinja #}
+{% extends "base.html.jinja" %}
+{% import "icons.html.jinja" as ico %}
+{% block title %}{{ c.about.headline }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ c.about.lead }}{% endblock %}
+{% block content %}
+<article class="page">
+
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <h1>{{ c.about.headline }}</h1>
+      <p class="lead">{{ c.about.lead }}</p>
+    </div>
+  </header>
+
+  {% for s in c.about.sections %}
+  <section class="wrap section">
+    <h2>{{ s.heading }}</h2>
+    <p class="prose">{{ s.body }}</p>
+  </section>
+  {% endfor %}
+
+  <section class="wrap section">
+    <h2>{{ c.about.principles_heading }}</h2>
+    <ul class="ticks">
+      {% for v in c.about.principles %}
+      <li><span class="tick tick--shield">{{ ico.icon(v.icon) }}</span>{{ v.text }}</li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="wrap section">
+    <h2>{{ c.about.play_heading }}</h2>
+    <p class="prose">{{ c.about.play_body }}</p>
+    <p class="actions">
+      <a class="play" href="{{ play_dev_url }}">{{ c.about.play_link }}</a>
+      <a class="ghost" href="{{ url('kontakt') }}">{{ c.about.contact_link }}</a>
+    </p>
+  </section>
+
+</article>
+{% endblock %}

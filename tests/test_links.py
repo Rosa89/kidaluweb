@@ -64,7 +64,7 @@ def test_zbudowana_witryna_nie_ma_zepsutych_linkow():
     assert problems == [], "\n".join(problems)
 
 
-# Inwentarz: 4 strony na język plus po jednej stronie dokumentów na każdy
+# Inwentarz: 5 stron na język plus po jednej stronie dokumentów na każdy
 # istniejący przekład. Gdy dojdzie tłumaczenie, dopisz je tutaj — test ma
 # wyłapać zarówno stronę, która zniknęła, jak i taką, która pojawiła się
 # przez przypadek.
@@ -75,15 +75,18 @@ OCZEKIWANE = {
     "literki-i-cyferki/index.html",
     "literki-i-cyferki/dokumenty/index.html",
     "kontakt/index.html",
+    "o-kidalu/index.html",
     "de/index.html",
     "de/lesen-nach-silben/index.html",
     "de/buchstaben-und-zahlen/index.html",
     "de/buchstaben-und-zahlen/dokumente/index.html",
     "de/kontakt/index.html",
+    "de/ueber-kidalu/index.html",
     "en/index.html",
     "en/reading-by-syllables/index.html",
     "en/letters-and-numbers/index.html",
     "en/contact/index.html",
+    "en/about-kidalu/index.html",
 }
 
 

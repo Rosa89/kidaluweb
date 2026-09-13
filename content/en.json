@@ -9,14 +9,16 @@
     "czytanie": "reading-by-syllables",
     "literki": "letters-and-numbers",
     "kontakt": "contact",
-    "docs": "legal"
+    "docs": "legal",
+    "o_nas": "about-kidalu"
   },
   "nav": {
     "home": "Forest",
     "contact": "Contact",
     "lang": "Language",
     "menu": "Menu",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "about": "About Kidalu"
   },
   "home": {
     "headline": "Step into the Kidalu forest",
@@ -49,7 +51,8 @@
   "footer": {
     "rights": "Kidalu",
     "docs": "Legal",
-    "note": "No ads, no profiling, no tracking outside the app."
+    "note": "No ads, no profiling, no tracking outside the app.",
+    "play": "Kidalu on Google Play"
   },
   "contact": {
     "headline": "Get in touch",
@@ -209,5 +212,51 @@
     "compliance": "Compliant with COPPA, GDPR art. 8 and the Google Play Families policy.",
     "docs_link": "Read the documents",
     "back": "Back to the forest"
+  },
+  "about": {
+    "headline": "What is Kidalu",
+    "lead": "Kidalu is a Polish studio of two dads and developers building educational apps for children aged 4–8. We teach through play and collect no data about children.",
+    "sections": [
+      {
+        "heading": "Who we are",
+        "body": "Kidalu is made by Sebastian Rosiński and Dawid Adamczyk. It started with a question: how to help our own kids learn to read and write without a screen full of ads. The answer became apps we would want to install ourselves: simple, warm and safe."
+      },
+      {
+        "heading": "What we make",
+        "body": "We build Android apps that lead a child into the world of letters, syllables and numbers step by step. Reading by Syllables teaches joining syllables into words, and Letters and Numbers practises writing with a finger on the screen. Both apps are on Google Play under the publisher name Kidalu."
+      },
+      {
+        "heading": "Why you can trust us",
+        "body": "Kidalu apps contain no ads, build no behavioural profiles and do not track children outside the app. They comply with COPPA, GDPR art. 8 and the Google Play Families policies. We publish every document on this site and answer every question about data."
+      }
+    ],
+    "principles_heading": "Our principles",
+    "principles": [
+      {
+        "icon": "shield",
+        "text": "No ads and no promotional content aimed at children"
+      },
+      {
+        "icon": "leaf",
+        "text": "No profiling and no linking of data between apps"
+      },
+      {
+        "icon": "heart",
+        "text": "Learning at the child's pace, with no pressure and no leaderboards"
+      },
+      {
+        "icon": "check",
+        "text": "Clear documents and quick answers to parents' questions"
+      }
+    ],
+    "play_heading": "Find us on Google Play",
+    "play_body": "All Kidalu apps in one place on the publisher profile.",
+    "play_link": "Kidalu profile on Google Play",
+    "contact_link": "Get in touch"
+  },
+  "notfound": {
+    "title": "Page not found",
+    "body": "This forest path leads nowhere. The address may have changed, or there is a typo in the link.",
+    "home": "Back to the home page"
   }
 }

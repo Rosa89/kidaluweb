@@ -9,14 +9,16 @@
     "czytanie": "czytanie-sylabami",
     "literki": "literki-i-cyferki",
     "kontakt": "kontakt",
-    "docs": "dokumenty"
+    "docs": "dokumenty",
+    "o_nas": "o-kidalu"
   },
   "nav": {
     "home": "Las",
     "contact": "Kontakt",
     "lang": "Język",
     "menu": "Menu",
-    "skip": "Przejdź do treści"
+    "skip": "Przejdź do treści",
+    "about": "O Kidalu"
   },
   "home": {
     "headline": "Zajrzyj do lasu Kidalu",
@@ -49,7 +51,8 @@
   "footer": {
     "rights": "Kidalu",
     "docs": "Dokumenty",
-    "note": "Bez reklam, bez profilowania, bez śledzenia poza aplikacją."
+    "note": "Bez reklam, bez profilowania, bez śledzenia poza aplikacją.",
+    "play": "Kidalu w Google Play"
   },
   "contact": {
     "headline": "Napisz do nas",
@@ -209,5 +212,51 @@
     "compliance": "Zgodne z COPPA, art. 8 RODO i zasadami Google Play Families.",
     "docs_link": "Przeczytaj dokumenty",
     "back": "Wróć do lasu"
+  },
+  "about": {
+    "headline": "Czym jest Kidalu",
+    "lead": "Kidalu to polskie studio dwóch tatów-programistów, które tworzy aplikacje edukacyjne dla dzieci w wieku 4–8 lat. Uczymy przez zabawę i nie zbieramy danych o dzieciach.",
+    "sections": [
+      {
+        "heading": "Kim jesteśmy",
+        "body": "Kidalu tworzą Sebastian Rosiński i Dawid Adamczyk. Zaczęło się od pytania, jak pomóc własnym dzieciom nauczyć się czytać i pisać bez ekranu pełnego reklam. Odpowiedzią stały się aplikacje, które sami chcielibyśmy zainstalować: proste, ciepłe i bezpieczne."
+      },
+      {
+        "heading": "Co robimy",
+        "body": "Budujemy aplikacje na Androida, które wprowadzają dziecko w świat liter, sylab i cyfr krok po kroku. Nauka czytania sylabami uczy składania sylab w słowa, a Literki i Cyferki ćwiczą pisanie palcem po ekranie. Obie aplikacje są dostępne w Google Play pod nazwą wydawcy Kidalu."
+      },
+      {
+        "heading": "Dlaczego nam zaufasz",
+        "body": "Aplikacje Kidalu nie zawierają reklam, nie tworzą profili behawioralnych i nie śledzą dziecka poza aplikacją. Działają zgodnie z COPPA, art. 8 RODO i zasadami Google Play Families. Wszystkie dokumenty publikujemy na tej stronie i odpowiadamy na każde pytanie o dane."
+      }
+    ],
+    "principles_heading": "Nasze zasady",
+    "principles": [
+      {
+        "icon": "shield",
+        "text": "Żadnych reklam ani treści promocyjnych kierowanych do dziecka"
+      },
+      {
+        "icon": "leaf",
+        "text": "Żadnego profilowania i łączenia danych między aplikacjami"
+      },
+      {
+        "icon": "heart",
+        "text": "Nauka w tempie dziecka, bez presji i bez rankingów"
+      },
+      {
+        "icon": "check",
+        "text": "Jasne dokumenty i szybka odpowiedź na pytania rodziców"
+      }
+    ],
+    "play_heading": "Znajdziesz nas w Google Play",
+    "play_body": "Wszystkie aplikacje Kidalu są w jednym miejscu na profilu wydawcy.",
+    "play_link": "Profil Kidalu w Google Play",
+    "contact_link": "Napisz do nas"
+  },
+  "notfound": {
+    "title": "Nie ma takiej strony",
+    "body": "Ta ścieżka w lesie prowadzi donikąd. Adres mógł się zmienić albo w linku wkradła się literówka.",
+    "home": "Wróć na stronę główną"
   }
 }

@@ -28,6 +28,10 @@ SITE_HOST = "https://kidalu.com"
 # samego "pl", oczekują pary język_REGION.
 OG_LOCALES = {"pl": "pl_PL", "de": "de_DE", "en": "en_US"}
 
+# Profil wydawcy w Google Play — jedyny zewnętrzny adres, który jednoznacznie
+# łączy nazwę Kidalu z tą stroną; stąd sameAs w danych strukturalnych.
+PLAY_DEV_URL = "https://play.google.com/store/apps/developer?id=Kidalu"
+
 APPS = {
     "czytanie": "com.readbysyllables.app",
     "literki": "com.literkiicyferki.app",
@@ -82,6 +86,7 @@ def page_urls(c: dict, lang: str) -> dict[str, str]:
         "literki": f"{p}/{s['literki']}/",
         "literki_docs": f"{p}/{s['literki']}/{s['docs']}/",
         "kontakt": f"{p}/{s['kontakt']}/",
+        "o_nas": f"{p}/{s['o_nas']}/",
     }
 
 
@@ -247,6 +252,10 @@ def build() -> list[Path]:
             "legal": legal_links(c, urls, lang),
             "app": None,
             "play_url": None,
+            "play_dev_url": PLAY_DEV_URL,
+            "noindex": False,
+            "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},
+            "load_lang": load_lang,
         }
         lang_src = base_src + [path]
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
@@ -281,6 +290,20 @@ def build() -> list[Path]:
             **{**ctx, "page_key": "kontakt", "alternates": alternates("kontakt")},
         )))
         pages.append(Page(urls["kontakt"], lang, "kontakt", lang_src + [TEMPLATES / "contact.html.jinja"]))
+
+        written.append(_write(urls["o_nas"], env.get_template("about.html.jinja").render(
+            **{**ctx, "page_key": "o_nas", "alternates": alternates("o_nas")},
+        )))
+        pages.append(Page(urls["o_nas"], lang, "o_nas", lang_src + [TEMPLATES / "about.html.jinja"]))
+
+        if lang == DEFAULT_LANG:
+            # GitHub Pages serwuje /404.html z korzenia dla każdego brakującego adresu.
+            # Strona nie ma własnego adresu, więc nie trafia do sitemapy ani nie ma canonical.
+            target = OUT / "404.html"
+            target.write_text(env.get_template("notfound.html.jinja").render(
+                **{**ctx, "page_key": "404", "alternates": {lang: "/404.html"}, "noindex": True},
+            ), "utf-8")
+            written.append(target)
 
     write_meta(pages)
     return written

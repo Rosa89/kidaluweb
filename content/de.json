@@ -9,14 +9,16 @@
     "czytanie": "lesen-nach-silben",
     "literki": "buchstaben-und-zahlen",
     "kontakt": "kontakt",
-    "docs": "dokumente"
+    "docs": "dokumente",
+    "o_nas": "ueber-kidalu"
   },
   "nav": {
     "home": "Wald",
     "contact": "Kontakt",
     "lang": "Sprache",
     "menu": "Menü",
-    "skip": "Zum Inhalt springen"
+    "skip": "Zum Inhalt springen",
+    "about": "Über Kidalu"
   },
   "home": {
     "headline": "Komm in den Kidalu-Wald",
@@ -49,7 +51,8 @@
   "footer": {
     "rights": "Kidalu",
     "docs": "Dokumente",
-    "note": "Keine Werbung, kein Profiling, kein Tracking außerhalb der App."
+    "note": "Keine Werbung, kein Profiling, kein Tracking außerhalb der App.",
+    "play": "Kidalu bei Google Play"
   },
   "contact": {
     "headline": "Schreiben Sie uns",
@@ -209,5 +212,51 @@
     "compliance": "Konform mit COPPA, Art. 8 DSGVO und den Google-Play-Families-Richtlinien.",
     "docs_link": "Dokumente lesen",
     "back": "Zurück in den Wald"
+  },
+  "about": {
+    "headline": "Was ist Kidalu",
+    "lead": "Kidalu ist ein polnisches Studio zweier Väter und Programmierer, das Lern-Apps für Kinder von 4 bis 8 Jahren entwickelt. Wir lehren spielerisch und sammeln keine Daten über Kinder.",
+    "sections": [
+      {
+        "heading": "Wer wir sind",
+        "body": "Hinter Kidalu stehen Sebastian Rosiński und Dawid Adamczyk. Alles begann mit der Frage, wie wir unseren eigenen Kindern Lesen und Schreiben beibringen können, ohne einen Bildschirm voller Werbung. Die Antwort waren Apps, die wir selbst gern installieren würden: einfach, warm und sicher."
+      },
+      {
+        "heading": "Was wir machen",
+        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen. Lesen nach Silben übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu."
+      },
+      {
+        "heading": "Warum Sie uns vertrauen können",
+        "body": "Kidalu-Apps enthalten keine Werbung, erstellen keine Verhaltensprofile und verfolgen Kinder nicht außerhalb der App. Sie entsprechen COPPA, Art. 8 DSGVO und den Google Play Families-Richtlinien. Alle Dokumente veröffentlichen wir auf dieser Seite und beantworten jede Frage zu Daten."
+      }
+    ],
+    "principles_heading": "Unsere Grundsätze",
+    "principles": [
+      {
+        "icon": "shield",
+        "text": "Keine Werbung und keine an Kinder gerichteten Werbeinhalte"
+      },
+      {
+        "icon": "leaf",
+        "text": "Kein Profiling und keine Verknüpfung von Daten zwischen Apps"
+      },
+      {
+        "icon": "heart",
+        "text": "Lernen im Tempo des Kindes, ohne Druck und ohne Ranglisten"
+      },
+      {
+        "icon": "check",
+        "text": "Klare Dokumente und schnelle Antworten auf Fragen der Eltern"
+      }
+    ],
+    "play_heading": "Sie finden uns bei Google Play",
+    "play_body": "Alle Kidalu-Apps an einem Ort im Herausgeberprofil.",
+    "play_link": "Kidalu-Profil bei Google Play",
+    "contact_link": "Schreiben Sie uns"
+  },
+  "notfound": {
+    "title": "Diese Seite gibt es nicht",
+    "body": "Dieser Waldweg führt ins Nichts. Die Adresse hat sich vielleicht geändert oder im Link steckt ein Tippfehler.",
+    "home": "Zurück zur Startseite"
   }
 }

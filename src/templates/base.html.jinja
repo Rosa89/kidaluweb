@@ -9,7 +9,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+{% if noindex %}
+<meta name="robots" content="noindex">
+{% else %}
 <link rel="canonical" href="{{ site_host }}{{ alternates[lang] }}">
+{% endif %}
 <meta name="theme-color" content="#FDF6E0">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ c.site.brand }}">
@@ -17,7 +21,9 @@
 {% for l in og_locale_alternates %}
 <meta property="og:locale:alternate" content="{{ l }}">
 {% endfor %}
+{% if not noindex %}
 <meta property="og:url" content="{{ site_host }}{{ alternates[lang] }}">
+{% endif %}
 <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
 <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
 <meta property="og:image" content="{{ site_host }}{{ asset('img/og.jpg') }}">
@@ -28,11 +34,13 @@
 <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}">
 {% block head_extra %}{% endblock %}
+{% if not noindex %}
 {% for l, u in alternates.items() %}
 <link rel="alternate" hreflang="{{ l }}" href="{{ site_host }}{{ u }}">
 {% endfor %}
 {% if 'pl' in alternates %}
 <link rel="alternate" hreflang="x-default" href="{{ site_host }}{{ alternates['pl'] }}">
+{% endif %}
 {% endif %}
 {# Dane strukturalne (schema.org) — Google pokazuje dzięki nim logo i nazwę
    wydawcy w wynikach, a podstrony aplikacji rozpoznaje jako aplikacje mobilne. #}
@@ -40,14 +48,16 @@
   '@type': 'Organization',
   'name': c.site.brand,
   'url': site_host ~ '/',
-  'logo': site_host ~ asset('img/logo-kidalu.webp')
+  'logo': site_host ~ asset('img/logo-kidalu.webp'),
+  'sameAs': [play_dev_url]
 } %}
 <script type="application/ld+json">{{ {
   '@context': 'https://schema.org',
   '@type': org['@type'],
   'name': org.name,
   'url': org.url,
-  'logo': org.logo
+  'logo': org.logo,
+  'sameAs': org.sameAs
 }|tojson }}</script>
 {% if page_key == 'home' %}
 <script type="application/ld+json">{{ {
@@ -90,11 +100,12 @@
     <div class="menu-body">
       <nav class="topnav" aria-label="{{ c.site.brand }}">
         <a href="{{ url('home') }}"{% if page_key == 'home' %} aria-current="page"{% endif %}>{{ c.nav.home }}</a>
+        <a href="{{ url('o_nas') }}"{% if page_key == 'o_nas' %} aria-current="page"{% endif %}>{{ c.nav.about }}</a>
         <a href="{{ url('kontakt') }}"{% if page_key == 'kontakt' %} aria-current="page"{% endif %}>{{ c.nav.contact }}</a>
       </nav>
     </div>
     <nav class="langs" aria-label="{{ c.nav.lang }}">
-      {% for l, u in alternates.items() %}
+      {% for l, u in (home_urls if noindex else alternates).items() %}
       <a href="{{ u }}" hreflang="{{ l }}"{% if l == lang %} aria-current="true"{% endif %}>{{ l|upper }}</a>
       {% endfor %}
     </nav>
@@ -107,7 +118,9 @@
     {% for d in legal %}
     <a href="{{ d.url }}">{{ d.name }} — {{ c.footer.docs|lower }}</a>
     {% endfor %}
+    <a href="{{ url('o_nas') }}">{{ c.nav.about }}</a>
     <a href="{{ url('kontakt') }}">{{ c.nav.contact }}</a>
+    <a href="{{ play_dev_url }}" rel="me">{{ c.footer.play }}</a>
   </nav>
   <p class="foot-note">{{ c.footer.note }}</p>
   <p class="foot-copy">© 2026 {{ c.footer.rights }}</p>

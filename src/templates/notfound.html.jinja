@@ -1,0 +1,26 @@
+{# src/templates/notfound.html.jinja — GitHub Pages serwuje /404.html dla każdego
+   brakującego adresu, niezależnie od języka; stąd odnośniki do wszystkich wersji. #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ c.notfound.title }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ c.notfound.body }}{% endblock %}
+{% block content %}
+<article class="page">
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <h1>{{ c.notfound.title }}</h1>
+      <p class="lead">{{ c.notfound.body }}</p>
+      <p class="actions">
+        <a class="play" href="{{ url('home') }}">{{ c.notfound.home }}</a>
+      </p>
+    </div>
+  </header>
+  <section class="wrap section">
+    <ul class="ticks">
+      {% for l in langs %}
+      {% set lc = load_lang(l) %}
+      <li><a href="{{ home_urls[l] }}" hreflang="{{ l }}">{{ l|upper }} — {{ lc.notfound.home }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+</article>
+{% endblock %}

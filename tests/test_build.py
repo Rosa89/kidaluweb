@@ -300,3 +300,63 @@ def test_og_locale_w_pelnym_formacie():
     assert '<meta property="og:locale" content="en_US">' in en
     assert '<meta property="og:locale:alternate" content="de_DE">' in pl
     assert '<meta property="og:image:width" content="1200">' in pl
+
+
+# --- podstrona „O Kidalu", powiązanie z Google Play, strona 404 ---
+
+PLAY_DEV_URL = "https://play.google.com/store/apps/developer?id=Kidalu"
+
+
+def test_o_kidalu_we_wszystkich_jezykach_i_w_sitemapie():
+    build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    expected = {
+        "pl": "/o-kidalu/",
+        "de": "/ueber-kidalu/",
+        "en": "/about-kidalu/",
+    }
+    for lang, slug in expected.items():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        assert urls["o_nas"].endswith(slug), urls["o_nas"]
+        target = build.OUT / urls["o_nas"].strip("/") / "index.html"
+        assert target.exists(), target
+        html = target.read_text("utf-8")
+        assert "<h1>" in html and "Kidalu" in html
+        assert f"<loc>{build.SITE_HOST}{urls['o_nas']}</loc>" in sitemap
+
+    pl = _sitemap_entry(sitemap, "https://kidalu.com/o-kidalu/")
+    assert 'hreflang="de" href="https://kidalu.com/de/ueber-kidalu/"' in pl
+    assert 'hreflang="en" href="https://kidalu.com/en/about-kidalu/"' in pl
+
+
+def test_nawigacja_ma_zakladke_o_kidalu():
+    build.build()
+    html = (build.OUT / "index.html").read_text("utf-8")
+    nav = re.search(r'<nav class="topnav".*?</nav>', html, re.S).group(0)
+    assert 'href="/o-kidalu/"' in nav
+    about = (build.OUT / "o-kidalu" / "index.html").read_text("utf-8")
+    nav = re.search(r'<nav class="topnav".*?</nav>', about, re.S).group(0)
+    assert re.search(r'href="/o-kidalu/"[^>]*aria-current="page"', nav)
+
+
+def test_organizacja_powiazana_z_profilem_w_google_play():
+    build.build()
+    for rel in ("index.html", "de/index.html", "kontakt/index.html"):
+        html = (build.OUT / rel).read_text("utf-8")
+        org = next(d for d in _jsonld(html) if d["@type"] == "Organization")
+        assert PLAY_DEV_URL in org["sameAs"], rel
+        foot = re.search(r'<footer class="site-foot">.*?</footer>', html, re.S).group(0)
+        assert PLAY_DEV_URL in foot, rel
+
+
+def test_strona_404_istnieje_i_nie_jest_indeksowana():
+    build.build()
+    page = build.OUT / "404.html"
+    assert page.exists(), "GitHub Pages serwuje 404.html z korzenia"
+    html = page.read_text("utf-8")
+    assert '<meta name="robots" content="noindex">' in html
+    assert 'rel="canonical"' not in html
+    assert 'rel="alternate"' not in html
+    assert 'href="/"' in html and 'href="/de/"' in html and 'href="/en/"' in html
+    # 404 nie trafia do sitemapy
+    assert "404" not in (build.OUT / "sitemap.xml").read_text("utf-8")
