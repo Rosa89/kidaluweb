@@ -75,24 +75,4 @@
 
   <p class="motto">{{ c.home.motto }}<span class="motto-heart">{{ ico.icon('heart') }}</span></p>
 </div>
-{# Scena ma kilkadziesiąt słów, a wyszukiwarka ocenia stronę po treści. Tekst leży
-   pod lasem, więc scena dalej wypełnia pierwszy ekran (spec 8a). #}
-{% set about = c.home.about %}
-<section class="home-about" aria-labelledby="o-aplikacjach">
-  <div class="wrap section">
-    <h2 id="o-aplikacjach">{{ about.heading }}</h2>
-    {% for key in ('czytanie', 'literki') %}
-    <p class="prose"><a href="{{ url(key) }}">{{ c.apps[key].name }}</a> {{ about.apps[key] }}</p>
-    {% endfor %}
-    <p class="prose">{{ about.closing }} <a href="{{ url('o_nas') }}">{{ about.about_link }}</a></p>
-    {% if posts %}
-    <h3>{{ about.posts_heading }}</h3>
-    <ul class="home-posts">
-      {% for p in posts %}
-      <li><a href="{{ p.url }}">{{ p.title }}</a></li>
-      {% endfor %}
-    </ul>
-    {% endif %}
-  </div>
-</section>
 {% endblock %}

@@ -587,25 +587,6 @@ def test_podstrona_aplikacji_ma_wlasny_tytul_i_opis():
             assert f"<h1>{escape(app['name'])}</h1>" in html, (lang, key)
 
 
-def test_strona_glowna_ma_tekst_z_linkami_do_aplikacji_i_poradnika():
-    """Scena ma kilkadziesiąt słów, a Google ocenia stronę po treści. Pod lasem
-    jest więc zwykły tekst z odnośnikami do aplikacji, O Kidalu i artykułów."""
-    build.build()
-    for lang in build.available_langs():
-        urls = build.page_urls(build.load_lang(lang), lang)
-        html = _page(urls["home"])
-        m = re.search(r'<section class="home-about".*?</section>', html, re.S)
-        assert m, f"{lang}: brak sekcji z tekstem pod sceną"
-        section = m.group(0)
-        assert "<h2" in section, lang
-        for key in ("czytanie", "literki", "o_nas"):
-            assert f'href="{urls[key]}"' in section, (lang, key)
-        for a in build.articles(lang):
-            assert f'href="{a.url}"' in section, (lang, a.url)
-        words = re.sub(r"<[^>]+>", " ", section).split()
-        assert len(words) >= 120, (lang, len(words))
-
-
 def test_artykul_poleca_inne_artykuly_w_tym_samym_jezyku():
     build.build()
     for lang in build.available_langs():

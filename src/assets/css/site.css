@@ -234,9 +234,26 @@ main{display:block}
 }
 
 /* ================= Strona główna: polana ================= */
+body.home{background:var(--pine)}
 body.home .topbar{position:absolute; top:0; left:0; right:0; z-index:30}
-/* Scena wypełnia pierwszy ekran (spec 8a), a pod nią leży zwykły tekst i pełna
-   stopka, ta sama co na podstronach. */
+/* Na scenie zostaje sam znak wodny w rogu — pas stopki dokładał wysokość
+   i strona zaczynała się przewijać. Odnośniki do dokumentów żyją dalej
+   w Kontakcie i na podstronach aplikacji. */
+body.home{position:relative}
+body.home .site-foot{
+  position:absolute; left:0; bottom:0; z-index:20;
+  max-width:none; margin:0; padding:.45rem .9rem;
+  background:none; text-align:left; pointer-events:none;
+}
+body.home .foot-links,
+body.home .foot-note{display:none}
+body.home .foot-copy{
+  margin:0; opacity:1; font-size:.72rem; font-weight:600; letter-spacing:.01em;
+  color:rgba(253,246,224,.92); text-shadow:0 1px 5px rgba(14,36,25,.9);
+}
+body.home .foot-links{justify-content:center}
+body.home .foot-links a{color:var(--paper); border-bottom-color:rgba(253,246,224,.45)}
+body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
 
 /* Układ bazowy to telefon: scena płynie w pionie i przewija się.
    Kadr o stałych proporcjach włącza się dopiero przy szerokim oknie. */
@@ -682,10 +699,3 @@ body.home .topbar{position:absolute; top:0; left:0; right:0; z-index:30}
 .post h3{margin:.2rem 0 .5rem; font-size:clamp(1.05rem,1.8vw,1.25rem)}
 .post h3 a{color:inherit; text-decoration:none}
 .post h3 a:hover{color:var(--pine)}
-
-/* --- tekst pod sceną na stronie głównej --- */
-.home-about .prose{margin:0 0 1rem}
-.home-about h3{margin:1.8rem 0 .6rem; font-size:1.15rem}
-.home-posts{margin:0; padding-left:1.2rem; max-width:68ch}
-.home-posts li{margin:0 0 .4rem}
-.home-posts a{color:var(--pine); font-weight:700}

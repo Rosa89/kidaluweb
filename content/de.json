@@ -48,17 +48,7 @@
       }
     ],
     "sign_left": "Kleine Schritte, große Möglichkeiten",
-    "sign_right": "Hier beginnt das große Abenteuer",
-    "about": {
-      "heading": "Apps zum Lesen- und Schreibenlernen für Kinder",
-      "apps": {
-        "czytanie": "zerlegt jeden polnischen Text in Silben und färbt sie abwechselnd ein, damit das Kind Wörter zusammensetzt, statt sie zu raten. In der Bibliothek warten Märchen, Gedichte und Geschichten, darunter Klassiker aus Wolne Lektury, und Eltern können eigene Texte eintippen und zum Üben ausdrucken. Die App gibt es nur auf Polnisch; sie eignet sich für Kinder von 4 bis 8 Jahren, die Polnisch lesen lernen, zum Beispiel in zweisprachigen Familien.",
-        "literki": "ist eine App zum Nachspuren: Das Kind schreibt Buchstaben und Ziffern mit dem Finger auf der Spur. Jedes Zeichen hat eine feste Reihenfolge und Richtung der Striche, passend zur Schulschrift in Deutschland, Österreich oder Polen, sodass die App dem Schulheft nicht widerspricht. Sie funktioniert offline und ohne Konto, die erlaubte Abweichung von der Spur stellen Eltern im Elternbereich ein. Für Kinder von 4 bis 7 Jahren."
-      },
-      "closing": "Beide Apps laufen auf Android, ohne Werbung und ohne Profiling des Kindes. Dahinter stehen Sebastian Rosiński und Dawid Adamczyk, zwei Väter und Programmierer, die mit ihren eigenen Kindern angefangen haben.",
-      "about_link": "Mehr über Kidalu",
-      "posts_heading": "Aus dem Ratgeber für Eltern"
-    }
+    "sign_right": "Hier beginnt das große Abenteuer"
   },
   "footer": {
     "rights": "Kidalu",

@@ -48,17 +48,7 @@
       }
     ],
     "sign_left": "Małe kroki, wielkie możliwości",
-    "sign_right": "Tu zaczyna się wielka przygoda",
-    "about": {
-      "heading": "Aplikacje do nauki czytania i pisania dla dzieci",
-      "apps": {
-        "czytanie": "dzieli każdy tekst na sylaby i koloruje je naprzemiennie, więc dziecko składa wyrazy, zamiast je zgadywać. W bibliotece czekają bajki, wiersze i baśnie, w tym klasyka z Wolnych Lektur, a rodzic może wpisać własny tekst i wydrukować go do ćwiczeń bez ekranu. Aplikacja jest po polsku, dla dzieci w wieku 4–8 lat.",
-        "literki": "uczą pisania liter i cyfr palcem po śladzie. Każdy znak ma ustaloną kolejność i kierunek kresek, zgodne z pismem szkolnym w Polsce, Niemczech albo Austrii, więc aplikacja nie kłóci się z zeszytem. Działa bez internetu i bez zakładania konta, a dopuszczalne odchylenie od śladu rodzic ustawia w swoim panelu. Dla dzieci w wieku 4–7 lat."
-      },
-      "closing": "Obie aplikacje działają na Androidzie, bez reklam i bez profilowania dziecka. Tworzą je Sebastian Rosiński i Dawid Adamczyk, dwaj tatowie-programiści, którzy zaczęli od nauki własnych dzieci.",
-      "about_link": "Poznaj Kidalu",
-      "posts_heading": "Z poradnika dla rodziców"
-    }
+    "sign_right": "Tu zaczyna się wielka przygoda"
   },
   "footer": {
     "rights": "Kidalu",
