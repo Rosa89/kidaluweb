@@ -34,6 +34,13 @@ OG_LOCALES = {"pl": "pl_PL", "de": "de_DE", "en": "en_US"}
 # łączy nazwę Kidalu z tą stroną; stąd sameAs w danych strukturalnych.
 PLAY_DEV_URL = "https://play.google.com/store/apps/developer?id=Kidalu"
 
+# Profile Kidalu poza stroną — trafiają do sameAs w danych strukturalnych
+# i do stopki; każdy z nich potwierdza Google, że "Kidalu" to ta witryna.
+SOCIAL = [
+    {"key": "youtube", "url": "https://www.youtube.com/@KidaluOfficial"},
+    {"key": "facebook", "url": "https://www.facebook.com/profile.php?id=61593516255677"},
+]
+
 # Weryfikacja własności witryny w Bing Webmaster Tools — tag ma zostać na
 # stałe, Bing sprawdza go okresowo.
 BING_SITE_VERIFICATION = "284E4F1B23AF02D0B0517E29AAC31E74"
@@ -331,6 +338,7 @@ def build() -> list[Path]:
             "app": None,
             "play_url": None,
             "play_dev_url": PLAY_DEV_URL,
+            "social": SOCIAL,
             "bing_verification": BING_SITE_VERIFICATION,
             "noindex": False,
             "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},

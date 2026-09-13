@@ -173,12 +173,17 @@ def test_niemiecka_wersja_literek_zachowana():
     assert "Datenschutzerklärung" in target.read_text("utf-8")
 
 
-def test_brakujace_tlumaczenie_nie_generuje_strony_ani_hreflang():
+def test_strona_dokumentow_i_hreflang_tylko_gdy_istnieje_przeklad():
+    """Strona dokumentów i jej alternatywy hreflang mają istnieć dokładnie dla
+    tych języków, dla których jest plik content/docs/<app>.<lang>.html."""
     build.build()
-    # czytanie nie ma wersji DE — strona nie powstaje
-    assert not (build.OUT / "de" / "lesen-nach-silben" / "dokumente" / "index.html").exists()
-    # i nie pojawia się w alternatywach
-    assert "de" not in build.alternates("czytanie_docs")
+    for app_key in build.APPS:
+        for lang in build.available_langs():
+            urls = build.page_urls(build.load_lang(lang), lang)
+            target = build.OUT / urls[f"{app_key}_docs"].strip("/") / "index.html"
+            exists = build.doc_path(app_key, lang).exists()
+            assert target.exists() == exists, target
+            assert (lang in build.alternates(f"{app_key}_docs")) == exists, (app_key, lang)
 
 
 def test_kontakt_we_wszystkich_jezykach():
@@ -249,10 +254,12 @@ def test_sitemap_wymienia_alternatywy_jezykowe():
 def test_sitemap_nie_wymysla_alternatyw_dla_brakujacych_tlumaczen():
     build.build()
     sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
-    docs = _sitemap_entry(sitemap, "https://kidalu.com/czytanie-sylabami/dokumenty/")
-    assert 'hreflang="de"' not in docs
-    assert 'hreflang="en"' not in docs
-    assert 'hreflang="pl" href="https://kidalu.com/czytanie-sylabami/dokumenty/"' in docs
+    for app_key in build.APPS:
+        pl_url = build.page_urls(build.load_lang("pl"), "pl")[f"{app_key}_docs"]
+        entry = _sitemap_entry(sitemap, f"https://kidalu.com{pl_url}")
+        for lang in build.available_langs():
+            present = f'hreflang="{lang}"' in entry
+            assert present == build.doc_path(app_key, lang).exists(), (app_key, lang)
 
 
 def _jsonld(html: str) -> list[dict]:
@@ -441,3 +448,25 @@ def test_tag_weryfikacyjny_bing_na_stronie_glownej():
     build.build()
     html = (build.OUT / "index.html").read_text("utf-8")
     assert '<meta name="msvalidate.01" content="284E4F1B23AF02D0B0517E29AAC31E74">' in html
+
+
+def test_profile_spoleczne_w_sameas_i_stopce():
+    build.build()
+    yt = "https://www.youtube.com/@KidaluOfficial"
+    fb = "https://www.facebook.com/profile.php?id=61593516255677"
+    for rel in ("index.html", "en/index.html", "poradnik/index.html"):
+        html = (build.OUT / rel).read_text("utf-8")
+        org = next(d for d in _jsonld(html) if d["@type"] == "Organization")
+        assert yt in org["sameAs"] and fb in org["sameAs"], rel
+        foot = re.search(r'<footer class="site-foot">.*?</footer>', html, re.S).group(0)
+        assert f'href="{yt}"' in foot and f'href="{fb}"' in foot, rel
+
+
+def test_font_naglowkow_ma_polskie_znaki():
+    """Fredoka z Google Fonts nie ma ą, ć, ę, ń, ó, ś, ź, ż — nagłówki z polskimi
+    literami rozpadały się na dwa kroje. Pilnujemy, żeby to nie wróciło."""
+    build.build()
+    html = (build.OUT / "index.html").read_text("utf-8")
+    css = (build.OUT / "assets" / "css" / "site.css").read_text("utf-8")
+    assert "Fredoka" not in html and "Fredoka" not in css
+    assert "family=Baloo+2" in html and "'Baloo 2'" in css

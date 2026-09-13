@@ -8,7 +8,7 @@
 <meta name="description" content="{% block description %}{{ c.site.description }}{% endblock %}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
 {% if noindex %}
 <meta name="robots" content="noindex">
 {% else %}
@@ -50,7 +50,7 @@
   'name': c.site.brand,
   'url': site_host ~ '/',
   'logo': site_host ~ asset('img/logo-kidalu.webp'),
-  'sameAs': [play_dev_url]
+  'sameAs': [play_dev_url] + (social|map(attribute='url')|list)
 } %}
 <script type="application/ld+json">{{ {
   '@context': 'https://schema.org',
@@ -126,6 +126,9 @@
     {% if has_blog %}<a href="{{ url('poradnik') }}">{{ c.nav.blog }}</a>{% endif %}
     <a href="{{ url('kontakt') }}">{{ c.nav.contact }}</a>
     <a href="{{ play_dev_url }}" rel="me">{{ c.footer.play }}</a>
+    {% for s in social %}
+    <a href="{{ s.url }}" rel="me">{{ c.footer[s.key] }}</a>
+    {% endfor %}
   </nav>
   <p class="foot-note">{{ c.footer.note }}</p>
   <p class="foot-copy">© 2026 {{ c.footer.rights }}</p>

@@ -15,7 +15,7 @@ body{
   font-family:Nunito,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
   font-size:17px; line-height:1.7;
 }
-h1,h2,h3{font-family:Fredoka,system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
+h1,h2,h3{font-family:'Baloo 2',system-ui,sans-serif; font-weight:600; letter-spacing:-.015em}
 img{max-width:100%}
 .ico{width:1em; height:1em; display:block; flex:none}
 :focus-visible{outline:3px solid var(--pine); outline-offset:3px; border-radius:.4rem}
@@ -54,7 +54,7 @@ img{max-width:100%}
 .menu-body{flex:1; display:flex; align-items:center}
 .topnav{display:flex; align-items:center; gap:clamp(.4rem,1.3vw,1.5rem)}
 .topnav a{
-  font-family:Fredoka,system-ui,sans-serif; font-weight:500; font-size:clamp(.85rem,1.05vw,1rem);
+  font-family:'Baloo 2',system-ui,sans-serif; font-weight:500; font-size:clamp(.85rem,1.05vw,1rem);
   color:var(--wood-dark); text-decoration:none; padding:.3rem .1rem; white-space:nowrap;
   border-bottom:2px solid transparent;
 }
@@ -120,7 +120,7 @@ main{display:block}
 .play{
   display:inline-block; padding:.75rem 1.5rem; border-radius:999px;
   background:linear-gradient(180deg,var(--pine-2),var(--pine)); color:var(--paper);
-  text-decoration:none; font-weight:700; font-family:Fredoka,system-ui,sans-serif;
+  text-decoration:none; font-weight:700; font-family:'Baloo 2',system-ui,sans-serif;
   box-shadow:0 8px 18px -8px rgba(16,44,30,.9), inset 0 1px 0 rgba(255,255,255,.3);
 }
 .play:hover{filter:brightness(1.09)}
@@ -329,7 +329,7 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
 }
 .tile-copy{min-width:0; flex:1}
 .tile-name{
-  display:block; font-family:Fredoka,system-ui,sans-serif; font-weight:600;
+  display:block; font-family:'Baloo 2',system-ui,sans-serif; font-weight:600;
   line-height:1.1; color:var(--paper); text-shadow:0 1px 2px rgba(20,8,0,.75);
 }
 .tile-tag{
@@ -417,7 +417,7 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
   .bar{flex-wrap:wrap; border-radius:26px; padding:.4rem .5rem; gap:.5rem}
   .brand-word{
     display:block; flex:1; min-width:0; text-align:center;
-    font-family:Fredoka,system-ui,sans-serif; font-weight:600;
+    font-family:'Baloo 2',system-ui,sans-serif; font-weight:600;
     font-size:clamp(1.05rem,4.4vw,1.7rem); line-height:1;
     color:var(--wood-dark); letter-spacing:-.01em;
   }
@@ -595,7 +595,7 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
   }
   .hangsign span{
     grid-area:1/1; position:relative; z-index:2; width:74%;
-    font-family:Fredoka,system-ui,sans-serif; font-weight:500; text-align:center;
+    font-family:'Baloo 2',system-ui,sans-serif; font-weight:500; text-align:center;
     font-size:calc(var(--u) * .8); line-height:1.2; color:#4A2A12; text-wrap:balance;
   }
   .hangsign--l{top:30%; left:1.4%}

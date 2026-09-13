@@ -86,11 +86,14 @@ OCZEKIWANE = {
     "de/buchstaben-und-zahlen/index.html",
     "de/buchstaben-und-zahlen/dokumente/index.html",
     "de/kontakt/index.html",
+    "de/lesen-nach-silben/dokumente/index.html",
     "de/ueber-kidalu/index.html",
     "en/index.html",
     "en/reading-by-syllables/index.html",
     "en/letters-and-numbers/index.html",
     "en/contact/index.html",
+    "en/reading-by-syllables/legal/index.html",
+    "en/letters-and-numbers/legal/index.html",
     "en/about-kidalu/index.html",
 }
 
