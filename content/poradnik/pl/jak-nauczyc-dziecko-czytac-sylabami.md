@@ -41,4 +41,6 @@ Dobrze działa stała pora, na przykład po kolacji albo przed bajką. Rytuał z
 
 Aplikacja nie zastąpi rodzica, ale dobrze uzupełnia ćwiczenia. Odpowiada za to, co w domu jest trudne: dziesiątki powtórzeń tej samej sylaby bez znudzenia, natychmiastową informację zwrotną i stopniowanie trudności. Rodzic zostaje od tego, co najważniejsze: wspólnego czytania, rozmowy o tekście i radości, gdy dziecko odczyta pierwsze zdanie.
 
-Wybierając aplikację, sprawdź, czy prowadzi dziecko dokładnie tą samą drogą co Ty: od samogłosek, przez sylaby otwarte, do słów. Jeśli od razu wrzuca dziecko w całe zdania albo miesza metody, będzie przeszkadzać zamiast pomagać.
+Wybierając aplikację, sprawdź, czy prowadzi dziecko dokładnie tą samą drogą co Ty: od samogłosek, przez sylaby otwarte, do słów. Jeśli od razu wrzuca dziecko w całe zdania albo miesza metody, będzie przeszkadzać zamiast pomagać. Zanim ją zainstalujesz, przejdź też przez [listę kontrolną bezpiecznej aplikacji dla dziecka](/poradnik/aplikacje-edukacyjne-dla-dzieci-bez-reklam/): reklamy, zakupy, dane i uprawnienia.
+
+Gdy dziecko czyta już pierwsze słowa, przydają się dłuższe teksty. W naszej aplikacji [Nauka czytania sylabami](/czytanie-sylabami/) każdy tekst, także wpisany przez Ciebie, dzieli się na kolorowe sylaby.

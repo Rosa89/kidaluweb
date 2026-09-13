@@ -467,14 +467,65 @@ def test_profile_spoleczne_w_sameas_i_stopce():
         assert f'href="{yt}"' in foot and f'href="{fb}"' in foot, rel
 
 
-def test_font_naglowkow_ma_polskie_znaki():
-    """Fredoka z Google Fonts nie ma ą, ć, ę, ń, ó, ś, ź, ż — nagłówki z polskimi
-    literami rozpadały się na dwa kroje. Pilnujemy, żeby to nie wróciło."""
+def _font_faces(css: str) -> list[dict]:
+    """Bloki @font-face z arkusza: rodzina, adres pliku i cała treść bloku."""
+    faces = []
+    for block in re.findall(r"@font-face\s*\{(.*?)\}", css, re.S):
+        family = re.search(r"font-family:\s*'?([^;']+)'?", block).group(1)
+        url = re.search(r"url\(([^)]+)\)", block).group(1)
+        faces.append({"family": family, "url": url, "block": block})
+    return faces
+
+
+def test_font_naglowkow_ma_polskie_i_niemieckie_znaki():
+    """Fredoka z Google Fonts nie miała ą, ć, ę, ń, ó, ś, ź, ż — nagłówki z polskimi
+    literami rozpadały się na dwa kroje. Fonty są teraz nasze, więc pilnujemy tego
+    na samych plikach: zestaw Baloo 2 ma mieć glif dla każdej z tych liter."""
+    from fontTools.ttLib import TTFont
+
+    build.build()
+    css_path = build.OUT / "assets" / "css" / "site.css"
+    css = css_path.read_text("utf-8")
+    assert "Fredoka" not in css
+    cmap: set[int] = set()
+    for face in _font_faces(css):
+        if face["family"] == "Baloo 2":
+            cmap |= set(TTFont(css_path.parent / face["url"].split("?")[0]).getBestCmap())
+    for ch in "ąćęłńóśźżĄĆĘŁŃÓŚŹŻäöüßÄÖÜ":
+        assert ord(ch) in cmap, f"Baloo 2 nie ma znaku {ch}"
+
+
+def test_fonty_sa_serwowane_z_wlasnej_domeny():
+    """Google Fonts przekazuje adres IP odwiedzającego do Google, a ich arkusz
+    blokował renderowanie nagłówka o prawie sekundę. Strona ma się bez nich obejść."""
+    build.build()
+    for page in build.OUT.rglob("*.html"):
+        html = page.read_text("utf-8")
+        assert "fonts.googleapis.com" not in html and "fonts.gstatic.com" not in html, page
+    css_path = build.OUT / "assets" / "css" / "site.css"
+    faces = _font_faces(css_path.read_text("utf-8"))
+    assert {f["family"] for f in faces} >= {"Baloo 2", "Nunito"}
+    for face in faces:
+        assert face["url"].startswith("../fonts/"), face["url"]
+        assert (css_path.parent / face["url"].split("?")[0]).exists(), face["url"]
+        assert "font-display:swap" in face["block"].replace(" ", ""), face["family"]
+
+
+def test_font_naglowkow_jest_wczytywany_z_wyprzedzeniem():
+    """preload pomaga tylko wtedy, gdy adres z odciskiem jest identyczny z tym
+    w arkuszu — inaczej przeglądarka pobierze ten sam plik dwa razy."""
     build.build()
     html = (build.OUT / "index.html").read_text("utf-8")
     css = (build.OUT / "assets" / "css" / "site.css").read_text("utf-8")
-    assert "Fredoka" not in html and "Fredoka" not in css
-    assert "family=Baloo+2" in html and "'Baloo 2'" in css
+    preloads = re.findall(
+        r'<link rel="preload" href="([^"]+)" as="font" type="font/woff2" crossorigin>', html)
+    assert preloads, "brak preloadu fontu"
+    in_css = {f["family"]: set() for f in _font_faces(css)}
+    for f in _font_faces(css):
+        in_css[f["family"]].add("/assets/" + f["url"].removeprefix("../"))
+    for href in preloads:
+        assert any(href in urls for urls in in_css.values()), href
+    assert any(href in in_css["Baloo 2"] for href in preloads), "nagłówki (Baloo 2) bez preloadu"
 
 
 def test_sitemap_xml_jest_indeksem_z_plikiem_na_jezyk():
@@ -493,3 +544,95 @@ def test_sitemap_xml_jest_indeksem_z_plikiem_na_jezyk():
     assert re.search(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", index)
     # 404 nie trafia do żadnej sitemapy
     assert "404" not in _sitemaps()
+
+
+# --- SEO: tytuły i opisy, tekst na stronie głównej, linkowanie poradnika ---
+
+from html import unescape as html_unescape
+
+from markupsafe import escape
+
+
+def _page(url: str) -> str:
+    return (build.OUT / url.strip("/") / "index.html").read_text("utf-8")
+
+
+def test_opisy_i_tytuly_strony_glownej_i_aplikacji_mieszcza_sie_w_wynikach():
+    """Opis o długości hasła („Dziecko czyta samo, sylaba po sylabie.") Google i tak
+    podmienia na przypadkowy wycinek strony. 110–160 znaków mieści się w wyniku
+    wyszukiwania w całości, tytuł do 65 znaków zwykle też."""
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        for key in ("home", "czytanie", "literki"):
+            html = _page(urls[key])
+            desc = html_unescape(re.search(r'<meta name="description" content="([^"]*)">', html).group(1))
+            assert 110 <= len(desc) <= 160, (lang, key, len(desc), desc)
+            title = html_unescape(re.search(r"<title>(.*?)</title>", html).group(1))
+            assert len(title) <= 65, (lang, key, len(title), title)
+
+
+def test_podstrona_aplikacji_ma_wlasny_tytul_i_opis():
+    """Nazwa aplikacji zostaje w nagłówku, ale tytuł i opis celują w to, co rodzice
+    wpisują w wyszukiwarkę — dlatego są osobnymi polami, a nie nazwą i hasłem."""
+    build.build()
+    for lang in build.available_langs():
+        c = build.load_lang(lang)
+        urls = build.page_urls(c, lang)
+        for key in build.APPS:
+            html = _page(urls[key])
+            app = c["apps"][key]
+            assert f"<title>{escape(app['seo_title'])}</title>" in html, (lang, key)
+            assert f'<meta name="description" content="{escape(app["description"])}">' in html, (lang, key)
+            assert f"<h1>{escape(app['name'])}</h1>" in html, (lang, key)
+
+
+def test_strona_glowna_ma_tekst_z_linkami_do_aplikacji_i_poradnika():
+    """Scena ma kilkadziesiąt słów, a Google ocenia stronę po treści. Pod lasem
+    jest więc zwykły tekst z odnośnikami do aplikacji, O Kidalu i artykułów."""
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        html = _page(urls["home"])
+        m = re.search(r'<section class="home-about".*?</section>', html, re.S)
+        assert m, f"{lang}: brak sekcji z tekstem pod sceną"
+        section = m.group(0)
+        assert "<h2" in section, lang
+        for key in ("czytanie", "literki", "o_nas"):
+            assert f'href="{urls[key]}"' in section, (lang, key)
+        for a in build.articles(lang):
+            assert f'href="{a.url}"' in section, (lang, a.url)
+        words = re.sub(r"<[^>]+>", " ", section).split()
+        assert len(words) >= 120, (lang, len(words))
+
+
+def test_artykul_poleca_inne_artykuly_w_tym_samym_jezyku():
+    build.build()
+    for lang in build.available_langs():
+        posts = build.articles(lang)
+        all_urls = {p.url for p in posts}
+        for a in posts:
+            html = _page(a.url)
+            m = re.search(r'<section class="[^"]*post-related[^"]*".*?</section>', html, re.S)
+            assert m, f"{a.url}: brak sekcji „Przeczytaj też”"
+            related = set(re.findall(r'href="([^"]+)"', m.group(0))) & all_urls
+            assert a.url not in related, f"{a.url} poleca sam siebie"
+            assert len(related) == min(3, len(posts) - 1), (a.url, related)
+
+
+def test_artykul_linkuje_w_tresci_do_stron_w_swoim_jezyku():
+    """Sam przycisk pod artykułem to za mało: odnośniki w treści pokazują Google,
+    które strony są ze sobą powiązane, i prowadzą czytelnika dalej."""
+    build.build()
+    for lang in build.available_langs():
+        for a in build.articles(lang):
+            html = _page(a.url)
+            body = re.search(r'<div class="wrap docs post-body">(.*?)</div>', html, re.S).group(1)
+            links = [h for h in re.findall(r'href="([^"]+)"', body) if h.startswith("/")]
+            assert len(links) >= 2, (a.url, links)
+            for h in links:
+                assert h != a.url, f"{a.url} linkuje sam do siebie"
+                if lang == build.DEFAULT_LANG:
+                    assert not h.startswith(("/de/", "/en/")), (a.url, h)
+                else:
+                    assert h.startswith(f"/{lang}/"), (a.url, h)

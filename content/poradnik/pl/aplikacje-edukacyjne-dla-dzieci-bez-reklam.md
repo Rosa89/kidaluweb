@@ -53,4 +53,6 @@ Jak sprawdzić: włącz tryb samolotowy i uruchom aplikację. Jeśli działa, to
 - Działający link do polityki prywatności z podanym kontaktem.
 - Działa w trybie samolotowym.
 
-W aplikacjach Kidalu nie ma reklam i nie tworzymy profili dziecka, a wszystkie dokumenty publikujemy na tej stronie. Pełną wersję rodzic odblokowuje zakupem w aplikacji, a część funkcji, na przykład pobieranie książek do czytania, wymaga internetu. Dlatego zachęcamy, żeby każdą aplikację sprawdzić samodzielnie, także naszą. To dobry nawyk, który przyda się przy każdej kolejnej aplikacji.
+W aplikacjach Kidalu nie ma reklam i nie tworzymy profili dziecka, a wszystkie dokumenty publikujemy na tej stronie, na przykład politykę prywatności [Nauki czytania sylabami](/czytanie-sylabami/dokumenty/) i [Literek i Cyferek](/literki-i-cyferki/dokumenty/). Pełną wersję rodzic odblokowuje zakupem w aplikacji, a część funkcji, na przykład pobieranie książek do czytania, wymaga internetu. Dlatego zachęcamy, żeby każdą aplikację sprawdzić samodzielnie, także naszą. To dobry nawyk, który przyda się przy każdej kolejnej aplikacji.
+
+Jeśli szukasz aplikacji do nauki czytania, przeczytaj też, [jak nauczyć dziecko czytać sylabami](/poradnik/jak-nauczyc-dziecko-czytac-sylabami/). Łatwiej wtedy ocenić, czy aplikacja prowadzi dziecko sensowną drogą.

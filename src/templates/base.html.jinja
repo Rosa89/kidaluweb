@@ -6,9 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ c.site.title }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ c.site.description }}{% endblock %}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap">
+{# Podzbiór latin obu krojów przeglądarka dostaje od razu, zamiast odkrywać go
+   dopiero po sparsowaniu arkusza — nagłówek sceny to element LCP strony głównej.
+   Adres musi być identyczny z tym w site.css, razem z odciskiem. #}
+<link rel="preload" href="{{ asset('fonts/baloo2-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ asset('fonts/nunito-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
 {% if noindex %}
 <meta name="robots" content="noindex">
 {% else %}
@@ -92,7 +94,8 @@
 <header class="topbar">
   <div class="bar">
     <a class="brand" href="{{ url('home') }}">
-      <img src="{{ asset('img/logo-kidalu.webp') }}" alt="{{ c.site.brand }}" width="320" height="311">
+      {# sizes odwzorowuje .brand img{width:clamp(58px,5.6vw,88px)} #}
+      <img src="{{ asset('img/logo-kidalu.webp') }}" srcset="{{ srcset('img/logo-kidalu.webp', 320) }}" sizes="(max-width: 1036px) 58px, (max-width: 1571px) 5.6vw, 88px" alt="{{ c.site.brand }}" width="320" height="311">
     </a>
     {# Wordmark zamiast pustki między logo a menu — widoczny tylko wtedy,
        gdy nawigacja jest zwinięta pod hamburger. #}

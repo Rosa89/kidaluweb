@@ -41,4 +41,6 @@ A fixed time works well, for example after dinner or before the bedtime story. A
 
 An app does not replace a parent, but it complements practice well. It takes over what is hard at home: dozens of repetitions of the same syllable without boredom, instant feedback, and a gentle rise in difficulty. The parent keeps what matters most: reading together, talking about the text, and the joy when the child reads their first sentence.
 
-When choosing an app, check that it leads the child along the same road you do: from vowels, through open syllables, to words. If it throws the child straight into whole sentences or mixes methods, it will get in the way rather than help. Our app Reading by Syllables is currently available in Polish only, but the method described here works in any language with regular spelling.
+When choosing an app, check that it leads the child along the same road you do: from vowels, through open syllables, to words. If it throws the child straight into whole sentences or mixes methods, it will get in the way rather than help. Before installing one, also run through our [checklist for safe children's apps](/en/guide/educational-apps-for-children-without-ads/): ads, purchases, data and permissions.
+
+Our app [Reading by Syllables](/en/reading-by-syllables/) is currently available in Polish only, but the method described here works in any language with regular spelling.

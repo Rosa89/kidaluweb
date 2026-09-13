@@ -2,8 +2,8 @@
   "lang": "pl",
   "site": {
     "brand": "Kidalu",
-    "title": "Kidalu — aplikacje, które uczą bawiąc",
-    "description": "Aplikacje edukacyjne dla dzieci 4–8 lat. Bez reklam, bez profilowania, bez śledzenia."
+    "title": "Aplikacje edukacyjne dla dzieci bez reklam — Kidalu",
+    "description": "Aplikacje na Androida dla dzieci 4–8 lat: nauka czytania sylabami i pisania liter po śladzie. Bez reklam i bez profilowania dziecka."
   },
   "slugs": {
     "czytanie": "czytanie-sylabami",
@@ -48,7 +48,17 @@
       }
     ],
     "sign_left": "Małe kroki, wielkie możliwości",
-    "sign_right": "Tu zaczyna się wielka przygoda"
+    "sign_right": "Tu zaczyna się wielka przygoda",
+    "about": {
+      "heading": "Aplikacje do nauki czytania i pisania dla dzieci",
+      "apps": {
+        "czytanie": "dzieli każdy tekst na sylaby i koloruje je naprzemiennie, więc dziecko składa wyrazy, zamiast je zgadywać. W bibliotece czekają bajki, wiersze i baśnie, w tym klasyka z Wolnych Lektur, a rodzic może wpisać własny tekst i wydrukować go do ćwiczeń bez ekranu. Aplikacja jest po polsku, dla dzieci w wieku 4–8 lat.",
+        "literki": "uczą pisania liter i cyfr palcem po śladzie. Każdy znak ma ustaloną kolejność i kierunek kresek, zgodne z pismem szkolnym w Polsce, Niemczech albo Austrii, więc aplikacja nie kłóci się z zeszytem. Działa bez internetu i bez zakładania konta, a dopuszczalne odchylenie od śladu rodzic ustawia w swoim panelu. Dla dzieci w wieku 4–7 lat."
+      },
+      "closing": "Obie aplikacje działają na Androidzie, bez reklam i bez profilowania dziecka. Tworzą je Sebastian Rosiński i Dawid Adamczyk, dwaj tatowie-programiści, którzy zaczęli od nauki własnych dzieci.",
+      "about_link": "Poznaj Kidalu",
+      "posts_heading": "Z poradnika dla rodziców"
+    }
   },
   "footer": {
     "rights": "Kidalu",
@@ -141,7 +151,9 @@
         "Bez reklam i treści promocyjnych kierowanych do dziecka",
         "Nie tworzymy profili behawioralnych i nie łączymy danych między aplikacjami",
         "Konto zakłada rodzic i może je w każdej chwili trwale usunąć razem z danymi"
-      ]
+      ],
+      "seo_title": "Nauka czytania sylabami — aplikacja dla dzieci | Kidalu",
+      "description": "Aplikacja na Androida, która dzieli każdy tekst na kolorowe sylaby. Bajki, wiersze, własne teksty, druk i PDF. Dla dzieci 4–8 lat, bez reklam."
     },
     "literki": {
       "name": "Literki i Cyferki",
@@ -205,7 +217,9 @@
         "Bez reklam i treści promocyjnych kierowanych do dziecka",
         "Aplikacja nie wymaga konta ani logowania",
         "Postęp nauki zostaje wyłącznie w pamięci urządzenia"
-      ]
+      ],
+      "seo_title": "Nauka pisania liter i cyfr — Literki i Cyferki | Kidalu",
+      "description": "Dziecko pisze litery i cyfry palcem po śladzie, w kolejności kresek zgodnej z pismem szkolnym. Polska, Niemcy, Austria. Działa offline, bez reklam."
     }
   },
   "app_page": {
@@ -272,6 +286,7 @@
     "back": "Wszystkie artykuły",
     "cta_heading": "Wypróbuj w praktyce",
     "cta_button": "Zobacz aplikację",
-    "by": "Zespół Kidalu"
+    "by": "Zespół Kidalu",
+    "related": "Przeczytaj też"
   }
 }

@@ -1,21 +1,32 @@
 {# src/templates/app.html.jinja #}
 {% extends "base.html.jinja" %}
 {% import "icons.html.jinja" as ico %}
-{% block title %}{{ app.name }} — {{ c.site.brand }}{% endblock %}
-{% block description %}{{ app.tagline }}{% endblock %}
+{# Nazwa aplikacji zostaje w <h1>; tytuł i opis celują w to, co rodzice wpisują w wyszukiwarkę. #}
+{% block title %}{{ app.seo_title }}{% endblock %}
+{% block description %}{{ app.description }}{% endblock %}
 {% block content %}
 {% set art = {
   'czytanie': {'house':[900,770],  'owl':[900,939]},
   'literki':  {'house':[900,1066], 'owl':[1024,1036]}
 }[page_key] %}
+{# sizes z reguł .ph-house{height:clamp(110px,14vw,190px)} i .ph-owl{height:clamp(100px,12.4vw,168px)}:
+   szerokość to wysokość razy proporcje grafiki. #}
+{% macro band_sizes(dims, min_h, vw_h, max_h) -%}
+{%- set ratio = dims[0] / dims[1] -%}
+(max-width: {{ (min_h * 100 / vw_h)|round(0, 'ceil')|int }}px) {{ (min_h * ratio)|round(0, 'ceil')|int }}px, (max-width: {{ (max_h * 100 / vw_h)|round(0, 'floor')|int }}px) {{ (vw_h * ratio)|round(1) }}vw, {{ (max_h * ratio)|round(0, 'ceil')|int }}px
+{%- endmacro %}
 <article class="page">
 
   <header class="band band--head">
     <div class="wrap band-head">
       <p class="band-art" aria-hidden="true">
         <img class="ph-house" src="{{ asset('img/house-' ~ page_key ~ '.webp') }}" alt=""
+             srcset="{{ srcset('img/house-' ~ page_key ~ '.webp', art.house[0]) }}"
+             sizes="{{ band_sizes(art.house, 110, 14, 190) }}"
              width="{{ art.house[0] }}" height="{{ art.house[1] }}">
         <img class="ph-owl" src="{{ asset('img/owl-' ~ page_key ~ '.webp') }}" alt=""
+             srcset="{{ srcset('img/owl-' ~ page_key ~ '.webp', art.owl[0]) }}"
+             sizes="{{ band_sizes(art.owl, 100, 12.4, 168) }}"
              width="{{ art.owl[0] }}" height="{{ art.owl[1] }}">
       </p>
       <div class="band-copy">

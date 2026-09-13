@@ -55,5 +55,21 @@
     </p>
   </section>
   {% endif %}
+  {# Najpierw teksty o tej samej aplikacji, potem pozostałe; najwyżej trzy. #}
+  {% set others = posts|rejectattr('url', 'equalto', post.url)|list %}
+  {% set related = ((others|selectattr('app', 'equalto', post.app)|list) + (others|rejectattr('app', 'equalto', post.app)|list))[:3] %}
+  {% if related %}
+  <section class="wrap section post-related">
+    <h2>{{ c.blog.related }}</h2>
+    <ul class="posts">
+      {% for p in related %}
+      <li class="post">
+        <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+        <p>{{ p.description }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
 </article>
 {% endblock %}

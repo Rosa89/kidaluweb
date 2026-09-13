@@ -2,8 +2,8 @@
   "lang": "de",
   "site": {
     "brand": "Kidalu",
-    "title": "Kidalu — Apps, die spielerisch lehren",
-    "description": "Lern-Apps für Kinder von 4 bis 8 Jahren. Keine Werbung, kein Profiling, kein Tracking."
+    "title": "Lern-Apps für Kinder ohne Werbung — Kidalu",
+    "description": "Android-Apps für Kinder von 4 bis 8: Polnisch lesen lernen mit Silben und Buchstaben in der Schulschrift nachspuren. Ohne Werbung, ohne Profiling."
   },
   "slugs": {
     "czytanie": "lesen-nach-silben",
@@ -48,7 +48,17 @@
       }
     ],
     "sign_left": "Kleine Schritte, große Möglichkeiten",
-    "sign_right": "Hier beginnt das große Abenteuer"
+    "sign_right": "Hier beginnt das große Abenteuer",
+    "about": {
+      "heading": "Apps zum Lesen- und Schreibenlernen für Kinder",
+      "apps": {
+        "czytanie": "zerlegt jeden polnischen Text in Silben und färbt sie abwechselnd ein, damit das Kind Wörter zusammensetzt, statt sie zu raten. In der Bibliothek warten Märchen, Gedichte und Geschichten, darunter Klassiker aus Wolne Lektury, und Eltern können eigene Texte eintippen und zum Üben ausdrucken. Die App gibt es nur auf Polnisch; sie eignet sich für Kinder von 4 bis 8 Jahren, die Polnisch lesen lernen, zum Beispiel in zweisprachigen Familien.",
+        "literki": "ist eine App zum Nachspuren: Das Kind schreibt Buchstaben und Ziffern mit dem Finger auf der Spur. Jedes Zeichen hat eine feste Reihenfolge und Richtung der Striche, passend zur Schulschrift in Deutschland, Österreich oder Polen, sodass die App dem Schulheft nicht widerspricht. Sie funktioniert offline und ohne Konto, die erlaubte Abweichung von der Spur stellen Eltern im Elternbereich ein. Für Kinder von 4 bis 7 Jahren."
+      },
+      "closing": "Beide Apps laufen auf Android, ohne Werbung und ohne Profiling des Kindes. Dahinter stehen Sebastian Rosiński und Dawid Adamczyk, zwei Väter und Programmierer, die mit ihren eigenen Kindern angefangen haben.",
+      "about_link": "Mehr über Kidalu",
+      "posts_heading": "Aus dem Ratgeber für Eltern"
+    }
   },
   "footer": {
     "rights": "Kidalu",
@@ -141,7 +151,9 @@
         "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
         "Wir erstellen keine Verhaltensprofile und verknüpfen keine Daten zwischen Apps",
         "Das Konto legt ein Elternteil an und kann es jederzeit mitsamt allen Daten dauerhaft löschen"
-      ]
+      ],
+      "seo_title": "Polnisch lesen lernen mit Silben — App für Kinder | Kidalu",
+      "description": "Android-App, die polnische Texte in farbige Silben zerlegt: Märchen, Gedichte, eigene Texte, Druck und PDF. Für Kinder von 4 bis 8, ohne Werbung."
     },
     "literki": {
       "name": "Buchstaben und Zahlen",
@@ -205,7 +217,9 @@
         "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
         "Die App braucht weder Konto noch Anmeldung",
         "Der Lernfortschritt bleibt ausschließlich im Speicher des Geräts"
-      ]
+      ],
+      "seo_title": "Buchstaben schreiben lernen — App für Kinder | Kidalu",
+      "description": "Kinder spuren Buchstaben und Zahlen mit dem Finger nach, in der Strichfolge der Schulschrift. Deutschland, Österreich, Polen. Offline und ohne Werbung."
     }
   },
   "app_page": {
@@ -272,6 +286,7 @@
     "back": "Alle Artikel",
     "cta_heading": "In der Praxis ausprobieren",
     "cta_button": "App ansehen",
-    "by": "Kidalu-Team"
+    "by": "Kidalu-Team",
+    "related": "Lesen Sie auch"
   }
 }

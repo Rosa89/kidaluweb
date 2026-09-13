@@ -40,7 +40,7 @@ You do not need workbooks or worksheets. The best exercises are the ones the chi
 
 Tracing letters with a finger is a natural in-between stage. It does not yet require pressure control or a precise grip, but it already teaches the most important thing: the order and direction of the strokes that make up a letter. A child who has learned that "a" starts at the top and goes to the left will later repeat the same movement with a pencil.
 
-A well-designed exercise shows the starting point, guides along the trace and reacts when the child strays off the path. It matters that the letter shape matches the one taught at school. Poland has its own school script with characteristic loops, Germany and Austria have different local models. An app that shows letters in a random typeface can fix movements that will later have to be unlearned at school.
+A well-designed exercise shows the starting point, guides along the trace and reacts when the child strays off the path. It matters that the letter shape matches the one taught at school. Poland has its own school script with characteristic loops, Germany and Austria have different local models. An app that shows letters in a random typeface can fix movements that will later have to be unlearned at school. That is why in [Letters and Numbers](/en/letters-and-numbers/) you pick the country at the start: it sets the alphabet, the handwriting style and the stroke order. And before installing any app, check it against our [checklist](/en/guide/educational-apps-for-children-without-ads/).
 
 ## What not to do
 

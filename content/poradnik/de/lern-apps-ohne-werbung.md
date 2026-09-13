@@ -53,4 +53,6 @@ So prüfen Sie es: Flugmodus einschalten und die App starten. Läuft sie, ist da
 - Funktionierender Link zur Datenschutzerklärung mit Kontaktangabe.
 - Läuft im Flugmodus.
 
-Die Kidalu-Apps enthalten keine Werbung, wir erstellen keine Profile des Kindes, und alle Dokumente veröffentlichen wir auf dieser Seite. Die Vollversion schalten die Eltern per In-App-Kauf frei, und manche Funktionen, etwa das Laden von Büchern zum Lesen, brauchen Internet. Deshalb ermutigen wir Sie, jede App selbst zu prüfen, auch unsere. Es ist eine gute Gewohnheit, die bei jeder weiteren App nützlich ist.
+Die Kidalu-Apps enthalten keine Werbung, wir erstellen keine Profile des Kindes, und alle Dokumente veröffentlichen wir auf dieser Seite, etwa die Datenschutzerklärung von [Lesen nach Silben](/de/lesen-nach-silben/dokumente/) und von [Buchstaben und Zahlen](/de/buchstaben-und-zahlen/dokumente/). Die Vollversion schalten die Eltern per In-App-Kauf frei, und manche Funktionen, etwa das Laden von Büchern zum Lesen, brauchen Internet. Deshalb ermutigen wir Sie, jede App selbst zu prüfen, auch unsere. Es ist eine gute Gewohnheit, die bei jeder weiteren App nützlich ist.
+
+Wenn Sie eine App zum Lesenlernen suchen, lesen Sie auch, [wie Kinder mit der Silbenmethode lesen lernen](/de/ratgeber/lesen-nach-silben-beibringen/). Dann lässt sich leichter beurteilen, ob eine App das Kind einen sinnvollen Weg führt.

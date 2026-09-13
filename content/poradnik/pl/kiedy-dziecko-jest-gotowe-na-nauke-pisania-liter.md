@@ -40,7 +40,7 @@ Nie potrzebujesz zeszytów ani kart pracy. Najlepsze ćwiczenia to te, które dz
 
 Kreślenie liter palcem to naturalny etap pośredni. Nie wymaga jeszcze kontroli nacisku ani precyzyjnego chwytu, a już uczy najważniejszego: kolejności i kierunku ruchów, z których składa się litera. Dziecko, które nauczy się, że „a" zaczyna się od góry i idzie w lewo, potem ołówkiem powtórzy ten sam ruch.
 
-Dobrze zaprojektowane ćwiczenie pokazuje punkt startu, prowadzi po śladzie i reaguje, gdy dziecko zboczy z drogi. Ważne, żeby wzór litery był zgodny z tym, którego uczy szkoła. W Polsce to elementarzowy krój z charakterystycznymi pętelkami, a w Niemczech i Austrii inne, lokalne wzory. Aplikacja, która pokazuje litery drukowane lub w przypadkowym kroju, może utrwalić ruchy, które w szkole trzeba będzie oduczyć.
+Dobrze zaprojektowane ćwiczenie pokazuje punkt startu, prowadzi po śladzie i reaguje, gdy dziecko zboczy z drogi. Ważne, żeby wzór litery był zgodny z tym, którego uczy szkoła. W Polsce to elementarzowy krój z charakterystycznymi pętelkami, a w Niemczech i Austrii inne, lokalne wzory. Aplikacja, która pokazuje litery drukowane lub w przypadkowym kroju, może utrwalić ruchy, które w szkole trzeba będzie oduczyć. Dlatego w [Literkach i Cyferkach](/literki-i-cyferki/) kraj wybiera się na starcie: od niego zależy alfabet, krój pisma i kolejność kresek. A zanim zainstalujesz jakąkolwiek aplikację, sprawdź ją według [naszej listy kontrolnej](/poradnik/aplikacje-edukacyjne-dla-dzieci-bez-reklam/).
 
 ## Czego nie robić
 

@@ -40,7 +40,7 @@ Sie brauchen weder Hefte noch Arbeitsblätter. Die besten Übungen sind die, die
 
 Das Nachfahren von Buchstaben mit dem Finger ist eine natürliche Zwischenstufe. Es verlangt noch keine Druckkontrolle und keinen präzisen Griff, lehrt aber das Wichtigste: Reihenfolge und Richtung der Bewegungen, aus denen ein Buchstabe besteht. Ein Kind, das gelernt hat, dass das „a" oben beginnt und nach links läuft, wiederholt dieselbe Bewegung später mit dem Stift.
 
-Eine gut gestaltete Übung zeigt den Startpunkt, führt an der Spur entlang und reagiert, wenn das Kind vom Weg abkommt. Wichtig ist, dass die Buchstabenform zu der passt, die die Schule lehrt. In Deutschland und Österreich gibt es unterschiedliche Ausgangsschriften, in Polen eine eigene Schulschrift mit charakteristischen Schleifen. Eine App, die Buchstaben in einer beliebigen Druckschrift zeigt, kann Bewegungen festigen, die in der Schule wieder abgewöhnt werden müssen.
+Eine gut gestaltete Übung zeigt den Startpunkt, führt an der Spur entlang und reagiert, wenn das Kind vom Weg abkommt. Wichtig ist, dass die Buchstabenform zu der passt, die die Schule lehrt. In Deutschland und Österreich gibt es unterschiedliche Ausgangsschriften, in Polen eine eigene Schulschrift mit charakteristischen Schleifen. Eine App, die Buchstaben in einer beliebigen Druckschrift zeigt, kann Bewegungen festigen, die in der Schule wieder abgewöhnt werden müssen. Deshalb wählt man in [Buchstaben und Zahlen](/de/buchstaben-und-zahlen/) zu Beginn das Land: Es bestimmt Alphabet, Schrift und Strichreihenfolge. Und bevor Sie irgendeine App installieren, prüfen Sie sie mit unserer [Checkliste](/de/ratgeber/lern-apps-ohne-werbung/).
 
 ## Was man nicht tun sollte
 

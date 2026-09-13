@@ -59,6 +59,23 @@ def prepare(src: Path, dst: Path, width: int | None = None, quality: int = 82) -
     return _finish(im, dst, width, quality)
 
 
+def variants(src: Path, widths, quality: int = 82) -> list[Path]:
+    """Mniejsze kopie gotowego assetu dla srcset, zapisane obok jako <nazwa>-<szerokość>w.webp.
+
+    Źródłem jest już wycięty i przycięty webp, więc zostaje samo skalowanie.
+    Szerokości równe oryginałowi lub większe są pomijane — powiększenie nic nie daje.
+    """
+    im = Image.open(src).convert("RGBA")
+    out: list[Path] = []
+    for width in sorted(widths):
+        if width >= im.width:
+            continue
+        dst = src.with_name(f"{src.stem}-{width}w.webp")
+        _scale_to_width(im, width).save(dst, format="WEBP", quality=quality, method=6)
+        out.append(dst)
+    return out
+
+
 # Próg bieli: kanał minimalny (R,G,B) musi przekroczyć tę wartość, żeby piksel
 # liczył się jako "biały" kandydat na tło. Stary próg (238) miał zerowy margines:
 # najjaśniejsze piksele realnej treści w assets-source/ sięgają dokładnie 238.

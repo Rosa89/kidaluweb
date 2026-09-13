@@ -41,4 +41,6 @@ Eine feste Zeit hilft, zum Beispiel nach dem Abendessen oder vor der Gutenachtge
 
 Eine App ersetzt die Eltern nicht, ergänzt das Üben aber gut. Sie übernimmt das, was zu Hause schwerfällt: Dutzende Wiederholungen derselben Silbe ohne Langeweile, sofortige Rückmeldung und eine sanfte Steigerung der Schwierigkeit. Den Eltern bleibt das Wichtigste: gemeinsames Lesen, das Gespräch über den Text und die Freude, wenn das Kind den ersten Satz liest.
 
-Prüfen Sie bei der Auswahl, ob die App das Kind denselben Weg führt wie Sie: von den Vokalen über offene Silben zu Wörtern. Wirft sie das Kind sofort in ganze Sätze oder mischt sie Methoden, stört sie mehr, als sie hilft. Unsere App Lesen nach Silben ist derzeit nur auf Polnisch verfügbar; die hier beschriebene Methode funktioniert aber in jeder Sprache mit regelmäßiger Rechtschreibung.
+Prüfen Sie bei der Auswahl, ob die App das Kind denselben Weg führt wie Sie: von den Vokalen über offene Silben zu Wörtern. Wirft sie das Kind sofort in ganze Sätze oder mischt sie Methoden, stört sie mehr, als sie hilft. Bevor Sie eine App installieren, gehen Sie auch unsere [Checkliste für sichere Lern-Apps](/de/ratgeber/lern-apps-ohne-werbung/) durch: Werbung, Käufe, Daten und Berechtigungen.
+
+Unsere App [Lesen nach Silben](/de/lesen-nach-silben/) ist derzeit nur auf Polnisch verfügbar; die hier beschriebene Methode funktioniert aber in jeder Sprache mit regelmäßiger Rechtschreibung.

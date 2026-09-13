@@ -69,13 +69,39 @@ def asset_url(rel: str) -> str:
     return f"/assets/{rel}?v={digest}"
 
 
-def stamp_css(css: Path) -> None:
-    """Dokleja te same odciski do url(../img/...) w arkuszu, bo tamtych adresów
-    szablon nie widzi."""
-    def stamp(m: re.Match) -> str:
-        return "url(../" + asset_url("img/" + m.group(1)).removeprefix("/assets/") + ")"
+# Mniejsze kopie grafik dla srcset. Na telefonie sowa zajmuje ok. 70 px szerokości,
+# a przeglądarka pobierała plik 900 px. Warianty tworzy tools.prepare_asset.variants
+# i leżą obok oryginału jako <nazwa>-<szerokość>w.webp. Po podmianie grafiki trzeba
+# je wygenerować od nowa; test pilnuje przynajmniej zgodności proporcji.
+VARIANTS = {
+    "img/house-czytanie.webp": (240, 480),
+    "img/house-literki.webp": (240, 480),
+    "img/owl-czytanie.webp": (240, 480),
+    "img/owl-literki.webp": (240, 480),
+    "img/logo-kidalu.webp": (160,),
+    "img/butterfly.webp": (120,),
+}
 
-    text = re.sub(r"url\(\.\./img/([A-Za-z0-9._-]+)\)", stamp, css.read_text("utf-8"))
+
+def variant_rel(rel: str, width: int) -> str:
+    return re.sub(r"\.webp$", f"-{width}w.webp", rel)
+
+
+def srcset(rel: str, width: int) -> str:
+    """Wartość atrybutu srcset: warianty z VARIANTS i oryginał o szerokości `width`."""
+    candidates = [f"{asset_url(variant_rel(rel, w))} {w}w" for w in VARIANTS.get(rel, ())]
+    return ", ".join(candidates + [f"{asset_url(rel)} {width}w"])
+
+
+def stamp_css(css: Path) -> None:
+    """Dokleja te same odciski do url(../img/...) i url(../fonts/...) w arkuszu,
+    bo tamtych adresów szablon nie widzi. Przy fontach to więcej niż cache:
+    preload w <head> działa tylko pod adresem identycznym z tym w arkuszu."""
+    def stamp(m: re.Match) -> str:
+        rel = f"{m.group(1)}/{m.group(2)}"
+        return "url(../" + asset_url(rel).removeprefix("/assets/") + ")"
+
+    text = re.sub(r"url\(\.\./(img|fonts)/([A-Za-z0-9._-]+)\)", stamp, css.read_text("utf-8"))
     css.write_text(text, "utf-8")
 
 
@@ -350,6 +376,7 @@ def build() -> list[Path]:
             "c": c,
             "url": lambda key, u=urls: u[key],
             "asset": asset_url,
+            "srcset": srcset,
             "page_key": "home",
             "alternates": alternates("home"),
             "langs": available_langs(),
@@ -366,6 +393,7 @@ def build() -> list[Path]:
             "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},
             "load_lang": load_lang,
             "has_blog": bool(articles(lang)),
+            "posts": articles(lang),
         }
         lang_src = base_src + [path]
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))

@@ -2,8 +2,8 @@
   "lang": "en",
   "site": {
     "brand": "Kidalu",
-    "title": "Kidalu — apps that teach through play",
-    "description": "Learning apps for children aged 4 to 8. No ads, no profiling, no tracking."
+    "title": "Educational apps for kids without ads — Kidalu",
+    "description": "Android apps for children aged 4–8: learn to read Polish by syllables and trace letters in school handwriting. No ads, no profiling of your child."
   },
   "slugs": {
     "czytanie": "reading-by-syllables",
@@ -48,7 +48,17 @@
       }
     ],
     "sign_left": "Small steps, big possibilities",
-    "sign_right": "The great adventure starts here"
+    "sign_right": "The great adventure starts here",
+    "about": {
+      "heading": "Apps that help children learn to read and write",
+      "apps": {
+        "czytanie": "splits every Polish text into syllables and colours them alternately, so your child assembles words instead of guessing them. The library holds fairy tales, poems and stories, including classics from Wolne Lektury, and you can type in your own text and print it for screen-free practice. The app is in Polish only and suits children aged 4–8 who are learning to read Polish, for example in bilingual families.",
+        "literki": "is a tracing app: your child writes letters and digits with a finger along the trace. Every character has a fixed stroke order and direction that matches school handwriting in Poland, Germany or Austria, so the app never contradicts the exercise book. It works offline with no account, and the tolerated deviation from the trace is set in the parent panel. For children aged 4–7."
+      },
+      "closing": "Both apps run on Android, with no ads and no profiling of your child. They are made by Sebastian Rosiński and Dawid Adamczyk, two dads and developers who started with their own kids.",
+      "about_link": "More about Kidalu",
+      "posts_heading": "From the guide for parents"
+    }
   },
   "footer": {
     "rights": "Kidalu",
@@ -141,7 +151,9 @@
         "No ads or promotional content aimed at children",
         "We build no behavioural profiles and never link data between apps",
         "A parent creates the account and can delete it permanently, with all its data, at any time"
-      ]
+      ],
+      "seo_title": "Learn to read Polish by syllables — app for kids | Kidalu",
+      "description": "An Android app that splits Polish text into coloured syllables: fairy tales, poems, your own texts, print and PDF. For children aged 4–8, no ads."
     },
     "literki": {
       "name": "Letters and Numbers",
@@ -205,7 +217,9 @@
         "No ads or promotional content aimed at children",
         "The app needs no account and no sign-in",
         "Learning progress stays in the device's memory only"
-      ]
+      ],
+      "seo_title": "Letter tracing app for kids — Letters and Numbers | Kidalu",
+      "description": "Children trace letters and numbers with a finger, in the stroke order of school handwriting in Poland, Germany or Austria. Works offline, no ads."
     }
   },
   "app_page": {
@@ -272,6 +286,7 @@
     "back": "All articles",
     "cta_heading": "Try it in practice",
     "cta_button": "See the app",
-    "by": "Kidalu team"
+    "by": "Kidalu team",
+    "related": "Read next"
   }
 }

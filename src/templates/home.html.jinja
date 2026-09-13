@@ -13,12 +13,24 @@
   'czytanie': {'icon':'book',   'house':[900,770],  'owl':[900,939]},
   'literki':  {'icon':'pencil', 'house':[900,1066], 'owl':[1024,1036]}
 } %}
+{# sizes dla grafik na kafelkach, policzone z reguł .tile-art w site.css.
+   Telefon: pole ma 5,25u wysokości przy u ≤ 15px, domek zajmuje 76%, sowa 88%.
+   Scena: pole ma 13u, gdzie u = 1,1% szerokości kadru; domek 100%, sowa 88%.
+   Kadr ma szerokość max(100vw, 1672/941 · 100vh), stąd osobny wariant w vh
+   dla okien węższych niż proporcje grafiki tła. #}
+{% macro tile_sizes(dims, phone_share, stage_share) -%}
+{%- set ratio = dims[0] / dims[1] -%}
+{%- set phone = (78.75 * phone_share * ratio)|round(0, 'ceil')|int -%}
+{%- set stage = 14.3 * stage_share * ratio -%}
+(max-width: 900px) {{ phone }}px, (max-aspect-ratio: 6/5) {{ phone }}px, (max-aspect-ratio: 1672/941) {{ (stage * 1672 / 941)|round(1) }}vh, {{ stage|round(1) }}vw
+{%- endmacro %}
 <div class="scene">
   <div class="stage" aria-hidden="true"></div>
   <div class="flutter" aria-hidden="true">
-    <img class="deco-butterfly deco-butterfly--1" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
-    <img class="deco-butterfly deco-butterfly--2" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
-    <img class="deco-butterfly deco-butterfly--3" src="{{ asset('img/butterfly.webp') }}" alt="" width="260" height="200" loading="lazy">
+    {# Największy motyl ma 2,4u szerokości — te same zasady co przy kafelkach. #}
+    {% for n in range(1, 4) %}
+    <img class="deco-butterfly deco-butterfly--{{ n }}" src="{{ asset('img/butterfly.webp') }}" srcset="{{ srcset('img/butterfly.webp', 260) }}" sizes="(max-width: 900px) 36px, (max-aspect-ratio: 6/5) 36px, (max-aspect-ratio: 1672/941) 4.7vh, 2.7vw" alt="" width="260" height="200" loading="lazy">
+    {% endfor %}
   </div>
   <div class="scene-signs" aria-hidden="true">
     <span class="hangsign hangsign--l"><img src="{{ asset('img/sign-hang.webp') }}" alt="" width="600" height="341" loading="lazy"><span>{{ c.home.sign_left }}</span></span>
@@ -43,8 +55,8 @@
     <li class="grove-slot">
       <{% if t.url %}a href="{{ url(t.url) }}"{% else %}div{% endif %} class="tile tile--{{ t.key }}{% if not t.url %} tile--soon{% endif %}">
         <span class="tile-art">
-          <img class="tile-house" src="{{ asset('img/house-' ~ t.key ~ '.webp') }}" alt="" width="{{ a.house[0] }}" height="{{ a.house[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
-          <img class="tile-owl" src="{{ asset('img/owl-' ~ t.key ~ '.webp') }}" alt="" width="{{ a.owl[0] }}" height="{{ a.owl[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
+          <img class="tile-house" src="{{ asset('img/house-' ~ t.key ~ '.webp') }}" srcset="{{ srcset('img/house-' ~ t.key ~ '.webp', a.house[0]) }}" sizes="{{ tile_sizes(a.house, 0.76, 1) }}" alt="" width="{{ a.house[0] }}" height="{{ a.house[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
+          <img class="tile-owl" src="{{ asset('img/owl-' ~ t.key ~ '.webp') }}" srcset="{{ srcset('img/owl-' ~ t.key ~ '.webp', a.owl[0]) }}" sizes="{{ tile_sizes(a.owl, 0.88, 0.88) }}" alt="" width="{{ a.owl[0] }}" height="{{ a.owl[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
         </span>
         <span class="tile-board">
           <span class="tile-ico">{{ ico.icon(a.icon) }}</span>
@@ -63,4 +75,24 @@
 
   <p class="motto">{{ c.home.motto }}<span class="motto-heart">{{ ico.icon('heart') }}</span></p>
 </div>
+{# Scena ma kilkadziesiąt słów, a wyszukiwarka ocenia stronę po treści. Tekst leży
+   pod lasem, więc scena dalej wypełnia pierwszy ekran (spec 8a). #}
+{% set about = c.home.about %}
+<section class="home-about" aria-labelledby="o-aplikacjach">
+  <div class="wrap section">
+    <h2 id="o-aplikacjach">{{ about.heading }}</h2>
+    {% for key in ('czytanie', 'literki') %}
+    <p class="prose"><a href="{{ url(key) }}">{{ c.apps[key].name }}</a> {{ about.apps[key] }}</p>
+    {% endfor %}
+    <p class="prose">{{ about.closing }} <a href="{{ url('o_nas') }}">{{ about.about_link }}</a></p>
+    {% if posts %}
+    <h3>{{ about.posts_heading }}</h3>
+    <ul class="home-posts">
+      {% for p in posts %}
+      <li><a href="{{ p.url }}">{{ p.title }}</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+</section>
 {% endblock %}

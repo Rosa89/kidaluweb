@@ -53,4 +53,6 @@ How to check: turn on flight mode and open the app. If it works, that is a good 
 - A working privacy policy link with contact details.
 - Works in flight mode.
 
-Kidalu apps contain no ads, we build no profile of the child, and we publish every document on this site. The parent unlocks the full version with an in-app purchase, and some features, such as downloading books to read, need the internet. That is why we encourage you to check every app yourself, ours included. It is a good habit that will serve you with every app that follows.
+Kidalu apps contain no ads, we build no profile of the child, and we publish every document on this site, such as the privacy policy of [Reading by Syllables](/en/reading-by-syllables/legal/) and of [Letters and Numbers](/en/letters-and-numbers/legal/). The parent unlocks the full version with an in-app purchase, and some features, such as downloading books to read, need the internet. That is why we encourage you to check every app yourself, ours included. It is a good habit that will serve you with every app that follows.
+
+If you are looking for an app to help with reading, see also [how to teach a child to read with syllables](/en/guide/how-to-teach-a-child-to-read-with-syllables/). It makes it easier to judge whether an app leads your child along a sensible path.
