@@ -360,3 +360,78 @@ def test_strona_404_istnieje_i_nie_jest_indeksowana():
     assert 'href="/"' in html and 'href="/de/"' in html and 'href="/en/"' in html
     # 404 nie trafia do sitemapy
     assert "404" not in (build.OUT / "sitemap.xml").read_text("utf-8")
+
+
+# --- poradnik (blog) ---
+
+def test_poradnik_ma_indeks_i_artykuly_po_polsku():
+    build.build()
+    urls = build.page_urls(build.load_lang("pl"), "pl")
+    assert urls["poradnik"] == "/poradnik/"
+    index = build.OUT / "poradnik" / "index.html"
+    assert index.exists()
+    html = index.read_text("utf-8")
+    articles = build.articles("pl")
+    assert len(articles) >= 3, "poradnik startuje z co najmniej trzema artykułami"
+    for a in articles:
+        assert a.url.startswith("/poradnik/")
+        assert f'href="{a.url}"' in html, f"indeks nie linkuje do {a.url}"
+        page = build.OUT / a.url.strip("/") / "index.html"
+        assert page.exists(), page
+        body = page.read_text("utf-8")
+        assert f"<h1>{a.title}</h1>" in body
+        assert f'<meta name="description" content="{a.description}">' in body
+
+
+def test_artykul_ma_dane_strukturalne_article():
+    build.build()
+    a = build.articles("pl")[0]
+    html = (build.OUT / a.url.strip("/") / "index.html").read_text("utf-8")
+    types = {d["@type"]: d for d in _jsonld(html)}
+    art = types["Article"]
+    assert art["headline"] == a.title
+    assert art["inLanguage"] == "pl"
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", art["datePublished"])
+    assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", art["dateModified"])
+    assert art["author"]["@type"] == "Organization"
+    assert art["mainEntityOfPage"] == f"https://kidalu.com{a.url}"
+    assert "BreadcrumbList" in types
+    crumbs = types["BreadcrumbList"]["itemListElement"]
+    assert crumbs[-1]["name"] == a.title
+    assert crumbs[0]["item"] == "https://kidalu.com/"
+
+
+def test_artykuly_i_indeks_poradnika_sa_w_sitemapie():
+    build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    assert "<loc>https://kidalu.com/poradnik/</loc>" in sitemap
+    for a in build.articles("pl"):
+        entry = _sitemap_entry(sitemap, f"https://kidalu.com{a.url}")
+        assert f'hreflang="pl" href="https://kidalu.com{a.url}"' in entry
+        # artykuł bez tłumaczenia nie dostaje zmyślonych alternatyw
+        for l in ("de", "en"):
+            if l not in a.translations:
+                assert f'hreflang="{l}"' not in entry
+
+
+def test_poradnik_w_nawigacji_tylko_gdy_ma_artykuly():
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        home = build.OUT / urls["home"].strip("/") / "index.html"
+        nav = re.search(r'<nav class="topnav".*?</nav>', home.read_text("utf-8"), re.S).group(0)
+        if build.articles(lang):
+            assert f'href="{urls["poradnik"]}"' in nav, lang
+            assert (build.OUT / urls["poradnik"].strip("/") / "index.html").exists()
+        else:
+            assert f'href="{urls["poradnik"]}"' not in nav, lang
+            assert not (build.OUT / urls["poradnik"].strip("/") / "index.html").exists()
+
+
+def test_artykul_linkuje_do_aplikacji_i_ma_date():
+    """Każdy artykuł kończy się odnośnikiem do aplikacji — po to jest poradnik."""
+    build.build()
+    for a in build.articles("pl"):
+        html = (build.OUT / a.url.strip("/") / "index.html").read_text("utf-8")
+        assert re.search(r'href="/(czytanie-sylabami|literki-i-cyferki)/"', html), a.url
+        assert re.search(r'<time datetime="\d{4}-\d{2}-\d{2}"', html), a.url

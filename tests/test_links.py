@@ -65,6 +65,7 @@ def test_zbudowana_witryna_nie_ma_zepsutych_linkow():
 
 
 # Inwentarz: 5 stron na język plus po jednej stronie dokumentów na każdy
+# przekład, plus poradnik (indeks i artykuły) w językach, które go mają.
 # istniejący przekład. Gdy dojdzie tłumaczenie, dopisz je tutaj — test ma
 # wyłapać zarówno stronę, która zniknęła, jak i taką, która pojawiła się
 # przez przypadek.
@@ -76,6 +77,10 @@ OCZEKIWANE = {
     "literki-i-cyferki/dokumenty/index.html",
     "kontakt/index.html",
     "o-kidalu/index.html",
+    "poradnik/index.html",
+    "poradnik/jak-nauczyc-dziecko-czytac-sylabami/index.html",
+    "poradnik/kiedy-dziecko-jest-gotowe-na-nauke-pisania-liter/index.html",
+    "poradnik/aplikacje-edukacyjne-dla-dzieci-bez-reklam/index.html",
     "de/index.html",
     "de/lesen-nach-silben/index.html",
     "de/buchstaben-und-zahlen/index.html",

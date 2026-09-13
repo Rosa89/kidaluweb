@@ -10,7 +10,8 @@
     "literki": "letters-and-numbers",
     "kontakt": "contact",
     "docs": "legal",
-    "o_nas": "about-kidalu"
+    "o_nas": "about-kidalu",
+    "poradnik": "guide"
   },
   "nav": {
     "home": "Forest",
@@ -18,7 +19,8 @@
     "lang": "Language",
     "menu": "Menu",
     "skip": "Skip to content",
-    "about": "About Kidalu"
+    "about": "About Kidalu",
+    "blog": "Guide"
   },
   "home": {
     "headline": "Step into the Kidalu forest",
@@ -258,5 +260,16 @@
     "title": "Page not found",
     "body": "This forest path leads nowhere. The address may have changed, or there is a typo in the link.",
     "home": "Back to the home page"
+  },
+  "blog": {
+    "headline": "Guide for parents",
+    "lead": "Short, practical articles on supporting your child in learning to read and write. No jargon, with concrete tips to use at home.",
+    "published": "Published",
+    "updated": "Updated",
+    "read": "Read more",
+    "back": "All articles",
+    "cta_heading": "Try it in practice",
+    "cta_button": "See the app",
+    "by": "Kidalu team"
   }
 }

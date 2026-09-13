@@ -11,12 +11,14 @@ from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
 
+import markdown
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from markupsafe import Markup
 
 ROOT = Path(__file__).resolve().parent
 CONTENT = ROOT / "content"
 TEMPLATES = ROOT / "src" / "templates"
+POSTS = CONTENT / "poradnik"
 ASSETS = ROOT / "src" / "assets"
 OUT = ROOT / "docs"
 
@@ -87,6 +89,7 @@ def page_urls(c: dict, lang: str) -> dict[str, str]:
         "literki_docs": f"{p}/{s['literki']}/{s['docs']}/",
         "kontakt": f"{p}/{s['kontakt']}/",
         "o_nas": f"{p}/{s['o_nas']}/",
+        "poradnik": f"{p}/{s['poradnik']}/",
     }
 
 
@@ -110,6 +113,8 @@ def alternates(key: str) -> dict[str, str]:
             app_key = key[: -len("_docs")]
             if not doc_path(app_key, l).exists():
                 continue
+        if key == "poradnik" and not articles(l):
+            continue
         urls = page_urls(load_lang(l), l)
         if key in urls:
             out[l] = urls[key]
@@ -129,6 +134,74 @@ def legal_links(c: dict, urls: dict[str, str], lang: str) -> list[dict]:
     ]
 
 
+FRONT = re.compile(r"\A---\n(.*?)\n---\n", re.S)
+
+
+@dataclass
+class Article:
+    """Wpis poradnika wczytany z content/poradnik/<lang>/<slug>.md.
+
+    Nagłówek YAML-owy ogranicza się do par klucz: wartość — tyle wystarcza,
+    a nie ciągnie za sobą zależności od parsera YAML.
+    """
+    lang: str
+    slug: str
+    title: str
+    description: str
+    date: str
+    key: str
+    app: str | None
+    body_md: str
+    path: Path
+    translations: dict[str, str] = field(default_factory=dict)
+
+    @property
+    def url(self) -> str:
+        c = load_lang(self.lang)
+        return f"{prefix(self.lang)}/{c['slugs']['poradnik']}/{self.slug}/"
+
+    @property
+    def html(self) -> str:
+        return markdown.markdown(self.body_md, extensions=["extra"], output_format="html5")
+
+
+def _parse_article(path: Path, lang: str) -> Article:
+    text = path.read_text("utf-8")
+    m = FRONT.match(text)
+    if not m:
+        raise ValueError(f"{path}: brak nagłówka --- ... ---")
+    meta: dict[str, str] = {}
+    for line in m.group(1).splitlines():
+        k, _, v = line.partition(":")
+        meta[k.strip()] = v.strip()
+    for required in ("title", "description", "date", "key"):
+        if not meta.get(required):
+            raise ValueError(f"{path}: brak pola {required}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", meta["date"]):
+        raise ValueError(f"{path}: data ma być w formacie YYYY-MM-DD")
+    if meta.get("app") and meta["app"] not in APPS:
+        raise ValueError(f"{path}: nieznana aplikacja {meta['app']}")
+    return Article(
+        lang=lang, slug=path.stem, title=meta["title"], description=meta["description"],
+        date=meta["date"], key=meta["key"], app=meta.get("app") or None,
+        body_md=text[m.end():], path=path,
+    )
+
+
+def articles(lang: str) -> list[Article]:
+    """Artykuły danego języka, najnowsze pierwsze; translations wskazuje wersje
+    tego samego wpisu (ten sam key) w pozostałych językach."""
+    by_lang: dict[str, list[Article]] = {}
+    for l in available_langs():
+        d = POSTS / l
+        by_lang[l] = [_parse_article(p, l) for p in sorted(d.glob("*.md"))] if d.exists() else []
+    for a in by_lang.get(lang, []):
+        a.translations = {
+            l: b.url for l, items in by_lang.items() for b in items if b.key == a.key
+        }
+    return sorted(by_lang.get(lang, []), key=lambda a: (a.date, a.title), reverse=True)
+
+
 @dataclass
 class Page:
     """Jedna wygenerowana strona wraz z tym, co potrzebne do sitemapy."""
@@ -136,6 +209,7 @@ class Page:
     lang: str
     key: str
     sources: list[Path] = field(default_factory=list)
+    alts: dict[str, str] | None = None  # jawne alternatywy (artykuły); domyślnie alternates(key)
 
 
 def lastmod(sources: list[Path]) -> str:
@@ -194,7 +268,7 @@ def sitemap_xml(pages: list[Page]) -> str:
         '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
     ]
     for page in sorted(pages, key=lambda p: p.url):
-        alts = alternates(page.key)
+        alts = page.alts if page.alts is not None else alternates(page.key)
         lines.append("  <url>")
         lines.append(f"    <loc>{SITE_HOST}{page.url}</loc>")
         lines.append(f"    <lastmod>{lastmod(page.sources)}</lastmod>")
@@ -256,6 +330,7 @@ def build() -> list[Path]:
             "noindex": False,
             "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},
             "load_lang": load_lang,
+            "has_blog": bool(articles(lang)),
         }
         lang_src = base_src + [path]
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
@@ -295,6 +370,23 @@ def build() -> list[Path]:
             **{**ctx, "page_key": "o_nas", "alternates": alternates("o_nas")},
         )))
         pages.append(Page(urls["o_nas"], lang, "o_nas", lang_src + [TEMPLATES / "about.html.jinja"]))
+
+        posts = articles(lang)
+        if posts:
+            written.append(_write(urls["poradnik"], env.get_template("blog.html.jinja").render(
+                **{**ctx, "page_key": "poradnik", "alternates": alternates("poradnik"), "posts": posts},
+            )))
+            pages.append(Page(urls["poradnik"], lang, "poradnik",
+                              lang_src + [TEMPLATES / "blog.html.jinja"] + [a.path for a in posts]))
+            for a in posts:
+                art_src = lang_src + [TEMPLATES / "article.html.jinja", a.path]
+                written.append(_write(a.url, env.get_template("article.html.jinja").render(
+                    **{**ctx, "page_key": "artykul", "alternates": a.translations,
+                       "post": a, "modified": lastmod(art_src),
+                       "cta_app": c["apps"][a.app] if a.app else None,
+                       "cta_url": urls[a.app] if a.app else None},
+                )))
+                pages.append(Page(a.url, lang, "artykul", art_src, alts=a.translations))
 
         if lang == DEFAULT_LANG:
             # GitHub Pages serwuje /404.html z korzenia dla każdego brakującego adresu.

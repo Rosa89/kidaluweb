@@ -10,7 +10,8 @@
     "literki": "buchstaben-und-zahlen",
     "kontakt": "kontakt",
     "docs": "dokumente",
-    "o_nas": "ueber-kidalu"
+    "o_nas": "ueber-kidalu",
+    "poradnik": "ratgeber"
   },
   "nav": {
     "home": "Wald",
@@ -18,7 +19,8 @@
     "lang": "Sprache",
     "menu": "Menü",
     "skip": "Zum Inhalt springen",
-    "about": "Über Kidalu"
+    "about": "Über Kidalu",
+    "blog": "Ratgeber"
   },
   "home": {
     "headline": "Komm in den Kidalu-Wald",
@@ -258,5 +260,16 @@
     "title": "Diese Seite gibt es nicht",
     "body": "Dieser Waldweg führt ins Nichts. Die Adresse hat sich vielleicht geändert oder im Link steckt ein Tippfehler.",
     "home": "Zurück zur Startseite"
+  },
+  "blog": {
+    "headline": "Ratgeber für Eltern",
+    "lead": "Kurze, praktische Texte darüber, wie Sie Ihr Kind beim Lesen- und Schreibenlernen unterstützen. Ohne Fachjargon, mit konkreten Tipps für zu Hause.",
+    "published": "Veröffentlicht",
+    "updated": "Aktualisiert",
+    "read": "Weiterlesen",
+    "back": "Alle Artikel",
+    "cta_heading": "In der Praxis ausprobieren",
+    "cta_button": "App ansehen",
+    "by": "Kidalu-Team"
   }
 }

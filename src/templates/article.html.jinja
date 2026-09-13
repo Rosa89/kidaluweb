@@ -1,0 +1,59 @@
+{# src/templates/article.html.jinja — pojedynczy wpis poradnika #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ post.title }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ post.description }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block head_extra %}
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  'headline': post.title,
+  'description': post.description,
+  'inLanguage': lang,
+  'datePublished': post.date,
+  'dateModified': modified,
+  'mainEntityOfPage': site_host ~ post.url,
+  'image': site_host ~ asset('img/og.jpg'),
+  'author': {'@type': 'Organization', 'name': c.site.brand, 'url': site_host ~ '/'},
+  'publisher': {'@type': 'Organization', 'name': c.site.brand, 'url': site_host ~ '/',
+                'logo': {'@type': 'ImageObject', 'url': site_host ~ asset('img/logo-kidalu.webp')}}
+}|tojson }}</script>
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  'itemListElement': [
+    {'@type': 'ListItem', 'position': 1, 'name': c.site.brand, 'item': site_host ~ url('home')},
+    {'@type': 'ListItem', 'position': 2, 'name': c.blog.headline, 'item': site_host ~ url('poradnik')},
+    {'@type': 'ListItem', 'position': 3, 'name': post.title, 'item': site_host ~ post.url}
+  ]
+}|tojson }}</script>
+{% endblock %}
+{% block content %}
+<article class="page">
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <p class="crumbs"><a href="{{ url('poradnik') }}">{{ c.blog.headline }}</a></p>
+      <h1>{{ post.title }}</h1>
+      <p class="lead">{{ post.description }}</p>
+      <p class="post-meta">
+        <span>{{ c.blog.by }}</span>
+        <span>{{ c.blog.published }}: <time datetime="{{ post.date }}">{{ post.date }}</time></span>
+        {% if modified != post.date %}<span>{{ c.blog.updated }}: <time datetime="{{ modified }}">{{ modified }}</time></span>{% endif %}
+      </p>
+    </div>
+  </header>
+  <div class="wrap docs post-body">
+{{ post.html|safe }}
+  </div>
+  {% if cta_app %}
+  <section class="wrap section post-cta">
+    <h2>{{ c.blog.cta_heading }}</h2>
+    <p class="prose">{{ cta_app.name }} — {{ cta_app.tagline }}</p>
+    <p class="actions">
+      <a class="play" href="{{ cta_url }}">{{ c.blog.cta_button }}</a>
+      <a class="ghost" href="{{ url('poradnik') }}">{{ c.blog.back }}</a>
+    </p>
+  </section>
+  {% endif %}
+</article>
+{% endblock %}

@@ -15,7 +15,7 @@
 <link rel="canonical" href="{{ site_host }}{{ alternates[lang] }}">
 {% endif %}
 <meta name="theme-color" content="#FDF6E0">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{% block og_type %}website{% endblock %}">
 <meta property="og:site_name" content="{{ c.site.brand }}">
 <meta property="og:locale" content="{{ og_locale }}">
 {% for l in og_locale_alternates %}
@@ -101,6 +101,9 @@
       <nav class="topnav" aria-label="{{ c.site.brand }}">
         <a href="{{ url('home') }}"{% if page_key == 'home' %} aria-current="page"{% endif %}>{{ c.nav.home }}</a>
         <a href="{{ url('o_nas') }}"{% if page_key == 'o_nas' %} aria-current="page"{% endif %}>{{ c.nav.about }}</a>
+        {% if has_blog %}
+        <a href="{{ url('poradnik') }}"{% if page_key in ('poradnik', 'artykul') %} aria-current="page"{% endif %}>{{ c.nav.blog }}</a>
+        {% endif %}
         <a href="{{ url('kontakt') }}"{% if page_key == 'kontakt' %} aria-current="page"{% endif %}>{{ c.nav.contact }}</a>
       </nav>
     </div>
@@ -119,6 +122,7 @@
     <a href="{{ d.url }}">{{ d.name }} — {{ c.footer.docs|lower }}</a>
     {% endfor %}
     <a href="{{ url('o_nas') }}">{{ c.nav.about }}</a>
+    {% if has_blog %}<a href="{{ url('poradnik') }}">{{ c.nav.blog }}</a>{% endif %}
     <a href="{{ url('kontakt') }}">{{ c.nav.contact }}</a>
     <a href="{{ play_dev_url }}" rel="me">{{ c.footer.play }}</a>
   </nav>

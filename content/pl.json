@@ -10,7 +10,8 @@
     "literki": "literki-i-cyferki",
     "kontakt": "kontakt",
     "docs": "dokumenty",
-    "o_nas": "o-kidalu"
+    "o_nas": "o-kidalu",
+    "poradnik": "poradnik"
   },
   "nav": {
     "home": "Las",
@@ -18,7 +19,8 @@
     "lang": "Język",
     "menu": "Menu",
     "skip": "Przejdź do treści",
-    "about": "O Kidalu"
+    "about": "O Kidalu",
+    "blog": "Poradnik"
   },
   "home": {
     "headline": "Zajrzyj do lasu Kidalu",
@@ -258,5 +260,16 @@
     "title": "Nie ma takiej strony",
     "body": "Ta ścieżka w lesie prowadzi donikąd. Adres mógł się zmienić albo w linku wkradła się literówka.",
     "home": "Wróć na stronę główną"
+  },
+  "blog": {
+    "headline": "Poradnik dla rodziców",
+    "lead": "Krótkie, praktyczne teksty o tym, jak wspierać dziecko w nauce czytania i pisania. Bez żargonu, z konkretnymi wskazówkami do zastosowania w domu.",
+    "published": "Opublikowano",
+    "updated": "Aktualizacja",
+    "read": "Czytaj dalej",
+    "back": "Wszystkie artykuły",
+    "cta_heading": "Wypróbuj w praktyce",
+    "cta_button": "Zobacz aplikację",
+    "by": "Zespół Kidalu"
   }
 }

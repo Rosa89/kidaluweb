@@ -1,0 +1,26 @@
+{# src/templates/blog.html.jinja — indeks poradnika #}
+{% extends "base.html.jinja" %}
+{% block title %}{{ c.blog.headline }} — {{ c.site.brand }}{% endblock %}
+{% block description %}{{ c.blog.lead }}{% endblock %}
+{% block content %}
+<article class="page">
+  <header class="band band--head band--plain">
+    <div class="wrap band-copy">
+      <h1>{{ c.blog.headline }}</h1>
+      <p class="lead">{{ c.blog.lead }}</p>
+    </div>
+  </header>
+  <section class="wrap section">
+    <ul class="posts">
+      {% for p in posts %}
+      <li class="post">
+        <time class="post-date" datetime="{{ p.date }}">{{ p.date }}</time>
+        <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
+        <p>{{ p.description }}</p>
+        <a class="post-more" href="{{ p.url }}">{{ c.blog.read }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+</article>
+{% endblock %}
