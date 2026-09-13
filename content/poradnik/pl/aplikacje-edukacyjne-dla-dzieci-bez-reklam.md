@@ -18,7 +18,7 @@ Jak sprawdzić: w opisie aplikacji w Google Play szukaj oznaczenia „Zawiera re
 
 Model „darmowa aplikacja z zakupami" jest w porządku, jeśli dziecko dostaje uczciwą część za darmo, a rodzic świadomie odblokowuje resztę. Problemem są aplikacje, które co chwilę wyświetlają dziecku okno zakupu, blokują postęp albo sprzedają „monety" i „klejnoty".
 
-Jak sprawdzić: etykieta „Zakupy w aplikacji" w sklepie i zakres cen pod nią. Jeśli widzisz ceny od 4 zł do 400 zł, aplikacja sprzedaje wirtualną walutę. Jeśli jest jedna cena za pełną wersję, to zwykle uczciwy model.
+Jak sprawdzić: etykieta „Zakupy w aplikacji" w sklepie i zakres cen pod nią. Jeśli widzisz długą listę kwot od kilku do kilkuset złotych, aplikacja najpewniej sprzedaje wirtualną walutę. Jeśli ceny dotyczą odblokowania pełnej wersji, na przykład abonament albo jednorazowy zakup, który robi rodzic, to zwykle uczciwy model.
 
 ## 3. Konto i dane
 
@@ -47,10 +47,10 @@ Jak sprawdzić: włącz tryb samolotowy i uruchom aplikację. Jeśli działa, to
 ## Skrócona lista kontrolna
 
 - Brak etykiety „Zawiera reklamy".
-- Zakupy w aplikacji: jedna cena za pełną wersję albo brak.
+- Zakupy w aplikacji: tylko odblokowanie pełnej wersji przez rodzica, bez wirtualnej waluty.
 - Sekcja „Bezpieczeństwo danych" bez udostępniania danych innym firmom.
 - Uprawnienia ograniczone do niezbędnych.
 - Działający link do polityki prywatności z podanym kontaktem.
 - Działa w trybie samolotowym.
 
-Aplikacje Kidalu projektujemy tak, żeby przechodziły tę listę w całości. Nie ma w nich reklam, nie tworzymy profili dziecka, a wszystkie dokumenty publikujemy na tej stronie. Zachęcamy jednak, żeby sprawdzić to samodzielnie. To dobry nawyk, który przyda się przy każdej kolejnej aplikacji.
+W aplikacjach Kidalu nie ma reklam i nie tworzymy profili dziecka, a wszystkie dokumenty publikujemy na tej stronie. Pełną wersję rodzic odblokowuje zakupem w aplikacji, a część funkcji, na przykład pobieranie książek do czytania, wymaga internetu. Dlatego zachęcamy, żeby każdą aplikację sprawdzić samodzielnie, także naszą. To dobry nawyk, który przyda się przy każdej kolejnej aplikacji.

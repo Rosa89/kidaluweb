@@ -18,7 +18,7 @@ So prüfen Sie es: Suchen Sie in der App-Beschreibung bei Google Play nach dem H
 
 Das Modell „kostenlose App mit Käufen" ist in Ordnung, wenn das Kind einen fairen Teil gratis bekommt und die Eltern den Rest bewusst freischalten. Problematisch sind Apps, die dem Kind ständig ein Kauffenster zeigen, den Fortschritt blockieren oder „Münzen" und „Edelsteine" verkaufen.
 
-So prüfen Sie es: Der Hinweis „In-App-Käufe" im Store und die Preisspanne darunter. Sehen Sie Preise von 1 € bis 100 €, verkauft die App virtuelle Währung. Gibt es einen einzigen Preis für die Vollversion, ist das meist ein faires Modell.
+So prüfen Sie es: Der Hinweis „In-App-Käufe" im Store und die Preisspanne darunter. Sehen Sie eine lange Liste von Beträgen zwischen wenigen und hundert Euro, verkauft die App höchstwahrscheinlich virtuelle Währung. Beziehen sich die Preise auf das Freischalten der Vollversion, etwa als Abo oder Einmalkauf, den die Eltern abschließen, ist das meist ein faires Modell.
 
 ## 3. Konto und Daten
 
@@ -47,10 +47,10 @@ So prüfen Sie es: Flugmodus einschalten und die App starten. Läuft sie, ist da
 ## Kurze Checkliste
 
 - Kein Hinweis „Enthält Werbung".
-- In-App-Käufe: ein Preis für die Vollversion oder gar keine.
+- In-App-Käufe: nur das Freischalten der Vollversion durch die Eltern, keine virtuelle Währung.
 - Abschnitt „Datensicherheit" ohne Weitergabe an andere Unternehmen.
 - Berechtigungen auf das Nötigste beschränkt.
 - Funktionierender Link zur Datenschutzerklärung mit Kontaktangabe.
 - Läuft im Flugmodus.
 
-Die Kidalu-Apps sind so gebaut, dass sie diese Liste vollständig bestehen. Sie enthalten keine Werbung, wir erstellen keine Profile des Kindes, und alle Dokumente veröffentlichen wir auf dieser Seite. Wir ermutigen Sie trotzdem, das selbst zu prüfen. Es ist eine gute Gewohnheit, die bei jeder weiteren App nützlich ist.
+Die Kidalu-Apps enthalten keine Werbung, wir erstellen keine Profile des Kindes, und alle Dokumente veröffentlichen wir auf dieser Seite. Die Vollversion schalten die Eltern per In-App-Kauf frei, und manche Funktionen, etwa das Laden von Büchern zum Lesen, brauchen Internet. Deshalb ermutigen wir Sie, jede App selbst zu prüfen, auch unsere. Es ist eine gute Gewohnheit, die bei jeder weiteren App nützlich ist.

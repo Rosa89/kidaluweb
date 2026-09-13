@@ -18,7 +18,7 @@ How to check: in the Google Play listing look for the label "Contains ads". If t
 
 The "free app with purchases" model is fine if the child gets a fair part for free and the parent knowingly unlocks the rest. The problem is apps that keep showing the child a purchase window, block progress or sell "coins" and "gems".
 
-How to check: the "In-app purchases" label in the store and the price range under it. If you see prices from 1 to 100, the app sells virtual currency. If there is one price for the full version, that is usually an honest model.
+How to check: the "In-app purchases" label in the store and the price range under it. If you see a long list of amounts from very small to around a hundred, the app most likely sells virtual currency. If the prices are for unlocking the full version, such as a subscription or a one-off purchase made by the parent, that is usually an honest model.
 
 ## 3. Account and data
 
@@ -47,10 +47,10 @@ How to check: turn on flight mode and open the app. If it works, that is a good 
 ## Short checklist
 
 - No "Contains ads" label.
-- In-app purchases: one price for the full version, or none.
+- In-app purchases: only unlocking the full version by the parent, no virtual currency.
 - "Data safety" section with no sharing with other companies.
 - Permissions limited to what is necessary.
 - A working privacy policy link with contact details.
 - Works in flight mode.
 
-We design the Kidalu apps to pass this whole list. They contain no ads, we build no profile of the child, and we publish every document on this site. We still encourage you to check it yourself. It is a good habit that will serve you with every app that follows.
+Kidalu apps contain no ads, we build no profile of the child, and we publish every document on this site. The parent unlocks the full version with an in-app purchase, and some features, such as downloading books to read, need the internet. That is why we encourage you to check every app yourself, ours included. It is a good habit that will serve you with every app that follows.

@@ -21,12 +21,11 @@ Najłatwiejsze linki. Zwykle wystarczy formularz zgłoszenia.
 
 | Miejsce | Co zrobić | Uwagi |
 |---|---|---|
-| Mądre Aplikacje (madreaplikacje.pl) / podobne polskie przeglądy apek dla dzieci | Zgłosić obie aplikacje do recenzji | Szukaj w Google „aplikacje dla dzieci recenzje” i wybierz 2–3 aktywne serwisy |
-| Common Sense Media (commonsensemedia.org) | Zgłosić Literki i Cyferki (wersja EN/DE) | Recenzują pod kątem bezpieczeństwa dla dzieci, idealnie pod Wasz przekaz |
-| Educational App Store (educationalappstore.com) | Zgłoszenie do certyfikacji | Płatne opcje można pominąć, darmowy wpis wystarczy |
-| AlternativeTo (alternativeto.net) | Dodać obie aplikacje jako alternatywy dla popularnych apek do nauki czytania/pisania | Bezpłatne, link dofollow do strony |
+| Polskie serwisy z recenzjami aplikacji dla dzieci | Zgłosić obie aplikacje do recenzji | Wyszukać „aplikacje dla dzieci recenzje” i wybrać 2–3 aktywne serwisy |
+| Common Sense Media (commonsensemedia.org) | Sprawdzić, czy przyjmują zgłoszenia aplikacji | Recenzują aplikacje pod kątem dzieci, pasuje do Waszego przekazu |
+| Educational App Store (educationalappstore.com) | Sprawdzić warunki zgłoszenia | Przed zgłoszeniem ustalić, które opcje są płatne |
+| AlternativeTo (alternativeto.net) | Dodać obie aplikacje jako alternatywy dla popularnych apek do nauki czytania i pisania | Wpis jest bezpłatny i zawiera link do strony |
 | Product Hunt | Premiera Literek i Cyferek (wersja EN) | Jednorazowa akcja, daje ruch i link |
-| F-Droid / Slant / Softonic | Tylko jeśli macie czas; niski priorytet | |
 
 ## 2. Blogi i portale parentingowe (Polska)
 
@@ -34,19 +33,19 @@ Tu najlepiej działa gotowy tekst albo propozycja tematu, a nie prośba o link.
 
 | Miejsce | Jak podejść |
 |---|---|
-| mamotoja.pl, dziecisawazne.pl, dzieckiembadz.pl, mamadu.pl | Zaproponować artykuł ekspercki, np. „Jak wybrać aplikację edukacyjną bez reklam” (macie gotową bazę w poradniku) |
+| mamotoja.pl, dziecisawazne.pl, mamadu.pl | Zaproponować artykuł ekspercki, np. „Jak wybrać aplikację edukacyjną bez reklam” (macie gotową bazę w poradniku) |
 | Blogi nauczycielek wczesnoszkolnych i pedagożek | Zaproponować test aplikacji w klasie w zamian za szczerą opinię |
 | Grupy na Facebooku: „Nauka czytania”, „Mamy przedszkolaków”, „Montessori w domu” | Nie reklamować. Odpowiadać na pytania rodziców i przy okazji wspomnieć o aplikacji, gdy pasuje |
-| Instytut Badań Edukacyjnych, Fundacja Dajemy Dzieciom Siłę | Wzmianka w materiałach o bezpiecznych aplikacjach; trudne, ale bardzo wartościowe |
+| Instytut Badań Edukacyjnych (ibe.edu.pl), Fundacja Dajemy Dzieciom Siłę (fdds.pl) | Wzmianka w materiałach o bezpiecznych aplikacjach; trudne, ale bardzo wartościowe |
 
 ## 3. Niemcy i Austria (Literki i Cyferki)
 
 | Miejsce | Jak podejść |
 |---|---|
-| klick-tipps.net (Deutsches Jugendinstitut) | Zgłoszenie aplikacji do bazy bezpiecznych apek dla dzieci; oficjalna niemiecka baza |
-| schau-hin.info | Rekomendacje aplikacji dla rodziców; formularz kontaktowy |
+| klick-tipps.net | Niemiecka baza polecanych stron i aplikacji dla dzieci; sprawdzić możliwość zgłoszenia |
+| schau-hin.info | Poradnik medialny dla rodziców; zaproponować aplikację do materiałów |
 | Spieleratgeber NRW | Recenzje aplikacji dla dzieci |
-| Blogi: ekulele.de, muttis-naehkaestchen.de, familie.de | Propozycja testu aplikacji |
+| Blogi i portale: ekulele.de, familie.de | Propozycja testu aplikacji |
 | Grupy Facebook „Vorschule”, „Schulanfang” | Jak wyżej: pomagać, nie reklamować |
 
 ## 4. Rynek angielskojęzyczny
@@ -69,6 +68,9 @@ Tu najlepiej działa gotowy tekst albo propozycja tematu, a nie prośba o link.
 
 ## Gotowy opis do wysyłki (wersja PL)
 
+Przed wysłaniem sprawdź zdania o Was i o tym, jak powstało Kidalu. Napisał je
+Claude na podstawie strony, nie z Waszej relacji.
+
 > Dzień dobry,
 >
 > nazywam się Sebastian Rosiński, razem z Dawidem Adamczykiem tworzymy Kidalu,
@@ -76,7 +78,7 @@ Tu najlepiej działa gotowy tekst albo propozycja tematu, a nie prośba o link.
 > dzieci: chcieliśmy, żeby uczyły się czytać i pisać bez ekranu pełnego reklam.
 >
 > Mamy dwie aplikacje na Androida: „Nauka czytania sylabami” i „Literki i
-> Cyferki”. Obie są bez reklam, bez profilowania i działają offline. Wszystkie
+> Cyferki”. Obie są bez reklam i bez profilowania dziecka. Wszystkie
 > dokumenty publikujemy jawnie na kidalu.com.
 >
 > Prowadzimy też poradnik dla rodziców, np. tekst o tym, jak sprawdzić,
@@ -101,9 +103,9 @@ Tu najlepiej działa gotowy tekst albo propozycja tematu, a nie prośba o link.
 > a screen full of ads.
 >
 > We have two Android apps: "Reading by Syllables" (Polish only) and
-> "Letters and Numbers" (Polish, German, Austrian school scripts). Both are
-> ad-free, do no profiling and work offline. All our documents are published
-> openly at kidalu.com.
+> "Letters and Numbers" (Polish, German and Austrian school scripts). Both
+> are ad-free and build no profile of the child. All our documents are
+> published openly at kidalu.com.
 >
 > We also write a guide for parents, for example on how to check whether
 > a children's app is safe:
