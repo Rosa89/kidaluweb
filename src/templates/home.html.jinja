@@ -2,9 +2,12 @@
 {% import "icons.html.jinja" as ico %}
 {% block body_class %} class="home"{% endblock %}
 {# Tło sceny siedzi w CSS, więc przeglądarka odkrywa je dopiero po sparsowaniu
-   arkusza — a to największy obrazek strony i element decydujący o LCP. #}
+   arkusza — a to największy obrazek strony. Ekran w pionie dostaje wycinek
+   (reguła przy .stage w site.css). Warunek media musi być identyczny z tamtym,
+   inaczej przeglądarka pobierze oba pliki. #}
 {% block head_extra %}
-<link rel="preload" as="image" href="{{ asset('img/scene-forest.webp') }}" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('img/scene-forest-portrait.webp') }}" media="(max-aspect-ratio: 2/3)" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('img/scene-forest.webp') }}" media="not all and (max-aspect-ratio: 2/3)" fetchpriority="high">
 {% endblock %}
 {% block content %}
 {# Wymiary grafik trzymamy przy szablonie, żeby każdy <img> miał jawne width/height

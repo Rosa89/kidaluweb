@@ -76,6 +76,21 @@ def variants(src: Path, widths, quality: int = 82) -> list[Path]:
     return out
 
 
+def portrait(src: Path, width: int, quality: int = 82) -> Path:
+    """Środkowy pas szerokiej grafiki tła o szerokości `width` i pełnej wysokości,
+    zapisany obok jako <nazwa>-portrait.webp.
+
+    Tło w trybie cover na ekranie w pionie skaluje się do wysokości, więc widać
+    tylko jego środek. Wycinek w tej samej skali wygląda identycznie, a waży ułamek
+    całości. Na ekranach szerszych niż proporcje wycinka potrzebny jest oryginał.
+    """
+    im = Image.open(src)
+    left = (im.width - width) // 2
+    dst = src.with_name(f"{src.stem}-portrait.webp")
+    im.crop((left, 0, left + width, im.height)).save(dst, format="WEBP", quality=quality, method=6)
+    return dst
+
+
 # Próg bieli: kanał minimalny (R,G,B) musi przekroczyć tę wartość, żeby piksel
 # liczył się jako "biały" kandydat na tło. Stary próg (238) miał zerowy margines:
 # najjaśniejsze piksele realnej treści w assets-source/ sięgają dokładnie 238.

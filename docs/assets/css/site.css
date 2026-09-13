@@ -270,6 +270,13 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
   position:absolute; inset:0; z-index:0;
   background:url(../img/scene-forest.webp?v=9385388b) center bottom/cover no-repeat;
 }
+/* Ekran w pionie skaluje tło do wysokości i widzi tylko środkowy pas kadru, więc
+   dostaje wycinek 720 px w tej samej skali (107 KB zamiast 238 KB). Wycinek pokrywa
+   okna do proporcji 720/941 ≈ 0,77; próg 2/3 zostawia zapas na pasek przeglądarki.
+   Ten sam warunek stoi w preloadzie w home.html.jinja. */
+@media (max-aspect-ratio: 2/3){
+  .stage{background-image:url(../img/scene-forest-portrait.webp?v=cc7cc2e9)}
+}
 .scene::after{
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:
