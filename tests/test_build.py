@@ -203,3 +203,100 @@ def test_sitemap_wymienia_kazda_wygenerowana_strone():
         rel = p.parent.relative_to(build.OUT).as_posix()
         url = build.SITE_HOST + ("/" if rel == "." else f"/{rel}/")
         assert f"<loc>{url}</loc>" in sitemap, url
+
+
+# --- SEO: sitemap z lastmod i alternatywami językowymi, dane strukturalne ---
+
+import json
+
+
+def _sitemap_entry(sitemap: str, url: str) -> str:
+    """Wycinek <url>…</url> dla danego adresu."""
+    m = re.search(rf"<url>\s*<loc>{re.escape(url)}</loc>(.*?)</url>", sitemap, re.S)
+    assert m, f"brak wpisu {url} w sitemap.xml"
+    return m.group(1)
+
+
+def test_sitemap_ma_lastmod_w_formacie_daty():
+    build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    entries = re.findall(r"<url>.*?</url>", sitemap, re.S)
+    assert entries
+    for e in entries:
+        assert re.search(r"<lastmod>\d{4}-\d{2}-\d{2}</lastmod>", e), e
+
+
+def test_sitemap_wymienia_alternatywy_jezykowe():
+    build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    assert 'xmlns:xhtml="http://www.w3.org/1999/xhtml"' in sitemap
+
+    home = _sitemap_entry(sitemap, "https://kidalu.com/")
+    for lang, href in (("pl", "https://kidalu.com/"),
+                       ("de", "https://kidalu.com/de/"),
+                       ("en", "https://kidalu.com/en/"),
+                       ("x-default", "https://kidalu.com/")):
+        tag = f'<xhtml:link rel="alternate" hreflang="{lang}" href="{href}"/>'
+        assert tag in home, f"strona główna: brak {tag}"
+
+    # Ta sama lista alternatyw ma być w wersji DE — Google wymaga, żeby
+    # każda strona z grupy wskazywała na wszystkie pozostałe.
+    de_home = _sitemap_entry(sitemap, "https://kidalu.com/de/")
+    assert 'hreflang="pl" href="https://kidalu.com/"' in de_home
+    assert 'hreflang="en" href="https://kidalu.com/en/"' in de_home
+
+
+def test_sitemap_nie_wymysla_alternatyw_dla_brakujacych_tlumaczen():
+    build.build()
+    sitemap = (build.OUT / "sitemap.xml").read_text("utf-8")
+    docs = _sitemap_entry(sitemap, "https://kidalu.com/czytanie-sylabami/dokumenty/")
+    assert 'hreflang="de"' not in docs
+    assert 'hreflang="en"' not in docs
+    assert 'hreflang="pl" href="https://kidalu.com/czytanie-sylabami/dokumenty/"' in docs
+
+
+def _jsonld(html: str) -> list[dict]:
+    blocks = re.findall(
+        r'<script type="application/ld\+json">(.*?)</script>', html, re.S)
+    assert blocks, "brak bloku JSON-LD"
+    return [json.loads(b) for b in blocks]
+
+
+def test_strona_glowna_ma_dane_strukturalne_organizacji():
+    build.build()
+    html = (build.OUT / "index.html").read_text("utf-8")
+    types = {d["@type"]: d for d in _jsonld(html)}
+    assert "Organization" in types
+    assert types["Organization"]["name"] == "Kidalu"
+    assert types["Organization"]["url"] == "https://kidalu.com/"
+    assert "WebSite" in types
+    assert types["WebSite"]["inLanguage"] == "pl"
+
+
+def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
+    build.build()
+    html = (build.OUT / "literki-i-cyferki" / "index.html").read_text("utf-8")
+    types = {d["@type"]: d for d in _jsonld(html)}
+    app = types["MobileApplication"]
+    assert app["name"] == "Literki i Cyferki"
+    assert app["operatingSystem"] == "Android"
+    assert app["applicationCategory"] == "EducationalApplication"
+    assert app["installUrl"].endswith("id=com.literkiicyferki.app")
+    assert app["url"] == "https://kidalu.com/literki-i-cyferki/"
+    assert app["inLanguage"] == "pl"
+
+    # Strona kontaktu nie jest aplikacją
+    kontakt = (build.OUT / "kontakt" / "index.html").read_text("utf-8")
+    assert "MobileApplication" not in kontakt
+
+
+def test_og_locale_w_pelnym_formacie():
+    build.build()
+    pl = (build.OUT / "index.html").read_text("utf-8")
+    de = (build.OUT / "de" / "index.html").read_text("utf-8")
+    en = (build.OUT / "en" / "index.html").read_text("utf-8")
+    assert '<meta property="og:locale" content="pl_PL">' in pl
+    assert '<meta property="og:locale" content="de_DE">' in de
+    assert '<meta property="og:locale" content="en_US">' in en
+    assert '<meta property="og:locale:alternate" content="de_DE">' in pl
+    assert '<meta property="og:image:width" content="1200">' in pl

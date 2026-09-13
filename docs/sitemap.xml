@@ -1,18 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://kidalu.com/czytanie-sylabami/dokumenty/</loc></url>
-  <url><loc>https://kidalu.com/czytanie-sylabami/</loc></url>
-  <url><loc>https://kidalu.com/de/buchstaben-und-zahlen/dokumente/</loc></url>
-  <url><loc>https://kidalu.com/de/buchstaben-und-zahlen/</loc></url>
-  <url><loc>https://kidalu.com/de/</loc></url>
-  <url><loc>https://kidalu.com/de/kontakt/</loc></url>
-  <url><loc>https://kidalu.com/de/lesen-nach-silben/</loc></url>
-  <url><loc>https://kidalu.com/en/contact/</loc></url>
-  <url><loc>https://kidalu.com/en/</loc></url>
-  <url><loc>https://kidalu.com/en/letters-and-numbers/</loc></url>
-  <url><loc>https://kidalu.com/en/reading-by-syllables/</loc></url>
-  <url><loc>https://kidalu.com/</loc></url>
-  <url><loc>https://kidalu.com/kontakt/</loc></url>
-  <url><loc>https://kidalu.com/literki-i-cyferki/dokumenty/</loc></url>
-  <url><loc>https://kidalu.com/literki-i-cyferki/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://kidalu.com/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/czytanie-sylabami/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/czytanie-sylabami/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/lesen-nach-silben/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/reading-by-syllables/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/czytanie-sylabami/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/czytanie-sylabami/dokumenty/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/czytanie-sylabami/dokumenty/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/czytanie-sylabami/dokumenty/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/de/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/de/buchstaben-und-zahlen/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/literki-i-cyferki/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/buchstaben-und-zahlen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/letters-and-numbers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/literki-i-cyferki/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/de/buchstaben-und-zahlen/dokumente/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/literki-i-cyferki/dokumenty/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/buchstaben-und-zahlen/dokumente/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/literki-i-cyferki/dokumenty/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/de/kontakt/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/kontakt/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/de/lesen-nach-silben/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/czytanie-sylabami/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/lesen-nach-silben/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/reading-by-syllables/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/czytanie-sylabami/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/en/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/en/contact/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/kontakt/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/en/letters-and-numbers/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/literki-i-cyferki/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/buchstaben-und-zahlen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/letters-and-numbers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/literki-i-cyferki/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/en/reading-by-syllables/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/czytanie-sylabami/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/lesen-nach-silben/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/reading-by-syllables/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/czytanie-sylabami/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/kontakt/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/kontakt/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/kontakt/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/literki-i-cyferki/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/literki-i-cyferki/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/buchstaben-und-zahlen/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/letters-and-numbers/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/literki-i-cyferki/"/>
+  </url>
+  <url>
+    <loc>https://kidalu.com/literki-i-cyferki/dokumenty/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/literki-i-cyferki/dokumenty/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/buchstaben-und-zahlen/dokumente/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/literki-i-cyferki/dokumenty/"/>
+  </url>
 </urlset>

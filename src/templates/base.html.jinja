@@ -13,11 +13,17 @@
 <meta name="theme-color" content="#FDF6E0">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ c.site.brand }}">
-<meta property="og:locale" content="{{ lang }}">
+<meta property="og:locale" content="{{ og_locale }}">
+{% for l in og_locale_alternates %}
+<meta property="og:locale:alternate" content="{{ l }}">
+{% endfor %}
 <meta property="og:url" content="{{ site_host }}{{ alternates[lang] }}">
 <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}">
 <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}">
 <meta property="og:image" content="{{ site_host }}{{ asset('img/og.jpg') }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ c.site.title }}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
 <link rel="stylesheet" href="{{ asset('css/site.css') }}">
@@ -27,6 +33,47 @@
 {% endfor %}
 {% if 'pl' in alternates %}
 <link rel="alternate" hreflang="x-default" href="{{ site_host }}{{ alternates['pl'] }}">
+{% endif %}
+{# Dane strukturalne (schema.org) — Google pokazuje dzięki nim logo i nazwę
+   wydawcy w wynikach, a podstrony aplikacji rozpoznaje jako aplikacje mobilne. #}
+{% set org = {
+  '@type': 'Organization',
+  'name': c.site.brand,
+  'url': site_host ~ '/',
+  'logo': site_host ~ asset('img/logo-kidalu.webp')
+} %}
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': org['@type'],
+  'name': org.name,
+  'url': org.url,
+  'logo': org.logo
+}|tojson }}</script>
+{% if page_key == 'home' %}
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': c.site.brand,
+  'url': site_host ~ alternates[lang],
+  'description': c.site.description,
+  'inLanguage': lang,
+  'publisher': org
+}|tojson }}</script>
+{% elif app and play_url %}
+<script type="application/ld+json">{{ {
+  '@context': 'https://schema.org',
+  '@type': 'MobileApplication',
+  'name': app.name,
+  'description': app.tagline,
+  'url': site_host ~ alternates[lang],
+  'installUrl': play_url,
+  'operatingSystem': 'Android',
+  'applicationCategory': 'EducationalApplication',
+  'inLanguage': lang,
+  'image': site_host ~ asset('img/og.jpg'),
+  'author': org,
+  'publisher': org
+}|tojson }}</script>
 {% endif %}
 </head>
 <body{% block body_class %}{% endblock %}>

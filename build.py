@@ -6,6 +6,9 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
+from dataclasses import dataclass, field
+from datetime import date
 from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
@@ -20,6 +23,10 @@ OUT = ROOT / "docs"
 LANGS = ["pl", "de", "en"]
 DEFAULT_LANG = "pl"
 SITE_HOST = "https://kidalu.com"
+
+# Pełne kody lokalizacji dla Open Graph — Facebook/LinkedIn nie rozumieją
+# samego "pl", oczekują pary język_REGION.
+OG_LOCALES = {"pl": "pl_PL", "de": "de_DE", "en": "en_US"}
 
 APPS = {
     "czytanie": "com.readbysyllables.app",
@@ -117,6 +124,42 @@ def legal_links(c: dict, urls: dict[str, str], lang: str) -> list[dict]:
     ]
 
 
+@dataclass
+class Page:
+    """Jedna wygenerowana strona wraz z tym, co potrzebne do sitemapy."""
+    url: str
+    lang: str
+    key: str
+    sources: list[Path] = field(default_factory=list)
+
+
+def lastmod(sources: list[Path]) -> str:
+    """Data ostatniej zmiany strony (YYYY-MM-DD) na podstawie jej plików źródłowych.
+
+    Bierzemy datę ostatniego commita dotykającego źródeł; jeśli któreś z nich ma
+    niezacommitowane zmiany albo gita nie ma, uczciwiej podać dzisiejszą datę niż
+    sfałszować starą — Google traktuje lastmod poważnie tylko wtedy, gdy jest
+    wiarygodny.
+    """
+    rels = [str(p.relative_to(ROOT)) for p in sources if p.exists()]
+    if not rels:
+        return date.today().isoformat()
+    try:
+        dirty = subprocess.run(
+            ["git", "status", "--porcelain", "--", *rels],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        if dirty:
+            return date.today().isoformat()
+        out = subprocess.run(
+            ["git", "log", "-1", "--format=%cs", "--", *rels],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        return out or date.today().isoformat()
+    except (OSError, subprocess.CalledProcessError):
+        return date.today().isoformat()
+
+
 def _env() -> Environment:
     return Environment(
         loader=FileSystemLoader(TEMPLATES),
@@ -134,28 +177,42 @@ def _write(url: str, html: str) -> Path:
     return target
 
 
-def write_meta(written: list[Path]) -> None:
+def sitemap_xml(pages: list[Page]) -> str:
+    """Sitemapa z lastmod i alternatywami językowymi (xhtml:link).
+
+    Google zaleca podawanie wersji językowych w sitemapie dla każdej strony
+    z grupy — także wpis wskazujący na samego siebie.
+    """
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ]
+    for page in sorted(pages, key=lambda p: p.url):
+        alts = alternates(page.key)
+        lines.append("  <url>")
+        lines.append(f"    <loc>{SITE_HOST}{page.url}</loc>")
+        lines.append(f"    <lastmod>{lastmod(page.sources)}</lastmod>")
+        for l, u in alts.items():
+            lines.append(
+                f'    <xhtml:link rel="alternate" hreflang="{l}" href="{SITE_HOST}{u}"/>'
+            )
+        if DEFAULT_LANG in alts:
+            lines.append(
+                f'    <xhtml:link rel="alternate" hreflang="x-default" href="{SITE_HOST}{alts[DEFAULT_LANG]}"/>'
+            )
+        lines.append("  </url>")
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+def write_meta(pages: list[Page]) -> None:
     (OUT / "CNAME").write_text("kidalu.com\n", "utf-8")
     (OUT / ".nojekyll").write_text("", "utf-8")
     (OUT / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {SITE_HOST}/sitemap.xml\n", "utf-8"
+        f"User-agent: *\nAllow: /\n\nSitemap: {SITE_HOST}/sitemap.xml\n", "utf-8"
     )
-
-    locs = []
-    for p in sorted(written):
-        if p.name != "index.html":
-            continue
-        rel = p.parent.relative_to(OUT).as_posix()
-        url = SITE_HOST + ("/" if rel == "." else f"/{rel}/")
-        locs.append(f"  <url><loc>{url}</loc></url>")
-
-    (OUT / "sitemap.xml").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "\n".join(locs)
-        + "\n</urlset>\n",
-        "utf-8",
-    )
+    (OUT / "sitemap.xml").write_text(sitemap_xml(pages), "utf-8")
 
 
 def build() -> list[Path]:
@@ -167,6 +224,8 @@ def build() -> list[Path]:
 
     env = _env()
     written: list[Path] = []
+    pages: list[Page] = []
+    base_src = [ROOT / "build.py", TEMPLATES / "base.html.jinja"]
 
     for lang in LANGS:
         path = CONTENT / f"{lang}.json"
@@ -183,9 +242,15 @@ def build() -> list[Path]:
             "alternates": alternates("home"),
             "langs": available_langs(),
             "site_host": SITE_HOST,
+            "og_locale": OG_LOCALES.get(lang, lang),
+            "og_locale_alternates": [OG_LOCALES.get(l, l) for l in available_langs() if l != lang],
             "legal": legal_links(c, urls, lang),
+            "app": None,
+            "play_url": None,
         }
+        lang_src = base_src + [path]
         written.append(_write(urls["home"], env.get_template("home.html.jinja").render(**ctx)))
+        pages.append(Page(urls["home"], lang, "home", lang_src + [TEMPLATES / "home.html.jinja"]))
 
         for app_key in APPS:
             docs_key = f"{app_key}_docs"
@@ -199,6 +264,7 @@ def build() -> list[Path]:
                    "play_url": play_url(app_key),
                    "docs_url": docs_url},
             )))
+            pages.append(Page(urls[app_key], lang, app_key, lang_src + [TEMPLATES / "app.html.jinja"]))
 
             if lang in doc_langs(app_key):
                 written.append(_write(urls[docs_key], env.get_template("docs.html.jinja").render(
@@ -208,12 +274,15 @@ def build() -> list[Path]:
                        "app": c["apps"][app_key],
                        "doc_html": Markup(doc_path(app_key, lang).read_text("utf-8"))},
                 )))
+                pages.append(Page(urls[docs_key], lang, docs_key,
+                                  lang_src + [TEMPLATES / "docs.html.jinja", doc_path(app_key, lang)]))
 
         written.append(_write(urls["kontakt"], env.get_template("contact.html.jinja").render(
             **{**ctx, "page_key": "kontakt", "alternates": alternates("kontakt")},
         )))
+        pages.append(Page(urls["kontakt"], lang, "kontakt", lang_src + [TEMPLATES / "contact.html.jinja"]))
 
-    write_meta(written)
+    write_meta(pages)
     return written
 
 
