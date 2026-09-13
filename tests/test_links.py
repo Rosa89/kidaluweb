@@ -88,6 +88,10 @@ OCZEKIWANE = {
     "de/kontakt/index.html",
     "de/lesen-nach-silben/dokumente/index.html",
     "de/ueber-kidalu/index.html",
+    "de/ratgeber/index.html",
+    "de/ratgeber/lesen-nach-silben-beibringen/index.html",
+    "de/ratgeber/wann-ist-ein-kind-bereit-zum-schreiben/index.html",
+    "de/ratgeber/lern-apps-ohne-werbung/index.html",
     "en/index.html",
     "en/reading-by-syllables/index.html",
     "en/letters-and-numbers/index.html",
@@ -95,6 +99,10 @@ OCZEKIWANE = {
     "en/reading-by-syllables/legal/index.html",
     "en/letters-and-numbers/legal/index.html",
     "en/about-kidalu/index.html",
+    "en/guide/index.html",
+    "en/guide/how-to-teach-a-child-to-read-with-syllables/index.html",
+    "en/guide/when-is-a-child-ready-to-write-letters/index.html",
+    "en/guide/educational-apps-for-children-without-ads/index.html",
 }
 
 
