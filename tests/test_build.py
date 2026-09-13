@@ -587,6 +587,49 @@ def test_podstrona_aplikacji_ma_wlasny_tytul_i_opis():
             assert f"<h1>{escape(app['name'])}</h1>" in html, (lang, key)
 
 
+def _headers_blocks(text: str) -> dict[str, list[str]]:
+    """Plik _headers Cloudflare Pages: ścieżka od początku wiersza, nagłówki wcięte pod nią."""
+    blocks: dict[str, list[str]] = {}
+    current = None
+    for line in text.splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        if line[0].isspace():
+            blocks[current].append(line.strip())
+        else:
+            current = line.strip()
+            blocks[current] = []
+    return blocks
+
+
+def test_naglowki_dla_cloudflare_pages():
+    """Cloudflare Pages czyta docs/_headers. Pliki w /assets/ mają w adresie odcisk
+    treści (?v=), więc mogą leżeć w cache przeglądarki rok. GitHub Pages dawał
+    wszystkiemu 10 minut."""
+    build.build()
+    blocks = _headers_blocks((build.OUT / "_headers").read_text("utf-8"))
+    assert "Cache-Control: public, max-age=31536000, immutable" in blocks["/assets/*"]
+    assert "X-Content-Type-Options: nosniff" in blocks["/*"]
+    assert "Referrer-Policy: strict-origin-when-cross-origin" in blocks["/*"]
+
+
+def test_kazdy_adres_do_assets_ma_odcisk_tresci():
+    """Roczny cache jest bezpieczny tylko wtedy, gdy zmiana pliku zmienia jego adres.
+    Adres bez ?v= zostałby u odwiedzających w starej wersji na rok."""
+    build.build()
+    bez_odcisku = []
+    for page in build.OUT.rglob("*.html"):
+        html = page.read_text("utf-8")
+        for url in re.findall(r'(?:https://kidalu\.com)?(/assets/[^"\'\s,)]+)', html):
+            if "?v=" not in url:
+                bez_odcisku.append((page.relative_to(build.OUT).as_posix(), url))
+    css = (build.OUT / "assets" / "css" / "site.css").read_text("utf-8")
+    for url in re.findall(r"url\(([^)]+)\)", css):
+        if not url.startswith("data:") and "?v=" not in url:
+            bez_odcisku.append(("assets/css/site.css", url))
+    assert not bez_odcisku, bez_odcisku
+
+
 def test_artykul_poleca_inne_artykuly_w_tym_samym_jezyku():
     build.build()
     for lang in build.available_langs():

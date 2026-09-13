@@ -346,6 +346,17 @@ def write_meta(pages: list[Page]) -> None:
     (OUT / "robots.txt").write_text(
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE_HOST}/sitemap.xml\n", "utf-8"
     )
+    # Nagłówki dla Cloudflare Pages (GitHub Pages ignoruje ten plik). Wszystko pod
+    # /assets/ ma w adresie odcisk treści z asset_url(), więc może leżeć w cache rok.
+    (OUT / "_headers").write_text(
+        "/assets/*\n"
+        "  Cache-Control: public, max-age=31536000, immutable\n"
+        "\n"
+        "/*\n"
+        "  X-Content-Type-Options: nosniff\n"
+        "  Referrer-Policy: strict-origin-when-cross-origin\n",
+        "utf-8",
+    )
     langs = [l for l in LANGS if any(p.lang == l for p in pages)]
     for lang in langs:
         (OUT / sitemap_name(lang)).write_text(
