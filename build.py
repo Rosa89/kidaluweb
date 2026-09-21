@@ -55,6 +55,25 @@ def play_url(app_key: str) -> str:
     return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
 
 
+# Identyfikatory aplikacji w App Store — na razie tylko Literki i Cyferki.
+# Nauka czytania sylabami zostaje wyłącznie na Androidzie i nie dostaje wpisu.
+APPLE_IDS = {
+    "literki": "6814286876",
+}
+
+
+def app_store_url(app_key: str) -> str:
+    return f"https://apps.apple.com/app/id{APPLE_IDS[app_key]}"
+
+
+# Aplikacje, dla których strona ma już pokazywać przycisk „Pobierz z App Store"
+# i deklarować operatingSystem "Android, iOS" w danych strukturalnych. Dopóki
+# zbiór jest pusty, adres z APPLE_IDS zwraca 404 (aplikacja czeka na recenzję
+# Apple) i przycisk się nie renderuje. Włączyć wpisując tu klucz aplikacji,
+# np. {"literki"}, dopiero gdy Apple zaakceptuje aplikację.
+APP_STORE_LIVE: set[str] = set()
+
+
 def asset_url(rel: str) -> str:
     """Adres assetu z odciskiem treści.
 
@@ -397,6 +416,7 @@ def build() -> list[Path]:
             "legal": legal_links(c, urls, lang),
             "app": None,
             "play_url": None,
+            "app_store_url": None,
             "play_dev_url": PLAY_DEV_URL,
             "social": SOCIAL,
             "bing_verification": BING_SITE_VERIFICATION,
@@ -420,6 +440,7 @@ def build() -> list[Path]:
                    "alternates": alternates(app_key),
                    "app": c["apps"][app_key],
                    "play_url": play_url(app_key),
+                   "app_store_url": app_store_url(app_key) if app_key in APP_STORE_LIVE else None,
                    "docs_url": docs_url},
             )))
             pages.append(Page(urls[app_key], lang, app_key, lang_src + [TEMPLATES / "app.html.jinja"]))

@@ -302,6 +302,52 @@ def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
     assert "MobileApplication" not in kontakt
 
 
+# --- przycisk App Store (Literki i Cyferki na iOS), za flagą APP_STORE_LIVE ---
+
+APP_STORE_ID_URL = "https://apps.apple.com/app/id6814286876"
+
+
+def test_przycisk_app_store_wylaczony_dopoki_apple_nie_zaakceptuje():
+    """APP_STORE_LIVE jest dziś puste — aplikacja czeka na recenzję Apple i adres
+    apps.apple.com/app/id6814286876 zwraca 404. Strona ma wyglądać jak dziś:
+    żadnego linku do App Store i operatingSystem tylko "Android"."""
+    assert build.APP_STORE_LIVE == set(), "ten test zakłada domyślnie wyłączoną flagę"
+    build.build()
+    for lang in build.available_langs():
+        urls = build.page_urls(build.load_lang(lang), lang)
+        html = _page(urls["literki"])
+        assert "apps.apple.com" not in html, lang
+        types = {d["@type"]: d for d in _jsonld(html)}
+        assert types["MobileApplication"]["operatingSystem"] == "Android"
+    for page in build.OUT.rglob("*.html"):
+        assert "apps.apple.com" not in page.read_text("utf-8"), page
+
+
+def test_przycisk_app_store_gdy_flaga_wlaczona():
+    """Po zaakceptowaniu aplikacji przez Apple wystarczy dopisać klucz do
+    APP_STORE_LIVE: pojawia się drugi przycisk w stylu „Pobierz z Google Play"
+    i dane strukturalne wymieniają obie platformy. Czytanie sylabami — poza
+    zbiorem — zostaje wyłącznie na Androidzie."""
+    labels = {l: build.load_lang(l)["app_page"]["app_store"] for l in build.available_langs()}
+    build.APP_STORE_LIVE.add("literki")
+    try:
+        build.build()
+        for lang in build.available_langs():
+            urls = build.page_urls(build.load_lang(lang), lang)
+            html = _page(urls["literki"])
+            assert f'<a class="play" href="{APP_STORE_ID_URL}">{labels[lang]}</a>' in html, lang
+            types = {d["@type"]: d for d in _jsonld(html)}
+            assert types["MobileApplication"]["operatingSystem"] == "Android, iOS"
+
+            czytanie_html = _page(urls["czytanie"])
+            assert "apps.apple.com" not in czytanie_html, lang
+            types_cz = {d["@type"]: d for d in _jsonld(czytanie_html)}
+            assert types_cz["MobileApplication"]["operatingSystem"] == "Android"
+    finally:
+        build.APP_STORE_LIVE.discard("literki")
+        build.build()
+
+
 def test_og_locale_w_pelnym_formacie():
     build.build()
     pl = (build.OUT / "index.html").read_text("utf-8")

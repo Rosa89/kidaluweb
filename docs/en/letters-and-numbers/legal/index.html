@@ -74,7 +74,7 @@
 <!-- ══════════════════ PRIVACY POLICY ══════════════════ -->
 <article class="doc-section" id="privacy">
   <h2>Privacy policy</h2>
-  <p class="dates"><b>Effective from:</b> 13 September 2026 &nbsp;·&nbsp; <b>Last updated:</b> 13 September 2026</p>
+  <p class="dates"><b>Effective from:</b> 13 September 2026 &nbsp;·&nbsp; <b>Last updated:</b> 21 September 2026</p>
   <p class="lede">The app "Letters and Numbers" (on Google Play: "Learn to Write: ABC and 123") teaches children aged 4 to 7 to write letters and numbers. It is meant to be used under the supervision of a parent or carer. The app requires no account and collects no data that directly identifies you or your child (no names, email addresses, phone numbers or location). It processes only the technical identifiers and usage statistics described in section 2.</p>
 
   <h2>1. Who is responsible for your data</h2>
@@ -90,7 +90,7 @@
     <thead><tr><th>Category</th><th>What exactly</th><th>Why</th><th>Where it goes</th></tr></thead>
     <tbody>
       <tr><td>Usage statistics</td><td>An app instance identifier assigned by Firebase, plus events: app launch, completion of a character (the character, number of stars, number of attempts), opening the parent panel, starting and completing a purchase</td><td>To see which features are used and where children lose heart</td><td>Firebase Analytics (Google)</td></tr>
-      <tr><td>Purchase</td><td>A transaction identifier and an anonymous user identifier generated at random on the device</td><td>To unlock the full version and restore the purchase after reinstalling</td><td>RevenueCat, Google Play Billing</td></tr>
+      <tr><td>Purchase</td><td>A transaction identifier and an anonymous user identifier generated at random on the device</td><td>To unlock the full version and restore the purchase after reinstalling</td><td>RevenueCat, Google Play Billing, Apple App Store (In-App Purchase)</td></tr>
       <tr><td>Learning progress</td><td>Letters and numbers mastered, number of stars, animals collected, settings (line thickness, difficulty level, chosen handwriting style), the parent panel PIN in hashed form</td><td>To remember where your child left off</td><td>The device's own storage only</td></tr>
     </tbody>
   </table></div>
@@ -99,6 +99,7 @@
   <div class="box box--warn">
     <p><b>What we do not collect:</b> first or last name, email address, phone number, location data, contact list, photos, audio or video recordings. The app never asks for this data and has no system permissions for it.</p>
     <p>We also do not collect the Advertising ID. That permission has been removed from the app.</p>
+    <p>On iOS the app collects no IDFA (advertising identifier) and no IDFV (vendor identifier), and it does not track you or your child outside the app — it has nothing to track, so it does not use App Tracking Transparency.</p>
   </div>
 
   <h2>3. Protecting children</h2>
@@ -110,7 +111,7 @@
     <li>Every purchase must be confirmed by an adult. Before payment the app asks a maths question that a child aged 4 to 7 cannot solve.</li>
     <li>The parent panel is protected by a PIN, which we store only in hashed form (never as plain text).</li>
   </ul>
-  <p>We act in accordance with the US COPPA act, Article 8 of the GDPR and the Google Play Families programme policies.</p>
+  <p>We act in accordance with the US COPPA act, Article 8 of the GDPR, the Google Play Families programme policies and, in the iOS version, Apple's App Store guidelines for apps in the Kids category.</p>
 
   <h2>4. External services</h2>
   <div class="table-scroll"><table>
@@ -118,16 +119,17 @@
     <tbody>
       <tr><td>Firebase Analytics (Google)</td><td>Usage statistics of app features</td><td><a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></td></tr>
       <tr><td>RevenueCat</td><td>Handling and verifying the full-version purchase</td><td><a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></td></tr>
-      <tr><td>Google Play Billing</td><td>Payment processing and app distribution</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Google Play Billing</td><td>Payment processing and app distribution on Android</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Apple (App Store)</td><td>Payment processing and app distribution on iOS</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a></td></tr>
     </tbody>
   </table></div>
 
   <h2>5. In-app purchases</h2>
   <ul>
     <li>The full version is unlocked by a <b>one-time purchase</b>. There is no subscription and no automatic renewal.</li>
-    <li>We do not store payment card or bank details. Payment is handled entirely by Google Play.</li>
-    <li>After reinstalling, the purchase can be restored with the "Restore purchase" button in the parent panel.</li>
-    <li>Refunds are handled by Google Play under its own terms.</li>
+    <li>We do not store payment card or bank details. Payment is handled entirely by Google Play (Android) or Apple (iOS).</li>
+    <li>After reinstalling, the purchase can be restored with the "Restore purchase" button in the parent panel. On iOS the purchase is tied to your Apple Account; Family Sharing is turned off.</li>
+    <li>Refunds on Android are handled by Google Play under its own terms; on iOS, by Apple (reportaproblem.apple.com).</li>
   </ul>
 
   <h2>6. How long we keep data</h2>
@@ -142,7 +144,7 @@
   <p>Because the app has no accounts, we cannot link statistical data to a specific person or device. The most effective way to remove data from the device is therefore to uninstall the app. Details are in the <b>Deleting data</b> section.</p>
 
   <h2>8. Changes to this policy</h2>
-  <p>We will announce significant changes in the app's update notes on Google Play. The current version is always available at this address, with the date of the last change at the top of the page.</p>
+  <p>We will announce significant changes in the app's update notes on Google Play and on the App Store. The current version is always available at this address, with the date of the last change at the top of the page.</p>
 
   <h2>9. Contact</h2>
   <div class="people">
@@ -222,7 +224,7 @@
   <p>The app is not a diagnostic or therapeutic tool. It is not designed to detect writing difficulties and does not replace work with a specialist.</p>
 
   <h2>Purchasing for an institution</h2>
-  <p>At present the app is available only through Google Play, with a one-time purchase that unlocks the full version on a given device. If you need a larger number of licences for your institution, write to us and we will work out a solution.</p>
+  <p>At present the app is available through Google Play (Android) and the App Store (iOS), with a one-time purchase that unlocks the full version on a given device. If you need a larger number of licences for your institution, write to us and we will work out a solution.</p>
   <p><a class="back" href="/en/contact/" style="margin-top:.5rem">Write to us</a></p>
 </article>
 
@@ -236,19 +238,27 @@
   </div>
 
   <h2>How to clear data without uninstalling</h2>
+  <p><b>Android:</b></p>
   <ol>
     <li>Open the Android <b>Settings</b>.</li>
     <li>Go to <b>Apps</b> and choose <b>Learn to Write: ABC and 123</b>.</li>
     <li>Open <b>Storage</b> and choose <b>Clear data</b>.</li>
   </ol>
   <p>The app returns to its initial state. The full-version purchase is not lost: you can restore it with the "Restore purchase" button in the parent panel, because it is tied to your Google Play account rather than to the data in the app.</p>
+  <p><b>iPhone and iPad:</b> iOS has no separate "clear app data" option. The only way is to delete the app:</p>
+  <ol>
+    <li>Open <b>Settings</b> → <b>General</b> → <b>iPhone Storage</b> (or <b>iPad Storage</b>).</li>
+    <li>Choose <b>Letters and Numbers</b> and tap <b>Delete App</b>.</li>
+    <li>Or press and hold the app icon on the Home Screen and choose <b>Delete App</b>.</li>
+  </ol>
+  <p>After reinstalling, restore the full-version purchase with the "Restore purchase" button in the parent panel, because it is tied to your Apple Account rather than to the data in the app.</p>
 
   <h2>Statistical data</h2>
   <p>Feature usage statistics are collected under an app instance identifier that points to no person. The identifier ceases to exist when the app is uninstalled or its data is cleared, and events collected before that are deleted automatically after 14 months at most.</p>
   <p>If you want us to delete statistical data sooner, write to us. We will need the approximate period of use and the device model in order to find the right events.</p>
 
   <h2>Purchase data</h2>
-  <p>Purchase history is kept by Google Play and RevenueCat. We cannot delete it, because it is the basis of your right to the full version of the app and an accounting record. Matters concerning payments and refunds are handled by Google Play.</p>
+  <p>Purchase history is kept by Google Play, the App Store and RevenueCat. We cannot delete it, because it is the basis of your right to the full version of the app and an accounting record. Matters concerning payments and refunds are handled by Google Play (Android) or Apple (iOS).</p>
 
   <h2>Submitting a request</h2>
   <p>Write to either of the addresses below. We reply within 30 days.</p>

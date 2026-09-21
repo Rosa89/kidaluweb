@@ -214,6 +214,7 @@
   },
   "app_page": {
     "play": "Bei Google Play laden",
+    "app_store": "Laden im App Store",
     "features_heading": "Was drin ist",
     "who_heading": "Für wen",
     "privacy_heading": "Datenschutz",
@@ -231,11 +232,11 @@
       },
       {
         "heading": "Was wir machen",
-        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen. Lesen nach Silben übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu."
+        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen, und bringen Buchstaben und Zahlen zusätzlich aufs iPhone und iPad. Lesen nach Silben übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu, Buchstaben und Zahlen zusätzlich im App Store."
       },
       {
         "heading": "Warum Sie uns vertrauen können",
-        "body": "Kidalu-Apps enthalten keine Werbung, erstellen keine Verhaltensprofile und verfolgen Kinder nicht außerhalb der App. Sie entsprechen COPPA, Art. 8 DSGVO und den Google Play Families-Richtlinien. Alle Dokumente veröffentlichen wir auf dieser Seite und beantworten jede Frage zu Daten."
+        "body": "Kidalu-Apps enthalten keine Werbung, erstellen keine Verhaltensprofile und verfolgen Kinder nicht außerhalb der App. Sie entsprechen COPPA, Art. 8 DSGVO und den Google Play Families-Richtlinien; die iOS-Version von Buchstaben und Zahlen hält sich zusätzlich an die App-Store-Richtlinien für Apps der Kategorie Kids. Alle Dokumente veröffentlichen wir auf dieser Seite und beantworten jede Frage zu Daten."
       }
     ],
     "principles_heading": "Unsere Grundsätze",

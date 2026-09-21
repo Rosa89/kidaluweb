@@ -39,6 +39,9 @@
         </ul>
         <p class="actions">
           <a class="play" href="{{ play_url }}">{{ c.app_page.play }}</a>
+          {% if app_store_url %}
+          <a class="play" href="{{ app_store_url }}">{{ c.app_page.app_store }}</a>
+          {% endif %}
           {% if docs_url %}
           <a class="ghost" href="{{ docs_url }}">{{ c.app_page.docs_link }}</a>
           {% endif %}

@@ -80,7 +80,7 @@
   'description': app.tagline,
   'url': site_host ~ alternates[lang],
   'installUrl': play_url,
-  'operatingSystem': 'Android',
+  'operatingSystem': 'Android, iOS' if app_store_url else 'Android',
   'applicationCategory': 'EducationalApplication',
   'inLanguage': lang,
   'image': site_host ~ asset('img/og.jpg'),

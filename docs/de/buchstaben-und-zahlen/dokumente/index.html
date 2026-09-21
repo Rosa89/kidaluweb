@@ -74,7 +74,7 @@
 <!-- ══════════════════ DATENSCHUTZERKLÄRUNG ══════════════════ -->
 <article class="doc-section" id="privacy">
   <h2>Datenschutzerklärung</h2>
-  <p class="dates"><b>Gültig ab:</b> 28. August 2026 &nbsp;·&nbsp; <b>Zuletzt aktualisiert:</b> 28. August 2026</p>
+  <p class="dates"><b>Gültig ab:</b> 28. August 2026 &nbsp;·&nbsp; <b>Zuletzt aktualisiert:</b> 21. September 2026</p>
   <p class="lede">Die App „Buchstaben und Zahlen" (bei Google Play: „Buchstaben &amp; Zahlen schreiben") bringt Kindern im Alter von 4 bis 7 Jahren das Schreiben von Buchstaben und Zahlen bei. Sie ist für die Nutzung unter Aufsicht eines Elternteils oder einer Betreuungsperson bestimmt. Die App erfordert kein Konto und erhebt keine Daten, die Sie oder Ihr Kind direkt identifizieren (keine Namen, E-Mail-Adressen, Telefonnummern, Standortdaten). Verarbeitet werden lediglich technische Kennungen und Nutzungsstatistiken, die in Abschnitt 2 beschrieben sind.</p>
 
   <h2>1. Wer für die Daten verantwortlich ist</h2>
@@ -90,7 +90,7 @@
     <thead><tr><th>Kategorie</th><th>Was genau</th><th>Zu welchem Zweck</th><th>Wohin die Daten gehen</th></tr></thead>
     <tbody>
       <tr><td>Nutzungsstatistik</td><td>Von Firebase vergebene App-Instanz-ID sowie Ereignisse: App-Start, Abschluss eines Zeichens (Zeichen, Anzahl der Sterne, Anzahl der Versuche), Öffnen des Elternbereichs, Beginn und Abschluss eines Kaufs</td><td>Um zu sehen, welche Funktionen genutzt werden und wo Kinder den Mut verlieren</td><td>Firebase Analytics (Google)</td></tr>
-      <tr><td>Kauf</td><td>Transaktions-ID sowie eine anonyme Nutzer-ID, die zufällig auf dem Gerät erzeugt wird</td><td>Freischaltung der Vollversion und Wiederherstellung des Kaufs nach einer Neuinstallation</td><td>RevenueCat, Google Play Billing</td></tr>
+      <tr><td>Kauf</td><td>Transaktions-ID sowie eine anonyme Nutzer-ID, die zufällig auf dem Gerät erzeugt wird</td><td>Freischaltung der Vollversion und Wiederherstellung des Kaufs nach einer Neuinstallation</td><td>RevenueCat, Google Play Billing, Apple App Store (In-App-Kauf)</td></tr>
       <tr><td>Lernfortschritt</td><td>Gemeisterte Buchstaben und Zahlen, Anzahl der Sterne, gesammelte Tiere, Einstellungen (Strichstärke, Schwierigkeitsgrad, gewählte Schrift), PIN des Elternbereichs in gehashter Form</td><td>Damit die App weiß, wo das Kind aufgehört hat</td><td>Ausschließlich der Gerätespeicher</td></tr>
     </tbody>
   </table></div>
@@ -99,6 +99,7 @@
   <div class="box box--warn">
     <p><b>Was wir nicht erheben:</b> Vor- und Nachname, E-Mail-Adresse, Telefonnummer, Standortdaten, Kontaktliste, Fotos, Ton- oder Bildaufnahmen. Die App fragt diese Daten nicht ab und besitzt dafür auch keine Systemberechtigungen.</p>
     <p>Wir erheben auch keine Werbe-ID (Advertising ID) — die entsprechende Berechtigung wurde aus der App entfernt.</p>
+    <p>Auf iOS erhebt die App weder die Werbekennung IDFA noch die Anbieterkennung IDFV und verfolgt weder Sie noch Ihr Kind außerhalb der App — sie nutzt App Tracking Transparency erst gar nicht, weil es nichts zu verfolgen gibt.</p>
   </div>
 
   <h2>3. Schutz von Kindern</h2>
@@ -110,7 +111,7 @@
     <li>Jeder Kauf muss von einer erwachsenen Person bestätigt werden — vor der Zahlung stellt die App eine Rechenaufgabe, die ein Kind im Alter von 4 bis 7 Jahren nicht lösen kann.</li>
     <li>Der Elternbereich ist durch eine PIN geschützt, die wir ausschließlich in gehashter Form speichern (niemals im Klartext).</li>
   </ul>
-  <p>Wir handeln im Einklang mit dem US-amerikanischen Kinderschutzgesetz COPPA, Art. 8 DSGVO und den Richtlinien des Google-Play-Programms für Familien.</p>
+  <p>Wir handeln im Einklang mit dem US-amerikanischen Kinderschutzgesetz COPPA, Art. 8 DSGVO, den Richtlinien des Google-Play-Programms für Familien und — in der iOS-Version — den App-Store-Richtlinien für Apps der Kategorie Kids.</p>
 
   <h2>4. Externe Dienste</h2>
   <div class="table-scroll"><table>
@@ -118,16 +119,17 @@
     <tbody>
       <tr><td>Firebase Analytics (Google)</td><td>Nutzungsstatistik der App-Funktionen</td><td><a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></td></tr>
       <tr><td>RevenueCat</td><td>Abwicklung und Prüfung des Kaufs der Vollversion</td><td><a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></td></tr>
-      <tr><td>Google Play Billing</td><td>Zahlungsabwicklung und Vertrieb der App</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Google Play Billing</td><td>Zahlungsabwicklung und Vertrieb der App auf Android</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Apple (App Store)</td><td>Zahlungsabwicklung und Vertrieb der App auf iOS</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a></td></tr>
     </tbody>
   </table></div>
 
   <h2>5. In-App-Käufe</h2>
   <ul>
     <li>Die Vollversion wird durch einen <b>einmaligen Kauf</b> freigeschaltet — es gibt kein Abonnement und keine automatische Verlängerung.</li>
-    <li>Wir speichern keine Zahlungskarten- oder Bankdaten. Die Zahlung wird vollständig von Google Play abgewickelt.</li>
-    <li>Nach einer Neuinstallation lässt sich der Kauf über die Schaltfläche „Kauf wiederherstellen" im Elternbereich wiederherstellen.</li>
-    <li>Erstattungen wickelt Google Play nach seinen eigenen Bedingungen ab.</li>
+    <li>Wir speichern keine Zahlungskarten- oder Bankdaten. Die Zahlung wird vollständig von Google Play (Android) oder Apple (iOS) abgewickelt.</li>
+    <li>Nach einer Neuinstallation lässt sich der Kauf über die Schaltfläche „Kauf wiederherstellen" im Elternbereich wiederherstellen. Auf iOS ist der Kauf an Ihren Apple Account gebunden; die Familienfreigabe ist deaktiviert.</li>
+    <li>Erstattungen wickelt auf Android Google Play nach seinen eigenen Bedingungen ab, auf iOS Apple (reportaproblem.apple.com).</li>
   </ul>
 
   <h2>6. Wie lange wir Daten speichern</h2>
@@ -142,7 +144,7 @@
   <p>Da die App keine Konten hat, können wir Statistikdaten weder einer bestimmten Person noch einem bestimmten Gerät zuordnen — der wirksamste Weg, die Daten vom Gerät zu entfernen, ist daher die Deinstallation der App. Einzelheiten finden Sie im Reiter <b>Daten löschen</b>.</p>
 
   <h2>8. Änderungen dieser Erklärung</h2>
-  <p>Über wesentliche Änderungen informieren wir in der Update-Beschreibung der App bei Google Play. Die jeweils aktuelle Fassung ist immer unter dieser Adresse abrufbar, mit dem Datum der letzten Änderung oben auf der Seite.</p>
+  <p>Über wesentliche Änderungen informieren wir in der Update-Beschreibung der App bei Google Play und im App Store. Die jeweils aktuelle Fassung ist immer unter dieser Adresse abrufbar, mit dem Datum der letzten Änderung oben auf der Seite.</p>
 
   <h2>9. Kontakt</h2>
   <div class="people">
@@ -221,7 +223,7 @@
   <p>Die App ist kein Diagnose- und kein Therapieinstrument. Sie dient nicht dazu, Schreibschwierigkeiten zu erkennen, und ersetzt nicht die Arbeit mit einer Fachkraft.</p>
 
   <h2>Kauf für Einrichtungen</h2>
-  <p>Derzeit ist die App ausschließlich bei Google Play erhältlich, mit einem einmaligen Kauf, der die Vollversion auf dem jeweiligen Gerät freischaltet. Wenn Sie mehrere Lizenzen für Ihre Einrichtung benötigen, schreiben Sie uns — wir finden gemeinsam eine Lösung.</p>
+  <p>Derzeit ist die App bei Google Play (Android) und im App Store (iOS) erhältlich, mit einem einmaligen Kauf, der die Vollversion auf dem jeweiligen Gerät freischaltet. Wenn Sie mehrere Lizenzen für Ihre Einrichtung benötigen, schreiben Sie uns — wir finden gemeinsam eine Lösung.</p>
   <p><a class="back" href="/de/kontakt/" style="margin-top:.5rem">Schreiben Sie uns</a></p>
 </article>
 
@@ -235,19 +237,27 @@
   </div>
 
   <h2>Daten löschen, ohne die App zu deinstallieren</h2>
+  <p><b>Android:</b></p>
   <ol>
     <li>Öffnen Sie die <b>Einstellungen</b> von Android.</li>
     <li>Gehen Sie zu <b>Apps</b> und wählen Sie <b>Buchstaben und Zahlen</b>.</li>
     <li>Tippen Sie auf <b>Speicher</b> und anschließend auf <b>Daten löschen</b>.</li>
   </ol>
   <p>Die App kehrt in den Ausgangszustand zurück. Der Kauf der Vollversion geht nicht verloren — Sie stellen ihn über die Schaltfläche „Kauf wiederherstellen" im Elternbereich wieder her, denn er ist an Ihr Google-Play-Konto gebunden, nicht an die Daten in der App.</p>
+  <p><b>iPhone und iPad:</b> iOS kennt keine eigene Option „App-Daten löschen" — der einzige Weg ist, die App zu löschen:</p>
+  <ol>
+    <li>Öffnen Sie <b>Einstellungen</b> → <b>Allgemein</b> → <b>iPhone-Speicher</b> (bzw. <b>iPad-Speicher</b>).</li>
+    <li>Wählen Sie <b>Buchstaben und Zahlen</b> und tippen Sie auf <b>App löschen</b>.</li>
+    <li>Oder halten Sie das App-Symbol auf dem Home-Bildschirm gedrückt und wählen Sie <b>App löschen</b>.</li>
+  </ol>
+  <p>Nach einer Neuinstallation stellen Sie den Kauf der Vollversion über die Schaltfläche „Kauf wiederherstellen" im Elternbereich wieder her, denn er ist an Ihren Apple Account gebunden, nicht an die Daten in der App.</p>
 
   <h2>Statistikdaten</h2>
   <p>Die Nutzungsstatistik wird unter einer App-Instanz-ID erfasst, die auf keine Person verweist. Die ID hört auf zu existieren, sobald die App deinstalliert oder ihre Daten gelöscht werden; zuvor erfasste Ereignisse werden nach spätestens 14 Monaten automatisch gelöscht.</p>
   <p>Wenn wir die Statistikdaten früher löschen sollen, schreiben Sie uns — wir benötigen den ungefähren Nutzungszeitraum und das Gerätemodell, um die richtigen Ereignisse zu finden.</p>
 
   <h2>Kaufdaten</h2>
-  <p>Die Kaufhistorie wird von Google Play und RevenueCat gespeichert. Wir können sie nicht löschen, da sie die Grundlage Ihres Anspruchs auf die Vollversion und zugleich ein Buchungsbeleg ist. Für Zahlungen und Erstattungen ist Google Play zuständig.</p>
+  <p>Die Kaufhistorie wird von Google Play, dem App Store und RevenueCat gespeichert. Wir können sie nicht löschen, da sie die Grundlage Ihres Anspruchs auf die Vollversion und zugleich ein Buchungsbeleg ist. Für Zahlungen und Erstattungen ist Google Play (Android) oder Apple (iOS) zuständig.</p>
 
   <h2>Anfrage stellen</h2>
   <p>Schreiben Sie an eine der beiden Adressen unten. Wir antworten innerhalb von 30 Tagen.</p>

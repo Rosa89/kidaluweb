@@ -8,7 +8,7 @@
 <!-- ══════════════════ POLITYKA PRYWATNOŚCI ══════════════════ -->
 <article class="doc-section" id="privacy">
   <h2>Polityka prywatności</h2>
-  <p class="dates"><b>Wejście w życie:</b> 30 lipca 2026 &nbsp;·&nbsp; <b>Ostatnia aktualizacja:</b> 30 lipca 2026</p>
+  <p class="dates"><b>Wejście w życie:</b> 30 lipca 2026 &nbsp;·&nbsp; <b>Ostatnia aktualizacja:</b> 21 września 2026</p>
   <p class="lede">Aplikacja „Nauka pisania liter i cyfr" (w aplikacji: Literki i Cyferki) uczy dzieci w wieku 4–7 lat pisania liter i cyfr. Jest przeznaczona do używania pod nadzorem rodzica lub opiekuna. Aplikacja nie wymaga konta i nie zbiera danych, które bezpośrednio identyfikują Ciebie lub dziecko (imienia, adresu e-mail, numeru telefonu, lokalizacji). Przetwarzane są wyłącznie identyfikatory techniczne i statystyki użycia opisane w sekcji 2.</p>
 
   <h2>1. Kto jest administratorem danych</h2>
@@ -24,7 +24,7 @@
     <thead><tr><th>Kategoria</th><th>Co konkretnie</th><th>W jakim celu</th><th>Gdzie trafia</th></tr></thead>
     <tbody>
       <tr><td>Statystyka użycia</td><td>Identyfikator instancji aplikacji nadany przez Firebase, zdarzenia: uruchomienie aplikacji, ukończenie znaku (znak, liczba gwiazdek, liczba prób), otwarcie panelu rodzica, rozpoczęcie i zakończenie zakupu</td><td>Sprawdzenie, które funkcje są używane i gdzie dzieci się zniechęcają</td><td>Firebase Analytics (Google)</td></tr>
-      <tr><td>Zakup</td><td>Identyfikator transakcji oraz anonimowy identyfikator użytkownika generowany losowo na urządzeniu</td><td>Odblokowanie pełnej wersji i przywrócenie zakupu po ponownej instalacji</td><td>RevenueCat, Google Play Billing</td></tr>
+      <tr><td>Zakup</td><td>Identyfikator transakcji oraz anonimowy identyfikator użytkownika generowany losowo na urządzeniu</td><td>Odblokowanie pełnej wersji i przywrócenie zakupu po ponownej instalacji</td><td>RevenueCat, Google Play Billing, Apple App Store (In-App Purchase)</td></tr>
       <tr><td>Postęp nauki</td><td>Opanowane litery i cyfry, liczba gwiazdek, zdobyte zwierzątka, ustawienia (grubość śladu, poziom trudności, wybrane pismo), kod PIN panelu rodzica w formie skróconej</td><td>Zapamiętanie, na czym dziecko skończyło</td><td>Wyłącznie pamięć urządzenia</td></tr>
     </tbody>
   </table></div>
@@ -33,6 +33,7 @@
   <div class="box box--warn">
     <p><b>Czego nie zbieramy:</b> imienia i nazwiska, adresu e-mail, numeru telefonu, danych lokalizacji, listy kontaktów, zdjęć, nagrań dźwięku ani obrazu. Aplikacja o te dane nie pyta i nie ma do nich uprawnień systemowych.</p>
     <p>Nie zbieramy również identyfikatora reklamowego (Advertising ID) — uprawnienie do niego zostało usunięte z aplikacji.</p>
+    <p>W wersji na iOS aplikacja nie zbiera identyfikatora reklamowego IDFA ani identyfikatora dostawcy IDFV i nie śledzi Cię ani dziecka poza aplikacją — nie korzysta z mechanizmu App Tracking Transparency, bo nie ma czego nim obejmować.</p>
   </div>
 
   <h2>3. Ochrona dzieci</h2>
@@ -44,7 +45,7 @@
     <li>Każdy zakup wymaga potwierdzenia przez osobę dorosłą — przed płatnością aplikacja zadaje pytanie matematyczne, którego dziecko w wieku 4–7 lat nie rozwiąże.</li>
     <li>Panel rodzica jest zabezpieczony kodem PIN, który przechowujemy wyłącznie w formie skróconej (nigdy jako czysty tekst).</li>
   </ul>
-  <p>Działamy zgodnie z amerykańską ustawą COPPA, art. 8 RODO oraz zasadami programu Google Play Families.</p>
+  <p>Działamy zgodnie z amerykańską ustawą COPPA, art. 8 RODO, zasadami programu Google Play Families oraz — w wersji na iOS — wytycznymi App Store dla aplikacji z kategorii Kids.</p>
 
   <h2>4. Usługi zewnętrzne</h2>
   <div class="table-scroll"><table>
@@ -52,16 +53,17 @@
     <tbody>
       <tr><td>Firebase Analytics (Google)</td><td>Statystyka użycia funkcji aplikacji</td><td><a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></td></tr>
       <tr><td>RevenueCat</td><td>Obsługa i weryfikacja zakupu pełnej wersji</td><td><a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></td></tr>
-      <tr><td>Google Play Billing</td><td>Przetwarzanie płatności i dystrybucja aplikacji</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Google Play Billing</td><td>Przetwarzanie płatności i dystrybucja aplikacji na Androidzie</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Apple (App Store)</td><td>Przetwarzanie płatności i dystrybucja aplikacji na iOS</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a></td></tr>
     </tbody>
   </table></div>
 
   <h2>5. Zakupy w aplikacji</h2>
   <ul>
     <li>Pełną wersję odblokowuje <b>jednorazowy zakup</b> — nie ma subskrypcji ani automatycznego odnawiania.</li>
-    <li>Nie przechowujemy danych karty płatniczej ani danych bankowych. Płatność obsługuje w całości Google Play.</li>
-    <li>Zakup można przywrócić po ponownej instalacji przyciskiem „Przywróć zakup" w panelu rodzica.</li>
-    <li>Zwroty realizuje Google Play zgodnie ze swoim regulaminem.</li>
+    <li>Nie przechowujemy danych karty płatniczej ani danych bankowych. Płatność obsługuje w całości Google Play (Android) albo Apple (iOS).</li>
+    <li>Zakup można przywrócić po ponownej instalacji przyciskiem „Przywróć zakup" w panelu rodzica — na iOS zakup jest przypisany do Twojego konta Apple, a chmura rodzinna (Family Sharing) jest wyłączona.</li>
+    <li>Zwroty na Androidzie realizuje Google Play zgodnie ze swoim regulaminem, na iOS — Apple (reportaproblem.apple.com).</li>
   </ul>
 
   <h2>6. Jak długo przechowujemy dane</h2>
@@ -76,7 +78,7 @@
   <p>Ponieważ aplikacja nie ma kont, nie jesteśmy w stanie powiązać danych statystycznych z konkretną osobą ani urządzeniem — dlatego najskuteczniejszą drogą usunięcia danych z urządzenia jest odinstalowanie aplikacji. Szczegóły opisaliśmy w zakładce <b>Usuwanie danych</b>.</p>
 
   <h2>8. Zmiany polityki</h2>
-  <p>O istotnych zmianach poinformujemy w opisie aktualizacji aplikacji w Google Play. Aktualna wersja jest zawsze dostępna pod tym adresem, z datą ostatniej zmiany na górze strony.</p>
+  <p>O istotnych zmianach poinformujemy w opisie aktualizacji aplikacji w Google Play i w App Store. Aktualna wersja jest zawsze dostępna pod tym adresem, z datą ostatniej zmiany na górze strony.</p>
 
   <h2>9. Kontakt</h2>
   <div class="people">
@@ -155,7 +157,7 @@
   <p>Aplikacja nie jest narzędziem diagnostycznym ani terapeutycznym. Nie służy do rozpoznawania trudności w pisaniu i nie zastępuje pracy ze specjalistą.</p>
 
   <h2>Zakup dla placówki</h2>
-  <p>Obecnie aplikacja jest dostępna wyłącznie jako pozycja w Google Play z jednorazowym zakupem odblokowującym pełną wersję na urządzeniu. Jeśli potrzebujesz większej liczby licencji dla placówki, napisz do nas — ustalimy, jak to rozwiązać.</p>
+  <p>Obecnie aplikacja jest dostępna jako pozycja w Google Play (Android) i w App Store (iOS), z jednorazowym zakupem odblokowującym pełną wersję na urządzeniu. Jeśli potrzebujesz większej liczby licencji dla placówki, napisz do nas — ustalimy, jak to rozwiązać.</p>
   <p><a class="back" href="/kontakt/" style="margin-top:.5rem">Napisz do nas</a></p>
 </article>
 
@@ -169,19 +171,27 @@
   </div>
 
   <h2>Jak wyczyścić dane bez odinstalowania</h2>
+  <p><b>Android:</b></p>
   <ol>
     <li>Otwórz <b>Ustawienia</b> systemu Android.</li>
     <li>Przejdź do <b>Aplikacje</b> i wybierz <b>Nauka pisania liter i cyfr</b>.</li>
     <li>Wejdź w <b>Pamięć</b>, a następnie wybierz <b>Wyczyść dane</b>.</li>
   </ol>
   <p>Aplikacja wróci do stanu początkowego. Zakup pełnej wersji nie przepada — przywrócisz go przyciskiem „Przywróć zakup" w panelu rodzica, ponieważ jest przypisany do Twojego konta Google Play, a nie do danych w aplikacji.</p>
+  <p><b>iPhone i iPad:</b> system iOS nie ma osobnej opcji „wyczyść dane aplikacji" — jedynym sposobem jest usunięcie aplikacji:</p>
+  <ol>
+    <li>Otwórz <b>Ustawienia</b> → <b>Ogólne</b> → <b>Pamięć iPhone'a</b> (lub <b>Pamięć iPada</b>).</li>
+    <li>Wybierz <b>Literki i Cyferki</b> i dotknij <b>Usuń aplikację</b>.</li>
+    <li>Albo przytrzymaj ikonę aplikacji na ekranie głównym i wybierz <b>Usuń aplikację</b>.</li>
+  </ol>
+  <p>Po ponownej instalacji zakup pełnej wersji przywrócisz przyciskiem „Przywróć zakup" w panelu rodzica, ponieważ jest przypisany do Twojego konta Apple, a nie do danych w aplikacji.</p>
 
   <h2>Dane statystyczne</h2>
   <p>Statystyka użycia funkcji jest zbierana pod identyfikatorem instancji aplikacji, który nie wskazuje żadnej osoby. Identyfikator przestaje istnieć po odinstalowaniu aplikacji lub wyczyszczeniu jej danych, a wcześniej zebrane zdarzenia są automatycznie usuwane po maksymalnie 14 miesiącach.</p>
   <p>Jeśli chcesz, żebyśmy usunęli dane statystyczne wcześniej, napisz do nas — potrzebny będzie przybliżony czas korzystania z aplikacji i model urządzenia, żebyśmy mogli odnaleźć właściwe zdarzenia.</p>
 
   <h2>Dane zakupu</h2>
-  <p>Historia zakupu jest przechowywana przez Google Play i RevenueCat. Nie możemy jej usunąć, ponieważ jest podstawą Twojego prawa do pełnej wersji aplikacji oraz dokumentem księgowym. Sprawy dotyczące płatności i zwrotów prowadzi Google Play.</p>
+  <p>Historia zakupu jest przechowywana przez Google Play, App Store i RevenueCat. Nie możemy jej usunąć, ponieważ jest podstawą Twojego prawa do pełnej wersji aplikacji oraz dokumentem księgowym. Sprawami dotyczącymi płatności i zwrotów zajmuje się Google Play (Android) lub Apple (iOS).</p>
 
   <h2>Zgłoszenie żądania</h2>
   <p>Napisz na dowolny z adresów poniżej. Odpowiadamy w ciągu 30 dni.</p>
