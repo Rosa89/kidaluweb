@@ -55,10 +55,11 @@ def play_url(app_key: str) -> str:
     return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
 
 
-# Identyfikatory aplikacji w App Store — na razie tylko Literki i Cyferki.
-# Nauka czytania sylabami zostaje wyłącznie na Androidzie i nie dostaje wpisu.
+# Identyfikatory aplikacji w App Store. Obie aplikacje mają już rekord w App
+# Store Connect, ale żadna nie przeszła jeszcze recenzji Apple — patrz APP_STORE_LIVE.
 APPLE_IDS = {
     "literki": "6814286876",
+    "czytanie": "6814530037",
 }
 
 
@@ -68,9 +69,10 @@ def app_store_url(app_key: str) -> str:
 
 # Aplikacje, dla których strona ma już pokazywać przycisk „Pobierz z App Store"
 # i deklarować operatingSystem "Android, iOS" w danych strukturalnych. Dopóki
-# zbiór jest pusty, adres z APPLE_IDS zwraca 404 (aplikacja czeka na recenzję
-# Apple) i przycisk się nie renderuje. Włączyć wpisując tu klucz aplikacji,
-# np. {"literki"}, dopiero gdy Apple zaakceptuje aplikację.
+# zbiór jest pusty, adresy z APPLE_IDS zwracają 404 (aplikacje czekają na
+# recenzję Apple) i przycisk się nie renderuje. Włączyć wpisując tu klucz
+# aplikacji, np. {"literki"} albo {"literki", "czytanie"}, dopiero gdy Apple
+# zaakceptuje daną aplikację.
 APP_STORE_LIVE: set[str] = set()
 
 

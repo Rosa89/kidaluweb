@@ -121,7 +121,8 @@
       "facts": [
         "Kinder von 4 bis 8",
         "Nur auf Polnisch",
-        "Keine Werbung"
+        "Keine Werbung",
+        "Ohne Konto und ohne Anmeldung"
       ],
       "who": [
         {
@@ -140,7 +141,7 @@
       "privacy": [
         "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
         "Wir erstellen keine Verhaltensprofile und verknüpfen keine Daten zwischen Apps",
-        "Das Konto legt ein Elternteil an und kann es jederzeit mitsamt allen Daten dauerhaft löschen"
+        "Die App hat keine Konten — keine Registrierung, keine Anmeldung, kein Kinderprofil"
       ],
       "seo_title": "Polnisch lesen lernen mit Silben — App für Kinder | Kidalu",
       "description": "Android-App, die polnische Texte in farbige Silben zerlegt: Märchen, Gedichte, eigene Texte, Druck und PDF. Für Kinder von 4 bis 8, ohne Werbung."
@@ -218,7 +219,7 @@
     "features_heading": "Was drin ist",
     "who_heading": "Für wen",
     "privacy_heading": "Datenschutz",
-    "compliance": "Konform mit COPPA, Art. 8 DSGVO und den Google-Play-Families-Richtlinien.",
+    "compliance": "Konform mit COPPA, Art. 8 DSGVO und den Google-Play-Families-Richtlinien sowie — in der iOS-Version — den App-Store-Richtlinien für Apps der Kategorie Kids.",
     "docs_link": "Dokumente lesen",
     "back": "Zurück in den Wald"
   },
@@ -232,11 +233,11 @@
       },
       {
         "heading": "Was wir machen",
-        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen, und bringen Buchstaben und Zahlen zusätzlich aufs iPhone und iPad. Lesen nach Silben übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu, Buchstaben und Zahlen zusätzlich im App Store."
+        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen, und bringen inzwischen beide Apps zusätzlich aufs iPhone und iPad. Lesen nach Silben, nur auf Polnisch verfügbar, übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu, jetzt auch im App Store."
       },
       {
         "heading": "Warum Sie uns vertrauen können",
-        "body": "Kidalu-Apps enthalten keine Werbung, erstellen keine Verhaltensprofile und verfolgen Kinder nicht außerhalb der App. Sie entsprechen COPPA, Art. 8 DSGVO und den Google Play Families-Richtlinien; die iOS-Version von Buchstaben und Zahlen hält sich zusätzlich an die App-Store-Richtlinien für Apps der Kategorie Kids. Alle Dokumente veröffentlichen wir auf dieser Seite und beantworten jede Frage zu Daten."
+        "body": "Kidalu-Apps enthalten keine Werbung, erstellen keine Verhaltensprofile und verfolgen Kinder nicht außerhalb der App. Sie entsprechen COPPA, Art. 8 DSGVO und den Google Play Families-Richtlinien; auf iOS halten sich unsere Apps zusätzlich an die App-Store-Richtlinien für Apps der Kategorie Kids. Alle Dokumente veröffentlichen wir auf dieser Seite und beantworten jede Frage zu Daten."
       }
     ],
     "principles_heading": "Unsere Grundsätze",

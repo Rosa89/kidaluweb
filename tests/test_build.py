@@ -163,7 +163,75 @@ def test_dokument_zawiera_polityke_prywatnosci():
     build.build()
     html = (build.OUT / "czytanie-sylabami" / "dokumenty" / "index.html").read_text("utf-8")
     assert "Polityka prywatności" in html
-    assert "Administrator danych" in html
+    assert "administratorem danych" in html
+    assert "sebastian.rosinski.1989@gmail.com" in html
+
+
+# Zakładki dokumentów adresuje się kotwicą, a te adresy trafiły do Google Play
+# (m.in. URL usuwania danych) i do App Store Connect. Zmiana identyfikatora
+# sekcji psuje zapisany adres po cichu — stąd ten spis, pinowany dosłownie.
+DOC_ANCHORS = {
+    "czytanie": ["privacy", "terms", "about", "delete"],
+    "literki": ["privacy", "about", "teachers", "deletion"],
+}
+
+
+def test_zakladki_dokumentow_maja_stabilne_kotwice():
+    build.build()
+    for app_key, anchors in DOC_ANCHORS.items():
+        for lang in build.doc_langs(app_key):
+            urls = build.page_urls(build.load_lang(lang), lang)
+            html = _page(urls[f"{app_key}_docs"])
+            ids = re.findall(r'class="doc-section" id="([^"]+)"', html)
+            assert ids == anchors, (app_key, lang, ids)
+            for a in anchors:
+                assert f'<a href="#{a}">' in html, (app_key, lang, a)
+
+
+# Aplikacja „Nauka czytania sylabami" nie ma kont, logowania, ról ani
+# subskrypcji — a jej dokumenty prawne opisywały je do 21 września 2026.
+# Recenzent Apple i rodzice czytają te strony, więc pilnujemy, żeby stare
+# twierdzenia nie wróciły przy kolejnej edycji.
+#
+# Uwaga przy dopisywaniu: fraza musi być taka, żeby nie dało się jej napisać
+# w zdaniu ZAPRZECZAJĄCYM. „Einladungscode" odpadło, bo nowy dokument mówi
+# „keine Einladungscodes" — i test wywracał się na prawdziwym zdaniu.
+NIEPRAWDZIWE_W_DOKUMENTACH_CZYTANIA = [
+    "Google Sign-In", "Facebook Login",            # wiersze w tabeli usług
+    "Premium",                                     # subskrypcja Premium, wszystkie języki
+    "Rodzaje kont", "Account types", "Kontoarten",
+    "Rejestracja i konto", "Registration and account", "Registrierung und Konto",
+    "Strefa zagrożenia", "Danger zone",
+    "Usuwanie konta", "Deleting your account", "Konto löschen in der App",
+]
+
+# Odwrotna strona tej samej monety: dokument ma wprost mówić, że kont nie ma.
+BRAK_KONT_W_DOKUMENTACH_CZYTANIA = {
+    "pl": "nie ma kont",
+    "en": "has no accounts",
+    "de": "keine Konten",
+}
+
+
+def test_dokumenty_czytania_nie_opisuja_kont_ani_subskrypcji():
+    build.build()
+    for lang in build.doc_langs("czytanie"):
+        urls = build.page_urls(build.load_lang(lang), lang)
+        html = _page(urls["czytanie_docs"])
+        for fraza in NIEPRAWDZIWE_W_DOKUMENTACH_CZYTANIA:
+            assert fraza not in html, (lang, fraza)
+        assert BRAK_KONT_W_DOKUMENTACH_CZYTANIA[lang] in html, lang
+
+
+def test_strony_aplikacji_czytanie_nie_obiecuja_konta():
+    """Kafelek „Prywatność" na podstronie aplikacji też twierdził, że konto
+    zakłada rodzic. Aplikacja kont nie ma — sprawdzamy same dane wejściowe,
+    żeby test nie zależał od układu szablonu."""
+    for lang in build.available_langs():
+        app = build.load_lang(lang)["apps"]["czytanie"]
+        tekst = " ".join(app["privacy"] + app["facts"])
+        for fraza in ("Konto zakłada", "creates the account", "Das Konto legt"):
+            assert fraza not in tekst, (lang, fraza)
 
 
 def test_niemiecka_wersja_literek_zachowana():
@@ -302,50 +370,55 @@ def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
     assert "MobileApplication" not in kontakt
 
 
-# --- przycisk App Store (Literki i Cyferki na iOS), za flagą APP_STORE_LIVE ---
+# --- przycisk App Store (obie aplikacje na iOS), za flagą APP_STORE_LIVE ---
 
-APP_STORE_ID_URL = "https://apps.apple.com/app/id6814286876"
+APP_STORE_ID_URLS = {
+    "literki": "https://apps.apple.com/app/id6814286876",
+    "czytanie": "https://apps.apple.com/app/id6814530037",
+}
 
 
 def test_przycisk_app_store_wylaczony_dopoki_apple_nie_zaakceptuje():
-    """APP_STORE_LIVE jest dziś puste — aplikacja czeka na recenzję Apple i adres
-    apps.apple.com/app/id6814286876 zwraca 404. Strona ma wyglądać jak dziś:
-    żadnego linku do App Store i operatingSystem tylko "Android"."""
+    """APP_STORE_LIVE jest dziś puste dla obu aplikacji — obie czekają na recenzję
+    Apple i oba adresy apps.apple.com/app/id... zwracają 404. Strony mają wyglądać
+    jak dziś: żadnego linku do App Store i operatingSystem tylko "Android"."""
     assert build.APP_STORE_LIVE == set(), "ten test zakłada domyślnie wyłączoną flagę"
     build.build()
     for lang in build.available_langs():
         urls = build.page_urls(build.load_lang(lang), lang)
-        html = _page(urls["literki"])
-        assert "apps.apple.com" not in html, lang
-        types = {d["@type"]: d for d in _jsonld(html)}
-        assert types["MobileApplication"]["operatingSystem"] == "Android"
+        for app_key in APP_STORE_ID_URLS:
+            html = _page(urls[app_key])
+            assert "apps.apple.com" not in html, (app_key, lang)
+            types = {d["@type"]: d for d in _jsonld(html)}
+            assert types["MobileApplication"]["operatingSystem"] == "Android", (app_key, lang)
     for page in build.OUT.rglob("*.html"):
         assert "apps.apple.com" not in page.read_text("utf-8"), page
 
 
 def test_przycisk_app_store_gdy_flaga_wlaczona():
-    """Po zaakceptowaniu aplikacji przez Apple wystarczy dopisać klucz do
+    """Po zaakceptowaniu aplikacji przez Apple wystarczy dopisać jej klucz do
     APP_STORE_LIVE: pojawia się drugi przycisk w stylu „Pobierz z Google Play"
-    i dane strukturalne wymieniają obie platformy. Czytanie sylabami — poza
-    zbiorem — zostaje wyłącznie na Androidzie."""
+    i dane strukturalne wymieniają obie platformy — niezależnie, której aplikacji
+    dotyczy. Druga aplikacja, poza zbiorem, zostaje wyłącznie na Androidzie."""
     labels = {l: build.load_lang(l)["app_page"]["app_store"] for l in build.available_langs()}
-    build.APP_STORE_LIVE.add("literki")
-    try:
-        build.build()
-        for lang in build.available_langs():
-            urls = build.page_urls(build.load_lang(lang), lang)
-            html = _page(urls["literki"])
-            assert f'<a class="play" href="{APP_STORE_ID_URL}">{labels[lang]}</a>' in html, lang
-            types = {d["@type"]: d for d in _jsonld(html)}
-            assert types["MobileApplication"]["operatingSystem"] == "Android, iOS"
+    for app_key, other_key in (("literki", "czytanie"), ("czytanie", "literki")):
+        build.APP_STORE_LIVE.add(app_key)
+        try:
+            build.build()
+            for lang in build.available_langs():
+                urls = build.page_urls(build.load_lang(lang), lang)
+                html = _page(urls[app_key])
+                assert f'<a class="play" href="{APP_STORE_ID_URLS[app_key]}">{labels[lang]}</a>' in html, (app_key, lang)
+                types = {d["@type"]: d for d in _jsonld(html)}
+                assert types["MobileApplication"]["operatingSystem"] == "Android, iOS", (app_key, lang)
 
-            czytanie_html = _page(urls["czytanie"])
-            assert "apps.apple.com" not in czytanie_html, lang
-            types_cz = {d["@type"]: d for d in _jsonld(czytanie_html)}
-            assert types_cz["MobileApplication"]["operatingSystem"] == "Android"
-    finally:
-        build.APP_STORE_LIVE.discard("literki")
-        build.build()
+                other_html = _page(urls[other_key])
+                assert "apps.apple.com" not in other_html, (other_key, lang)
+                types_other = {d["@type"]: d for d in _jsonld(other_html)}
+                assert types_other["MobileApplication"]["operatingSystem"] == "Android", (other_key, lang)
+        finally:
+            build.APP_STORE_LIVE.discard(app_key)
+            build.build()
 
 
 def test_og_locale_w_pelnym_formacie():

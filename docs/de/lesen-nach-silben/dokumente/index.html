@@ -68,377 +68,278 @@
     <a href="#privacy">Datenschutzerklärung</a>
     <a href="#terms">Nutzungsbedingungen</a>
     <a href="#about">Über die App</a>
-    <a href="#delete">Konto löschen</a>
+    <a href="#delete">Daten löschen</a>
   </nav>
 
-<div class="doc-section" id="privacy">
+<!-- ══════════════════ DATENSCHUTZERKLÄRUNG ══════════════════ -->
+<article class="doc-section" id="privacy">
+  <h2>Datenschutzerklärung</h2>
+  <p class="dates"><b>Gültig ab:</b> 13. September 2026 &nbsp;·&nbsp; <b>Zuletzt aktualisiert:</b> 21. September 2026</p>
+  <p class="lede">Die App „Nauka czytania sylabami" (Lesen nach Silben; auf dem Startbildschirm heißt sie „Czytaj sylabami") hilft Kindern im Alter von 4 bis 8 Jahren beim polnischen Lesenlernen: Sie zerlegt Texte in Silben und färbt sie abwechselnd ein. Sie ist für die Nutzung unter Aufsicht eines Elternteils oder einer Betreuungsperson bestimmt. Die App hat keine Konten — es gibt weder Registrierung noch Anmeldung noch Profil — und erhebt keine Daten, die Sie oder Ihr Kind direkt identifizieren (keine Namen, E-Mail-Adressen, Telefonnummern, Standortdaten). Verarbeitet werden lediglich technische Kennungen und Nutzungsstatistiken, die in Abschnitt 2 beschrieben sind.</p>
 
-<div>
+  <h2>1. Wer für die Daten verantwortlich ist</h2>
+  <p>Gemeinsam Verantwortliche im Sinne von Art. 26 DSGVO sind, mit gleichem Anteil am Projekt:</p>
+  <ul>
+    <li><b>Sebastian Rosiński</b> — <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></li>
+    <li><b>Dawid Adamczyk</b> — <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></li>
+  </ul>
+  <p>Anfragen zu Ihren Daten können Sie an jede der beiden Adressen richten. Gemäß Art. 26 DSGVO teilen wir Ihnen mit, dass wir die datenschutzrechtlichen Pflichten gemeinsam wahrnehmen: Auf Anfragen antwortet derjenige von uns, der die Nachricht zuerst erhält; Meldungen von Datenschutzverletzungen bearbeiten wir gemeinsam.</p>
 
-<div class="card">
-    <h2>Datenschutzerklärung</h2>
-    <p><strong>Gültig ab:</strong> 13. September 2026</p>
-    <p><strong>Zuletzt aktualisiert:</strong> 13. September 2026</p>
-    <p>Diese Datenschutzerklärung beschreibt, wie die App „Nauka czytania sylabami" (Lesen nach Silben, im Folgenden: „App") personenbezogene Daten der Nutzerinnen und Nutzer erhebt, verwendet und schützt. Die App ist für Kinder im Alter von 4 bis 8 Jahren bestimmt, die sie unter Aufsicht ihrer Eltern oder Betreuungspersonen verwenden.</p>
-</div>
+  <h2>2. Welche Daten wir verarbeiten</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Kategorie</th><th>Was genau</th><th>Zu welchem Zweck</th><th>Wohin die Daten gehen</th></tr></thead>
+    <tbody>
+      <tr><td>Nutzungsstatistik</td><td>Von Firebase vergebene App-Instanz-ID sowie Ereignisse: Öffnen eines Textes aus der Bibliothek (Nummer der Publikation, Kategorie, gewählte Art der Silbentrennung), Zuendelesen eines Textes (Nummer der Publikation, Seitenzahl), Öffnen eines eigenen Textes (nur die Längenklasse: kurz, mittel, lang), PDF-Export (Quelle: Bibliothek oder eigener Text), Wechsel der Silbentrennung, Aufruf des Kaufbildschirms, Beginn, Abschluss und Wiederherstellung eines Kaufs, Aufruf der Einstellungen sowie die automatischen Firebase-Ereignisse (App-Start, Sitzung)</td><td>Um zu sehen, welche Texte und Funktionen genutzt werden und an welcher Stelle Kinder das Lesen abbrechen</td><td>Firebase Analytics (Google)</td></tr>
+      <tr><td>Abruf der Texte</td><td>Die Anfrage nach den veröffentlichten Texten und ihren Seiten, bei Nutzung der Suche in der Bibliothek auch der eingegebene Suchbegriff. Die Anfrage geht ohne Konto und ohne Nutzersitzung hinaus; der Server sieht die IP-Adresse des Geräts, wie bei jeder Internetverbindung</td><td>Anzeige der Bibliothek mit Märchen, Gedichten und Geschichten sowie die Suche darin</td><td>Supabase (unser Inhaltsserver)</td></tr>
+      <tr><td>Kauf</td><td>Transaktions-ID sowie eine anonyme Nutzer-ID, die zufällig auf dem Gerät erzeugt wird</td><td>Freischaltung der Vollversion und Wiederherstellung des Kaufs nach einer Neuinstallation</td><td>RevenueCat, Google Play Billing, Apple App Store (In-App-Kauf)</td></tr>
+      <tr><td>Lesefortschritt und Einstellungen</td><td>Welche Texte das Kind bis zu welcher Seite gelesen hat, Silbenfarben, Schriftgröße, Hintergrundmotiv, gewählte Art der Silbentrennung</td><td>Damit die App weiß, wo das Kind aufgehört hat, und seine Einstellungen behält</td><td>Ausschließlich der Gerätespeicher</td></tr>
+      <tr><td>Eigener Text</td><td>Der Text, den Sie in die App eingeben oder hineinkopieren</td><td>Um ihn dem Kind in farbigen Silben zu zeigen und ihn bei Bedarf auszudrucken</td><td>Ausschließlich der Gerätespeicher</td></tr>
+    </tbody>
+  </table></div>
+  <p>Die Firebase-Instanz-ID ist mit keiner Person verknüpft — sie wird der App auf dem Gerät zugewiesen und ändert sich, sobald die App deinstalliert oder ihre Daten gelöscht werden. Den Ereignissen fügen wir keine Nutzerkennung hinzu: Die App hat keine Konten, also gibt es auch nichts hinzuzufügen.</p>
 
-<div class="card">
-    <h2>1. Verantwortliche</h2>
-    <p>Gemeinsam Verantwortliche, mit gleichem Anteil am Projekt, sind:</p>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-Mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-Mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-    <p>Gemäß Art. 26 DSGVO teilen wir Ihnen mit, dass wir die datenschutzrechtlichen
-    Pflichten gemeinsam wahrnehmen: Auf Anfragen antwortet derjenige von uns, der die
-    Nachricht zuerst erhält; Meldungen von Datenschutzverletzungen bearbeiten wir
-    gemeinsam. Anfragen können Sie an jede der beiden Adressen richten.</p>
-</div>
+  <h2>3. Die Textbibliothek und Ihre Daten</h2>
+  <p>Märchen, Gedichte und Geschichten lädt die App von unserem Inhaltsserver (Supabase). <b>Dabei entsteht weder ein Konto noch eine Nutzersitzung</b> — es wird keine Kennung erzeugt, die sich Ihnen oder Ihrem Kind zuordnen ließe. Die App verbindet sich mit einem öffentlichen Schlüssel, der für alle Installationen derselbe ist, und fragt ausschließlich die veröffentlichten Texte und deren Seiten ab.</p>
+  <p>Der Verkehr läuft in eine Richtung: Die App <b>liest</b> vom Server und <b>schreibt</b> nichts auf ihn. Lesefortschritt, die Liste gelesener Texte, Ihr eigener Text und sämtliche Einstellungen bleiben auf dem Gerät und erreichen uns nie. Wie bei jeder Internetverbindung sieht der Server die IP-Adresse des Geräts und hält sie in den technischen Protokollen des Hosters fest; wir verknüpfen diese Protokolle mit nichts anderem und bilden daraus kein Profil.</p>
 
-<div class="card">
-    <h2>2. Welche Daten wir erheben</h2>
-    <table>
-        <thead>
-            <tr><th>Kategorie</th><th>Daten</th><th>Zweck</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><span class="badge">Registrierung</span></td><td>E-Mail-Adresse, Passwort (verschlüsselt)</td><td>Anlegen und Absichern des Kontos</td></tr>
-            <tr><td><span class="badge">OAuth</span></td><td>Google-/Facebook-Kennung, E-Mail-Adresse</td><td>Anmeldung über ein externes Konto</td></tr>
-            <tr><td><span class="badge">Einstellungen</span></td><td>Gewählte Silbenfarben, Schriftgröße, Sprache der Oberfläche</td><td>Personalisierung</td></tr>
-            <tr><td><span class="badge">Zahlungen</span></td><td>Transaktions-ID (RevenueCat/Google Play)</td><td>Verwaltung von Abonnements und Käufen</td></tr>
-            <tr><td><span class="badge">Inhalte</span></td><td>Von Autorinnen und Autoren erstellte Veröffentlichungen (Text, Bilder)</td><td>Bereitstellung der Bildungsplattform</td></tr>
-        </tbody>
-    </table>
+  <div class="box box--warn">
+    <p><b>Was wir nicht erheben:</b> Vor- und Nachname, E-Mail-Adresse, Passwort, Telefonnummer, Standortdaten, Kontaktliste, Fotos, Ton- oder Bildaufnahmen. Die App fragt diese Daten nicht ab: Sie öffnet weder Kamera noch Fotomediathek noch Mikrofon und bittet nie um eine Freigabe dafür. Unter Android deklariert sie eine einzige Berechtigung — den Internetzugriff.</p>
+    <p>Wir erheben auch keine Werbe-ID (Advertising ID) — die entsprechende Berechtigung wird ausdrücklich aus der App entfernt.</p>
+    <p>Auf iOS erhebt die App weder die Werbekennung IDFA noch die Anbieterkennung IDFV und verfolgt weder Sie noch Ihr Kind außerhalb der App — sie nutzt App Tracking Transparency erst gar nicht, weil es nichts zu verfolgen gibt.</p>
+    <p>Der Text, den Sie als eigenen Text eingeben oder einfügen, verlässt das Gerät nie. In die Statistik geht allein, ob er kurz, mittel oder lang war — nicht der Text selbst und auch kein Ausschnitt daraus.</p>
+  </div>
 
-    <div class="highlight">
-        <strong>Was wir NICHT erheben:</strong> Wir erheben keine Standortdaten, zeichnen keine Browsing-Aktivitäten auf, erstellen keine Verhaltensprofile und erheben keine Daten aus Kontakten, Kamera oder Mikrofon (abgesehen von Bildern, die Autorinnen und Autoren bewusst hochladen).
-    </div>
-</div>
+  <h2>4. Schutz von Kindern</h2>
+  <ul>
+    <li>Die App zeigt keine Werbung — keinerlei, in keiner Form.</li>
+    <li>Wir setzen weder personalisierte Werbung noch verhaltensbezogenes Profiling ein.</li>
+    <li>Wir verknüpfen die Daten aus dieser App nicht mit Daten aus anderen Apps oder Diensten.</li>
+    <li>Wir geben keine Daten zu Marketingzwecken an Dritte weiter und verkaufen sie nicht.</li>
+    <li>Die App legt keine Konten an — weder für Kinder noch für sonst jemanden — und fragt ein Kind daher nach gar nichts.</li>
+    <li>Jeder Kauf muss von einer erwachsenen Person bestätigt werden: Vor der Zahlung stellt die App eine Additionsaufgabe, die ein Kind, das gerade lesen lernt, nicht lösen kann. Nach drei Fehlversuchen hintereinander ist der Kauf zehn Minuten lang gesperrt.</li>
+  </ul>
+  <p>Wir handeln im Einklang mit dem US-amerikanischen Kinderschutzgesetz COPPA, Art. 8 DSGVO, den Richtlinien des Google-Play-Programms für Familien und — in der iOS-Version — den App-Store-Richtlinien für Apps der Kategorie Kids.</p>
 
-<div class="card">
-    <h2>3. Schutz von Kindern</h2>
-    <p>Die App ist für Kinder im Alter von 4 bis 8 Jahren bestimmt, und der Schutz ihrer Privatsphäre hat für uns Vorrang:</p>
-    <ul>
-        <li>Konten werden von Eltern oder gesetzlichen Vertretern angelegt</li>
-        <li>Wir erheben von Kindern keine Daten, die über die Nutzung der Bildungsinhalte hinausgehen</li>
-        <li>Wir zeigen keine Werbung</li>
-        <li>Wir geben Daten von Kindern nicht zu Marketingzwecken an Dritte weiter</li>
-        <li>Wir setzen weder Tracking noch Profiling ein</li>
-        <li>Eltern oder Betreuungspersonen können das Konto des Kindes jederzeit löschen</li>
-    </ul>
-    <p>Wir handeln im Einklang mit den Grundsätzen zum Schutz der Privatsphäre von Kindern, darunter die Vorgaben des <strong>COPPA</strong> (Children's Online Privacy Protection Act) und der <strong>DSGVO</strong> (Art. 8).</p>
-</div>
+  <h2>5. Externe Dienste</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Dienst</th><th>Rolle</th><th>Datenschutzerklärung</th></tr></thead>
+    <tbody>
+      <tr><td>Supabase</td><td>Server, von dem die App die Lesetexte lädt</td><td><a href="https://supabase.com/privacy" rel="noopener">supabase.com/privacy</a></td></tr>
+      <tr><td>Firebase Analytics (Google)</td><td>Nutzungsstatistik der App-Funktionen</td><td><a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></td></tr>
+      <tr><td>RevenueCat</td><td>Abwicklung und Prüfung des Kaufs der Vollversion</td><td><a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></td></tr>
+      <tr><td>Google Play Billing</td><td>Zahlungsabwicklung und Vertrieb der App auf Android</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Apple (App Store)</td><td>Zahlungsabwicklung und Vertrieb der App auf iOS</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a></td></tr>
+      <tr><td>Google Fonts</td><td>Laden der Schrift für das PDF-Dokument — nur beim Export und beim Drucken</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+    </tbody>
+  </table></div>
 
-<div class="card">
-    <h2>4. Externe Dienste</h2>
-    <p>Die App nutzt folgende externe Dienste:</p>
-    <table>
-        <thead>
-            <tr><th>Dienst</th><th>Zweck</th><th>Datenschutzerklärung</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><strong>Supabase</strong></td><td>Backend: Authentifizierung, Datenbank, Dateispeicher</td><td><a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></td></tr>
-            <tr><td><strong>RevenueCat</strong></td><td>Verwaltung von Abonnements und Käufen</td><td><a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></td></tr>
-            <tr><td><strong>Google Play</strong></td><td>Vertrieb der App, Zahlungsabwicklung</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-            <tr><td><strong>Google Sign-In</strong></td><td>Anmeldung mit einem Google-Konto</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-            <tr><td><strong>Facebook Login</strong></td><td>Anmeldung mit einem Facebook-Konto</td><td><a href="https://www.facebook.com/privacy/policy" target="_blank">facebook.com/privacy</a></td></tr>
-        </tbody>
-    </table>
-</div>
+  <h2>6. Drucken und PDF-Export</h2>
+  <p>Das Dokument zum Drucken entsteht auf dem Gerät und geht direkt an den Druckdialog des Systems. Es läuft nicht über unseren Server, und wir speichern es nirgends. Das gilt für Texte aus der Bibliothek ebenso wie für Ihren eigenen Text.</p>
+  <p>Beim Aufbereiten des Dokuments lädt die App die Schrift vom Google-Fonts-Server; dorthin geht allein die Anfrage nach einer Schriftdatei, nie der Inhalt des Dokuments. Hat eine Publikation grafische Seitenhintergründe, lädt die App sie von unserem Inhaltsserver. In die Statistik geht nur, dass ein Export stattgefunden hat und ob er aus der Bibliothek oder aus einem eigenen Text stammte.</p>
 
-<div class="card">
-    <h2>5. Zahlungen und Abonnements</h2>
-    <ul>
-        <li>Zahlungen werden über <strong>Google Play Billing</strong> mithilfe von <strong>RevenueCat</strong> abgewickelt</li>
-        <li>Wir speichern keine Kreditkarten- oder Bankdaten</li>
-        <li>Abonnements lassen sich in den Google-Play-Einstellungen verwalten</li>
-        <li>Einzelkäufe sind dauerhaft (unbefristeter Zugang)</li>
-        <li>Nach Kündigung eines Abonnements bleibt der Zugang zu einzeln gekauften Inhalten erhalten</li>
-    </ul>
-</div>
+  <h2>7. In-App-Käufe</h2>
+  <ul>
+    <li>Die Vollversion wird durch einen <b>einmaligen Kauf</b> freigeschaltet — die „Dożywotnia Licencja" (Lebenslange Lizenz). Es gibt kein Abonnement und keine automatische Verlängerung.</li>
+    <li>Wir speichern keine Zahlungskarten- oder Bankdaten. Die Zahlung wird vollständig von Google Play (Android) oder Apple (iOS) abgewickelt.</li>
+    <li>Der Kauf ist ausschließlich mit einer anonymen, auf dem Gerät zufällig erzeugten Kennung verknüpft — wir wissen nicht und können nicht herausfinden, wer ihn getätigt hat.</li>
+    <li>Den Kauf stellen Sie über die Schaltfläche „Käufe wiederherstellen" auf dem Kaufbildschirm und in den Einstellungen wieder her. Unter Android ist er an Ihr Google-Play-Konto gebunden, auf iOS an Ihren Apple Account; die Familienfreigabe ist deaktiviert.</li>
+    <li>Erstattungen wickelt auf Android Google Play nach seinen eigenen Bedingungen ab, auf iOS Apple (reportaproblem.apple.com).</li>
+  </ul>
 
-<div class="card">
-    <h2>6. Speicherung und Sicherheit der Daten</h2>
-    <ul>
-        <li>Die Daten werden auf Servern von <strong>Supabase</strong> gespeichert (AWS-Infrastruktur, Region EU)</li>
-        <li>Passwörter werden verschlüsselt; wir speichern sie nie im Klartext</li>
-        <li>Die Kommunikation mit dem Server erfolgt über eine verschlüsselte Verbindung (HTTPS/TLS)</li>
-        <li>Der Zugriff auf Daten wird über ein Rollen- und Berechtigungssystem gesteuert (Row Level Security)</li>
-    </ul>
-</div>
+  <h2>8. Wie lange wir Daten speichern</h2>
+  <ul>
+    <li><b>Lesefortschritt, Einstellungen und eigene Texte</b> — bis zur Deinstallation der App oder bis zum Löschen ihrer Daten. Sie verschwinden zusammen mit der App.</li>
+    <li><b>Statistikdaten</b> — werden von Firebase Analytics gemäß den Projekteinstellungen gespeichert, höchstens 14 Monate.</li>
+    <li><b>Transaktionsdaten</b> — für die Dauer, die steuer- und buchhaltungsrechtliche Vorschriften verlangen.</li>
+  </ul>
 
-<div class="card">
-    <h2>7. Ihre Rechte</h2>
-    <p>Jede Nutzerin und jeder Nutzer hat das Recht auf:</p>
-    <ul>
-        <li><strong>Auskunft</strong>: Einsicht in die eigenen Daten (sichtbar im Profil)</li>
-        <li><strong>Berichtigung</strong>: Korrektur der eigenen Daten</li>
-        <li><strong>Löschung</strong>: dauerhaftes Löschen des Kontos und aller zugehörigen Daten (in der App verfügbar: Profil → Konto löschen)</li>
-        <li><strong>Datenübertragbarkeit</strong>: Erhalt einer Kopie der eigenen Daten</li>
-        <li><strong>Widerspruch</strong>: Widerspruch gegen die Verarbeitung der Daten</li>
-    </ul>
-    <p>Zur Ausübung dieser Rechte wenden Sie sich bitte an <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a> oder <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>9. Ihre Rechte</h2>
+  <p>Sie haben das Recht, Auskunft über Ihre Daten sowie deren Berichtigung, Löschung oder die Einschränkung der Verarbeitung zu verlangen, der Verarbeitung zu widersprechen und Beschwerde bei einer Datenschutz-Aufsichtsbehörde einzulegen — bei der für Ihren Wohnort zuständigen Behörde oder bei der für uns zuständigen polnischen Aufsichtsbehörde (Prezes Urzędu Ochrony Danych Osobowych, UODO).</p>
+  <p>Da die App keine Konten hat, können wir Statistikdaten weder einer bestimmten Person noch einem bestimmten Gerät zuordnen — der wirksamste Weg, die Daten vom Gerät zu entfernen, ist daher, die App-Daten zu löschen oder die App zu deinstallieren. Einzelheiten finden Sie im Reiter <b>Daten löschen</b>.</p>
 
-<div class="card">
-    <h2>8. Speicherdauer</h2>
-    <ul>
-        <li>Kontodaten werden gespeichert, bis die Nutzerin oder der Nutzer das Konto löscht</li>
-        <li>Nach dem Löschen des Kontos werden die Daten innerhalb von 30 Tagen endgültig entfernt</li>
-        <li>Zahlungstransaktionsdaten werden gemäß den gesetzlichen Vorgaben aufbewahrt (bis zu 5 Jahre)</li>
-    </ul>
-</div>
+  <h2>10. Änderungen dieser Erklärung</h2>
+  <p>Über wesentliche Änderungen informieren wir in der Update-Beschreibung der App bei Google Play und im App Store. Die jeweils aktuelle Fassung ist immer unter dieser Adresse abrufbar, mit dem Datum der letzten Änderung oben auf der Seite.</p>
 
-<div class="card">
-    <h2>9. Cookies und lokale Daten</h2>
-    <p>Die App verwendet keine Cookies zur Nachverfolgung. Einstellungsdaten (Silbenfarben, Schriftgröße, gewählte Sprache) werden lokal auf dem Gerät über den Mechanismus <em>SharedPreferences</em> gespeichert.</p>
-</div>
+  <h2>11. Kontakt</h2>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Gemeinsam Verantwortlicher</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Gemeinsam Verantwortlicher</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>
 
-<div class="card">
-    <h2>10. Änderungen dieser Datenschutzerklärung</h2>
-    <p>Wir behalten uns vor, diese Datenschutzerklärung zu aktualisieren. Über wesentliche Änderungen informieren wir durch einen Hinweis in der App. Die jeweils aktuelle Fassung ist immer unter dieser Adresse abrufbar.</p>
-</div>
+<!-- ══════════════════ NUTZUNGSBEDINGUNGEN ══════════════════ -->
+<article class="doc-section" id="terms">
+  <h2>Nutzungsbedingungen</h2>
+  <p class="dates"><b>Gültig ab:</b> 13. September 2026 &nbsp;·&nbsp; <b>Zuletzt aktualisiert:</b> 21. September 2026</p>
+  <p class="lede">Diese Bedingungen regeln die Nutzung der App „Nauka czytania sylabami". Sie sind kurz, denn auch die App ist einfach: Sie hat keine Konten, keine Abonnements und verlangt nichts von Ihnen, bevor sie loslegt.</p>
 
-<div class="card">
-    <h2>11. Kontakt</h2>
-    <p>Bei Fragen zum Datenschutz oder zur Datenverarbeitung wenden Sie sich bitte an:</p>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-Mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-Mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>1. Allgemeine Bestimmungen</h2>
+  <ol>
+    <li>Diese Bedingungen regeln die Nutzung der App „Nauka czytania sylabami" (Lesen nach Silben, im Folgenden: „App"), erhältlich bei Google Play für Android und im App Store für iPhone und iPad. Auf dem Startbildschirm trägt die App den Namen „Czytaj sylabami".</li>
+    <li>Herausgeber und Betreiber der App ist Sebastian Rosiński (im Folgenden: „Betreiber"), gemeinsam mit Dawid Adamczyk. Die Kontaktdaten stehen am Ende dieser Bedingungen.</li>
+    <li>Die App ist ein Lernwerkzeug: Sie zerlegt Texte in Silben und färbt sie abwechselnd ein, damit sich der Blick des Kindes nicht mitten im Wort verliert.</li>
+    <li>Die App funktioniert ausschließlich auf Polnisch und richtet sich an Kinder von 4 bis 8 Jahren, die sie gemeinsam mit einer erwachsenen Person nutzen.</li>
+    <li>Mit der Nutzung der App akzeptieren Sie diese Bedingungen.</li>
+  </ol>
 
-</div><!-- /de -->
+  <h2>2. Die App hat keine Konten</h2>
+  <ol>
+    <li>Um die App zu nutzen, <b>legen Sie kein Konto an und melden sich nirgends an</b>. Es gibt keine Registrierung per E-Mail, keine Anmeldung über Google oder Facebook, kein Profil, keine Benutzerrollen und keine Einladungscodes.</li>
+    <li>Sie geben uns keine personenbezogenen Daten, also müssen Sie auch keine Zugangsdaten geheim halten — es gibt schlicht keine.</li>
+    <li>Einstellungen, Lesefortschritt und eigene Texte liegen auf dem Gerät und wandern nicht auf andere Geräte.</li>
+  </ol>
 
+  <h2>3. Kostenlose Version und Lebenslange Lizenz</h2>
+  <ol>
+    <li>Ein Teil der Texte in der Bibliothek ist kostenlos, damit sich prüfen lässt, ob die App zum Kind passt. Die Funktion für eigene Texte und die übrigen Texte gehören zur Vollversion.</li>
+    <li>Den vollen Zugang schaltet <b>ein einziger Kauf frei — die „Lebenslange Lizenz"</b> (in der App: „Dożywotnia Licencja"). Es ist ein einmaliger Kauf, ohne Abonnement und ohne automatische Verlängerung; der Zugang läuft nicht ab.</li>
+    <li>Die Lizenz ist einfach (nicht ausschließlich) und für den eigenen, nicht gewerblichen Gebrauch bestimmt — für Sie und die Kinder in Ihrer Obhut.</li>
+    <li>Die Lizenz hängt am Store-Konto, mit dem gekauft wurde (Google Play oder Apple), nicht an den Daten in der App. Deshalb holen Sie sie nach einem Gerätewechsel oder einer Neuinstallation über die Schaltfläche „Käufe wiederherstellen" zurück — auf dem Kaufbildschirm und in den Einstellungen.</li>
+  </ol>
 
-</div><!-- /privacy page -->
+  <h2>4. Zahlung und Erstattungen</h2>
+  <ol>
+    <li>Die Zahlung wickelt vollständig der Store ab: Google Play Billing unter Android oder Apple auf iOS. Der Betreiber nimmt keine Zahlungen selbst entgegen und speichert weder Karten- noch Bankdaten.</li>
+    <li>Den Preis sehen Sie in der App, bevor Sie den Kauf bestätigen; genannt wird er vom Store in Ihrer Währung.</li>
+    <li>Vor jedem Kauf bittet die App um die Lösung einer einfachen Additionsaufgabe. Das ist eine Schranke für Erwachsene — ein Kind kauft den Zugang nicht allein.</li>
+    <li>Über Erstattungen entscheidet der Store, in dem gekauft wurde: Google Play nach seinen eigenen Bedingungen oder Apple (reportaproblem.apple.com). Scheitert eine Erstattung, schreiben Sie uns — wir helfen, soweit die Regeln des Stores es zulassen.</li>
+  </ol>
+  <p><b>Frühere Abonnements.</b> Wer zuvor bei Google Play ein Abonnement dieser App abgeschlossen hat, behält den Zugang zu den bisherigen Bedingungen; ein solches Abonnement wird — auch zum Kündigen — in den Einstellungen von Google Play verwaltet. Neue Abonnements verkaufen wir nicht mehr; die einzige Kaufform ist die einmalige Lebenslange Lizenz.</p>
 
+  <h2>5. Ihr eigener Text</h2>
+  <ol>
+    <li>Sie können einen beliebigen eigenen Text in die App eingeben oder hineinkopieren — die Karte von der Oma, ein Gedicht, den Einkaufszettel — und ihn in farbigen Silben sehen.</li>
+    <li>Dieser Text bleibt auf dem Gerät. Wir senden ihn nicht an einen Server, speichern ihn nicht und haben keinen Zugriff darauf.</li>
+    <li>Sie sind dafür verantwortlich, dass Sie den eingefügten Text verwenden dürfen und dass sein Inhalt für ein Kind geeignet ist.</li>
+    <li>Ausdruck und PDF-Export entstehen auf dem Gerät; die Datei läuft nicht über unseren Server.</li>
+  </ol>
 
-<!-- ==================== NUTZUNGSBEDINGUNGEN ==================== -->
-<div class="doc-section" id="terms">
+  <h2>6. Texte in der Bibliothek</h2>
+  <ol>
+    <li>Die Bibliothek enthält von uns aufbereitete Märchen, Gedichte und Geschichten sowie Werke aus öffentlichen Quellen, darunter aus dem polnischen Portal <a href="https://wolnelektury.pl" rel="noopener">Wolne Lektury</a>, bereitgestellt unter einer Creative-Commons-Lizenz (CC BY-SA 4.0) oder gemeinfrei. Quelle und Lizenz stehen in der Beschreibung der jeweiligen Publikation.</li>
+    <li>Die übrigen Texte, die Grafiken und das Programm selbst sind urheberrechtlich geschützt. Sie dürfen sie in der App nutzen und für den eigenen Gebrauch ausdrucken; ein Weiterverkauf oder eine Verbreitung außerhalb der App ist nicht gestattet.</li>
+    <li>Die App erlaubt es nicht, eigene Inhalte für andere zu veröffentlichen — die Bibliothek redigieren ausschließlich wir.</li>
+  </ol>
 
-<div>
+  <h2>7. Nutzungsregeln</h2>
+  <p>Mit der Nutzung der App verpflichten Sie sich,</p>
+  <ul>
+    <li>sie ihrem Lernzweck entsprechend zu verwenden,</li>
+    <li>weder die Elternschranke noch den Mechanismus zur Freischaltung der Vollversion zu umgehen,</li>
+    <li>weder in die App noch in den Server einzugreifen, von dem sie die Texte lädt.</li>
+  </ul>
 
-<div class="card">
-    <h2>Nutzungsbedingungen der App Lesen nach Silben</h2>
-    <p><strong>Gültig ab:</strong> 13. September 2026</p>
-</div>
+  <h2>8. Haftung</h2>
+  <ol>
+    <li>Wir geben uns Mühe, dass die App zuverlässig läuft, garantieren aber keine ununterbrochene Verfügbarkeit — das Laden neuer Texte setzt eine Internetverbindung voraus.</li>
+    <li>Die App ist eine Hilfe beim Lesenlernen. Sie ersetzt weder die Arbeit mit einer Lehrkraft, einer Förderpädagogin oder einer Logopädin noch ist sie ein Diagnoseinstrument.</li>
+    <li>Die Silbentrennung folgt automatisch den Sprachregeln und kann bei einzelnen Wörtern vom Wörterbuch abweichen. In den Einstellungen wählen Sie zwischen phonetischer und orthografischer Trennung.</li>
+  </ol>
 
-<div class="card">
-    <h2>1. Allgemeine Bestimmungen</h2>
-    <ol>
-        <li>Diese Nutzungsbedingungen regeln die Nutzung der App „Nauka czytania sylabami" (Lesen nach Silben, im Folgenden: „App").</li>
-        <li>Eigentümer und Betreiber der App ist Sebastian Rosiński (im Folgenden: „Betreiber").</li>
-        <li>Die App ist ein Lernwerkzeug, das Kindern beim Lesenlernen hilft, indem es Text sichtbar in Silben gliedert.</li>
-        <li>Mit der Nutzung der App akzeptieren Sie diese Nutzungsbedingungen.</li>
-    </ol>
-</div>
+  <h2>9. Änderungen dieser Bedingungen</h2>
+  <p>Über wesentliche Änderungen informieren wir in der Update-Beschreibung der App bei Google Play und im App Store. Die jeweils aktuelle Fassung ist immer unter dieser Adresse abrufbar, mit dem Datum der letzten Änderung oben auf der Seite. Wer die App nach Inkrafttreten der Änderungen weiter nutzt, akzeptiert sie damit.</p>
 
-<div class="card">
-    <h2>2. Registrierung und Konto</h2>
-    <ol>
-        <li>Die Nutzung der App setzt ein Konto voraus, das mit einer E-Mail-Adresse, einem Google-Konto oder einem Facebook-Konto angelegt wird.</li>
-        <li>Konten für Kinder unter 16 Jahren sollten von Eltern oder gesetzlichen Vertretern angelegt werden.</li>
-        <li>Die Nutzerin oder der Nutzer ist für die Vertraulichkeit der eigenen Anmeldedaten verantwortlich.</li>
-        <li>Außerdem steht eine Gastanmeldung mit eingeschränktem Funktionsumfang zur Verfügung.</li>
-        <li>Das Konto kann jederzeit aus der App heraus gelöscht werden.</li>
-    </ol>
-</div>
+  <h2>10. Kontakt</h2>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Betreiber</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Mitautor</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>
 
-<div class="card">
-    <h2>3. Kontotypen und Berechtigungen</h2>
-    <table>
-        <thead>
-            <tr><th>Typ</th><th>Berechtigungen</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><strong>Leser</strong></td><td>Durchsuchen der Bibliothek, Lesen von Inhalten (im Rahmen des vorhandenen Zugangs), Personalisierung der Einstellungen</td></tr>
-            <tr><td><strong>Autor</strong></td><td>Zusätzlich: Erstellen und Bearbeiten eigener Veröffentlichungen</td></tr>
-            <tr><td><strong>Administrator</strong></td><td>Volle Kontrolle über die Plattform, Verwaltung von Nutzern und Inhalten</td></tr>
-        </tbody>
-    </table>
-</div>
+<!-- ══════════════════ ÜBER DIE APP ══════════════════ -->
+<article class="doc-section" id="about">
+  <h2>Über die App</h2>
+  <p class="lede">Die App zerlegt jeden Text in Silben und färbt sie abwechselnd ein. Der Blick des Kindes verliert sich nicht mehr mitten im Wort, und Lesen wird vom Raten zum Zusammensetzen.</p>
 
-<div class="card">
-    <h2>4. Zahlungen und Abonnements</h2>
-    <ol>
-        <li>Die App bietet kostenlose und kostenpflichtige Inhalte.</li>
-        <li>Zugang zu kostenpflichtigen Inhalten gibt es über:
-            <ul>
-                <li>ein Premium-Abonnement (monatlich oder jährlich)</li>
-                <li>einen Einzelkauf (eine einzelne Veröffentlichung oder Kategorie)</li>
-                <li>einen Einladungscode (vom Administrator vergeben)</li>
-            </ul>
-        </li>
-        <li>Zahlungen werden über Google Play Billing abgewickelt. Der Betreiber speichert keine Zahlungsdaten.</li>
-        <li>Das Abonnement verlängert sich automatisch. Eine Kündigung ist in den Google-Play-Einstellungen möglich.</li>
-        <li>Einzelkäufe sind dauerhaft; der Zugang läuft nicht ab.</li>
-        <li>Erstattungen unterliegen den Regeln des Google Play Store.</li>
-    </ol>
-</div>
+  <div class="pill-row">
+    <span class="pill">4–8 Jahre</span><span class="pill">Nur auf Polnisch</span>
+    <span class="pill">Ohne Werbung</span><span class="pill">Ohne Konto</span>
+    <span class="pill">Android und iOS</span>
+  </div>
 
-<div class="card">
-    <h2>5. Inhalte der Nutzerinnen und Nutzer</h2>
-    <ol>
-        <li>Autorinnen und Autoren können in der App Bildungsinhalte erstellen und veröffentlichen.</li>
-        <li>Das Urheberrecht an den Inhalten verbleibt bei der Autorin oder dem Autor.</li>
-        <li>Mit der Veröffentlichung räumt die Autorin oder der Autor dem Betreiber eine nicht ausschließliche Lizenz zur Anzeige der Inhalte in der App ein.</li>
-        <li>Das Veröffentlichen von Inhalten, die Rechte Dritter verletzen, rechtswidrig oder für Kinder ungeeignet sind, ist untersagt.</li>
-        <li>Der Betreiber behält sich vor, Inhalte zu entfernen, die gegen diese Nutzungsbedingungen verstoßen.</li>
-    </ol>
-</div>
+  <h2>So funktioniert es</h2>
+  <ul>
+    <li>Der Text wird automatisch nach polnischen Trennregeln zerlegt, benachbarte Silben bekommen verschiedene Farben — das Kind sieht, wo eine endet und die nächste beginnt.</li>
+    <li>Die Art der Trennung wählen Sie in den Einstellungen: phonetisch (so, wie man spricht) oder orthografisch (so, wie man ein Wort am Zeilenende trennt).</li>
+    <li>Silbenfarben, Schriftgröße und Hintergrundmotiv stellen Sie so ein, wie Ihr Kind am liebsten liest.</li>
+    <li>Die App merkt sich, auf welcher Seite das Kind jeden Text verlassen hat, und zeigt, wie viel es schon gelesen hat.</li>
+  </ul>
 
-<div class="card">
-    <h2>6. Inhalte von Wolne Lektury</h2>
-    <p>Ein Teil der Inhalte in der App stammt aus der polnischen Bibliothek freier Literatur <a href="https://wolnelektury.pl" target="_blank">Wolne Lektury</a> und wird unter einer Creative-Commons-Lizenz (CC BY-SA 4.0) bereitgestellt. Angaben zu Quelle und Lizenz finden sich in der Beschreibung jeder solchen Veröffentlichung.</p>
-</div>
+  <h2>Was drin ist</h2>
+  <ul>
+    <li><b>Textbibliothek</b> — Märchen, Gedichte und Geschichten zum Lesen, darunter Klassiker der polnischen Kinderliteratur.</li>
+    <li><b>Eigener Text</b> — tippen oder einfügen, was Sie möchten, und in farbigen Silben sehen.</li>
+    <li><b>Druck und PDF</b> — jeden Text können Sie exportieren und ausdrucken, um ohne Bildschirm zu üben.</li>
+  </ul>
+  <p>Die App funktioniert ausschließlich auf Polnisch — die Silbentrennung baut auf den Regeln der polnischen Sprache auf.</p>
 
-<div class="card">
-    <h2>7. Nutzungsregeln</h2>
-    <p>Die Nutzerin oder der Nutzer verpflichtet sich:</p>
-    <ul>
-        <li>die App entsprechend ihrem Bildungszweck zu nutzen</li>
-        <li>keine Versuche zu unternehmen, Sicherheitsmaßnahmen oder das Zugangssystem zu umgehen</li>
-        <li>Einladungscodes nicht an Unbefugte weiterzugeben</li>
-        <li>die App nicht auf eine Weise zu nutzen, die ihren Betrieb stören könnte</li>
-    </ul>
-</div>
+  <h2>Was die App nicht hat</h2>
+  <ul>
+    <li>Keine Konten, keine Registrierung, keine Anmeldung — nach der Installation kann es sofort losgehen.</li>
+    <li>Keine Werbung und keine an Kinder gerichteten Werbeinhalte.</li>
+    <li>Keine Bestenlisten, keine Zeitmessung, kein Vergleich mit anderen Kindern.</li>
+    <li>Keinen Zugriff auf Kamera, Fotos, Mikrofon, Standort oder Kontakte.</li>
+  </ul>
 
-<div class="card">
-    <h2>8. Haftung</h2>
-    <ol>
-        <li>Der Betreiber bemüht sich um einen ordnungsgemäßen Betrieb der App, garantiert jedoch keine ununterbrochene Verfügbarkeit.</li>
-        <li>Der Betreiber haftet nicht für Folgen, die aus unrichtigen Angaben der Nutzerin oder des Nutzers entstehen.</li>
-        <li>Die Bildungsinhalte ersetzen keine professionelle pädagogische oder logopädische Unterstützung.</li>
-    </ol>
-</div>
+  <h2>Kostenlose Version und Vollversion</h2>
+  <p>In der kostenlosen Version lassen sich die ersten Texte lesen, um zu prüfen, ob die App zum Kind passt. Den vollen Zugang — die ganze Bibliothek und eigene Texte — schaltet der einmalige Kauf „Lebenslange Lizenz" frei, ohne Abonnement. Vor der Zahlung stellt die App eine Additionsaufgabe, damit das Kind den Zugang nicht allein kauft.</p>
 
-<div class="card">
-    <h2>9. Änderungen der Nutzungsbedingungen</h2>
-    <p>Der Betreiber behält sich vor, diese Nutzungsbedingungen zu ändern. Über wesentliche Änderungen werden die Nutzerinnen und Nutzer in der App informiert. Die weitere Nutzung der App nach Inkrafttreten der Änderungen gilt als deren Annahme.</p>
-</div>
+  <h2>Für Lehrkräfte und therapeutische Fachkräfte</h2>
+  <p>Die App erfordert weder Konto noch Anmeldung, es müssen also keine Einwilligungen zum Anlegen von Kinderkonten eingeholt werden. Sie zeigt keine Werbung und unterscheidet nicht zwischen mehreren Kindern auf einem Gerät — der Fortschritt wird je Gerät gespeichert. Für das Laden neuer Texte ist eine Internetverbindung nötig. Wenn Sie mehrere Lizenzen für Ihre Einrichtung benötigen, <a href="/de/kontakt/">schreiben Sie uns</a>.</p>
 
-<div class="card">
-    <h2>10. Kontakt</h2>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-Mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-Mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>Autoren</h2>
+  <p>Die App wird von Sebastian Rosiński und Dawid Adamczyk entwickelt. Sie gehört zur Reihe Kidalu, zu der auch <a href="/de/buchstaben-und-zahlen/">Buchstaben und Zahlen</a> gehört.</p>
+</article>
 
-</div><!-- /de -->
+<!-- ══════════════════ DATEN LÖSCHEN ══════════════════ -->
+<article class="doc-section" id="delete">
+  <h2>Daten löschen</h2>
+  <p class="lede">Die App hat keine Benutzerkonten, also gibt es kein Profil, das geschlossen werden müsste — und bei uns nichts zu löschen. Alles, was sich die App über Sie und das Kind merkt, liegt auf dem Gerät.</p>
 
+  <div class="box">
+    <p><b>Die Deinstallation der App löscht alle Daten</b> — Lesefortschritt, Einstellungen (Silbenfarben, Schriftgröße, Hintergrundmotiv, Art der Silbentrennung) und eigene Texte. Bei uns bleibt keine Kopie zurück, denn die Daten sind nie bei uns angekommen.</p>
+    <p>Falls Sie hier eine Anleitung zum Löschen eines Kontos suchen: Die App legt nie eines an. Sie fragt weder nach einer E-Mail-Adresse noch nach einem Passwort und erstellt kein Profil des Kindes — es gibt also kein Konto, das wir löschen könnten.</p>
+  </div>
 
-</div><!-- /terms page -->
+  <h2>Daten löschen, ohne die App zu deinstallieren</h2>
+  <p><b>Android:</b></p>
+  <ol>
+    <li>Öffnen Sie die <b>Einstellungen</b> von Android.</li>
+    <li>Gehen Sie zu <b>Apps</b> und wählen Sie <b>Czytaj sylabami</b>.</li>
+    <li>Tippen Sie auf <b>Speicher</b> und anschließend auf <b>Daten löschen</b>.</li>
+  </ol>
+  <p>Die App kehrt in den Ausgangszustand zurück. Der Kauf der Vollversion geht nicht verloren — Sie stellen ihn über die Schaltfläche „Käufe wiederherstellen" in den Einstellungen der App wieder her, denn er ist an Ihr Google-Play-Konto gebunden, nicht an die Daten in der App.</p>
+  <p><b>iPhone und iPad:</b> iOS kennt keine eigene Option „App-Daten löschen" — der einzige Weg ist, die App zu löschen:</p>
+  <ol>
+    <li>Öffnen Sie <b>Einstellungen</b> → <b>Allgemein</b> → <b>iPhone-Speicher</b> (bzw. <b>iPad-Speicher</b>).</li>
+    <li>Wählen Sie <b>Czytaj sylabami</b> und tippen Sie auf <b>App löschen</b>.</li>
+    <li>Oder halten Sie das App-Symbol auf dem Home-Bildschirm gedrückt und wählen Sie <b>App löschen</b>.</li>
+  </ol>
+  <p>Nach einer Neuinstallation stellen Sie den Kauf der Vollversion über die Schaltfläche „Käufe wiederherstellen" in den Einstellungen wieder her, denn er ist an Ihren Apple Account gebunden, nicht an die Daten in der App.</p>
 
+  <h2>Statistikdaten</h2>
+  <p>Die Nutzungsstatistik wird unter einer App-Instanz-ID erfasst, die auf keine Person verweist. Die ID hört auf zu existieren, sobald die App deinstalliert oder ihre Daten gelöscht werden; zuvor erfasste Ereignisse werden nach spätestens 14 Monaten automatisch gelöscht.</p>
+  <p>Wenn wir die Statistikdaten früher löschen sollen, schreiben Sie uns — wir benötigen den ungefähren Nutzungszeitraum und das Gerätemodell, um die richtigen Ereignisse zu finden.</p>
 
-<!-- ==================== ÜBER DIE APP ==================== -->
-<div class="doc-section" id="about">
+  <h2>Texte auf unserem Server</h2>
+  <p>Auf dem Server, von dem die App Märchen und Gedichte lädt, liegen keine Daten von Ihnen — die App liest nur von ihm und schreibt nichts auf ihn. Dort gibt es weder Lesefortschritt noch Ihre eigenen Texte noch Einstellungen.</p>
 
-<div>
+  <h2>Kaufdaten</h2>
+  <p>Die Kaufhistorie wird von Google Play, dem App Store und RevenueCat gespeichert. Wir können sie nicht löschen, da sie die Grundlage Ihres Anspruchs auf die Vollversion und zugleich ein Buchungsbeleg ist. Für Zahlungen und Erstattungen ist Google Play (Android) oder Apple (iOS) zuständig.</p>
 
-<div class="card">
-    <h2>Über die App Lesen nach Silben</h2>
-    <p><strong>Lesen nach Silben</strong> (Nauka czytania sylabami) ist eine Lern-App, die Kindern beim Lesenlernen auf Polnisch hilft, indem sie Text sichtbar in Silben gliedert und diese abwechselnd einfärbt.</p>
-</div>
-
-<div class="card">
-    <h2>Funktionen</h2>
-    <ul>
-        <li><strong>Farbige Silben</strong>: automatische Silbentrennung mit abwechselnder Einfärbung</li>
-        <li><strong>Bibliothek</strong>: Märchen, Gedichte, Geschichten und andere Lerntexte</li>
-        <li><strong>Personalisierung</strong>: Wahl der Silbenfarben, Schriftgröße und Hintergrundmotive</li>
-        <li><strong>Eigener Text</strong>: beliebigen Text eingeben und in farbigen Silben sehen</li>
-        <li><strong>Druck und PDF</strong>: Material zum Ausdrucken exportieren</li>
-        <li><strong>Inhalte von Wolne Lektury</strong>: Klassiker der polnischen Kinderliteratur</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Für wen?</h2>
-    <ul>
-        <li><strong>Kinder von 4 bis 8 Jahren</strong>, die Polnisch lesen lernen</li>
-        <li><strong>Eltern</strong>, die das Lesenlernen zu Hause begleiten</li>
-        <li><strong>Lehrkräfte</strong>, die Material für den Unterricht suchen</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Kontakt</h2>
-    <p>Haben Sie eine Frage oder Anregung? Schreiben Sie uns:</p>
-    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a><br>
-    <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
-
-</div><!-- /de -->
-
-
-</div><!-- /about page -->
-
-
-<!-- ==================== KONTO LÖSCHEN ==================== -->
-<div class="doc-section" id="delete">
-
-<div>
-
-<div class="card">
-    <h2>Konto löschen in der App Lesen nach Silben</h2>
-    <p>Jede registrierte Nutzerin und jeder registrierte Nutzer kann das eigene Konto und alle zugehörigen Daten jederzeit dauerhaft löschen.</p>
-</div>
-
-<div class="card">
-    <h2>So löschen Sie Ihr Konto</h2>
-    <ol>
-        <li>Öffnen Sie die App <strong>Nauka czytania sylabami</strong></li>
-        <li>Melden Sie sich mit Ihrem Konto an</li>
-        <li>Wechseln Sie zum Bildschirm <strong>Profil</strong> (Personensymbol in der unteren Leiste)</li>
-        <li>Scrollen Sie nach unten zum Abschnitt <strong>„Gefahrenzone"</strong></li>
-        <li>Tippen Sie auf <strong>„Konto löschen"</strong></li>
-        <li>Bestätigen Sie die Löschung durch Eingabe des Wortes <strong>USUŃ</strong> (polnisch für „löschen")</li>
-        <li>Tippen Sie auf <strong>„Löschung bestätigen"</strong></li>
-    </ol>
-</div>
-
-<div class="card">
-    <h2>Welche Daten gelöscht werden</h2>
-    <table>
-        <thead>
-            <tr><th>Daten</th><th>Aktion</th><th>Frist</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Benutzerkonto (E-Mail, Passwort)</td><td>Dauerhaft gelöscht</td><td>Sofort</td></tr>
-            <tr><td>Benutzerprofil</td><td>Dauerhaft gelöscht</td><td>Sofort</td></tr>
-            <tr><td>Einstellungen (Silbenfarben, Schrift, Sprache)</td><td>Dauerhaft gelöscht</td><td>Sofort</td></tr>
-            <tr><td>Zugangsrollen und Berechtigungen</td><td>Dauerhaft gelöscht</td><td>Sofort</td></tr>
-            <tr><td>Aktives Abonnement</td><td>Automatisch gekündigt</td><td>Sofort</td></tr>
-            <tr><td>Von der Nutzerin oder dem Nutzer erstellte Veröffentlichungen</td><td>Dauerhaft gelöscht</td><td>Innerhalb von 30 Tagen</td></tr>
-            <tr><td>Zahlungstransaktionsdaten</td><td>Aufbewahrt (gesetzliche Pflicht)</td><td>Bis zu 5 Jahre</td></tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="card">
-    <h2>Wichtige Hinweise</h2>
-    <ul>
-        <li>Das Löschen des Kontos ist <strong>unwiderruflich</strong>; weder Konto noch Daten lassen sich wiederherstellen</li>
-        <li>Einzelkäufe (dauerhafte Zugänge) gehen verloren</li>
-        <li>Ein aktives Abonnement wird automatisch gekündigt</li>
-        <li>Lokal auf dem Gerät gespeicherte Daten (Einstellungen) müssen durch Deinstallation der App manuell entfernt werden</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Kontakt</h2>
-    <p>Wenn Sie das Konto nicht selbst löschen können oder Fragen haben, schreiben Sie uns:</p>
-    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a><br>
-    <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-    <p>Geben Sie in der Nachricht die mit dem Konto verknüpfte E-Mail-Adresse an.</p>
-</div>
-
-</div><!-- /de -->
-
-
-</div><!-- /delete page -->
+  <h2>Anfrage stellen</h2>
+  <p>Schreiben Sie an eine der beiden Adressen unten. Wir antworten innerhalb von 30 Tagen.</p>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Gemeinsam Verantwortlicher</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Gemeinsam Verantwortlicher</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>
 
   </div>
 </article>

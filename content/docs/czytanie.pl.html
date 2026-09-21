@@ -2,374 +2,275 @@
     <a href="#privacy">Polityka prywatności</a>
     <a href="#terms">Regulamin</a>
     <a href="#about">O aplikacji</a>
-    <a href="#delete">Usuwanie konta</a>
+    <a href="#delete">Usuwanie danych</a>
   </nav>
 
-<div class="doc-section" id="privacy">
+<!-- ══════════════════ POLITYKA PRYWATNOŚCI ══════════════════ -->
+<article class="doc-section" id="privacy">
+  <h2>Polityka prywatności</h2>
+  <p class="dates"><b>Wejście w życie:</b> 30 marca 2026 &nbsp;·&nbsp; <b>Ostatnia aktualizacja:</b> 21 września 2026</p>
+  <p class="lede">Aplikacja „Nauka czytania sylabami" (na ekranie telefonu i tabletu pod ikoną: Czytaj sylabami) pomaga dzieciom w wieku 4–8 lat nauczyć się czytać: dzieli tekst na sylaby i koloruje je naprzemiennie. Jest przeznaczona do używania pod nadzorem rodzica lub opiekuna. Aplikacja nie ma kont — nie ma w niej rejestracji, logowania ani profilu — i nie zbiera danych, które bezpośrednio identyfikują Ciebie lub dziecko (imienia, adresu e-mail, numeru telefonu, lokalizacji). Przetwarzane są wyłącznie identyfikatory techniczne i statystyki użycia opisane w sekcji 2.</p>
 
-<div>
+  <h2>1. Kto jest administratorem danych</h2>
+  <p>Współadministratorami danych, z równym udziałem w projekcie, są:</p>
+  <ul>
+    <li><b>Sebastian Rosiński</b> — <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></li>
+    <li><b>Dawid Adamczyk</b> — <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></li>
+  </ul>
+  <p>Żądanie dotyczące danych możesz zgłosić na dowolny z powyższych adresów. Zgodnie z art. 26 RODO informujemy, że obowiązki wynikające z ochrony danych wykonujemy wspólnie: na żądania odpowiada ten z nas, który pierwszy odbierze wiadomość, a zgłoszenia naruszeń obsługujemy razem.</p>
 
-<div class="card">
-    <h2>Polityka prywatności</h2>
-    <p><strong>Data wejścia w życie:</strong> 30 marca 2026</p>
-    <p><strong>Ostatnia aktualizacja:</strong> 30 lipca 2026</p>
-    <p>Niniejsza Polityka prywatności opisuje, w jaki sposób aplikacja „Nauka czytania sylabami" (dalej: „Aplikacja") zbiera, wykorzystuje i chroni dane osobowe użytkowników. Aplikacja jest przeznaczona dla dzieci w wieku 4–8 lat korzystających z niej pod nadzorem rodziców lub opiekunów.</p>
-</div>
+  <h2>2. Jakie dane przetwarzamy</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Kategoria</th><th>Co konkretnie</th><th>W jakim celu</th><th>Gdzie trafia</th></tr></thead>
+    <tbody>
+      <tr><td>Statystyka użycia</td><td>Identyfikator instancji aplikacji nadany przez Firebase oraz zdarzenia: otwarcie tekstu z biblioteki (numer publikacji, kategoria, wybrany sposób dzielenia na sylaby), doczytanie tekstu do końca (numer publikacji, liczba stron), otwarcie własnego tekstu (wyłącznie przedział długości: krótki, średni, długi), eksport do PDF (źródło: biblioteka albo własny tekst), zmiana sposobu dzielenia na sylaby, wejście na ekran zakupu, rozpoczęcie, zakończenie i przywrócenie zakupu, wejście do ustawień, a do tego zdarzenia automatyczne Firebase (uruchomienie aplikacji, sesja)</td><td>Sprawdzenie, które teksty i funkcje są używane i w którym miejscu dzieci przerywają czytanie</td><td>Firebase Analytics (Google)</td></tr>
+      <tr><td>Pobranie tekstów</td><td>Zapytanie o opublikowane teksty i ich strony, a przy korzystaniu z wyszukiwarki w bibliotece także wpisana fraza. Zapytanie idzie bez konta i bez sesji użytkownika; serwer widzi adres IP urządzenia, tak jak przy każdym połączeniu internetowym</td><td>Wyświetlenie biblioteki bajek, wierszy i baśni oraz wyszukiwanie w niej</td><td>Supabase (nasz serwer treści)</td></tr>
+      <tr><td>Zakup</td><td>Identyfikator transakcji oraz anonimowy identyfikator użytkownika generowany losowo na urządzeniu</td><td>Odblokowanie pełnej wersji i przywrócenie zakupu po ponownej instalacji</td><td>RevenueCat, Google Play Billing, Apple App Store (In-App Purchase)</td></tr>
+      <tr><td>Postęp czytania i ustawienia</td><td>Które teksty i do której strony dziecko przeczytało, kolory sylab, rozmiar czcionki, motyw tła, wybrany sposób dzielenia na sylaby</td><td>Zapamiętanie, na czym dziecko skończyło, i jego ustawień</td><td>Wyłącznie pamięć urządzenia</td></tr>
+      <tr><td>Własny tekst</td><td>Tekst, który wpisujesz albo wklejasz do aplikacji</td><td>Pokazanie go dziecku w kolorowych sylabach i ewentualny wydruk</td><td>Wyłącznie pamięć urządzenia</td></tr>
+    </tbody>
+  </table></div>
+  <p>Identyfikator instancji Firebase nie jest powiązany z żadną osobą — jest nadawany aplikacji na urządzeniu i zmienia się po odinstalowaniu aplikacji lub wyczyszczeniu jej danych. Do zdarzeń nie dopisujemy identyfikatora użytkownika: aplikacja nie ma kont, więc nie ma czego dopisywać.</p>
 
-<div class="card">
-    <h2>1. Administrator danych</h2>
-    <p>Współadministratorami danych, z równym udziałem w projekcie, są:</p>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-    <p>Zgodnie z art. 26 RODO informujemy, że obowiązki wynikające z ochrony danych
-    wykonujemy wspólnie: na żądania odpowiada ten z nas, który pierwszy odbierze
-    wiadomość, a zgłoszenia naruszeń obsługujemy razem. Żądanie możesz zgłosić na
-    dowolny z powyższych adresów.</p>
-</div>
+  <h2>3. Biblioteka tekstów a Twoje dane</h2>
+  <p>Bajki, wiersze i baśnie aplikacja pobiera z naszego serwera treści (Supabase). <b>Nie zakłada przy tym konta ani sesji użytkownika</b> — nie powstaje żaden identyfikator, który dałoby się przypisać Tobie lub dziecku. Aplikacja łączy się z serwerem publicznym kluczem, takim samym dla wszystkich instalacji, i prosi wyłącznie o opublikowane teksty oraz ich strony.</p>
+  <p>Ruch idzie w jedną stronę: aplikacja z serwera <b>czyta</b> i niczego na niego <b>nie zapisuje</b>. Nie trafia tam ani postęp czytania, ani lista przeczytanych tekstów, ani Twój własny tekst, ani żadne ustawienia — wszystko to zostaje w pamięci urządzenia. Jak przy każdym połączeniu internetowym serwer widzi adres IP urządzenia i zapisuje go w technicznych logach dostawcy; nie łączymy tych logów z niczym innym i nie budujemy na nich żadnego profilu.</p>
 
-<div class="card">
-    <h2>2. Jakie dane zbieramy</h2>
-    <table>
-        <thead>
-            <tr><th>Kategoria</th><th>Dane</th><th>Cel</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><span class="badge">Rejestracja</span></td><td>Adres e-mail, hasło (zaszyfrowane)</td><td>Utworzenie i zabezpieczenie konta</td></tr>
-            <tr><td><span class="badge">OAuth</span></td><td>Identyfikator Google/Facebook, adres e-mail</td><td>Logowanie przez konto zewnętrzne</td></tr>
-            <tr><td><span class="badge">Ustawienia</span></td><td>Wybrane kolory sylab, rozmiar czcionki, język interfejsu</td><td>Personalizacja doświadczenia</td></tr>
-            <tr><td><span class="badge">Płatności</span></td><td>Identyfikator transakcji (RevenueCat/Google Play)</td><td>Zarządzanie subskrypcjami i zakupami</td></tr>
-            <tr><td><span class="badge">Treści</span></td><td>Publikacje utworzone przez autorów (tekst, obrazy)</td><td>Świadczenie usługi platformy edukacyjnej</td></tr>
-        </tbody>
-    </table>
+  <div class="box box--warn">
+    <p><b>Czego nie zbieramy:</b> imienia i nazwiska, adresu e-mail, hasła, numeru telefonu, danych lokalizacji, listy kontaktów, zdjęć, nagrań dźwięku ani obrazu. Aplikacja o te dane nie pyta: nie otwiera aparatu, galerii zdjęć ani mikrofonu i nigdy nie prosi o zgodę na dostęp do nich. Na Androidzie deklaruje jedno jedyne uprawnienie — dostęp do internetu.</p>
+    <p>Nie zbieramy identyfikatora reklamowego (Advertising ID) — uprawnienie do niego jest jawnie usunięte z aplikacji.</p>
+    <p>W wersji na iOS aplikacja nie zbiera identyfikatora reklamowego IDFA ani identyfikatora dostawcy IDFV i nie śledzi Cię ani dziecka poza aplikacją — nie korzysta z mechanizmu App Tracking Transparency, bo nie ma czego nim obejmować.</p>
+    <p>Treść, którą wpisujesz albo wklejasz jako własny tekst, nigdy nie opuszcza urządzenia. Do statystyki trafia wyłącznie to, czy tekst był krótki, średni czy długi — nie sam tekst i nie jego fragment.</p>
+  </div>
 
-    <div class="highlight">
-        <strong>Czego NIE zbieramy:</strong> Nie zbieramy danych lokalizacyjnych, nie rejestrujemy aktywności przeglądania, nie tworzymy profili behawioralnych, nie zbieramy danych z kontaktów, aparatu ani mikrofonu (poza celowym uploadem obrazków przez autorów).
-    </div>
-</div>
+  <h2>4. Ochrona dzieci</h2>
+  <ul>
+    <li>Aplikacja nie wyświetla reklam — żadnych, w żadnej formie.</li>
+    <li>Nie stosujemy reklam personalizowanych ani profilowania behawioralnego.</li>
+    <li>Nie łączymy danych z tej aplikacji z danymi z innych aplikacji ani serwisów.</li>
+    <li>Nie przekazujemy danych podmiotom trzecim w celach marketingowych i nie sprzedajemy ich.</li>
+    <li>Aplikacja nie zakłada kont dzieciom ani nikomu innemu, więc nie prosi dziecka o żadne dane.</li>
+    <li>Każdy zakup wymaga potwierdzenia przez osobę dorosłą — przed płatnością aplikacja zadaje zadanie z dodawania, którego dziecko uczące się czytać nie rozwiąże. Trzy błędne odpowiedzi pod rząd blokują zakup na dziesięć minut.</li>
+  </ul>
+  <p>Działamy zgodnie z amerykańską ustawą COPPA, art. 8 RODO, zasadami programu Google Play Families oraz — w wersji na iOS — wytycznymi App Store dla aplikacji z kategorii Kids.</p>
 
-<div class="card">
-    <h2>3. Ochrona dzieci</h2>
-    <p>Aplikacja jest przeznaczona dla dzieci w wieku 4–8 lat i traktujemy ochronę ich prywatności priorytetowo:</p>
-    <ul>
-        <li>Konta zakładane są przez rodziców lub opiekunów prawnych</li>
-        <li>Nie zbieramy od dzieci danych wykraczających poza korzystanie z treści edukacyjnych</li>
-        <li>Nie wyświetlamy reklam</li>
-        <li>Nie udostępniamy danych dzieci podmiotom trzecim w celach marketingowych</li>
-        <li>Nie stosujemy śledzenia ani profilowania użytkowników</li>
-        <li>Rodzic lub opiekun może w dowolnym momencie usunąć konto dziecka</li>
-    </ul>
-    <p>Działamy zgodnie z zasadami ochrony prywatności dzieci, w tym z wytycznymi <strong>COPPA</strong> (Children's Online Privacy Protection Act) oraz <strong>RODO</strong> (art. 8).</p>
-</div>
+  <h2>5. Usługi zewnętrzne</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Usługa</th><th>Rola</th><th>Polityka prywatności</th></tr></thead>
+    <tbody>
+      <tr><td>Supabase</td><td>Serwer, z którego aplikacja pobiera teksty do czytania</td><td><a href="https://supabase.com/privacy" rel="noopener">supabase.com/privacy</a></td></tr>
+      <tr><td>Firebase Analytics (Google)</td><td>Statystyka użycia funkcji aplikacji</td><td><a href="https://firebase.google.com/support/privacy" rel="noopener">firebase.google.com/support/privacy</a></td></tr>
+      <tr><td>RevenueCat</td><td>Obsługa i weryfikacja zakupu pełnej wersji</td><td><a href="https://www.revenuecat.com/privacy" rel="noopener">revenuecat.com/privacy</a></td></tr>
+      <tr><td>Google Play Billing</td><td>Przetwarzanie płatności i dystrybucja aplikacji na Androidzie</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+      <tr><td>Apple (App Store)</td><td>Przetwarzanie płatności i dystrybucja aplikacji na iOS</td><td><a href="https://www.apple.com/legal/privacy/" rel="noopener">apple.com/legal/privacy</a></td></tr>
+      <tr><td>Google Fonts</td><td>Pobranie kroju pisma używanego w dokumencie PDF — tylko przy eksporcie i wydruku</td><td><a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a></td></tr>
+    </tbody>
+  </table></div>
 
-<div class="card">
-    <h2>4. Usługi zewnętrzne</h2>
-    <p>Aplikacja korzysta z następujących usług zewnętrznych:</p>
-    <table>
-        <thead>
-            <tr><th>Usługa</th><th>Cel</th><th>Polityka prywatności</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><strong>Supabase</strong></td><td>Backend: uwierzytelnianie, baza danych, przechowywanie plików</td><td><a href="https://supabase.com/privacy" target="_blank">supabase.com/privacy</a></td></tr>
-            <tr><td><strong>RevenueCat</strong></td><td>Zarządzanie subskrypcjami i zakupami</td><td><a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></td></tr>
-            <tr><td><strong>Google Play</strong></td><td>Dystrybucja aplikacji, przetwarzanie płatności</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-            <tr><td><strong>Google Sign-In</strong></td><td>Logowanie przez konto Google</td><td><a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a></td></tr>
-            <tr><td><strong>Facebook Login</strong></td><td>Logowanie przez konto Facebook</td><td><a href="https://www.facebook.com/privacy/policy" target="_blank">facebook.com/privacy</a></td></tr>
-        </tbody>
-    </table>
-</div>
+  <h2>6. Druk i eksport do PDF</h2>
+  <p>Dokument do druku powstaje na urządzeniu i trafia prosto do systemowego okna drukowania — nie przechodzi przez nasz serwer i nigdzie go nie zapisujemy. Dotyczy to zarówno tekstów z biblioteki, jak i Twojego własnego tekstu.</p>
+  <p>Przygotowując dokument, aplikacja pobiera krój pisma z serwera Google Fonts; idzie tam wyłącznie żądanie o plik czcionki, bez treści dokumentu. Jeśli publikacja ma graficzne tła stron, aplikacja pobiera je z naszego serwera treści. Do statystyki trafia sama informacja, że eksport się odbył, i czy dotyczył biblioteki, czy własnego tekstu.</p>
 
-<div class="card">
-    <h2>5. Płatności i subskrypcje</h2>
-    <ul>
-        <li>Płatności są przetwarzane przez <strong>Google Play Billing</strong> za pośrednictwem <strong>RevenueCat</strong></li>
-        <li>Nie przechowujemy danych karty kredytowej ani danych bankowych</li>
-        <li>Subskrypcje można zarządzać w ustawieniach Google Play</li>
-        <li>Zakupy jednostkowe są permanentne (dostęp na zawsze)</li>
-        <li>Po anulowaniu subskrypcji użytkownik zachowuje dostęp do zakupionych jednostkowo treści</li>
-    </ul>
-</div>
+  <h2>7. Zakupy w aplikacji</h2>
+  <ul>
+    <li>Pełną wersję odblokowuje <b>jednorazowy zakup</b> — „Dożywotnia Licencja". Nie ma subskrypcji ani automatycznego odnawiania.</li>
+    <li>Nie przechowujemy danych karty płatniczej ani danych bankowych. Płatność obsługuje w całości Google Play (Android) albo Apple (iOS).</li>
+    <li>Zakup jest powiązany wyłącznie z anonimowym identyfikatorem losowanym na urządzeniu — nie wiemy i nie możemy się dowiedzieć, kto go zrobił.</li>
+    <li>Zakup przywracasz przyciskiem „Przywróć zakupy" na ekranie zakupu i w ustawieniach. Na Androidzie jest przypisany do Twojego konta Google Play, na iOS do konta Apple, a chmura rodzinna (Family Sharing) jest wyłączona.</li>
+    <li>Zwroty na Androidzie realizuje Google Play zgodnie ze swoim regulaminem, na iOS — Apple (reportaproblem.apple.com).</li>
+  </ul>
 
-<div class="card">
-    <h2>6. Przechowywanie i bezpieczeństwo danych</h2>
-    <ul>
-        <li>Dane przechowywane są na serwerach <strong>Supabase</strong> (infrastruktura AWS, region EU)</li>
-        <li>Hasła są szyfrowane — nie przechowujemy ich w formie jawnej</li>
-        <li>Komunikacja z serwerem odbywa się przez szyfrowane połączenie (HTTPS/TLS)</li>
-        <li>Dostęp do danych jest kontrolowany przez system ról i uprawnień (Row Level Security)</li>
-    </ul>
-</div>
+  <h2>8. Jak długo przechowujemy dane</h2>
+  <ul>
+    <li><b>Postęp czytania, ustawienia i własny tekst</b> — do momentu odinstalowania aplikacji lub wyczyszczenia jej danych. Znikają razem z aplikacją.</li>
+    <li><b>Dane statystyczne</b> — przechowywane przez Firebase Analytics zgodnie z ustawieniami projektu, maksymalnie 14 miesięcy.</li>
+    <li><b>Dane transakcji</b> — przez okres wymagany przepisami podatkowymi i rachunkowymi.</li>
+  </ul>
 
-<div class="card">
-    <h2>7. Prawa użytkownika</h2>
-    <p>Każdy użytkownik ma prawo do:</p>
-    <ul>
-        <li><strong>Dostępu</strong> — wglądu w swoje dane (widoczne w profilu)</li>
-        <li><strong>Sprostowania</strong> — poprawienia swoich danych</li>
-        <li><strong>Usunięcia</strong> — trwałego usunięcia konta i wszystkich powiązanych danych (funkcja dostępna w aplikacji: Profil → Usuń konto)</li>
-        <li><strong>Przenoszenia</strong> — uzyskania kopii swoich danych</li>
-        <li><strong>Sprzeciwu</strong> — wniesienia sprzeciwu wobec przetwarzania danych</li>
-    </ul>
-    <p>W celu realizacji powyższych praw prosimy o kontakt: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a> lub <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>9. Twoje prawa</h2>
+  <p>Masz prawo żądać dostępu do danych, ich sprostowania, usunięcia lub ograniczenia przetwarzania, a także wnieść sprzeciw wobec przetwarzania i skargę do organu nadzorczego — do organu właściwego dla Twojego miejsca zamieszkania lub do właściwego dla nas Prezesa Urzędu Ochrony Danych Osobowych (UODO) (art. 77 RODO).</p>
+  <p>Ponieważ aplikacja nie ma kont, nie jesteśmy w stanie powiązać danych statystycznych z konkretną osobą ani urządzeniem — dlatego najskuteczniejszą drogą usunięcia danych z urządzenia jest wyczyszczenie danych aplikacji albo jej odinstalowanie. Szczegóły opisaliśmy w zakładce <b>Usuwanie danych</b>.</p>
 
-<div class="card">
-    <h2>8. Okres przechowywania danych</h2>
-    <ul>
-        <li>Dane konta przechowywane są do momentu usunięcia konta przez użytkownika</li>
-        <li>Po usunięciu konta dane są trwale usuwane w ciągu 30 dni</li>
-        <li>Dane transakcji płatniczych przechowywane są zgodnie z wymogami prawnymi (do 5 lat)</li>
-    </ul>
-</div>
+  <h2>10. Zmiany polityki</h2>
+  <p>O istotnych zmianach poinformujemy w opisie aktualizacji aplikacji w Google Play i w App Store. Aktualna wersja jest zawsze dostępna pod tym adresem, z datą ostatniej zmiany na górze strony.</p>
 
-<div class="card">
-    <h2>9. Pliki cookie i dane lokalne</h2>
-    <p>Aplikacja nie wykorzystuje plików cookie do śledzenia użytkowników. Dane preferencji (kolory sylab, rozmiar czcionki, wybrany język) przechowywane są lokalnie na urządzeniu użytkownika za pomocą mechanizmu <em>SharedPreferences</em>.</p>
-</div>
+  <h2>11. Kontakt</h2>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Współadministrator danych</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Współadministrator danych</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>
 
-<div class="card">
-    <h2>10. Zmiany w polityce prywatności</h2>
-    <p>Zastrzegamy sobie prawo do aktualizacji niniejszej Polityki Prywatności. O istotnych zmianach poinformujemy użytkowników poprzez powiadomienie w aplikacji. Aktualna wersja jest zawsze dostępna pod tym adresem.</p>
-</div>
+<!-- ══════════════════ REGULAMIN ══════════════════ -->
+<article class="doc-section" id="terms">
+  <h2>Regulamin</h2>
+  <p class="dates"><b>Wejście w życie:</b> 30 marca 2026 &nbsp;·&nbsp; <b>Ostatnia aktualizacja:</b> 21 września 2026</p>
+  <p class="lede">Regulamin opisuje zasady korzystania z aplikacji „Nauka czytania sylabami". Jest krótki, bo i aplikacja jest prosta: nie ma w niej kont, nie ma subskrypcji i nie ma niczego, co trzeba by od Ciebie wyciągnąć, żeby zaczęła działać.</p>
 
-<div class="card">
-    <h2>11. Kontakt</h2>
-    <p>W przypadku pytań dotyczących prywatności lub przetwarzania danych prosimy o kontakt:</p>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>1. Postanowienia ogólne</h2>
+  <ol>
+    <li>Regulamin określa zasady korzystania z aplikacji „Nauka czytania sylabami" (dalej: „Aplikacja"), dostępnej w Google Play na Androida i w App Store na iPhone'a i iPada. Na ekranie urządzenia Aplikacja jest podpisana „Czytaj sylabami".</li>
+    <li>Aplikację wydaje i prowadzi Sebastian Rosiński (dalej: „Operator"), we współpracy z Dawidem Adamczykiem. Dane kontaktowe znajdziesz na końcu Regulaminu.</li>
+    <li>Aplikacja jest narzędziem edukacyjnym: dzieli tekst na sylaby i koloruje je naprzemiennie, żeby wzrok dziecka nie gubił się w środku wyrazu.</li>
+    <li>Aplikacja działa wyłącznie po polsku i jest przeznaczona dla dzieci w wieku 4–8 lat korzystających z niej pod opieką osoby dorosłej.</li>
+    <li>Korzystanie z Aplikacji oznacza akceptację Regulaminu.</li>
+  </ol>
 
-</div><!-- /pl -->
+  <h2>2. Aplikacja nie ma kont</h2>
+  <ol>
+    <li>Żeby korzystać z Aplikacji, <b>nie zakładasz konta i się nie logujesz</b>. Nie ma rejestracji adresem e-mail, nie ma logowania przez Google ani Facebooka, nie ma profilu, ról użytkowników ani kodów zaproszeniowych.</li>
+    <li>Nie podajesz nam żadnych danych osobowych, więc nie jesteś odpowiedzialny za żadne dane logowania — po prostu ich nie ma.</li>
+    <li>Ustawienia, postęp czytania i własne teksty są zapisane na urządzeniu i nie przenoszą się na inne urządzenia.</li>
+  </ol>
 
+  <h2>3. Wersja bezpłatna i Dożywotnia Licencja</h2>
+  <ol>
+    <li>Część tekstów w bibliotece jest dostępna bezpłatnie, żeby dało się sprawdzić, czy Aplikacja odpowiada dziecku. Funkcja własnego tekstu i pozostałe teksty należą do wersji pełnej.</li>
+    <li>Pełny dostęp odblokowuje <b>jeden zakup — „Dożywotnia Licencja"</b>. Jest to zakup jednorazowy, bez subskrypcji i bez automatycznego odnawiania; dostęp nie wygasa.</li>
+    <li>Licencja jest niewyłączna i przeznaczona do własnego, niekomercyjnego użytku — Twojego i dzieci pod Twoją opieką.</li>
+    <li>Licencja jest powiązana z kontem w sklepie, w którym dokonano zakupu (Google Play albo Apple), a nie z danymi w Aplikacji. Dlatego po zmianie urządzenia albo ponownej instalacji odzyskujesz ją przyciskiem „Przywróć zakupy" — na ekranie zakupu i w ustawieniach.</li>
+  </ol>
 
-</div><!-- /privacy page -->
+  <h2>4. Płatność i zwroty</h2>
+  <ol>
+    <li>Płatność w całości obsługuje sklep: Google Play Billing na Androidzie albo Apple na iOS. Operator nie przyjmuje płatności bezpośrednio i nie przechowuje danych karty ani danych bankowych.</li>
+    <li>Cenę widzisz w Aplikacji przed potwierdzeniem zakupu; podaje ją sklep w Twojej walucie.</li>
+    <li>Przed każdym zakupem Aplikacja prosi o rozwiązanie prostego zadania z dodawania. To bramka dla osoby dorosłej — dziecko nie kupi dostępu samo.</li>
+    <li>Zwroty rozpatruje sklep, w którym zakup został zrobiony: Google Play zgodnie ze swoim regulaminem albo Apple (reportaproblem.apple.com). Jeśli zwrot się nie powiedzie, napisz do nas — pomożemy, na ile pozwalają zasady sklepu.</li>
+  </ol>
+  <p><b>Dawne subskrypcje.</b> Osoby, które wcześniej wykupiły w Google Play subskrypcję tej Aplikacji, zachowują dostęp na dotychczasowych zasadach; taką subskrypcję, łącznie z jej anulowaniem, obsługuje się w ustawieniach Google Play. Nowych subskrypcji nie sprzedajemy — jedyną formą zakupu jest jednorazowa Dożywotnia Licencja.</p>
 
+  <h2>5. Twój własny tekst</h2>
+  <ol>
+    <li>Do Aplikacji możesz wpisać albo wkleić dowolny własny tekst — kartkę od babci, wiersz, listę zakupów — i zobaczyć go w kolorowych sylabach.</li>
+    <li>Ten tekst zostaje na urządzeniu. Nie wysyłamy go na serwer, nie zapisujemy u siebie i nie mamy do niego dostępu.</li>
+    <li>Odpowiadasz za to, że masz prawo korzystać z tekstu, który wklejasz, i że jego treść jest odpowiednia dla dziecka.</li>
+    <li>Wydruk i eksport do PDF powstają na urządzeniu — plik nie przechodzi przez nasz serwer.</li>
+  </ol>
 
-<!-- ==================== REGULAMIN (PL) / TERMS (EN) ==================== -->
-<div class="doc-section" id="terms">
+  <h2>6. Teksty w bibliotece</h2>
+  <ol>
+    <li>Biblioteka zawiera bajki, wiersze i baśnie przygotowane przez nas oraz utwory pochodzące z zasobów publicznych, w tym z serwisu <a href="https://wolnelektury.pl" rel="noopener">Wolne Lektury</a>, udostępniane na licencji Creative Commons (CC BY-SA 4.0) albo należące do domeny publicznej. Informację o źródle i licencji znajdziesz w opisie takiej publikacji.</li>
+    <li>Pozostałe teksty, grafiki i sam program są chronione prawem autorskim. Możesz z nich korzystać w Aplikacji i drukować je na własny użytek; nie wolno ich odsprzedawać ani rozpowszechniać poza Aplikacją.</li>
+    <li>Aplikacja nie pozwala publikować własnych treści innym użytkownikom — biblioteka jest redagowana wyłącznie przez nas.</li>
+  </ol>
 
-<div>
+  <h2>7. Zasady korzystania</h2>
+  <p>Korzystając z Aplikacji, zobowiązujesz się:</p>
+  <ul>
+    <li>używać jej zgodnie z przeznaczeniem edukacyjnym,</li>
+    <li>nie próbować obchodzić bramki rodzicielskiej ani mechanizmu dostępu do wersji pełnej,</li>
+    <li>nie ingerować w działanie Aplikacji ani serwera, z którego pobiera teksty.</li>
+  </ul>
 
-<div class="card">
-    <h2>Regulamin aplikacji Nauka czytania sylabami</h2>
-    <p><strong>Data wejścia w życie:</strong> 30 marca 2026</p>
-</div>
+  <h2>8. Odpowiedzialność</h2>
+  <ol>
+    <li>Dokładamy starań, żeby Aplikacja działała poprawnie, ale nie gwarantujemy nieprzerwanej dostępności — pobieranie nowych tekstów wymaga połączenia z internetem.</li>
+    <li>Aplikacja jest pomocą w nauce czytania. Nie zastępuje pracy z nauczycielem, pedagogiem ani logopedą i nie jest narzędziem diagnostycznym.</li>
+    <li>Automatyczny podział na sylaby jest wynikiem działania reguł językowych i w pojedynczych wyrazach może odbiegać od podziału ze słownika. W ustawieniach wybierzesz podział fonetyczny albo ortograficzny.</li>
+  </ol>
 
-<div class="card">
-    <h2>1. Postanowienia ogólne</h2>
-    <ol>
-        <li>Niniejszy Regulamin określa zasady korzystania z aplikacji „Nauka czytania sylabami" (dalej: „Aplikacja").</li>
-        <li>Właścicielem i operatorem Aplikacji jest Sebastian Rosiński (dalej: „Operator").</li>
-        <li>Aplikacja jest narzędziem edukacyjnym pomagającym dzieciom w nauce czytania poprzez wizualne dzielenie tekstu na sylaby.</li>
-        <li>Korzystanie z Aplikacji oznacza akceptację niniejszego Regulaminu.</li>
-    </ol>
-</div>
+  <h2>9. Zmiany Regulaminu</h2>
+  <p>O istotnych zmianach poinformujemy w opisie aktualizacji Aplikacji w Google Play i w App Store. Aktualna wersja jest zawsze dostępna pod tym adresem, z datą ostatniej zmiany na górze strony. Dalsze korzystanie z Aplikacji po wejściu zmian w życie oznacza ich akceptację.</p>
 
-<div class="card">
-    <h2>2. Rejestracja i konto</h2>
-    <ol>
-        <li>Korzystanie z Aplikacji wymaga utworzenia konta za pomocą adresu e-mail, konta Google lub konta Facebook.</li>
-        <li>Konta dla dzieci poniżej 16 roku życia powinny być zakładane przez rodziców lub opiekunów prawnych.</li>
-        <li>Użytkownik jest odpowiedzialny za poufność swoich danych logowania.</li>
-        <li>Dostępne jest również logowanie gościnne z ograniczoną funkcjonalnością.</li>
-        <li>Użytkownik może w dowolnym momencie usunąć swoje konto z poziomu Aplikacji.</li>
-    </ol>
-</div>
+  <h2>10. Kontakt</h2>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Operator</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Współautor</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>
 
-<div class="card">
-    <h2>3. Rodzaje kont i uprawnienia</h2>
-    <table>
-        <thead>
-            <tr><th>Typ</th><th>Uprawnienia</th></tr>
-        </thead>
-        <tbody>
-            <tr><td><strong>Czytelnik</strong></td><td>Przeglądanie biblioteki, czytanie treści (w ramach posiadanego dostępu), personalizacja ustawień</td></tr>
-            <tr><td><strong>Autor</strong></td><td>Dodatkowo: tworzenie i edycja własnych publikacji</td></tr>
-            <tr><td><strong>Administrator</strong></td><td>Pełna kontrola nad platformą, zarządzanie użytkownikami i treściami</td></tr>
-        </tbody>
-    </table>
-</div>
+<!-- ══════════════════ O APLIKACJI ══════════════════ -->
+<article class="doc-section" id="about">
+  <h2>O aplikacji</h2>
+  <p class="lede">Aplikacja dzieli każdy tekst na sylaby i koloruje je naprzemiennie. Wzrok dziecka przestaje gubić się w środku wyrazu, a czytanie zamienia się z odgadywania w składanie.</p>
 
-<div class="card">
-    <h2>4. Płatności i subskrypcje</h2>
-    <ol>
-        <li>Aplikacja oferuje treści darmowe oraz płatne.</li>
-        <li>Dostęp do treści płatnych można uzyskać poprzez:
-            <ul>
-                <li>Subskrypcję Premium (miesięczną lub roczną)</li>
-                <li>Zakup jednostkowy (pojedyncza publikacja lub kategoria)</li>
-                <li>Kod zaproszeniowy (nadawany przez administratora)</li>
-            </ul>
-        </li>
-        <li>Płatności są przetwarzane przez Google Play Billing. Operator nie przechowuje danych płatniczych.</li>
-        <li>Subskrypcja odnawia się automatycznie. Anulowanie jest możliwe w ustawieniach Google Play.</li>
-        <li>Zakupy jednostkowe są permanentne — dostęp nie wygasa.</li>
-        <li>Zwroty podlegają zasadom Google Play Store.</li>
-    </ol>
-</div>
+  <div class="pill-row">
+    <span class="pill">Wiek 4–8 lat</span><span class="pill">Język polski</span>
+    <span class="pill">Bez reklam</span><span class="pill">Bez konta</span>
+    <span class="pill">Android i iOS</span>
+  </div>
 
-<div class="card">
-    <h2>5. Treści użytkowników</h2>
-    <ol>
-        <li>Autorzy mogą tworzyć i publikować treści edukacyjne w Aplikacji.</li>
-        <li>Autor zachowuje prawa autorskie do swoich treści.</li>
-        <li>Publikując treść, autor udziela Operatorowi niewyłącznej licencji na wyświetlanie jej w Aplikacji.</li>
-        <li>Zabronione jest publikowanie treści naruszających prawa osób trzecich, nielegalnych lub nieodpowiednich dla dzieci.</li>
-        <li>Operator zastrzega sobie prawo do usunięcia treści naruszających Regulamin.</li>
-    </ol>
-</div>
+  <h2>Jak to działa</h2>
+  <ul>
+    <li>Tekst dzieli się automatycznie według polskich reguł, a sąsiednie sylaby dostają różne kolory — dziecko widzi, gdzie kończy się jedna, a zaczyna druga.</li>
+    <li>Sposób dzielenia wybierasz w ustawieniach: podział fonetyczny (tak, jak się mówi) albo ortograficzny (tak, jak się przenosi wyraz do nowego wiersza).</li>
+    <li>Kolory sylab, rozmiar czcionki i motyw tła ustawiasz tak, jak dziecku czyta się najwygodniej.</li>
+    <li>Aplikacja pamięta, na której stronie dziecko skończyło każdy tekst, i pokazuje, ile już przeczytało.</li>
+  </ul>
 
-<div class="card">
-    <h2>6. Treści z Wolnych Lektur</h2>
-    <p>Część treści w Aplikacji pochodzi z serwisu <a href="https://wolnelektury.pl" target="_blank">Wolne Lektury</a> i jest udostępniana na licencji Creative Commons (CC BY-SA 4.0). Informacja o źródle i licencji jest zawarta w opisie każdej takiej publikacji.</p>
-</div>
+  <h2>Co jest w środku</h2>
+  <ul>
+    <li><b>Biblioteka tekstów</b> — bajki, wiersze i baśnie gotowe do czytania, w tym klasyka polskiej literatury dziecięcej.</li>
+    <li><b>Własny tekst</b> — wpisz albo wklej cokolwiek i zobacz to w kolorowych sylabach.</li>
+    <li><b>Druk i PDF</b> — każdy tekst możesz wyeksportować i wydrukować, żeby poćwiczyć bez ekranu.</li>
+  </ul>
+  <p>Aplikacja działa wyłącznie po polsku — dzielenie na sylaby opiera się na regułach języka polskiego.</p>
 
-<div class="card">
-    <h2>7. Zasady korzystania</h2>
-    <p>Użytkownik zobowiązuje się do:</p>
-    <ul>
-        <li>Korzystania z Aplikacji zgodnie z jej przeznaczeniem edukacyjnym</li>
-        <li>Niepodejmowania prób obejścia zabezpieczeń lub systemu dostępu</li>
-        <li>Nieudostępniania kodów zaproszeniowych osobom nieuprawnionym</li>
-        <li>Niekorzystania z Aplikacji w sposób mogący zakłócić jej działanie</li>
-    </ul>
-</div>
+  <h2>Czego w aplikacji nie ma</h2>
+  <ul>
+    <li>Nie ma kont, rejestracji ani logowania — po instalacji od razu można czytać.</li>
+    <li>Nie ma reklam ani treści promocyjnych kierowanych do dziecka.</li>
+    <li>Nie ma rankingów, odliczania czasu ani porównywania z innymi dziećmi.</li>
+    <li>Nie ma dostępu do aparatu, zdjęć, mikrofonu, lokalizacji ani kontaktów.</li>
+  </ul>
 
-<div class="card">
-    <h2>8. Odpowiedzialność</h2>
-    <ol>
-        <li>Operator dokłada starań, aby Aplikacja działała poprawnie, ale nie gwarantuje nieprzerwanej dostępności.</li>
-        <li>Operator nie ponosi odpowiedzialności za skutki wynikające z podania nieprawdziwych danych przez użytkownika.</li>
-        <li>Treści edukacyjne nie zastępują profesjonalnej pomocy pedagogicznej ani logopedycznej.</li>
-    </ol>
-</div>
+  <h2>Wersja bezpłatna i pełna</h2>
+  <p>Wersja bezpłatna pozwala przeczytać pierwsze teksty, żeby sprawdzić, czy aplikacja odpowiada dziecku. Pełny dostęp — cała biblioteka i własne teksty — odblokowuje jednorazowy zakup „Dożywotnia Licencja", bez subskrypcji. Przed płatnością aplikacja zadaje zadanie z dodawania, żeby dziecko nie kupiło dostępu samo.</p>
 
-<div class="card">
-    <h2>9. Zmiany Regulaminu</h2>
-    <p>Operator zastrzega sobie prawo do zmiany Regulaminu. O istotnych zmianach użytkownicy zostaną poinformowani w Aplikacji. Dalsze korzystanie z Aplikacji po wprowadzeniu zmian oznacza ich akceptację.</p>
-</div>
+  <h2>Dla nauczycieli i terapeutów</h2>
+  <p>Aplikacja nie wymaga konta ani logowania, więc nie trzeba zbierać zgód na zakładanie kont dla dzieci. Nie wyświetla reklam i nie rozpoznaje wielu uczniów na jednym urządzeniu — postęp zapisuje się osobno dla każdego urządzenia. Do pobrania nowych tekstów potrzebne jest połączenie z internetem. Jeśli potrzebujesz większej liczby licencji dla placówki, <a href="/kontakt/">napisz do nas</a>.</p>
 
-<div class="card">
-    <h2>10. Kontakt</h2>
-    <p><strong>Sebastian Rosiński</strong><br>
-    E-mail: <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></p>
-    <p><strong>Dawid Adamczyk</strong><br>
-    E-mail: <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
+  <h2>Autorzy</h2>
+  <p>Aplikację tworzą Sebastian Rosiński i Dawid Adamczyk. Jest częścią serii Kidalu, do której należą też <a href="/literki-i-cyferki/">Literki i Cyferki</a>.</p>
+</article>
 
-</div><!-- /pl -->
+<!-- ══════════════════ USUWANIE DANYCH ══════════════════ -->
+<article class="doc-section" id="delete">
+  <h2>Usuwanie danych</h2>
+  <p class="lede">Aplikacja nie ma kont użytkowników, więc nie ma profilu, który trzeba byłoby zamykać — nie ma też czego usuwać po naszej stronie. Wszystko, co aplikacja zapamiętuje o Tobie i o dziecku, leży na urządzeniu.</p>
 
+  <div class="box">
+    <p><b>Odinstalowanie aplikacji usuwa wszystkie dane</b> — postęp czytania, ustawienia (kolory sylab, rozmiar czcionki, motyw tła, sposób dzielenia na sylaby) i własne teksty. Nie zostaje po nich kopia po naszej stronie, bo nigdy tam nie trafiły.</p>
+    <p>Jeśli szukasz tu instrukcji usunięcia konta: aplikacja nigdy nie zakłada konta, nie prosi o adres e-mail ani o hasło i nie tworzy profilu dziecka. Nie ma więc konta, które moglibyśmy usunąć.</p>
+  </div>
 
-</div><!-- /terms page -->
+  <h2>Jak wyczyścić dane bez odinstalowania</h2>
+  <p><b>Android:</b></p>
+  <ol>
+    <li>Otwórz <b>Ustawienia</b> systemu Android.</li>
+    <li>Przejdź do <b>Aplikacje</b> i wybierz <b>Czytaj sylabami</b>.</li>
+    <li>Wejdź w <b>Pamięć</b>, a następnie wybierz <b>Wyczyść dane</b>.</li>
+  </ol>
+  <p>Aplikacja wróci do stanu początkowego. Zakup pełnej wersji nie przepada — przywrócisz go przyciskiem „Przywróć zakupy" w ustawieniach aplikacji, ponieważ jest przypisany do Twojego konta Google Play, a nie do danych w aplikacji.</p>
+  <p><b>iPhone i iPad:</b> system iOS nie ma osobnej opcji „wyczyść dane aplikacji" — jedynym sposobem jest usunięcie aplikacji:</p>
+  <ol>
+    <li>Otwórz <b>Ustawienia</b> → <b>Ogólne</b> → <b>Pamięć iPhone'a</b> (lub <b>Pamięć iPada</b>).</li>
+    <li>Wybierz <b>Czytaj sylabami</b> i dotknij <b>Usuń aplikację</b>.</li>
+    <li>Albo przytrzymaj ikonę aplikacji na ekranie głównym i wybierz <b>Usuń aplikację</b>.</li>
+  </ol>
+  <p>Po ponownej instalacji zakup pełnej wersji przywrócisz przyciskiem „Przywróć zakupy" w ustawieniach, ponieważ jest przypisany do Twojego konta Apple, a nie do danych w aplikacji.</p>
 
+  <h2>Dane statystyczne</h2>
+  <p>Statystyka użycia funkcji jest zbierana pod identyfikatorem instancji aplikacji, który nie wskazuje żadnej osoby. Identyfikator przestaje istnieć po odinstalowaniu aplikacji lub wyczyszczeniu jej danych, a wcześniej zebrane zdarzenia są automatycznie usuwane po maksymalnie 14 miesiącach.</p>
+  <p>Jeśli chcesz, żebyśmy usunęli dane statystyczne wcześniej, napisz do nas — potrzebny będzie przybliżony czas korzystania z aplikacji i model urządzenia, żebyśmy mogli odnaleźć właściwe zdarzenia.</p>
 
-<!-- ==================== O APLIKACJI / ABOUT ==================== -->
-<div class="doc-section" id="about">
+  <h2>Teksty na naszym serwerze</h2>
+  <p>Na serwerze, z którego aplikacja pobiera bajki i wiersze, nie ma żadnych Twoich danych — aplikacja tylko z niego czyta i niczego na nim nie zapisuje. Nie ma tam ani postępu czytania, ani Twoich własnych tekstów, ani ustawień.</p>
 
-<div>
+  <h2>Dane zakupu</h2>
+  <p>Historia zakupu jest przechowywana przez Google Play, App Store i RevenueCat. Nie możemy jej usunąć, ponieważ jest podstawą Twojego prawa do pełnej wersji aplikacji oraz dokumentem księgowym. Sprawami dotyczącymi płatności i zwrotów zajmuje się Google Play (Android) lub Apple (iOS).</p>
 
-<div class="card">
-    <h2>O aplikacji Nauka czytania sylabami</h2>
-    <p><strong>Nauka czytania sylabami</strong> to aplikacja edukacyjna pomagająca dzieciom w nauce czytania poprzez wizualne dzielenie tekstu na sylaby i wyróżnianie ich naprzemiennymi kolorami.</p>
-</div>
-
-<div class="card">
-    <h2>Funkcje</h2>
-    <ul>
-        <li><strong>Kolorowe sylaby</strong> — automatyczne dzielenie tekstu na sylaby z naprzemiennym kolorowaniem</li>
-        <li><strong>Biblioteka publikacji</strong> — bajki, wiersze, baśnie i inne teksty edukacyjne</li>
-        <li><strong>Personalizacja</strong> — wybór kolorów sylab, rozmiar czcionki, motywy tła</li>
-        <li><strong>Własny tekst</strong> — wpisz dowolny tekst i zobacz go z kolorowymi sylabami</li>
-        <li><strong>Druk i PDF</strong> — eksportuj materiały do wydruku</li>
-        <li><strong>Treści z Wolnych Lektur</strong> — klasyka polskiej literatury dziecięcej</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Dla kogo?</h2>
-    <ul>
-        <li><strong>Dzieci 4–8 lat</strong> uczące się czytać</li>
-        <li><strong>Rodzice</strong> wspierający naukę czytania w domu</li>
-        <li><strong>Nauczyciele</strong> szukający materiałów do pracy w klasie</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Kontakt</h2>
-    <p>Masz pytanie lub sugestię? Napisz do nas:</p>
-    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a><br>
-    <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-</div>
-
-</div><!-- /pl -->
-
-
-</div><!-- /about page -->
-
-
-<!-- ==================== USUWANIE KONTA / DELETE ACCOUNT ==================== -->
-<div class="doc-section" id="delete">
-
-<div>
-
-<div class="card">
-    <h2>Usuwanie konta w aplikacji Nauka czytania sylabami</h2>
-    <p>Każdy zarejestrowany użytkownik może w dowolnym momencie trwale usunąć swoje konto i wszystkie powiązane dane.</p>
-</div>
-
-<div class="card">
-    <h2>Jak usunąć konto</h2>
-    <ol>
-        <li>Otwórz aplikację <strong>Nauka czytania sylabami</strong></li>
-        <li>Zaloguj się na swoje konto</li>
-        <li>Przejdź do ekranu <strong>Profil</strong> (ikona osoby na dolnym pasku)</li>
-        <li>Przewiń na dół do sekcji <strong>„Strefa zagrożenia"</strong></li>
-        <li>Kliknij przycisk <strong>„Usuń konto"</strong></li>
-        <li>Potwierdź usunięcie wpisując słowo <strong>USUŃ</strong></li>
-        <li>Kliknij <strong>„Potwierdzam usunięcie"</strong></li>
-    </ol>
-</div>
-
-<div class="card">
-    <h2>Jakie dane zostaną usunięte</h2>
-    <table>
-        <thead>
-            <tr><th>Dane</th><th>Akcja</th><th>Termin</th></tr>
-        </thead>
-        <tbody>
-            <tr><td>Konto użytkownika (email, hasło)</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
-            <tr><td>Profil użytkownika</td><td>Trwale usunięty</td><td>Natychmiast</td></tr>
-            <tr><td>Ustawienia (kolory sylab, czcionka, język)</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
-            <tr><td>Role dostępowe i uprawnienia</td><td>Trwale usunięte</td><td>Natychmiast</td></tr>
-            <tr><td>Aktywna subskrypcja</td><td>Anulowana automatycznie</td><td>Natychmiast</td></tr>
-            <tr><td>Publikacje utworzone przez użytkownika</td><td>Trwale usunięte</td><td>Do 30 dni</td></tr>
-            <tr><td>Dane transakcji płatniczych</td><td>Zachowane (wymóg prawny)</td><td>Do 5 lat</td></tr>
-        </tbody>
-    </table>
-</div>
-
-<div class="card">
-    <h2>Ważne informacje</h2>
-    <ul>
-        <li>Usunięcie konta jest <strong>nieodwracalne</strong> — nie można przywrócić konta ani danych</li>
-        <li>Zakupy jednostkowe (permanentne) zostaną utracone</li>
-        <li>Jeśli masz aktywną subskrypcję, zostanie ona automatycznie anulowana</li>
-        <li>Dane przechowywane lokalnie na urządzeniu (preferencje) należy usunąć ręcznie poprzez odinstalowanie aplikacji</li>
-    </ul>
-</div>
-
-<div class="card">
-    <h2>Kontakt</h2>
-    <p>Jeśli nie możesz usunąć konta samodzielnie lub masz pytania, napisz do nas:</p>
-    <p><a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a><br>
-    <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></p>
-    <p>W wiadomości podaj adres e-mail powiązany z kontem.</p>
-</div>
-
-</div><!-- /pl -->
-
-
-</div><!-- /delete page -->
+  <h2>Zgłoszenie żądania</h2>
+  <p>Napisz na dowolny z adresów poniżej. Odpowiadamy w ciągu 30 dni.</p>
+  <div class="people">
+    <div class="person"><b>Sebastian Rosiński</b><span class="role">Współadministrator danych</span>
+      <a href="mailto:sebastian.rosinski.1989@gmail.com">sebastian.rosinski.1989@gmail.com</a></div>
+    <div class="person"><b>Dawid Adamczyk</b><span class="role">Współadministrator danych</span>
+      <a href="mailto:phantom0492@gmail.com">phantom0492@gmail.com</a></div>
+  </div>
+</article>

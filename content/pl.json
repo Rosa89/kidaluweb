@@ -121,7 +121,8 @@
       "facts": [
         "Dzieci 4–8 lat",
         "Aplikacja po polsku",
-        "Bez reklam"
+        "Bez reklam",
+        "Bez konta i bez logowania"
       ],
       "who": [
         {
@@ -140,7 +141,7 @@
       "privacy": [
         "Bez reklam i treści promocyjnych kierowanych do dziecka",
         "Nie tworzymy profili behawioralnych i nie łączymy danych między aplikacjami",
-        "Konto zakłada rodzic i może je w każdej chwili trwale usunąć razem z danymi"
+        "Aplikacja nie ma kont — nie ma rejestracji, logowania ani profilu dziecka"
       ],
       "seo_title": "Nauka czytania sylabami — aplikacja dla dzieci | Kidalu",
       "description": "Aplikacja na Androida, która dzieli każdy tekst na kolorowe sylaby. Bajki, wiersze, własne teksty, druk i PDF. Dla dzieci 4–8 lat, bez reklam."
@@ -218,7 +219,7 @@
     "features_heading": "Co jest w środku",
     "who_heading": "Dla kogo",
     "privacy_heading": "Prywatność",
-    "compliance": "Zgodne z COPPA, art. 8 RODO i zasadami Google Play Families.",
+    "compliance": "Zgodne z COPPA, art. 8 RODO i zasadami Google Play Families, a w wersji na iOS — także z wytycznymi App Store dla aplikacji z kategorii Kids.",
     "docs_link": "Przeczytaj dokumenty",
     "back": "Wróć do lasu"
   },
@@ -232,11 +233,11 @@
       },
       {
         "heading": "Co robimy",
-        "body": "Budujemy aplikacje na Androida, które wprowadzają dziecko w świat liter, sylab i cyfr krok po kroku, a Literki i Cyferki wydajemy także na iPhone'a i iPada. Nauka czytania sylabami uczy składania sylab w słowa, a Literki i Cyferki ćwiczą pisanie palcem po ekranie. Obie aplikacje są dostępne w Google Play pod nazwą wydawcy Kidalu, a Literki i Cyferki dodatkowo w App Store."
+        "body": "Budujemy aplikacje na Androida, które wprowadzają dziecko w świat liter, sylab i cyfr krok po kroku, a obie wydajemy także na iPhone'a i iPada. Nauka czytania sylabami uczy składania sylab w słowa, a Literki i Cyferki ćwiczą pisanie palcem po ekranie. Obie aplikacje są dostępne w Google Play pod nazwą wydawcy Kidalu, a teraz też w App Store."
       },
       {
         "heading": "Dlaczego nam zaufasz",
-        "body": "Aplikacje Kidalu nie zawierają reklam, nie tworzą profili behawioralnych i nie śledzą dziecka poza aplikacją. Działają zgodnie z COPPA, art. 8 RODO i zasadami Google Play Families, a wersja Literek i Cyferek na iOS — także z wytycznymi App Store dla aplikacji z kategorii Kids. Wszystkie dokumenty publikujemy na tej stronie i odpowiadamy na każde pytanie o dane."
+        "body": "Aplikacje Kidalu nie zawierają reklam, nie tworzą profili behawioralnych i nie śledzą dziecka poza aplikacją. Działają zgodnie z COPPA, art. 8 RODO i zasadami Google Play Families, a nasze aplikacje na iOS — także z wytycznymi App Store dla aplikacji z kategorii Kids. Wszystkie dokumenty publikujemy na tej stronie i odpowiadamy na każde pytanie o dane."
       }
     ],
     "principles_heading": "Nasze zasady",
