@@ -58,6 +58,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/kolorowanki/"/>
   </url>
   <url>
+    <loc>https://kidalu.com/de/malbuch/dokumente/</loc>
+    <lastmod>2026-10-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/kolorowanki/dokumenty/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://kidalu.com/de/malbuch/dokumente/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://kidalu.com/en/coloring-book/legal/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://kidalu.com/kolorowanki/dokumenty/"/>
+  </url>
+  <url>
     <loc>https://kidalu.com/de/ratgeber/</loc>
     <lastmod>2026-10-06</lastmod>
     <xhtml:link rel="alternate" hreflang="pl" href="https://kidalu.com/poradnik/"/>

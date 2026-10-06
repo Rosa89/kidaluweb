@@ -173,6 +173,7 @@ def test_dokument_zawiera_polityke_prywatnosci():
 DOC_ANCHORS = {
     "czytanie": ["privacy", "terms", "about", "delete"],
     "literki": ["privacy", "about", "teachers", "deletion"],
+    "kolorowanka": ["privacy", "about", "deletion"],
 }
 
 
