@@ -11,7 +11,8 @@
     "kontakt": "kontakt",
     "docs": "dokumenty",
     "o_nas": "o-kidalu",
-    "poradnik": "poradnik"
+    "poradnik": "poradnik",
+    "kolorowanka": "kolorowanki"
   },
   "nav": {
     "home": "Las",
@@ -37,7 +38,7 @@
       {
         "key": "czytanie",
         "url": "czytanie",
-        "sign": "Czytam",
+        "sign": "Czytam sylabami",
         "tagline": "Odkrywaj świat liter z Kidalu"
       },
       {
@@ -45,6 +46,12 @@
         "url": "literki",
         "sign": "Piszę",
         "tagline": "Ćwicz litery i poznawaj słowa"
+      },
+      {
+        "key": "kolorowanka",
+        "url": "kolorowanka",
+        "sign": "Koloruję",
+        "tagline": "Maluj, koloruj i drukuj obrazki"
       }
     ],
     "sign_left": "Małe kroki, wielkie możliwości",
@@ -211,6 +218,72 @@
       ],
       "seo_title": "Nauka pisania liter i cyfr — Literki i Cyferki | Kidalu",
       "description": "Dziecko pisze litery i cyfry palcem po śladzie, w kolejności kresek zgodnej z pismem szkolnym. Polska, Niemcy, Austria. Działa offline, bez reklam."
+    },
+    "kolorowanka": {
+      "name": "Kolorowanki",
+      "sign": "Koloruję",
+      "tagline": "Kolorowanki dla dzieci do malowania palcem i do druku.",
+      "features": [
+        {
+          "icon": "hand",
+          "title": "Kolor jednym dotknięciem",
+          "body": "Dotknięcie pola wypełnia je kolorem dokładnie do konturu. Grube, domknięte linie sprawiają, że farba nie wylewa się poza obrazek."
+        },
+        {
+          "icon": "palette",
+          "title": "Pędzel i gumka",
+          "body": "Do drobnych poprawek jest pędzel i gumka, a przyciski Cofnij i Ponów naprawią każdą pomyłkę bez zaczynania od nowa."
+        },
+        {
+          "icon": "blocks",
+          "title": "200 obrazków w czterech kategoriach",
+          "body": "Dinozaury, robaczki, kwiaty i zwierzęta — po 50 kolorowanek w każdej, wszystkie za darmo. Kolejne kategorie dojdą w bezpłatnych aktualizacjach."
+        },
+        {
+          "icon": "print",
+          "title": "Arkusze do druku",
+          "body": "Wybierz obrazki z dowolnych kategorii, ustaw liczbę rysunków na stronie i podpisy, a potem wydrukuj — do kolorowania kredkami, bez ekranu."
+        },
+        {
+          "icon": "heart",
+          "title": "Ulubione i Moje rysunki",
+          "body": "Serduszko zapamiętuje ulubione kolorowanki, a skończone prace trafiają do galerii Moje rysunki."
+        },
+        {
+          "icon": "offline",
+          "title": "Działa bez internetu",
+          "body": "Do kolorowania nie potrzeba połączenia. Ustawienia i linki zewnętrzne czekają w Strefie rodzica, zabezpieczonej PIN-em."
+        }
+      ],
+      "docs_label": "Polityka prywatności",
+      "lead": "Dwieście obrazków do pokolorowania: dinozaury, robaczki, kwiaty i zwierzęta. Dziecko wypełnia pola jednym dotknięciem albo maluje pędzlem, a ulubione obrazki wydrukujesz na papierze.",
+      "facts": [
+        "Dzieci 3–8 lat",
+        "200 kolorowanek za darmo",
+        "Polski, angielski, niemiecki",
+        "Bez reklam i bez konta"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Dzieci 3–8 lat, które lubią rysować i malować"
+        },
+        {
+          "icon": "users",
+          "text": "Rodziców szukających spokojnej zabawy bez reklam"
+        },
+        {
+          "icon": "check",
+          "text": "Przedszkoli i świetlic — arkusze do druku dla całej grupy"
+        }
+      ],
+      "privacy": [
+        "Bez reklam i treści promocyjnych kierowanych do dziecka",
+        "Aplikacja nie wymaga konta ani logowania",
+        "Rysunki dziecka zostają wyłącznie w pamięci urządzenia"
+      ],
+      "seo_title": "Kolorowanki dla dzieci — aplikacja do malowania | Kidalu",
+      "description": "200 darmowych kolorowanek dla dzieci: dinozaury, robaczki, kwiaty i zwierzęta. Kolor jednym dotknięciem, pędzel, druk arkuszy. Bez reklam."
     }
   },
   "app_page": {
@@ -221,7 +294,8 @@
     "privacy_heading": "Prywatność",
     "compliance": "Zgodne z COPPA, art. 8 RODO i zasadami Google Play Families, a w wersji na iOS — także z wytycznymi App Store dla aplikacji z kategorii Kids.",
     "docs_link": "Przeczytaj dokumenty",
-    "back": "Wróć do lasu"
+    "back": "Wróć do lasu",
+    "play_soon": "Wkrótce w Google Play"
   },
   "about": {
     "headline": "Czym jest Kidalu",

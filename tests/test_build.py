@@ -328,6 +328,8 @@ def test_sitemap_nie_wymysla_alternatyw_dla_brakujacych_tlumaczen():
     build.build()
     sitemap = _sitemaps()
     for app_key in build.APPS:
+        if not build.doc_langs(app_key):
+            continue  # aplikacja bez dokumentów nie ma strony, więc nie ma też wpisu
         pl_url = build.page_urls(build.load_lang("pl"), "pl")[f"{app_key}_docs"]
         entry = _sitemap_entry(sitemap, f"https://kidalu.com{pl_url}")
         for lang in build.available_langs():

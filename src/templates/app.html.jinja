@@ -7,7 +7,8 @@
 {% block content %}
 {% set art = {
   'czytanie': {'house':[900,770],  'owl':[900,939]},
-  'literki':  {'house':[900,1066], 'owl':[1024,1036]}
+  'literki':  {'house':[900,1066], 'owl':[1024,1036]},
+  'kolorowanka': {'house':[900,837], 'owl':[667,647]}
 }[page_key] %}
 {# sizes z reguł .ph-house{height:clamp(110px,14vw,190px)} i .ph-owl{height:clamp(100px,12.4vw,168px)}:
    szerokość to wysokość razy proporcje grafiki. #}
@@ -38,7 +39,11 @@
           {% endfor %}
         </ul>
         <p class="actions">
+          {% if play_url %}
           <a class="play" href="{{ play_url }}">{{ c.app_page.play }}</a>
+          {% else %}
+          <span class="play play--soon">{{ c.app_page.play_soon }}</span>
+          {% endif %}
           {% if app_store_url %}
           <a class="play" href="{{ app_store_url }}">{{ c.app_page.app_store }}</a>
           {% endif %}

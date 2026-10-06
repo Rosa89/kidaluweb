@@ -11,7 +11,8 @@
     "kontakt": "contact",
     "docs": "legal",
     "o_nas": "about-kidalu",
-    "poradnik": "guide"
+    "poradnik": "guide",
+    "kolorowanka": "coloring-book"
   },
   "nav": {
     "home": "Forest",
@@ -37,7 +38,7 @@
       {
         "key": "czytanie",
         "url": "czytanie",
-        "sign": "I read",
+        "sign": "I read syllables",
         "tagline": "Discover the world of letters"
       },
       {
@@ -45,6 +46,12 @@
         "url": "literki",
         "sign": "I write",
         "tagline": "Practise letters, discover words"
+      },
+      {
+        "key": "kolorowanka",
+        "url": "kolorowanka",
+        "sign": "I colour",
+        "tagline": "Paint, colour and print pictures"
       }
     ],
     "sign_left": "Small steps, big possibilities",
@@ -211,6 +218,72 @@
       ],
       "seo_title": "Letter tracing app for kids — Letters and Numbers | Kidalu",
       "description": "Children trace letters and numbers with a finger, in the stroke order of school handwriting in Poland, Germany or Austria. Works offline, no ads."
+    },
+    "kolorowanka": {
+      "name": "Coloring Book",
+      "sign": "I colour",
+      "tagline": "Coloring pages for kids – paint with a finger and print.",
+      "features": [
+        {
+          "icon": "hand",
+          "title": "Colour with one tap",
+          "body": "Tapping an area fills it right up to the outline. Thick, closed lines keep the paint from spilling outside the picture."
+        },
+        {
+          "icon": "palette",
+          "title": "Brush and eraser",
+          "body": "A brush and an eraser handle the fine touches, and Undo and Redo fix any slip without starting over."
+        },
+        {
+          "icon": "blocks",
+          "title": "200 pictures in four categories",
+          "body": "Dinosaurs, bugs, flowers and animals – 50 coloring pages each, all free. More categories arrive in free updates."
+        },
+        {
+          "icon": "print",
+          "title": "Printable sheets",
+          "body": "Pick pictures from any category, choose how many per page and whether to add captions, then print – for colouring with crayons, away from the screen."
+        },
+        {
+          "icon": "heart",
+          "title": "Favourites and My drawings",
+          "body": "The heart remembers favourite pages, and finished work goes to the My drawings gallery."
+        },
+        {
+          "icon": "offline",
+          "title": "Works offline",
+          "body": "Colouring needs no connection. Settings and external links wait in the PIN-protected parent area."
+        }
+      ],
+      "docs_label": "Privacy policy",
+      "lead": "Two hundred pictures to colour: dinosaurs, bugs, flowers and animals. Your child fills areas with a single tap or paints with a brush, and you can print favourite pages on paper.",
+      "facts": [
+        "Kids aged 3–8",
+        "200 free coloring pages",
+        "English, German, Polish",
+        "No ads, no account"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Kids aged 3–8 who love drawing and painting"
+        },
+        {
+          "icon": "users",
+          "text": "Parents looking for calm, ad-free play"
+        },
+        {
+          "icon": "check",
+          "text": "Preschools and after-school clubs – printable sheets for the whole group"
+        }
+      ],
+      "privacy": [
+        "No ads and no promotional content aimed at children",
+        "The app needs no account or sign-in",
+        "Your child’s drawings stay on the device only"
+      ],
+      "seo_title": "Coloring pages for kids – painting app | Kidalu",
+      "description": "200 free coloring pages for kids: dinosaurs, bugs, flowers and animals. One-tap fill, brush, printable sheets. No ads."
     }
   },
   "app_page": {
@@ -221,7 +294,8 @@
     "privacy_heading": "Privacy",
     "compliance": "Compliant with COPPA, GDPR art. 8 and the Google Play Families policy, and, on iOS, Apple's App Store guidelines for apps in the Kids category.",
     "docs_link": "Read the documents",
-    "back": "Back to the forest"
+    "back": "Back to the forest",
+    "play_soon": "Coming soon to Google Play"
   },
   "about": {
     "headline": "What is Kidalu",

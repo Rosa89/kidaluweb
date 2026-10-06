@@ -151,6 +151,12 @@ main{display:block}
   box-shadow:0 8px 18px -8px rgba(16,44,30,.9), inset 0 1px 0 rgba(255,255,255,.3);
 }
 .play:hover{filter:brightness(1.09)}
+/* Aplikacja jeszcze nie w sklepie — ten sam kształt, ale bez akcji. */
+.play--soon{
+  background:rgba(253,246,224,.18); color:var(--paper); box-shadow:inset 0 0 0 2px rgba(253,246,224,.5);
+  cursor:default;
+}
+.play--soon:hover{filter:none}
 .ghost{
   display:inline-block; padding:.7rem 1.3rem; border-radius:999px;
   border:2px solid var(--wood-light); color:var(--wood-dark);
@@ -181,6 +187,7 @@ main{display:block}
 }
 .card--czytanie .card-ico{background:#FBE2DE; color:var(--c-czytanie)}
 .card--literki .card-ico{background:#DDEFE1; color:var(--c-literki)}
+.card--kolorowanka .card-ico{background:#FDEBC8; color:var(--c-kolorowanka)}
 .cards--people>.card{padding:1.3rem 1.4rem}
 .role{margin:.1rem 0 .6rem; font-size:.9rem; color:var(--wood-dark)}
 .mail{color:var(--pine); font-weight:700; word-break:break-word}
@@ -194,6 +201,7 @@ main{display:block}
 }
 .tick--czytanie{background:#FBE2DE; color:var(--c-czytanie)}
 .tick--literki{background:#DDEFE1; color:var(--c-literki)}
+.tick--kolorowanka{background:#FDEBC8; color:var(--c-kolorowanka)}
 .tick--shield{background:#DDEAF6; color:#2B6AAE}
 .ticks a,.prose a{color:var(--pine); font-weight:700}
 .fine{margin:.2rem 0 1rem; font-size:.88rem; color:var(--wood-dark)}
@@ -509,7 +517,7 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
     --stage-w:max(100vw, calc(100svh * 1672 / 941));
     --stage-h:max(100svh, calc(100vw * 941 / 1672));
     --u:calc(var(--stage-w) * 0.011);
-    --tile:calc(var(--u) * 27);
+    --tile:calc(var(--u) * 20.5);
     height:100svh; min-height:0;
   }
   .scene{display:block; padding:0}
@@ -532,7 +540,7 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
        kadru do miejsca, w którym zaczynają się domki, minus to, co obcina
        pokrycie, minus belka. --hu skaluje nagłówek tak, żeby się w niej zmieścił,
        więc na niskim laptopie badge'e nie wjeżdżają w grzyby. */
-    --room:calc(.375 * var(--stage-h) - (var(--stage-h) - 100svh) / 2 - 82px);
+    --room:calc(.37 * var(--stage-h) - (var(--stage-h) - 100svh) / 2 - 82px);
     --hu:min(var(--u), calc(var(--room) / 10));
     position:absolute; left:50%; translate:-50% 0; top:max(80px, 9.5%);
     width:calc(var(--hu) * 58); max-width:none;
@@ -548,24 +556,49 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
   }
   .badge-ico{width:calc(var(--hu) * 1.85); height:calc(var(--hu) * 1.85); font-size:calc(var(--hu) * 1.08)}
 
-  .grove{
-    position:absolute; left:50%; translate:-50% 0; top:38.5%;
-    flex-direction:row; flex-wrap:wrap; justify-content:center; align-items:flex-end;
-    width:calc(var(--tile) * 2 + var(--u) * 3.2); max-width:none;
-    gap:calc(var(--u) * .8) calc(var(--u) * 3);
+  /* Domki stoją w różnych miejscach polany przy ścieżkach: --x/--y to punkt,
+     w którym domek dotyka ziemi (środek podstawy), w procentach kadru, --s to
+     wysokość domku w u. Dalej od widza = wyżej w kadrze i mniejszy domek.
+     Tabliczka stoi tuż przy drzwiach, odrobinę przed domkiem: nachodzi na
+     ścianę, ale nie na drzwi. --sign to szerokość tabliczki w u, --sl jej lewa
+     krawędź liczona od lewej krawędzi grupy (domek + sowa), z położenia drzwi
+     w grafice domku. --owl-in to zakładka sowy na domek (ułamek h): szeroki kapelusz
+     wymaga głębszej, żeby sowa sięgnęła trzonka. */
+  .grove{position:absolute; inset:0; display:block; width:auto; max-width:none}
+  .grove-slot{
+    position:absolute; left:var(--x); top:var(--y); width:max-content;
+    --h:calc(var(--u) * var(--s)); --sw:calc(var(--u) * var(--sign));
+    translate:-50% calc(var(--h) * -1);
   }
-  .grove-slot{width:var(--tile)}
+  /* czytanie: sowa | domek (sowa 0,556h, zakładka --owl-in), drzwi na 59–82% domku (1,169h) → tabliczka za drzwiami.
+     literki: domek | sowa, drzwi od 24% domku (0,844h) → tabliczka przed drzwiami.
+     kolorowanka: domek | sowa, drzwi od 20% domku (1,075h) → tabliczka przed drzwiami. */
+  .grove-slot--czytanie{--x:37%; --y:80%; --s:9.5; --sign:6; --owl-in:.26; --sl:calc(var(--h) * 1.27)}
+  .grove-slot--literki{--x:70%; --y:68%; --s:8.5; --sign:5.8; --owl-in:.14; --sl:calc(var(--h) * .19 - var(--sw))}
+  .grove-slot--kolorowanka{--x:48%; --y:56%; --s:7.2; --sign:5.6; --owl-in:.24; --sl:calc(var(--h) * .2 - var(--sw))}
+  /* Okno węższe niż 16:10 obcina boki kadru — skrajne domki idą bliżej środka. */
+  @media (max-aspect-ratio:16/10){
+    .grove-slot--czytanie{--x:38%}
+    .grove-slot--literki{--x:67%}
+  }
 
+  .tile{display:block}
   .tile-art{
-    height:calc(var(--u) * 13);
+    height:var(--h); gap:0;
     display:flex; align-items:flex-end; justify-content:center;
   }
-  .tile-house{position:static; height:100%; width:auto; margin-right:calc(var(--u) * -1.6); z-index:1}
+  .tile-art::after{display:none}
+  /* Przy drzwiach stoi tabliczka, więc sowa idzie na drugą stronę domku.
+     Sowa lekko zachodzi na ścianę — stoi przy swoim domu, nie obok niego. */
+  .tile-owl{margin-left:calc(var(--h) * var(--owl-in) * -1)}
+  .tile--czytanie .tile-owl{order:-1; margin-left:0; margin-right:calc(var(--h) * var(--owl-in) * -1)}
+  .tile-house{position:static; height:100%; width:auto; z-index:1}
   .tile-owl{
-    position:static; height:88%; width:auto; z-index:2; transform-origin:50% 90%;
+    position:static; height:58%; width:auto; z-index:2; transform-origin:50% 90%;
     animation:oddech 5.4s ease-in-out infinite;
   }
   .tile--literki .tile-owl{animation-delay:-2.6s}
+  .tile--kolorowanka .tile-owl{animation-delay:-1.3s}
   .flutter{
     inset:auto; top:50%; left:50%; translate:-50% -50%;
     width:var(--stage-w); height:var(--stage-h); z-index:3;
@@ -578,15 +611,29 @@ body.home .foot-links a:hover{color:#fff; border-bottom-color:#fff}
   .tile:hover .tile-house{transform:scale(1.03)}
   .tile:hover .tile-go{transform:translateX(calc(var(--u) * .22))}
 
+  /* Stojąca tabliczka w motywie aplikacji. --pt/--pr/--pb/--pl to krawędzie
+     kremowego pola w grafice, jako ułamek szerokości tabliczki (pomiar
+     z grafiki, plus mały wewnętrzny margines). Na tabliczce zostaje nazwa
+     i strzałka — opis jest dla czytników ekranu i na podstronie. */
   .tile-board{
-    aspect-ratio:1200/290;
-    padding:calc(var(--u) * .55) calc(var(--u) * 1.1);
-    gap:calc(var(--u) * .6);
+    position:absolute; left:var(--sl); bottom:calc(var(--h) * -.05); z-index:3;
+    flex:none; width:var(--sw); aspect-ratio:var(--ar); box-sizing:border-box;
+    justify-content:center; align-items:center; gap:calc(var(--sw) * .04);
+    padding:calc(var(--sw) * var(--pt)) calc(var(--sw) * (var(--pr) + .03)) calc(var(--sw) * var(--pb)) calc(var(--sw) * (var(--pl) + .03));
+    background:var(--sign-img) center/100% 100% no-repeat;
+    filter:drop-shadow(0 calc(var(--u) * .4) calc(var(--u) * .6) rgba(30,50,25,.4));
   }
-  .tile-ico{width:calc(var(--u) * 2.6); height:calc(var(--u) * 2.6); font-size:calc(var(--u) * 1.5)}
-  .tile-name{font-size:calc(var(--u) * 1.95)}
-  .tile-tag{font-size:calc(var(--u) * .98); margin-top:calc(var(--u) * .12)}
-  .tile-go{width:calc(var(--u) * 3); height:calc(var(--u) * 3); font-size:calc(var(--u) * 1.7)}
+  .tile-board::before{display:none}
+  .tile--czytanie .tile-board{--sign-img:url(../img/signpost-czytanie.webp); --ar:900/834; --pt:.234; --pr:.083; --pb:.34; --pl:.064}
+  .tile--literki .tile-board{--sign-img:url(../img/signpost-literki.webp); --ar:900/802; --pt:.171; --pr:.083; --pb:.365; --pl:.064}
+  .tile--kolorowanka .tile-board{--sign-img:url(../img/signpost-kolorowanka.webp); --ar:900/952; --pt:.182; --pr:.089; --pb:.525; --pl:.068}
+  .tile-copy{flex:0 1 auto}
+  .tile-name{font-size:calc(var(--sw) * .155); line-height:1; color:var(--ink); text-shadow:none; text-wrap:balance}
+  .tile-tag{
+    position:absolute; width:1px; height:1px; overflow:hidden;
+    clip-path:inset(50%); white-space:nowrap;
+  }
+  .tile-go{width:calc(var(--sw) * .14); height:calc(var(--sw) * .14); font-size:calc(var(--sw) * .08)}
   .tile:focus-visible{outline:none}
   .tile:focus-visible .tile-board{
     outline:calc(var(--u) * .22) solid var(--paper); outline-offset:calc(var(--u) * .25);

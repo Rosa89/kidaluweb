@@ -48,7 +48,13 @@ BING_SITE_VERIFICATION = "284E4F1B23AF02D0B0517E29AAC31E74"
 APPS = {
     "czytanie": "com.readbysyllables.app",
     "literki": "com.literkiicyferki.app",
+    "kolorowanka": "com.madredzieciaki.coloring.dinosaurs",
 }
+
+# Aplikacje, które są już opublikowane w Google Play. Pozostałe mają podstronę,
+# ale zamiast przycisku sklepu plakietkę „wkrótce” i nie deklarują
+# MobileApplication w danych strukturalnych — installUrl prowadziłby do 404.
+PLAY_LIVE: set[str] = {"czytanie", "literki"}
 
 
 def play_url(app_key: str) -> str:
@@ -99,6 +105,8 @@ VARIANTS = {
     "img/house-literki.webp": (240, 480),
     "img/owl-czytanie.webp": (240, 480),
     "img/owl-literki.webp": (240, 480),
+    "img/house-kolorowanka.webp": (240, 480),
+    "img/owl-kolorowanka.webp": (240, 480),
     "img/logo-kidalu.webp": (160,),
     "img/butterfly.webp": (120,),
 }
@@ -145,6 +153,8 @@ def page_urls(c: dict, lang: str) -> dict[str, str]:
         "czytanie_docs": f"{p}/{s['czytanie']}/{s['docs']}/",
         "literki": f"{p}/{s['literki']}/",
         "literki_docs": f"{p}/{s['literki']}/{s['docs']}/",
+        "kolorowanka": f"{p}/{s['kolorowanka']}/",
+        "kolorowanka_docs": f"{p}/{s['kolorowanka']}/{s['docs']}/",
         "kontakt": f"{p}/{s['kontakt']}/",
         "o_nas": f"{p}/{s['o_nas']}/",
         "poradnik": f"{p}/{s['poradnik']}/",
@@ -441,7 +451,7 @@ def build() -> list[Path]:
                    "page_key": app_key,
                    "alternates": alternates(app_key),
                    "app": c["apps"][app_key],
-                   "play_url": play_url(app_key),
+                   "play_url": play_url(app_key) if app_key in PLAY_LIVE else None,
                    "app_store_url": app_store_url(app_key) if app_key in APP_STORE_LIVE else None,
                    "docs_url": docs_url},
             )))

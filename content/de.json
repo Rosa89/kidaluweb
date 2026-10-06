@@ -11,7 +11,8 @@
     "kontakt": "kontakt",
     "docs": "dokumente",
     "o_nas": "ueber-kidalu",
-    "poradnik": "ratgeber"
+    "poradnik": "ratgeber",
+    "kolorowanka": "malbuch"
   },
   "nav": {
     "home": "Wald",
@@ -37,7 +38,7 @@
       {
         "key": "czytanie",
         "url": "czytanie",
-        "sign": "Ich lese",
+        "sign": "Ich lese Silben",
         "tagline": "Entdecke die Welt der Buchstaben"
       },
       {
@@ -45,6 +46,12 @@
         "url": "literki",
         "sign": "Ich schreibe",
         "tagline": "Übe Buchstaben, entdecke Wörter"
+      },
+      {
+        "key": "kolorowanka",
+        "url": "kolorowanka",
+        "sign": "Ich male",
+        "tagline": "Malen, ausmalen und ausdrucken"
       }
     ],
     "sign_left": "Kleine Schritte, große Möglichkeiten",
@@ -211,6 +218,72 @@
       ],
       "seo_title": "Buchstaben schreiben lernen — App für Kinder | Kidalu",
       "description": "Kinder spuren Buchstaben und Zahlen mit dem Finger nach, in der Strichfolge der Schulschrift. Deutschland, Österreich, Polen. Offline und ohne Werbung."
+    },
+    "kolorowanka": {
+      "name": "Malbuch",
+      "sign": "Ich male",
+      "tagline": "Ausmalbilder für Kinder – mit dem Finger malen und ausdrucken.",
+      "features": [
+        {
+          "icon": "hand",
+          "title": "Farbe mit einem Tipp",
+          "body": "Ein Tipp auf eine Fläche füllt sie genau bis zur Linie. Dicke, geschlossene Konturen sorgen dafür, dass nichts über den Rand läuft."
+        },
+        {
+          "icon": "palette",
+          "title": "Pinsel und Radiergummi",
+          "body": "Für feine Korrekturen gibt es Pinsel und Radiergummi, und Rückgängig und Wiederholen retten jeden Fehler, ohne neu anzufangen."
+        },
+        {
+          "icon": "blocks",
+          "title": "200 Bilder in vier Kategorien",
+          "body": "Dinosaurier, Krabbeltiere, Blumen und Tiere – je 50 Ausmalbilder, alle kostenlos. Weitere Kategorien kommen mit kostenlosen Updates."
+        },
+        {
+          "icon": "print",
+          "title": "Druckbögen",
+          "body": "Bilder aus beliebigen Kategorien auswählen, Anzahl pro Seite und Beschriftungen festlegen und ausdrucken – zum Ausmalen mit Buntstiften, ganz ohne Bildschirm."
+        },
+        {
+          "icon": "heart",
+          "title": "Favoriten und Meine Bilder",
+          "body": "Das Herz merkt sich die Lieblingsbilder, fertige Werke landen in der Galerie Meine Bilder."
+        },
+        {
+          "icon": "offline",
+          "title": "Funktioniert offline",
+          "body": "Zum Ausmalen braucht es keine Verbindung. Einstellungen und externe Links liegen im Elternbereich hinter einer PIN."
+        }
+      ],
+      "docs_label": "Datenschutzerklärung",
+      "lead": "Zweihundert Bilder zum Ausmalen: Dinosaurier, Krabbeltiere, Blumen und Tiere. Ihr Kind füllt Flächen mit einem Tipp oder malt mit dem Pinsel – und die Lieblingsbilder drucken Sie auf Papier aus.",
+      "facts": [
+        "Kinder 3–8 Jahre",
+        "200 Ausmalbilder kostenlos",
+        "Deutsch, Englisch, Polnisch",
+        "Ohne Werbung und ohne Konto"
+      ],
+      "who": [
+        {
+          "icon": "star",
+          "text": "Kinder von 3 bis 8 Jahren, die gern malen und zeichnen"
+        },
+        {
+          "icon": "users",
+          "text": "Eltern, die ruhiges Spielen ohne Werbung suchen"
+        },
+        {
+          "icon": "check",
+          "text": "Kitas und Horte – Druckbögen für die ganze Gruppe"
+        }
+      ],
+      "privacy": [
+        "Keine Werbung und keine an Kinder gerichteten Werbeinhalte",
+        "Die App braucht weder Konto noch Anmeldung",
+        "Die Bilder des Kindes bleiben ausschließlich auf dem Gerät"
+      ],
+      "seo_title": "Ausmalbilder für Kinder – Malbuch-App | Kidalu",
+      "description": "200 kostenlose Ausmalbilder für Kinder: Dinosaurier, Krabbeltiere, Blumen und Tiere. Farbe mit einem Tipp, Pinsel, Druckbögen. Ohne Werbung."
     }
   },
   "app_page": {
@@ -221,7 +294,8 @@
     "privacy_heading": "Datenschutz",
     "compliance": "Konform mit COPPA, Art. 8 DSGVO und den Google-Play-Families-Richtlinien sowie — in der iOS-Version — den App-Store-Richtlinien für Apps der Kategorie Kids.",
     "docs_link": "Dokumente lesen",
-    "back": "Zurück in den Wald"
+    "back": "Zurück in den Wald",
+    "play_soon": "Bald bei Google Play"
   },
   "about": {
     "headline": "Was ist Kidalu",

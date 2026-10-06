@@ -14,17 +14,18 @@
    i nie przesuwał układu w trakcie ładowania. #}
 {% set art = {
   'czytanie': {'icon':'book',   'house':[900,770],  'owl':[900,939]},
-  'literki':  {'icon':'pencil', 'house':[900,1066], 'owl':[1024,1036]}
+  'literki':  {'icon':'pencil', 'house':[900,1066], 'owl':[1024,1036]},
+  'kolorowanka': {'icon':'palette', 'house':[900,837], 'owl':[667,647]}
 } %}
 {# sizes dla grafik na kafelkach, policzone z reguł .tile-art w site.css.
    Telefon: pole ma 5,25u wysokości przy u ≤ 15px, domek zajmuje 76%, sowa 88%.
-   Scena: pole ma 13u, gdzie u = 1,1% szerokości kadru; domek 100%, sowa 88%.
+   Scena: największy domek ma 9,5u, gdzie u = 1,1% szerokości kadru; sowa 58% domku.
    Kadr ma szerokość max(100vw, 1672/941 · 100vh), stąd osobny wariant w vh
    dla okien węższych niż proporcje grafiki tła. #}
 {% macro tile_sizes(dims, phone_share, stage_share) -%}
 {%- set ratio = dims[0] / dims[1] -%}
 {%- set phone = (78.75 * phone_share * ratio)|round(0, 'ceil')|int -%}
-{%- set stage = 14.3 * stage_share * ratio -%}
+{%- set stage = 10.45 * stage_share * ratio -%}
 (max-width: 900px) {{ phone }}px, (max-aspect-ratio: 6/5) {{ phone }}px, (max-aspect-ratio: 1672/941) {{ (stage * 1672 / 941)|round(1) }}vh, {{ stage|round(1) }}vw
 {%- endmacro %}
 <div class="scene">
@@ -55,14 +56,13 @@
   <ul class="grove">
     {% for t in c.home.tiles %}
     {% set a = art[t.key] %}
-    <li class="grove-slot">
+    <li class="grove-slot grove-slot--{{ t.key }}">
       <{% if t.url %}a href="{{ url(t.url) }}"{% else %}div{% endif %} class="tile tile--{{ t.key }}{% if not t.url %} tile--soon{% endif %}">
         <span class="tile-art">
           <img class="tile-house" src="{{ asset('img/house-' ~ t.key ~ '.webp') }}" srcset="{{ srcset('img/house-' ~ t.key ~ '.webp', a.house[0]) }}" sizes="{{ tile_sizes(a.house, 0.76, 1) }}" alt="" width="{{ a.house[0] }}" height="{{ a.house[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
-          <img class="tile-owl" src="{{ asset('img/owl-' ~ t.key ~ '.webp') }}" srcset="{{ srcset('img/owl-' ~ t.key ~ '.webp', a.owl[0]) }}" sizes="{{ tile_sizes(a.owl, 0.88, 0.88) }}" alt="" width="{{ a.owl[0] }}" height="{{ a.owl[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
+          <img class="tile-owl" src="{{ asset('img/owl-' ~ t.key ~ '.webp') }}" srcset="{{ srcset('img/owl-' ~ t.key ~ '.webp', a.owl[0]) }}" sizes="{{ tile_sizes(a.owl, 0.88, 0.58) }}" alt="" width="{{ a.owl[0] }}" height="{{ a.owl[1] }}" {% if loop.index > 3 %}loading="lazy"{% endif %}>
         </span>
         <span class="tile-board">
-          <span class="tile-ico">{{ ico.icon(a.icon) }}</span>
           <span class="tile-copy">
             <span class="tile-name">{{ t.sign }}</span>
             <span class="tile-tag">{{ t.tagline }}</span>
