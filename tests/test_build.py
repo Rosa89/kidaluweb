@@ -164,7 +164,12 @@ def test_dokument_zawiera_polityke_prywatnosci():
     html = (build.OUT / "czytanie-sylabami" / "dokumenty" / "index.html").read_text("utf-8")
     assert "Polityka prywatności" in html
     assert "administratorem danych" in html
-    assert "sebastian.rosinski.1989@gmail.com" in html
+    # Dokumenty podają jeden adres Kidalu zamiast prywatnych skrzynek współadministratorów.
+    for app_key in DOC_ANCHORS:
+        for lang in build.doc_langs(app_key):
+            doc = _page(build.page_urls(build.load_lang(lang), lang)[f"{app_key}_docs"])
+            assert f'href="mailto:{build.SUPPORT_EMAIL}"' in doc, (app_key, lang)
+            assert "@gmail.com" not in doc, (app_key, lang)
 
 
 # Zakładki dokumentów adresuje się kotwicą, a te adresy trafiły do Google Play
