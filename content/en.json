@@ -68,23 +68,11 @@
   "contact": {
     "headline": "Get in touch",
     "body": "Questions about privacy, your child's data, or working together? We answer every message.",
-    "role": "Author · joint data controller",
-    "people_heading": "Who is behind this",
+    "email_heading": "Contact address",
+    "email_note": "One address for both of us — Sebastian and Dawid. Write to us about the apps, privacy or working together.",
     "data_heading": "Who is responsible for your data",
-    "data_body": "Sebastian Rosiński and Dawid Adamczyk are joint controllers of the data processed in the Kidalu apps, with an equal share in the project. You can send a request for access, correction or deletion to either address above — whichever of us reads it first will answer. Data breach reports we handle together.",
-    "docs_heading": "App documents",
-    "people": [
-      {
-        "name": "Sebastian Rosiński",
-        "email": "sebastian.rosinski.1989@gmail.com",
-        "role": "Author · joint data controller"
-      },
-      {
-        "name": "Dawid Adamczyk",
-        "email": "phantom0492@gmail.com",
-        "role": "Author · joint data controller"
-      }
-    ]
+    "data_body": "Sebastian Rosiński and Dawid Adamczyk are joint controllers of the data processed in the Kidalu apps, with an equal share in the project. You can send a request for access, correction or deletion to the address above — whichever of us reads it first will answer. Data breach reports we handle together.",
+    "docs_heading": "App documents"
   },
   "apps": {
     "czytanie": {
@@ -303,11 +291,23 @@
     "sections": [
       {
         "heading": "Who we are",
-        "body": "Kidalu is made by Sebastian Rosiński and Dawid Adamczyk. It started with a question: how to help our own kids learn to read and write without a screen full of ads. The answer became apps we would want to install ourselves: simple, warm and safe."
+        "body": "Kidalu is made by Sebastian Rosiński and Dawid Adamczyk. It started with a question: how to help our own kids learn to read and write without a screen full of ads. The answer became apps we would want to install ourselves: simple, warm and safe.",
+        "team": [
+          {
+            "key": "dawid",
+            "role": "Co-founder of Kidalu · in IT since 2015 · dad",
+            "bio": "He started out as a software tester, went on to lead a QA team and now writes PHP — so he catches bugs before a child ever runs into them. He studied at the Academy of Physical Education in Katowice, so he knows we learn best on the move and through play. And Kidalu's toughest tester lives under the same roof."
+          },
+          {
+            "key": "sebastian",
+            "role": "Co-founder of Kidalu · developer since 2013 · dad",
+            "bio": "He has been programming for over a decade, mostly large online shops where everything has to run fast and without a hitch. He brings the same care to Kidalu, turning everyday ideas about learning to read into apps his own family uses too. For him, reading starts with curiosity, not pressure."
+          }
+        ]
       },
       {
         "heading": "What we make",
-        "body": "We build Android apps that lead a child into the world of letters, syllables and numbers step by step, and both now come to iPhone and iPad too. Reading by Syllables, available in Polish only, teaches joining syllables into words, and Letters and Numbers practises writing with a finger on the screen. Both apps are on Google Play under the publisher name Kidalu, and now on the App Store too."
+        "body": "We build Android apps that lead a child into the world of letters, syllables and numbers step by step, and both now come to iPhone and iPad too. Reading by Syllables, available in Polish only, teaches joining syllables into words, and Letters and Numbers practises writing with a finger on the screen. Both apps are on Google Play under the publisher name Kidalu, and Reading by Syllables is now on the App Store too."
       },
       {
         "heading": "Why you can trust us",
@@ -333,10 +333,12 @@
         "text": "Clear documents and quick answers to parents' questions"
       }
     ],
-    "play_heading": "Find us on Google Play",
-    "play_body": "All Kidalu apps in one place on the publisher profile.",
+    "play_heading": "Find us on Google Play and the App Store",
+    "play_body": "All Kidalu apps in one place on the publisher profile on Google Play. Reading by Syllables is also available for iPhone and iPad.",
     "play_link": "Kidalu profile on Google Play",
-    "contact_link": "Get in touch"
+    "app_store_link": "{app} on the App Store",
+    "contact_link": "Get in touch",
+    "linkedin": "LinkedIn profile"
   },
   "notfound": {
     "title": "Page not found",

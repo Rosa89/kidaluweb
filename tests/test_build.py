@@ -373,7 +373,7 @@ def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
     assert "MobileApplication" not in kontakt
 
 
-# --- przycisk App Store (obie aplikacje na iOS), za flagą APP_STORE_LIVE ---
+# --- przycisk App Store, za flagą APP_STORE_LIVE ---
 
 APP_STORE_ID_URLS = {
     "literki": "https://apps.apple.com/app/id6814286876",
@@ -381,30 +381,36 @@ APP_STORE_ID_URLS = {
 }
 
 
-def test_przycisk_app_store_wylaczony_dopoki_apple_nie_zaakceptuje():
-    """APP_STORE_LIVE jest dziś puste dla obu aplikacji — obie czekają na recenzję
-    Apple i oba adresy apps.apple.com/app/id... zwracają 404. Strony mają wyglądać
-    jak dziś: żadnego linku do App Store i operatingSystem tylko "Android"."""
-    assert build.APP_STORE_LIVE == set(), "ten test zakłada domyślnie wyłączoną flagę"
+def test_app_store_tylko_dla_czytania():
+    """Apple zaakceptowało dotąd tylko Czytanie; adres Literek wciąż zwraca 404.
+    Strona Czytania ma przycisk App Store i obie platformy w danych
+    strukturalnych, Literki zostają wyłącznie na Androidzie."""
+    assert build.APP_STORE_LIVE == {"czytanie"}, "ten test opisuje dzisiejszy stan sklepów"
     build.build()
+    labels = {l: build.load_lang(l)["app_page"]["app_store"] for l in build.available_langs()}
     for lang in build.available_langs():
         urls = build.page_urls(build.load_lang(lang), lang)
-        for app_key in APP_STORE_ID_URLS:
-            html = _page(urls[app_key])
-            assert "apps.apple.com" not in html, (app_key, lang)
-            types = {d["@type"]: d for d in _jsonld(html)}
-            assert types["MobileApplication"]["operatingSystem"] == "Android", (app_key, lang)
+        html = _page(urls["czytanie"])
+        assert f'<a class="play" href="{APP_STORE_ID_URLS["czytanie"]}">{labels[lang]}</a>' in html, lang
+        types = {d["@type"]: d for d in _jsonld(html)}
+        assert types["MobileApplication"]["operatingSystem"] == "Android, iOS", lang
+
+        html = _page(urls["literki"])
+        assert "apps.apple.com" not in html, lang
+        types = {d["@type"]: d for d in _jsonld(html)}
+        assert types["MobileApplication"]["operatingSystem"] == "Android", lang
     for page in build.OUT.rglob("*.html"):
-        assert "apps.apple.com" not in page.read_text("utf-8"), page
+        assert APP_STORE_ID_URLS["literki"] not in page.read_text("utf-8"), page
 
 
-def test_przycisk_app_store_gdy_flaga_wlaczona():
-    """Po zaakceptowaniu aplikacji przez Apple wystarczy dopisać jej klucz do
-    APP_STORE_LIVE: pojawia się drugi przycisk w stylu „Pobierz z Google Play"
-    i dane strukturalne wymieniają obie platformy — niezależnie, której aplikacji
-    dotyczy. Druga aplikacja, poza zbiorem, zostaje wyłącznie na Androidzie."""
+def test_przycisk_app_store_wedlug_flagi():
+    """Dopisanie klucza do APP_STORE_LIVE dodaje drugi przycisk w stylu „Pobierz
+    z Google Play" i obie platformy w danych strukturalnych — niezależnie, której
+    aplikacji dotyczy. Druga aplikacja, poza zbiorem, zostaje wyłącznie na Androidzie."""
     labels = {l: build.load_lang(l)["app_page"]["app_store"] for l in build.available_langs()}
+    original = set(build.APP_STORE_LIVE)
     for app_key, other_key in (("literki", "czytanie"), ("czytanie", "literki")):
+        build.APP_STORE_LIVE.clear()
         build.APP_STORE_LIVE.add(app_key)
         try:
             build.build()
@@ -420,8 +426,31 @@ def test_przycisk_app_store_gdy_flaga_wlaczona():
                 types_other = {d["@type"]: d for d in _jsonld(other_html)}
                 assert types_other["MobileApplication"]["operatingSystem"] == "Android", (other_key, lang)
         finally:
-            build.APP_STORE_LIVE.discard(app_key)
+            build.APP_STORE_LIVE.clear()
+            build.APP_STORE_LIVE.update(original)
             build.build()
+
+
+def test_o_kidalu_pokazuje_autorow_ze_zdjeciami_i_app_store():
+    build.build()
+    for lang in build.available_langs():
+        c = build.load_lang(lang)
+        html = _page(build.page_urls(c, lang)["o_nas"])
+        for member in build.TEAM.values():
+            assert f'alt="{member["name"]}"' in html, (lang, member["name"])
+            assert (build.ASSETS / member["photo"]).exists(), member["photo"]
+            assert f'href="{member["linkedin"]}"' in html, (lang, member["name"])
+        assert f'href="{APP_STORE_ID_URLS["czytanie"]}"' in html, lang
+        assert APP_STORE_ID_URLS["literki"] not in html, lang
+
+
+def test_kontakt_ma_jeden_adres_bez_prywatnych_skrzynek():
+    build.build()
+    for lang in build.available_langs():
+        html = _page(build.page_urls(build.load_lang(lang), lang)["kontakt"])
+        assert f'href="mailto:{build.SUPPORT_EMAIL}"' in html, lang
+        assert html.count("mailto:") == 1, lang
+        assert "@gmail.com" not in html, lang
 
 
 def test_og_locale_w_pelnym_formacie():
@@ -747,6 +776,7 @@ def test_kazdy_adres_do_assets_ma_odcisk_tresci():
                 bez_odcisku.append((page.relative_to(build.OUT).as_posix(), url))
     css = (build.OUT / "assets" / "css" / "site.css").read_text("utf-8")
     for url in re.findall(r"url\(([^)]+)\)", css):
+        url = url.strip("'\"")  # url("data:...") w cudzysłowie to też obrazek osadzony
         if not url.startswith("data:") and "?v=" not in url:
             bez_odcisku.append(("assets/css/site.css", url))
     assert not bez_odcisku, bez_odcisku

@@ -41,6 +41,24 @@ SOCIAL = [
     {"key": "facebook", "url": "https://www.facebook.com/profile.php?id=61593516255677"},
 ]
 
+# Jeden adres kontaktowy dla rodziców zamiast prywatnych skrzynek autorów.
+SUPPORT_EMAIL = "support@kidalu.com"
+
+# Autorzy na stronie „O Kidalu". Imię, zdjęcie i profil nie zależą od języka;
+# rolę i krótki opis każdy plik content/<lang>.json trzyma w about.sections[].team.
+TEAM = {
+    "dawid": {
+        "name": "Dawid Adamczyk",
+        "photo": "img/team-dawid-adamczyk.webp",
+        "linkedin": "https://www.linkedin.com/in/dawid-adamczyk-a90106139/",
+    },
+    "sebastian": {
+        "name": "Sebastian Rosiński",
+        "photo": "img/team-sebastian-rosinski.webp",
+        "linkedin": "https://www.linkedin.com/in/sebastian-rosinski-328696330/",
+    },
+}
+
 # Weryfikacja własności witryny w Bing Webmaster Tools — tag ma zostać na
 # stałe, Bing sprawdza go okresowo.
 BING_SITE_VERIFICATION = "284E4F1B23AF02D0B0517E29AAC31E74"
@@ -61,8 +79,8 @@ def play_url(app_key: str) -> str:
     return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
 
 
-# Identyfikatory aplikacji w App Store. Obie aplikacje mają już rekord w App
-# Store Connect, ale żadna nie przeszła jeszcze recenzji Apple — patrz APP_STORE_LIVE.
+# Identyfikatory aplikacji w App Store. Obie aplikacje mają rekord w App Store
+# Connect; które są już opublikowane, mówi APP_STORE_LIVE.
 APPLE_IDS = {
     "literki": "6814286876",
     "czytanie": "6814530037",
@@ -73,13 +91,12 @@ def app_store_url(app_key: str) -> str:
     return f"https://apps.apple.com/app/id{APPLE_IDS[app_key]}"
 
 
-# Aplikacje, dla których strona ma już pokazywać przycisk „Pobierz z App Store"
-# i deklarować operatingSystem "Android, iOS" w danych strukturalnych. Dopóki
-# zbiór jest pusty, adresy z APPLE_IDS zwracają 404 (aplikacje czekają na
-# recenzję Apple) i przycisk się nie renderuje. Włączyć wpisując tu klucz
-# aplikacji, np. {"literki"} albo {"literki", "czytanie"}, dopiero gdy Apple
-# zaakceptuje daną aplikację.
-APP_STORE_LIVE: set[str] = set()
+# Aplikacje, dla których strona pokazuje przycisk „Pobierz z App Store"
+# i deklaruje operatingSystem "Android, iOS" w danych strukturalnych. Adres
+# aplikacji spoza zbioru zwraca 404 (czeka na recenzję Apple), więc przycisk
+# się dla niej nie renderuje. Klucz dopisać dopiero, gdy Apple zaakceptuje
+# daną aplikację — Literki wciąż czekają.
+APP_STORE_LIVE: set[str] = {"czytanie"}
 
 
 def asset_url(rel: str) -> str:
@@ -109,6 +126,8 @@ VARIANTS = {
     "img/owl-kolorowanka.webp": (240, 480),
     "img/logo-kidalu.webp": (160,),
     "img/butterfly.webp": (120,),
+    "img/team-dawid-adamczyk.webp": (320,),
+    "img/team-sebastian-rosinski.webp": (320,),
 }
 
 
@@ -431,6 +450,7 @@ def build() -> list[Path]:
             "app_store_url": None,
             "play_dev_url": PLAY_DEV_URL,
             "social": SOCIAL,
+            "support_email": SUPPORT_EMAIL,
             "bing_verification": BING_SITE_VERIFICATION,
             "noindex": False,
             "home_urls": {l: page_urls(load_lang(l), l)["home"] for l in available_langs()},
@@ -474,7 +494,10 @@ def build() -> list[Path]:
         pages.append(Page(urls["kontakt"], lang, "kontakt", lang_src + [TEMPLATES / "contact.html.jinja"]))
 
         written.append(_write(urls["o_nas"], env.get_template("about.html.jinja").render(
-            **{**ctx, "page_key": "o_nas", "alternates": alternates("o_nas")},
+            **{**ctx, "page_key": "o_nas", "alternates": alternates("o_nas"),
+               "team": TEAM,
+               "app_store_links": [{"name": c["apps"][k]["name"], "url": app_store_url(k)}
+                                   for k in APPS if k in APP_STORE_LIVE]},
         )))
         pages.append(Page(urls["o_nas"], lang, "o_nas", lang_src + [TEMPLATES / "about.html.jinja"]))
 

@@ -68,23 +68,11 @@
   "contact": {
     "headline": "Schreiben Sie uns",
     "body": "Fragen zum Datenschutz, zu den Daten Ihres Kindes oder zur Zusammenarbeit? Wir antworten auf jede Nachricht.",
-    "role": "Autor · gemeinsam Verantwortlicher",
-    "people_heading": "Wer dahintersteht",
+    "email_heading": "Kontaktadresse",
+    "email_note": "Eine Adresse für uns beide — Sebastian und Dawid. Schreiben Sie uns gern zu den Apps, zum Datenschutz oder zur Zusammenarbeit.",
     "data_heading": "Wer für Ihre Daten verantwortlich ist",
-    "data_body": "Sebastian Rosiński und Dawid Adamczyk sind gemeinsam Verantwortliche für die in den Kidalu-Apps verarbeiteten Daten, mit gleichem Anteil am Projekt. Eine Anfrage auf Auskunft, Berichtigung oder Löschung können Sie an eine der beiden Adressen richten — es antwortet, wer die Nachricht zuerst liest. Meldungen über Datenschutzverletzungen bearbeiten wir gemeinsam.",
-    "docs_heading": "App-Dokumente",
-    "people": [
-      {
-        "name": "Sebastian Rosiński",
-        "email": "sebastian.rosinski.1989@gmail.com",
-        "role": "Autor · gemeinsam Verantwortlicher"
-      },
-      {
-        "name": "Dawid Adamczyk",
-        "email": "phantom0492@gmail.com",
-        "role": "Autor · gemeinsam Verantwortlicher"
-      }
-    ]
+    "data_body": "Sebastian Rosiński und Dawid Adamczyk sind gemeinsam Verantwortliche für die in den Kidalu-Apps verarbeiteten Daten, mit gleichem Anteil am Projekt. Eine Anfrage auf Auskunft, Berichtigung oder Löschung senden Sie an die obige Adresse — es antwortet, wer die Nachricht zuerst liest. Meldungen über Datenschutzverletzungen bearbeiten wir gemeinsam.",
+    "docs_heading": "App-Dokumente"
   },
   "apps": {
     "czytanie": {
@@ -303,11 +291,23 @@
     "sections": [
       {
         "heading": "Wer wir sind",
-        "body": "Hinter Kidalu stehen Sebastian Rosiński und Dawid Adamczyk. Alles begann mit der Frage, wie wir unseren eigenen Kindern Lesen und Schreiben beibringen können, ohne einen Bildschirm voller Werbung. Die Antwort waren Apps, die wir selbst gern installieren würden: einfach, warm und sicher."
+        "body": "Hinter Kidalu stehen Sebastian Rosiński und Dawid Adamczyk. Alles begann mit der Frage, wie wir unseren eigenen Kindern Lesen und Schreiben beibringen können, ohne einen Bildschirm voller Werbung. Die Antwort waren Apps, die wir selbst gern installieren würden: einfach, warm und sicher.",
+        "team": [
+          {
+            "key": "dawid",
+            "role": "Mitgründer von Kidalu · in der IT seit 2015 · Papa",
+            "bio": "Er hat als Softwaretester angefangen, später ein QA-Team geleitet und programmiert heute in PHP — Fehler findet er, bevor ein Kind darauf stößt. Er hat an der Sporthochschule in Katowice studiert und weiß daher: Am besten lernt man in Bewegung und spielerisch. Und der anspruchsvollste Tester von Kidalu wohnt mit ihm unter einem Dach."
+          },
+          {
+            "key": "sebastian",
+            "role": "Mitgründer von Kidalu · Programmierer seit 2013 · Papa",
+            "bio": "Er programmiert seit über zehn Jahren, vor allem große Onlineshops, in denen alles schnell und reibungslos laufen muss. Dieselbe Sorgfalt steckt er in Kidalu: Er verwandelt Ideen aus dem Familienalltag in Lese-Apps, die auch seine eigene Familie nutzt. Lesen beginnt für ihn mit Neugier, nicht mit Zwang."
+          }
+        ]
       },
       {
         "heading": "Was wir machen",
-        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen, und bringen inzwischen beide Apps zusätzlich aufs iPhone und iPad. Lesen nach Silben, nur auf Polnisch verfügbar, übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu, jetzt auch im App Store."
+        "body": "Wir entwickeln Android-Apps, die Kinder Schritt für Schritt in die Welt der Buchstaben, Silben und Zahlen führen, und bringen inzwischen beide Apps zusätzlich aufs iPhone und iPad. Lesen nach Silben, nur auf Polnisch verfügbar, übt das Zusammensetzen von Silben zu Wörtern, Buchstaben und Zahlen trainiert das Schreiben mit dem Finger auf dem Bildschirm. Beide Apps gibt es bei Google Play unter dem Herausgebernamen Kidalu, Lesen nach Silben inzwischen auch im App Store."
       },
       {
         "heading": "Warum Sie uns vertrauen können",
@@ -333,10 +333,12 @@
         "text": "Klare Dokumente und schnelle Antworten auf Fragen der Eltern"
       }
     ],
-    "play_heading": "Sie finden uns bei Google Play",
-    "play_body": "Alle Kidalu-Apps an einem Ort im Herausgeberprofil.",
+    "play_heading": "Sie finden uns bei Google Play und im App Store",
+    "play_body": "Alle Kidalu-Apps an einem Ort im Herausgeberprofil bei Google Play. Lesen nach Silben gibt es auch für iPhone und iPad.",
     "play_link": "Kidalu-Profil bei Google Play",
-    "contact_link": "Schreiben Sie uns"
+    "app_store_link": "{app} im App Store",
+    "contact_link": "Schreiben Sie uns",
+    "linkedin": "Profil auf LinkedIn"
   },
   "notfound": {
     "title": "Diese Seite gibt es nicht",

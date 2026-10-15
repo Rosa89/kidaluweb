@@ -14,16 +14,12 @@
   </header>
 
   <section class="wrap section">
-    <h2>{{ c.contact.people_heading }}</h2>
-    <ul class="cards cards--people">
-      {% for p in c.contact.people %}
-      <li class="card">
-        <h3>{{ p.name }}</h3>
-        <p class="role">{{ p.role }}</p>
-        <p><a class="mail" href="mailto:{{ p.email }}">{{ p.email }}</a></p>
-      </li>
-      {% endfor %}
-    </ul>
+    <h2>{{ c.contact.email_heading }}</h2>
+    <div class="contact-card">
+      <span class="card-ico">{{ ico.icon('mail') }}</span>
+      <p><a class="mail mail--big" href="mailto:{{ support_email }}">{{ support_email }}</a></p>
+      <p class="contact-note">{{ c.contact.email_note }}</p>
+    </div>
   </section>
 
   <section class="wrap section">

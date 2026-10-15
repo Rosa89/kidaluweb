@@ -60,7 +60,7 @@ def test_grafiki_z_wariantami_maja_srcset_z_prawdziwymi_szerokosciami():
     build.build()
     for lang in build.available_langs():
         urls = build.page_urls(build.load_lang(lang), lang)
-        for key in ("home", "czytanie", "literki", "kontakt"):
+        for key in ("home", "czytanie", "literki", "kontakt", "o_nas"):
             page = build.OUT / urls[key].strip("/") / "index.html"
             html = page.read_text("utf-8")
             checked = 0

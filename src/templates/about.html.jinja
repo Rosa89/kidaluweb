@@ -17,6 +17,30 @@
   <section class="wrap section">
     <h2>{{ s.heading }}</h2>
     <p class="prose">{{ s.body }}</p>
+    {% if s.team is defined %}
+    <ul class="cards cards--team">
+      {% for p in s.team %}
+      {% set m = team[p.key] %}
+      <li class="card person">
+        {# Zdjęcie w drewnianej ramce na sznurku. sizes odwzorowuje
+           .person-photo: 10rem, na telefonie 6.4rem. #}
+        <span class="person-frame">
+          <img class="person-photo" src="{{ asset(m.photo) }}" srcset="{{ srcset(m.photo, 640) }}" sizes="(max-width: 480px) 103px, 160px" alt="{{ m.name }}" width="640" height="640" loading="lazy" decoding="async">
+        </span>
+        <div>
+          <h3>{{ m.name }}</h3>
+          <ul class="person-roles">
+            {% for r in p.role.split(' · ') %}
+            <li>{{ r }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <p class="person-bio">{{ p.bio }}</p>
+        <p class="person-link"><a href="{{ m.linkedin }}">{{ c.about.linkedin }}{{ ico.icon('arrow') }}</a></p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
   </section>
   {% endfor %}
 
@@ -34,6 +58,9 @@
     <p class="prose">{{ c.about.play_body }}</p>
     <p class="actions">
       <a class="play" href="{{ play_dev_url }}">{{ c.about.play_link }}</a>
+      {% for s in app_store_links %}
+      <a class="play" href="{{ s.url }}">{{ c.about.app_store_link|replace('{app}', s.name) }}</a>
+      {% endfor %}
       <a class="ghost" href="{{ url('kontakt') }}">{{ c.about.contact_link }}</a>
     </p>
   </section>

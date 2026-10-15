@@ -68,23 +68,11 @@
   "contact": {
     "headline": "Napisz do nas",
     "body": "Pytania o prywatność, dane dziecka albo współpracę? Odpowiadamy na wiadomości.",
-    "role": "Autor · współadministrator danych",
-    "people_heading": "Kto za tym stoi",
+    "email_heading": "Adres kontaktowy",
+    "email_note": "Jeden adres do nas obu — Sebastiana i Dawida. Napisz śmiało w sprawie aplikacji, prywatności albo współpracy.",
     "data_heading": "Kto odpowiada za Twoje dane",
-    "data_body": "Sebastian Rosiński i Dawid Adamczyk są współadministratorami danych przetwarzanych w aplikacjach Kidalu, z równym udziałem w projekcie. Żądanie dostępu do danych, ich sprostowania lub usunięcia możesz zgłosić na dowolny z powyższych adresów — odpowie ten z nas, który pierwszy odbierze wiadomość. Zgłoszenia dotyczące naruszeń ochrony danych obsługujemy wspólnie.",
-    "docs_heading": "Dokumenty aplikacji",
-    "people": [
-      {
-        "name": "Sebastian Rosiński",
-        "email": "sebastian.rosinski.1989@gmail.com",
-        "role": "Autor · współadministrator danych"
-      },
-      {
-        "name": "Dawid Adamczyk",
-        "email": "phantom0492@gmail.com",
-        "role": "Autor · współadministrator danych"
-      }
-    ]
+    "data_body": "Sebastian Rosiński i Dawid Adamczyk są współadministratorami danych przetwarzanych w aplikacjach Kidalu, z równym udziałem w projekcie. Żądanie dostępu do danych, ich sprostowania lub usunięcia wyślij na powyższy adres — odpowie ten z nas, który pierwszy odbierze wiadomość. Zgłoszenia dotyczące naruszeń ochrony danych obsługujemy wspólnie.",
+    "docs_heading": "Dokumenty aplikacji"
   },
   "apps": {
     "czytanie": {
@@ -303,11 +291,23 @@
     "sections": [
       {
         "heading": "Kim jesteśmy",
-        "body": "Kidalu tworzą Sebastian Rosiński i Dawid Adamczyk. Zaczęło się od pytania, jak pomóc własnym dzieciom nauczyć się czytać i pisać bez ekranu pełnego reklam. Odpowiedzią stały się aplikacje, które sami chcielibyśmy zainstalować: proste, ciepłe i bezpieczne."
+        "body": "Kidalu tworzą Sebastian Rosiński i Dawid Adamczyk. Zaczęło się od pytania, jak pomóc własnym dzieciom nauczyć się czytać i pisać bez ekranu pełnego reklam. Odpowiedzią stały się aplikacje, które sami chcielibyśmy zainstalować: proste, ciepłe i bezpieczne.",
+        "team": [
+          {
+            "key": "dawid",
+            "role": "Współzałożyciel Kidalu · w IT od 2015 · tata",
+            "bio": "Zaczynał jako tester oprogramowania, potem prowadził zespół jakości, a dziś programuje w PHP — błędy wyłapuje, zanim trafi na nie dziecko. Studiował na AWF w Katowicach, więc wie, że najlepiej uczymy się w ruchu i przez zabawę. A najbardziej wymagający tester Kidalu mieszka z nim pod jednym dachem."
+          },
+          {
+            "key": "sebastian",
+            "role": "Współzałożyciel Kidalu · programista od 2013 · tata",
+            "bio": "Programuje od ponad dekady, głównie duże sklepy internetowe, w których wszystko musi działać szybko i bez potknięć. Tę samą staranność wkłada w Kidalu: zamienia domowe pomysły na naukę czytania w aplikacje, z których korzysta też jego rodzina. Wierzy, że czytanie zaczyna się od ciekawości, a nie od przymusu."
+          }
+        ]
       },
       {
         "heading": "Co robimy",
-        "body": "Budujemy aplikacje na Androida, które wprowadzają dziecko w świat liter, sylab i cyfr krok po kroku, a obie wydajemy także na iPhone'a i iPada. Nauka czytania sylabami uczy składania sylab w słowa, a Literki i Cyferki ćwiczą pisanie palcem po ekranie. Obie aplikacje są dostępne w Google Play pod nazwą wydawcy Kidalu, a teraz też w App Store."
+        "body": "Budujemy aplikacje na Androida, które wprowadzają dziecko w świat liter, sylab i cyfr krok po kroku, a obie wydajemy także na iPhone'a i iPada. Nauka czytania sylabami uczy składania sylab w słowa, a Literki i Cyferki ćwiczą pisanie palcem po ekranie. Obie aplikacje są dostępne w Google Play pod nazwą wydawcy Kidalu, a Naukę czytania sylabami pobierzesz już także z App Store."
       },
       {
         "heading": "Dlaczego nam zaufasz",
@@ -333,10 +333,12 @@
         "text": "Jasne dokumenty i szybka odpowiedź na pytania rodziców"
       }
     ],
-    "play_heading": "Znajdziesz nas w Google Play",
-    "play_body": "Wszystkie aplikacje Kidalu są w jednym miejscu na profilu wydawcy.",
+    "play_heading": "Znajdziesz nas w Google Play i App Store",
+    "play_body": "Wszystkie aplikacje Kidalu są w jednym miejscu na profilu wydawcy w Google Play. Naukę czytania sylabami pobierzesz też na iPhone'a i iPada.",
     "play_link": "Profil Kidalu w Google Play",
-    "contact_link": "Napisz do nas"
+    "app_store_link": "{app} w App Store",
+    "contact_link": "Napisz do nas",
+    "linkedin": "Profil na LinkedIn"
   },
   "notfound": {
     "title": "Nie ma takiej strony",

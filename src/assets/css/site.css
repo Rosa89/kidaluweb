@@ -191,6 +191,87 @@ main{display:block}
 .cards--people>.card{padding:1.3rem 1.4rem}
 .role{margin:.1rem 0 .6rem; font-size:.9rem; color:var(--wood-dark)}
 .mail{color:var(--pine); font-weight:700; word-break:break-word}
+.mail--big{font-family:'Baloo 2',system-ui,sans-serif; font-size:clamp(1.25rem,2.6vw,1.6rem); font-weight:600}
+.contact-card{
+  max-width:34rem; background:#fff; border-radius:1.1rem; padding:1.3rem 1.4rem;
+  box-shadow:0 12px 26px -20px rgba(84,36,10,.9), inset 0 0 0 1px rgba(153,78,33,.1);
+}
+.contact-card p{margin:0}
+.contact-card .contact-note{margin-top:.4rem; font-size:.94rem; line-height:1.6; color:#6B4526}
+
+/* Autorzy na stronie „O Kidalu": zdjęcie w ramce z tej samej deski co tabliczki
+   na stronie głównej, zawieszone na sznurku i gwoździku; na ramce przysiadł motyl
+   z lasu. Po najechaniu ramka buja się wokół gwoździa. */
+.cards--team{margin-top:1.6rem; grid-template-columns:repeat(auto-fit,minmax(min(100%,24rem),1fr))}
+.cards>.person{
+  display:grid; grid-template-columns:auto 1fr; gap:1.1rem 1.4rem; align-items:center;
+  padding:1.3rem 1.5rem 1.4rem;
+  background:linear-gradient(180deg,#fff 55%,#FFF8E8);
+}
+.person-frame{
+  --tilt:-2.5deg;
+  position:relative; display:block; margin-top:2.1rem; padding:.6rem;
+  border-radius:1.25rem; rotate:var(--tilt); transform-origin:50% -2rem;
+  background:url(../img/board.webp) 50% 50%/auto 140%;
+  box-shadow:inset 0 0 0 1px rgba(60,25,5,.35), inset 0 2px 0 rgba(255,220,170,.35),
+             0 16px 24px -14px rgba(60,25,5,.85);
+}
+.person:nth-child(even) .person-frame{--tilt:2.5deg}
+/* Sznurek od rogów ramki do gwoździka; gwoździk to osobna warstwa tła, bo sznurek
+   rozciąga się do szerokości ramki, a kółko ma zostać kółkiem. */
+.person-frame::before{
+  content:""; position:absolute; left:14%; right:14%; bottom:calc(100% - .35rem); height:2.2rem;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%236B4322'/%3E%3Ccircle cx='10' cy='10' r='5.4' fill='%23A8763F'/%3E%3Ccircle cx='8.4' cy='8.2' r='1.8' fill='%23E9C99A'/%3E%3C/svg%3E") 50% 0/.75rem .75rem no-repeat,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40' preserveAspectRatio='none'%3E%3Cpath d='M2 40 50 6 98 40' fill='none' stroke='%238A5A30' stroke-width='2.4' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+}
+/* Motyl z lasu przysiadł na rogu ramki i co jakiś czas składa skrzydła. */
+.person-frame::after{
+  content:""; position:absolute; top:-.95rem; right:-1.1rem; width:2.4rem; aspect-ratio:260/200;
+  background:url(../img/butterfly-120w.webp) center/contain no-repeat;
+  rotate:24deg; filter:drop-shadow(0 3px 3px rgba(60,25,5,.35));
+  animation:przysiad 5s ease-in-out infinite;
+}
+.person:nth-child(even) .person-frame::after{
+  top:auto; right:auto; bottom:-.8rem; left:-1.1rem; rotate:-28deg; animation-delay:-2.3s;
+}
+@keyframes przysiad{
+  0%,62%,100%{scale:1 1}
+  70%{scale:.55 1.03}
+  78%{scale:1 1}
+  86%{scale:.6 1.03}
+}
+.person-photo{
+  display:block; width:10rem; height:10rem; object-fit:cover;
+  border-radius:.8rem; background:var(--cream-2);
+  box-shadow:0 0 0 3px var(--paper), 0 0 0 4px rgba(60,25,5,.35);
+}
+.cards>.person h3{margin:0 0 .45rem; font-size:clamp(1.15rem,1.8vw,1.35rem)}
+.person-roles{list-style:none; display:flex; flex-wrap:wrap; gap:.35rem; margin:0; padding:0}
+.person-roles li{
+  padding:.18rem .7rem; border-radius:999px; background:var(--cream-2);
+  color:var(--wood-dark); font-size:.8rem; font-weight:700; line-height:1.4;
+}
+.person-roles li:first-child{background:#DDEFE1; color:var(--pine)}
+.person-bio,.person-link{grid-column:1/-1}
+.person-link a{display:inline-flex; align-items:center; gap:.35rem; color:var(--pine); font-weight:700; text-decoration:none}
+.person-link a:hover{text-decoration:underline}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){
+  .person:hover .person-frame{animation:bujanie 1.4s ease-in-out}
+}
+@keyframes bujanie{
+  0%,100%{rotate:var(--tilt)}
+  25%{rotate:calc(var(--tilt) * -1.6)}
+  55%{rotate:calc(var(--tilt) * 1.4)}
+  80%{rotate:calc(var(--tilt) * -.4)}
+}
+@media (max-width:480px){
+  .cards>.person{gap:.9rem 1rem; padding:1.1rem 1.1rem 1.2rem}
+  .person-frame{padding:.4rem; margin-top:1.8rem}
+  .person-photo{width:6.4rem; height:6.4rem; border-radius:.65rem}
+  .person-frame::after{width:1.9rem; top:-.8rem; right:-.75rem}
+  .person:nth-child(even) .person-frame::after{bottom:-.7rem; left:-.8rem}
+}
 
 .ticks{list-style:none; margin:0 0 1rem; padding:0; display:grid; gap:.7rem}
 .ticks li{display:flex; gap:.7rem; align-items:flex-start; line-height:1.55}
