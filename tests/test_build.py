@@ -367,7 +367,7 @@ def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
     types = {d["@type"]: d for d in _jsonld(html)}
     app = types["MobileApplication"]
     assert app["name"] == "Literki i Cyferki"
-    assert app["operatingSystem"] == "Android"
+    assert app["operatingSystem"] == "Android, iOS"
     assert app["applicationCategory"] == "EducationalApplication"
     assert app["installUrl"].endswith("id=com.literkiicyferki.app")
     assert app["url"] == "https://kidalu.com/literki-i-cyferki/"
@@ -383,29 +383,26 @@ def test_podstrona_aplikacji_ma_dane_strukturalne_aplikacji():
 APP_STORE_ID_URLS = {
     "literki": "https://apps.apple.com/app/id6814286876",
     "czytanie": "https://apps.apple.com/app/id6814530037",
+    "kolorowanka": "https://apps.apple.com/app/id6819872781",
 }
 
 
-def test_app_store_tylko_dla_czytania():
-    """Apple zaakceptowało dotąd tylko Czytanie; adres Literek wciąż zwraca 404.
-    Strona Czytania ma przycisk App Store i obie platformy w danych
-    strukturalnych, Literki zostają wyłącznie na Androidzie."""
-    assert build.APP_STORE_LIVE == {"czytanie"}, "ten test opisuje dzisiejszy stan sklepów"
+def test_app_store_dla_wszystkich_aplikacji():
+    """Apple zaakceptowało wszystkie trzy aplikacje: każda podstrona ma przycisk
+    Google Play i App Store oraz obie platformy w danych strukturalnych."""
+    assert build.PLAY_LIVE == set(build.APPS), "ten test opisuje dzisiejszy stan sklepów"
+    assert build.APP_STORE_LIVE == set(build.APPS), "ten test opisuje dzisiejszy stan sklepów"
     build.build()
-    labels = {l: build.load_lang(l)["app_page"]["app_store"] for l in build.available_langs()}
+    labels = {l: build.load_lang(l)["app_page"] for l in build.available_langs()}
     for lang in build.available_langs():
         urls = build.page_urls(build.load_lang(lang), lang)
-        html = _page(urls["czytanie"])
-        assert f'<a class="play" href="{APP_STORE_ID_URLS["czytanie"]}">{labels[lang]}</a>' in html, lang
-        types = {d["@type"]: d for d in _jsonld(html)}
-        assert types["MobileApplication"]["operatingSystem"] == "Android, iOS", lang
-
-        html = _page(urls["literki"])
-        assert "apps.apple.com" not in html, lang
-        types = {d["@type"]: d for d in _jsonld(html)}
-        assert types["MobileApplication"]["operatingSystem"] == "Android", lang
-    for page in build.OUT.rglob("*.html"):
-        assert APP_STORE_ID_URLS["literki"] not in page.read_text("utf-8"), page
+        for app_key in build.APPS:
+            html = _page(urls[app_key])
+            assert f'<a class="play" href="{build.play_url(app_key)}">{labels[lang]["play"]}</a>' in html, (app_key, lang)
+            assert f'<a class="play" href="{APP_STORE_ID_URLS[app_key]}">{labels[lang]["app_store"]}</a>' in html, (app_key, lang)
+            assert "play--soon" not in html, (app_key, lang)
+            types = {d["@type"]: d for d in _jsonld(html)}
+            assert types["MobileApplication"]["operatingSystem"] == "Android, iOS", (app_key, lang)
 
 
 def test_przycisk_app_store_wedlug_flagi():
@@ -445,8 +442,8 @@ def test_o_kidalu_pokazuje_autorow_ze_zdjeciami_i_app_store():
             assert f'alt="{member["name"]}"' in html, (lang, member["name"])
             assert (build.ASSETS / member["photo"]).exists(), member["photo"]
             assert f'href="{member["linkedin"]}"' in html, (lang, member["name"])
-        assert f'href="{APP_STORE_ID_URLS["czytanie"]}"' in html, lang
-        assert APP_STORE_ID_URLS["literki"] not in html, lang
+        for app_key in build.APPS:
+            assert f'href="{APP_STORE_ID_URLS[app_key]}"' in html, (lang, app_key)
 
 
 def test_kontakt_ma_jeden_adres_bez_prywatnych_skrzynek():

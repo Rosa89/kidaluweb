@@ -66,24 +66,25 @@ BING_SITE_VERIFICATION = "284E4F1B23AF02D0B0517E29AAC31E74"
 APPS = {
     "czytanie": "com.readbysyllables.app",
     "literki": "com.literkiicyferki.app",
-    "kolorowanka": "com.madredzieciaki.coloring.dinosaurs",
+    "kolorowanka": "com.kidalu.coloring",
 }
 
-# Aplikacje, które są już opublikowane w Google Play. Pozostałe mają podstronę,
-# ale zamiast przycisku sklepu plakietkę „wkrótce” i nie deklarują
+# Aplikacje, które są już opublikowane w Google Play. Aplikacja spoza zbioru ma
+# podstronę, ale zamiast przycisku sklepu plakietkę „wkrótce” i nie deklaruje
 # MobileApplication w danych strukturalnych — installUrl prowadziłby do 404.
-PLAY_LIVE: set[str] = {"czytanie", "literki"}
+PLAY_LIVE: set[str] = {"czytanie", "literki", "kolorowanka"}
 
 
 def play_url(app_key: str) -> str:
     return f"https://play.google.com/store/apps/details?id={APPS[app_key]}"
 
 
-# Identyfikatory aplikacji w App Store. Obie aplikacje mają rekord w App Store
-# Connect; które są już opublikowane, mówi APP_STORE_LIVE.
+# Identyfikatory aplikacji w App Store; które są już opublikowane, mówi
+# APP_STORE_LIVE.
 APPLE_IDS = {
     "literki": "6814286876",
     "czytanie": "6814530037",
+    "kolorowanka": "6819872781",
 }
 
 
@@ -95,8 +96,8 @@ def app_store_url(app_key: str) -> str:
 # i deklaruje operatingSystem "Android, iOS" w danych strukturalnych. Adres
 # aplikacji spoza zbioru zwraca 404 (czeka na recenzję Apple), więc przycisk
 # się dla niej nie renderuje. Klucz dopisać dopiero, gdy Apple zaakceptuje
-# daną aplikację — Literki wciąż czekają.
-APP_STORE_LIVE: set[str] = {"czytanie"}
+# daną aplikację. Od 11.2026 w App Store są wszystkie trzy.
+APP_STORE_LIVE: set[str] = {"czytanie", "literki", "kolorowanka"}
 
 
 def asset_url(rel: str) -> str:
